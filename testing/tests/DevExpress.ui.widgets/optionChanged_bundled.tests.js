@@ -42,7 +42,6 @@ define(function(require) {
                     name === 'validationMessageOffset' ||
                     name === 'templatesRenderAsynchronously' ||
                     name === 'ignoreChildEvents' ||
-                    name === 'copyRootClassesToWrapper' ||
                     name === '_checkParentVisibility') {
                     return;
                 }

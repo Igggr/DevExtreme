@@ -65,7 +65,7 @@ const optionTestValues = {
     toolbarItems: [{ widget: 'dxButton' }],
     visible: true,
     width: 500,
-    wrapperAttr: { class: 'dx-dropdowneditor-overlay', 'custom-attr': 'value' }
+    wrapperAttr: { 'custom-attr': 'value' }
 };
 
 const getPopupInstance = (editor) => {

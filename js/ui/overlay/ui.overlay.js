@@ -179,8 +179,6 @@ const Overlay = Widget.inherit({
 
             closeOnOutsideClick: false,
 
-            copyRootClassesToWrapper: false,
-
             onShowing: null,
 
             onShown: null,
@@ -258,15 +256,12 @@ const Overlay = Widget.inherit({
         this._initCloseOnOutsideClickHandler();
         this._initTabTerminatorHandler();
 
-        this._customWrapperClass = null;
         this._$wrapper = $('<div>').addClass(OVERLAY_WRAPPER_CLASS);
         this._$content = $('<div>').addClass(OVERLAY_CONTENT_CLASS);
         this._initInnerOverlayClass();
 
         const $element = this.$element();
-        if(this.option('copyRootClassesToWrapper')) {
-            this._$wrapper.addClass($element.attr('class'));
-        }
+        this._$wrapper.addClass($element.attr('class'));
         $element.addClass(OVERLAY_CLASS);
 
         this._$wrapper.attr('data-bind', 'dxControlsDescendantBindings: true');
@@ -438,17 +433,7 @@ const Overlay = Widget.inherit({
 
     _renderWrapperAttributes() {
         const { wrapperAttr } = this.option();
-        const attributes = extend({}, wrapperAttr);
-        const classNames = attributes.class;
-
-        delete attributes.class;
-
-        this.$wrapper()
-            .attr(attributes)
-            .removeClass(this._customWrapperClass)
-            .addClass(classNames);
-
-        this._customWrapperClass = classNames;
+        this._$wrapper.attr(wrapperAttr ?? {});
     },
 
     _renderVisibilityAnimate: function(visible) {
