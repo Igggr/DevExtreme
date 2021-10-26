@@ -92,10 +92,10 @@ export type ValueChangedEvent = NativeEventInfo<dxFileUploader> & {
 };
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @public
+ * @docid
  */
-export interface dxFileUploaderOptions extends EditorOptions<dxFileUploader> {
+export interface Properties extends EditorOptions<dxFileUploader> {
     /**
      * @docid
      * @type_function_param2 uploadInfo?:UploadInfo
@@ -453,7 +453,7 @@ export interface dxFileUploaderOptions extends EditorOptions<dxFileUploader> {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxFileUploader extends Editor<dxFileUploaderOptions> {
+export default class dxFileUploader extends Editor<Properties> {
     /**
      * @docid
      * @publicName upload()
@@ -504,8 +504,11 @@ export default class dxFileUploader extends Editor<dxFileUploaderOptions> {
     removeFile(file: File): void;
 }
 
-/** @public */
-export type Properties = dxFileUploaderOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxFileUploaderOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxFileUploaderOptions;
+export type Options = Properties;

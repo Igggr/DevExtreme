@@ -82,10 +82,10 @@ export type ValueChangedEvent = NativeEventInfo<dxColorBox> & ValueChangedInfo;
 export type DropDownButtonTemplateData = DropDownButtonTemplateDataModel;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @public
+ * @docid
  */
-export interface dxColorBoxOptions extends dxDropDownEditorOptions<dxColorBox> {
+export interface Properties extends dxDropDownEditorOptions<dxColorBox> {
     /**
      * @docid
      * @default "OK"
@@ -143,10 +143,13 @@ export interface dxColorBoxOptions extends dxDropDownEditorOptions<dxColorBox> {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxColorBox extends dxDropDownEditor<dxColorBoxOptions> { }
+export default class dxColorBox extends dxDropDownEditor<Properties> { }
 
-/** @public */
-export type Properties = dxColorBoxOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxColorBoxOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxColorBoxOptions;
+export type Options = Properties;

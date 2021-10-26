@@ -232,10 +232,10 @@ export type TimeTooltipTemplateData = {
 };
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxGanttOptions extends WidgetOptions<dxGantt> {
+export interface Properties extends WidgetOptions<dxGantt> {
     /**
      * @docid
      * @default true
@@ -977,7 +977,7 @@ export interface dxGanttOptions extends WidgetOptions<dxGantt> {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxGantt extends Widget<dxGanttOptions> {
+export default class dxGantt extends Widget<Properties> {
     /**
      * @docid
      * @publicName getTaskData(key)
@@ -1226,7 +1226,7 @@ export default class dxGantt extends Widget<dxGanttOptions> {
 export interface dxGanttToolbar {
     /**
      * @docid
-     * @type Array<dxGanttToolbarItem,Enums.GanttToolbarItem>
+     * @type Array<ToolbarItem,Enums.GanttToolbarItem>
      * @public
      */
     items?: Array<ToolbarItem | 'separator' | 'undo' | 'redo' | 'expandAll' | 'collapseAll' | 'addTask' | 'deleteTask' | 'zoomIn' | 'zoomOut' | 'taskDetails' | 'fullScreen' | 'resourceManager' | 'showResources' | 'showDependencies'>;
@@ -1246,23 +1246,24 @@ export interface dxGanttContextMenu {
     enabled?: boolean;
     /**
      * @docid
-     * @type Array<dxGanttContextMenuItem,Enums.GanttContextMenuItem>
+     * @type Array<ContextMenuItem,Enums.GanttContextMenuItem>
      * @public
      */
     items?: Array<ContextMenuItem | 'undo' | 'redo' | 'expandAll' | 'collapseAll' | 'addTask' | 'deleteTask' | 'zoomIn' | 'zoomOut' | 'deleteDependency' | 'taskDetails' | 'resourceManager'>;
 }
 
 /**
- * @public
- * @namespace DevExpress.ui.dxGantt
- */
-export type ToolbarItem = dxGanttToolbarItem;
-
-/**
  * @deprecated Use ToolbarItem instead
  * @namespace DevExpress.ui
  */
-export interface dxGanttToolbarItem extends dxToolbarItem {
+export type dxGanttToolbarItem = ToolbarItem;
+
+/**
+ * @docid
+ * @public
+ * @namespace DevExpress.ui.dxGantt
+ */
+export interface ToolbarItem extends dxToolbarItem {
     /**
      * @docid
      * @type Enums.GanttToolbarItem|string
@@ -1279,16 +1280,17 @@ export interface dxGanttToolbarItem extends dxToolbarItem {
 }
 
 /**
- * @public
- * @namespace DevExpress.ui.dxGantt
- */
-export type ContextMenuItem = dxGanttContextMenuItem;
-
-/**
  * @deprecated Use ContextMenuItem instead
  * @namespace DevExpress.ui
  */
-export interface dxGanttContextMenuItem extends dxContextMenuItem {
+export type dxGanttContextMenuItem = ContextMenuItem;
+
+/**
+ * @docid
+ * @public
+ * @namespace DevExpress.ui.dxGantt
+ */
+export interface ContextMenuItem extends dxContextMenuItem {
     /**
      * @docid
      * @type Enums.GanttContextMenuItem|string
@@ -1529,8 +1531,11 @@ export interface dxGanttHeaderFilterTexts {
     ok?: string;
 }
 
-/** @public */
-export type Properties = dxGanttOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxGanttOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxGanttOptions;
+export type Options = Properties;

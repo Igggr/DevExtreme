@@ -87,10 +87,10 @@ export type InitializedEvent = InitializedEventInfo<dxPivotGrid>;
 export type OptionChangedEvent = EventInfo<dxPivotGrid> & ChangedOptionInfo;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxPivotGridOptions extends WidgetOptions<dxPivotGrid> {
+export interface Properties extends WidgetOptions<dxPivotGrid> {
     /**
      * @docid
      * @default false
@@ -682,7 +682,7 @@ export interface dxPivotGridOptions extends WidgetOptions<dxPivotGrid> {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxPivotGrid extends Widget<dxPivotGridOptions> {
+export default class dxPivotGrid extends Widget<Properties> {
     /**
      * @docid
      * @publicName bindChart(chart, integrationOptions)
@@ -722,16 +722,17 @@ export default class dxPivotGrid extends Widget<dxPivotGridOptions> {
 }
 
 /**
+ * @deprecated Use Cell instead
+ * @namespace DevExpress.ui
+ */
+export type dxPivotGridPivotGridCell = Cell;
+
+/**
+ * @docid
  * @public
  * @namespace DevExpress.ui.dxPivotGrid
  */
-export type Cell = dxPivotGridPivotGridCell;
-
-/**
- * @namespace DevExpress.ui
- * @deprecated Use Cell instead
- */
-export interface dxPivotGridPivotGridCell {
+export interface Cell {
     /**
      * @docid
      * @public
@@ -789,8 +790,11 @@ export interface dxPivotGridPivotGridCell {
 
 export type dxPivotGridSummaryCell = SummaryCell;
 
-/** @public */
-export type Properties = dxPivotGridOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxPivotGridOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxPivotGridOptions;
+export type Options = Properties;

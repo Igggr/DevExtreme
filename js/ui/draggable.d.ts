@@ -150,10 +150,10 @@ export type DragTemplateData = {
 };
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @public
+ * @docid
  */
-export interface dxDraggableOptions extends DraggableBaseOptions<dxDraggable> {
+export interface Properties extends DraggableBaseOptions<dxDraggable> {
     /**
      * @docid
      * @default false
@@ -232,10 +232,13 @@ export interface dxDraggableOptions extends DraggableBaseOptions<dxDraggable> {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxDraggable extends DOMComponent<dxDraggableOptions> implements DraggableBase { }
+export default class dxDraggable extends DOMComponent<Properties> implements DraggableBase { }
 
-/** @public */
-export type Properties = dxDraggableOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxDraggableOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxDraggableOptions;
+export type Options = Properties;

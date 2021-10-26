@@ -8,7 +8,7 @@ import {
   Nested,
   Template,
 } from '@devextreme-generator/declarations';
-import type { dxToolbarItem } from '../../../../../ui/toolbar';
+import type { Item as dxToolbarItem } from '../../../../../ui/toolbar';
 import type { dxLoadPanelAnimation } from '../../../../../ui/load_panel';
 import DxDataGrid from '../../../../../ui/data_grid';
 import type {
@@ -76,7 +76,7 @@ import type {
 } from '../../../../../ui/data_grid';
 import { BaseWidgetProps } from '../../../common/base_props';
 
-import type { dxFilterBuilderOptions } from '../../../../../ui/filter_builder';
+import type { Properties as dxFilterBuilderOptions } from '../../../../../ui/filter_builder';
 import { DxPromise } from '../../../../../core/utils/deferred'; // eslint-disable-line import/named
 import type { UserDefinedElement, DxElement } from '../../../../../core/element'; // eslint-disable-line import/named
 import type { template } from '../../../../../core/templates/template';
@@ -96,7 +96,7 @@ import type {
 // eslint-disable-next-line import/extensions
 } from '../../../../../ui/validation_rules';
 import type { Format } from '../../../../../localization';
-import type { dxFormSimpleItem, dxFormOptions } from '../../../../../ui/form';
+import type { SimpleItem as dxFormSimpleItem, Properties as dxFormOptions } from '../../../../../ui/form';
 import type Store from '../../../../../data/abstract_store';
 import messageLocalization from '../../../../../localization/message';
 import devices from '../../../../../core/devices';

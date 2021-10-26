@@ -42,19 +42,19 @@ interface AppointmentDraggingEvent {
 }
 
 interface TargetedAppointmentInfo {
-  readonly appointmentData: dxSchedulerAppointment;
-  readonly targetedAppointmentData?: dxSchedulerAppointment;
+  readonly appointmentData: Appointment;
+  readonly targetedAppointmentData?: Appointment;
 }
 
 /** @public */
 export type AppointmentAddedEvent = EventInfo<dxScheduler> & {
-  readonly appointmentData: dxSchedulerAppointment;
+  readonly appointmentData: Appointment;
   readonly error?: Error;
 };
 
 /** @public */
 export type AppointmentAddingEvent = EventInfo<dxScheduler> & {
-  readonly appointmentData: dxSchedulerAppointment;
+  readonly appointmentData: Appointment;
   cancel: boolean | PromiseLike<boolean>;
 };
 
@@ -75,19 +75,19 @@ export type AppointmentDblClickEvent = Cancelable & NativeEventInfo<dxScheduler>
 
 /** @public */
 export type AppointmentDeletedEvent = EventInfo<dxScheduler> & {
-  readonly appointmentData: dxSchedulerAppointment;
+  readonly appointmentData: Appointment;
   readonly error?: Error;
 };
 
 /** @public */
 export type AppointmentDeletingEvent = EventInfo<dxScheduler> & {
-  readonly appointmentData: dxSchedulerAppointment;
+  readonly appointmentData: Appointment;
   cancel: boolean | PromiseLike<boolean>;
 };
 
 /** @public */
 export type AppointmentFormOpeningEvent = Cancelable & EventInfo<dxScheduler> & {
-  readonly appointmentData?: dxSchedulerAppointment;
+  readonly appointmentData?: Appointment;
   readonly form: dxForm;
   readonly popup: dxPopup;
 };
@@ -99,7 +99,7 @@ export type AppointmentRenderedEvent = EventInfo<dxScheduler> & TargetedAppointm
 
 /** @public */
 export type AppointmentUpdatedEvent = EventInfo<dxScheduler> & {
-  readonly appointmentData: dxSchedulerAppointment;
+  readonly appointmentData: Appointment;
   readonly error?: Error;
 };
 
@@ -184,10 +184,10 @@ export type DateNavigatorTextInfo = {
 };
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxSchedulerOptions extends WidgetOptions<dxScheduler> {
+export interface Properties extends WidgetOptions<dxScheduler> {
     /**
      * @docid
      * @default false
@@ -367,7 +367,7 @@ export interface dxSchedulerOptions extends WidgetOptions<dxScheduler> {
      * @docid
      * @default null
      * @public
-     * @type string|Array<dxSchedulerAppointment>|Store|DataSource|DataSourceOptions
+     * @type string|Array<Appointment>|Store|DataSource|DataSourceOptions
      */
     dataSource?: DataSourceLike<Appointment>;
     /**
@@ -1001,19 +1001,19 @@ export interface dxSchedulerOptions extends WidgetOptions<dxScheduler> {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxScheduler extends Widget<dxSchedulerOptions> {
+export default class dxScheduler extends Widget<Properties> {
     /**
      * @docid
      * @publicName addAppointment(appointment)
      * @public
      */
-    addAppointment(appointment: dxSchedulerAppointment): void;
+    addAppointment(appointment: Appointment): void;
     /**
      * @docid
      * @publicName deleteAppointment(appointment)
      * @public
      */
-    deleteAppointment(appointment: dxSchedulerAppointment): void;
+    deleteAppointment(appointment: Appointment): void;
     getDataSource(): DataSource;
     /**
      * @docid
@@ -1066,7 +1066,7 @@ export default class dxScheduler extends Widget<dxSchedulerOptions> {
      * @param3 currentAppointmentData:dxSchedulerAppointment|undefined
      * @public
      */
-    showAppointmentPopup(appointmentData?: dxSchedulerAppointment, createNewAppointment?: boolean, currentAppointmentData?: dxSchedulerAppointment): void;
+    showAppointmentPopup(appointmentData?: Appointment, createNewAppointment?: boolean, currentAppointmentData?: Appointment): void;
     /**
      * @docid
      * @publicName showAppointmentTooltip(appointmentData, target, currentAppointmentData)
@@ -1074,25 +1074,26 @@ export default class dxScheduler extends Widget<dxSchedulerOptions> {
      * @param3 currentAppointmentData:dxSchedulerAppointment|undefined
      * @public
      */
-    showAppointmentTooltip(appointmentData: dxSchedulerAppointment, target: string | UserDefinedElement, currentAppointmentData?: dxSchedulerAppointment): void;
+    showAppointmentTooltip(appointmentData: Appointment, target: string | UserDefinedElement, currentAppointmentData?: Appointment): void;
     /**
      * @docid
      * @publicName updateAppointment(target, appointment)
      * @public
      */
-    updateAppointment(target: dxSchedulerAppointment, appointment: dxSchedulerAppointment): void;
+    updateAppointment(target: Appointment, appointment: Appointment): void;
 }
-
-/**
- * @public
- */
-export type Appointment = dxSchedulerAppointment;
 
 /**
  * @namespace DevExpress.ui
  * @deprecated Use the Scheduler's Appointment type instead
  */
-export interface dxSchedulerAppointment extends CollectionWidgetItem {
+export type dxSchedulerAppointment = Appointment;
+
+/**
+ * @docid
+ * @public
+ */
+export interface Appointment extends CollectionWidgetItem {
     /**
      * @docid
      * @public
@@ -1162,11 +1163,14 @@ export interface dxSchedulerAppointment extends CollectionWidgetItem {
     visible?: boolean;
 }
 
-/** @public */
-export type Properties = dxSchedulerOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxSchedulerOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxSchedulerOptions;
+export type Options = Properties;
 
 /**
  * @docid

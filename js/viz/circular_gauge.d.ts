@@ -51,10 +51,10 @@ export type TooltipHiddenEvent = EventInfo<dxCircularGauge> & TooltipInfo;
 export type TooltipShownEvent = EventInfo<dxCircularGauge> & TooltipInfo;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.viz
+ * @public
+ * @docid
  */
-export interface dxCircularGaugeOptions extends BaseGaugeOptions<dxCircularGauge> {
+export interface Properties extends BaseGaugeOptions<dxCircularGauge> {
     /**
      * @docid
      * @public
@@ -150,10 +150,13 @@ export interface dxCircularGaugeScaleLabel extends BaseGaugeScaleLabel {
  * @namespace DevExpress.viz
  * @public
  */
-export default class dxCircularGauge extends BaseGauge<dxCircularGaugeOptions> { }
+export default class dxCircularGauge extends BaseGauge<Properties> { }
 
-/** @public */
-export type Properties = dxCircularGaugeOptions;
+/**
+ * @namespace DevExpress.viz
+ * @deprecated use Properties instead
+ */
+export type dxCircularGaugeOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxCircularGaugeOptions;
+export type Options = Properties;

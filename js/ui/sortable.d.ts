@@ -130,10 +130,10 @@ export interface DragTemplateData {
 }
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxSortableOptions extends DraggableBaseOptions<dxSortable> {
+export interface Properties extends DraggableBaseOptions<dxSortable> {
     /**
      * @docid
      * @default false
@@ -337,7 +337,7 @@ export interface dxSortableOptions extends DraggableBaseOptions<dxSortable> {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxSortable extends DOMComponent<dxSortableOptions> implements DraggableBase {
+export default class dxSortable extends DOMComponent<Properties> implements DraggableBase {
     /**
      * @docid
      * @publicName update()
@@ -346,8 +346,11 @@ export default class dxSortable extends DOMComponent<dxSortableOptions> implemen
     update(): void;
 }
 
-/** @public */
-export type Properties = dxSortableOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxSortableOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxSortableOptions;
+export type Options = Properties;

@@ -12,7 +12,7 @@ import {
 
 import dxTabs, {
     Item as dxTabsItem,
-    dxTabsOptions,
+    Properties as dxTabsOptions,
 } from './tabs';
 
 /** @public */
@@ -43,10 +43,10 @@ export type OptionChangedEvent = EventInfo<dxNavBar> & ChangedOptionInfo;
 export type SelectionChangedEvent = EventInfo<dxNavBar> & SelectionChangedInfo;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxNavBarOptions extends dxTabsOptions<dxNavBar> {
+export interface Properties extends dxTabsOptions<dxNavBar> {
     /**
      * @docid
      * @public
@@ -60,19 +60,20 @@ export interface dxNavBarOptions extends dxTabsOptions<dxNavBar> {
  * @deprecated dxTabs
  * @public
  */
-export default class dxNavBar extends dxTabs<dxNavBarOptions> { }
-
-/**
- * @public
- * @namespace DevExpress.ui.dxNavBar
- */
-export type Item = dxNavBarItem;
+export default class dxNavBar extends dxTabs<Properties> { }
 
 /**
  * @deprecated Use Item instead
  * @namespace DevExpress.ui
  */
-export interface dxNavBarItem extends dxTabsItem {
+export type dxNavBarItem = Item;
+
+/**
+ * @docid
+ * @public
+ * @namespace DevExpress.ui.dxNavBar
+ */
+export interface Item extends dxTabsItem {
     /**
      * @docid
      * @public
@@ -80,8 +81,11 @@ export interface dxNavBarItem extends dxTabsItem {
     badge?: string;
 }
 
-/** @public */
-export type Properties = dxNavBarOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxNavBarOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxNavBarOptions;
+export type Options = Properties;

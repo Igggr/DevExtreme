@@ -88,10 +88,10 @@ export type OptionChangedEvent = EventInfo<dxTreeMap> & ChangedOptionInfo;
 export type SelectionChangedEvent = EventInfo<dxTreeMap> & InteractionInfo;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.viz
+ * @public
+ * @docid
  */
-export interface dxTreeMapOptions extends BaseWidgetOptions<dxTreeMap> {
+export interface Properties extends BaseWidgetOptions<dxTreeMap> {
     /**
      * @docid
      * @default 'items'
@@ -729,8 +729,11 @@ export interface dxTreeMapNode {
     value(): number;
 }
 
-/** @public */
-export type Properties = dxTreeMapOptions;
+/**
+ * @namespace DevExpress.viz
+ * @deprecated use Properties instead
+ */
+export type dxTreeMapOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxTreeMapOptions;
+export type Options = Properties;

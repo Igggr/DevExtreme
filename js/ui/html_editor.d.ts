@@ -56,10 +56,10 @@ export interface MentionTemplateData {
     readonly value?: any;
 }
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxHtmlEditorOptions extends EditorOptions<dxHtmlEditor> {
+export interface Properties extends EditorOptions<dxHtmlEditor> {
     /**
      * @docid
      * @default false
@@ -173,7 +173,7 @@ export interface dxHtmlEditorOptions extends EditorOptions<dxHtmlEditor> {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxHtmlEditor extends Editor<dxHtmlEditorOptions> {
+export default class dxHtmlEditor extends Editor<Properties> {
     /**
      * @docid
      * @publicName blur()
@@ -401,23 +401,24 @@ export interface dxHtmlEditorTableContextMenu {
     enabled?: boolean;
     /**
      * @docid
-     * @type Array<dxHtmlEditorTableContextMenuItem,Enums.HtmlEditorContextMenuItem>
+     * @type Array<ContextMenuItem,Enums.HtmlEditorContextMenuItem>
      * @public
      */
     items?: Array<ContextMenuItem | 'background' | 'bold' | 'color' | 'font' | 'italic' | 'link' | 'image' | 'strike' | 'subscript' | 'superscript' | 'underline' | 'blockquote' | 'header' | 'increaseIndent' | 'decreaseIndent' | 'orderedList' | 'bulletList' | 'alignLeft' | 'alignCenter' | 'alignRight' | 'alignJustify' | 'codeBlock' | 'variable' | 'separator' | 'undo' | 'redo' | 'clear' | 'insertTable' | 'insertRowAbove' | 'insertRowBelow' | 'insertColumnLeft' | 'insertColumnRight' | 'deleteColumn' | 'deleteRow' | 'deleteTable'>;
 }
 
 /**
- * @public
- * @namespace DevExpress.ui.dxHtmlEditor
- */
-export type ContextMenuItem = dxHtmlEditorTableContextMenuItem;
-
-/**
  * @deprecated Use ContextMenuItem instead
  * @namespace DevExpress.ui
  */
-export interface dxHtmlEditorTableContextMenuItem extends MenuBasePlainItem {
+export type dxHtmlEditorTableContextMenuItem = ContextMenuItem;
+
+/**
+ * @docid
+ * @public
+ * @namespace DevExpress.ui.dxHtmlEditor
+ */
+export interface ContextMenuItem extends MenuBasePlainItem {
     /**
      * @docid
      * @default undefined
@@ -428,7 +429,7 @@ export interface dxHtmlEditorTableContextMenuItem extends MenuBasePlainItem {
     /**
      * @docid
      * @public
-     * @type Array<dxHtmlEditorTableContextMenuItem,Enums.HtmlEditorContextMenuItem>
+     * @type Array<ContextMenuItem,Enums.HtmlEditorContextMenuItem>
      */
     items?: Array<ContextMenuItem | 'background' | 'bold' | 'color' | 'font' | 'italic' | 'link' | 'image' | 'strike' | 'subscript' | 'superscript' | 'underline' | 'blockquote' | 'header' | 'increaseIndent' | 'decreaseIndent' | 'orderedList' | 'bulletList' | 'alignLeft' | 'alignCenter' | 'alignRight' | 'alignJustify' | 'codeBlock' | 'variable' | 'separator' | 'undo' | 'redo' | 'clear' | 'insertTable' | 'insertRowAbove' | 'insertRowBelow' | 'insertColumnLeft' | 'insertColumnRight' | 'deleteColumn' | 'deleteRow' | 'deleteTable'>;
 }
@@ -518,7 +519,7 @@ export interface dxHtmlEditorToolbar {
     container?: string | UserDefinedElement;
     /**
      * @docid
-     * @type Array<dxHtmlEditorToolbarItem,Enums.HtmlEditorToolbarItem>
+     * @type Array<ToolbarItem,Enums.HtmlEditorToolbarItem>
      * @public
      */
     items?: Array<ToolbarItem | 'background' | 'bold' | 'color' | 'font' | 'italic' | 'link' | 'image' | 'size' | 'strike' | 'subscript' | 'superscript' | 'underline' | 'blockquote' | 'header' | 'increaseIndent' | 'decreaseIndent' | 'orderedList' | 'bulletList' | 'alignLeft' | 'alignCenter' | 'alignRight' | 'alignJustify' | 'codeBlock' | 'variable' | 'separator' | 'undo' | 'redo' | 'clear' | 'insertTable' | 'insertHeaderRow' | 'insertRowAbove' | 'insertRowBelow' | 'insertColumnLeft' | 'insertColumnRight' | 'deleteColumn' | 'deleteRow' | 'deleteTable' | 'cellProperties' | 'tableProperties'>;
@@ -531,16 +532,17 @@ export interface dxHtmlEditorToolbar {
 }
 
 /**
- * @public
- * @namespace DevExpress.ui.dxHtmlEditor
- */
-export type ToolbarItem = dxHtmlEditorToolbarItem;
-
-/**
  * @deprecated Use ToolbarItem instead
  * @namespace DevExpress.ui
  */
-export interface dxHtmlEditorToolbarItem extends dxToolbarItem {
+export type dxHtmlEditorToolbarItem = ToolbarItem;
+
+/**
+ * @docid
+ * @public
+ * @namespace DevExpress.ui.dxHtmlEditor
+ */
+export interface ToolbarItem extends dxToolbarItem {
     /**
      * @docid
      * @type Enums.HtmlEditorToolbarItem|string
@@ -593,8 +595,11 @@ export interface dxHtmlEditorVariables {
     escapeChar?: string | Array<string>;
 }
 
-/** @public */
-export type Properties = dxHtmlEditorOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxHtmlEditorOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxHtmlEditorOptions;
+export type Options = Properties;

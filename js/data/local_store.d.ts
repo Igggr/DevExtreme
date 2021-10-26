@@ -1,18 +1,21 @@
 import ArrayStore, {
-    ArrayStoreOptions,
+    Options as ArrayStoreOptions,
 } from './array_store';
-
-/** @public */
-export type Options<
-    TItem = any,
-    TKey = any,
-> = LocalStoreOptions<TItem, TKey>;
 
 /**
  * @namespace DevExpress.data
  * @deprecated Use Options instead
  */
-export interface LocalStoreOptions<
+export type LocalStoreOptions<
+    TItem = any,
+    TKey = any,
+> = Options<TItem, TKey>;
+
+/**
+ * @public
+ * @docid
+ */
+export interface Options<
     TItem = any,
     TKey = any,
 > extends ArrayStoreOptions<TItem, TKey> {

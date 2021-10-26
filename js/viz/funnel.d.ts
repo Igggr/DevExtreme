@@ -44,16 +44,17 @@ import BaseWidget, {
 } from './core/base_widget';
 
 /**
- * @public
- * @namespace DevExpress.viz.dxFunnel
- */
-export type LegendItem = FunnelLegendItem;
-
-/**
  * @deprecated Use LegendItem instead
  * @namespace DevExpress.viz
  */
-export interface FunnelLegendItem extends BaseLegendItem {
+export type FunnelLegendItem = LegendItem;
+
+/**
+ * @public
+ * @docid
+ * @namespace DevExpress.viz.dxFunnel
+ */
+export interface LegendItem extends BaseLegendItem {
     /**
      * @docid
      * @type dxFunnelItem
@@ -103,10 +104,10 @@ export type OptionChangedEvent = EventInfo<dxFunnel> & ChangedOptionInfo;
 export type SelectionChangedEvent = EventInfo<dxFunnel> & FunnelItemInfo;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.viz
+ * @public
+ * @docid
  */
-export interface dxFunnelOptions extends BaseWidgetOptions<dxFunnel> {
+export interface Properties extends BaseWidgetOptions<dxFunnel> {
     /**
      * @docid
      * @public
@@ -600,7 +601,7 @@ export interface dxFunnelTooltip extends BaseWidgetTooltip {
  * @namespace DevExpress.viz
  * @public
  */
-export default class dxFunnel extends BaseWidget<dxFunnelOptions> {
+export default class dxFunnel extends BaseWidget<Properties> {
     /**
      * @docid
      * @publicName clearSelection()
@@ -624,16 +625,17 @@ export default class dxFunnel extends BaseWidget<dxFunnelOptions> {
 }
 
 /**
- * @public
- * @namespace DevExpress.viz.dxFunnel
- */
-export type Item = dxFunnelItem;
-
-/**
  * @deprecated Use Item instead
  * @namespace DevExpress.viz
  */
-export interface dxFunnelItem {
+export type dxFunnelItem = Item;
+
+/**
+ * @public
+ * @docid
+ * @namespace DevExpress.viz.dxFunnel
+ */
+export interface Item {
     /**
      * @docid
      * @public
@@ -697,8 +699,11 @@ export interface dxFunnelItem {
     value?: number;
 }
 
-/** @public */
-export type Properties = dxFunnelOptions;
+/**
+ * @namespace DevExpress.viz
+ * @deprecated use Properties instead
+ */
+export type dxFunnelOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxFunnelOptions;
+export type Options = Properties;

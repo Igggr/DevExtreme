@@ -32,10 +32,10 @@ export type OptionChangedEvent = EventInfo<dxProgressBar> & ChangedOptionInfo;
 export type ValueChangedEvent = NativeEventInfo<dxProgressBar> & ValueChangedInfo;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxProgressBarOptions extends dxTrackBarOptions<dxProgressBar> {
+export interface Properties extends dxTrackBarOptions<dxProgressBar> {
     /**
      * @docid
      * @default null
@@ -73,10 +73,13 @@ export interface dxProgressBarOptions extends dxTrackBarOptions<dxProgressBar> {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxProgressBar extends dxTrackBar<dxProgressBarOptions> { }
+export default class dxProgressBar extends dxTrackBar<Properties> { }
 
-/** @public */
-export type Properties = dxProgressBarOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxProgressBarOption = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxProgressBarOptions;
+export type Options = Properties;

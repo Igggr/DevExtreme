@@ -38,10 +38,10 @@ export type ItemRenderedEvent = NativeEventInfo<dxTileView> & ItemInfo;
 export type OptionChangedEvent = EventInfo<dxTileView> & ChangedOptionInfo;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxTileViewOptions extends CollectionWidgetOptions<dxTileView> {
+export interface Properties extends CollectionWidgetOptions<dxTileView> {
     /**
      * @docid
      * @default true
@@ -62,7 +62,7 @@ export interface dxTileViewOptions extends CollectionWidgetOptions<dxTileView> {
     baseItemWidth?: number;
     /**
      * @docid
-     * @type string | Array<string | dxTileViewItem | any> | Store | DataSource | DataSourceOptions
+     * @type string | Array<string | Item | any> | Store | DataSource | DataSourceOptions
      * @default null
      * @public
      */
@@ -100,7 +100,7 @@ export interface dxTileViewOptions extends CollectionWidgetOptions<dxTileView> {
     itemMargin?: number;
     /**
      * @docid
-     * @type Array<string | dxTileViewItem | any>
+     * @type Array<string | Item | any>
      * @fires dxTileViewOptions.onOptionChanged
      * @public
      */
@@ -118,7 +118,7 @@ export interface dxTileViewOptions extends CollectionWidgetOptions<dxTileView> {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxTileView extends CollectionWidget<dxTileViewOptions> {
+export default class dxTileView extends CollectionWidget<Properties> {
     /**
      * @docid
      * @publicName scrollPosition()
@@ -129,16 +129,17 @@ export default class dxTileView extends CollectionWidget<dxTileViewOptions> {
 }
 
 /**
- * @public
- * @namespace DevExpress.ui.dxTileView
- */
-export type Item = dxTileViewItem;
-
-/**
  * @deprecated Use Item instead
  * @namespace DevExpress.ui
  */
-export interface dxTileViewItem extends CollectionWidgetItem {
+export type dxTileViewItem = Item;
+
+/**
+ * @docid
+ * @public
+ * @namespace DevExpress.ui.dxTileView
+ */
+export interface Item extends CollectionWidgetItem {
     /**
      * @docid
      * @default 1
@@ -153,8 +154,11 @@ export interface dxTileViewItem extends CollectionWidgetItem {
     widthRatio?: number;
 }
 
-/** @public */
-export type Properties = dxTileViewOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxTileViewOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxTileViewOptions;
+export type Options = Properties;

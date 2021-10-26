@@ -42,10 +42,10 @@ export type OptionChangedEvent = EventInfo<dxMultiView> & ChangedOptionInfo;
 export type SelectionChangedEvent = EventInfo<dxMultiView> & SelectionChangedInfo;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxMultiViewOptions<TComponent> extends CollectionWidgetOptions<TComponent> {
+export interface Properties<TComponent=MultiViewInstance> extends CollectionWidgetOptions<TComponent> {
     /**
      * @docid
      * @default true
@@ -54,7 +54,7 @@ export interface dxMultiViewOptions<TComponent> extends CollectionWidgetOptions<
     animationEnabled?: boolean;
     /**
      * @docid
-     * @type string | Array<string | dxMultiViewItem | any> | Store | DataSource | DataSourceOptions
+     * @type string | Array<string | Item | any> | Store | DataSource | DataSourceOptions
      * @default null
      * @public
      */
@@ -73,7 +73,7 @@ export interface dxMultiViewOptions<TComponent> extends CollectionWidgetOptions<
     focusStateEnabled?: boolean;
     /**
      * @docid
-     * @type Array<string | dxMultiViewItem | any>
+     * @type Array<string | Item | any>
      * @fires dxMultiViewOptions.onOptionChanged
      * @public
      */
@@ -106,22 +106,26 @@ export interface dxMultiViewOptions<TComponent> extends CollectionWidgetOptions<
 export default class dxMultiView<TProperties = Properties> extends CollectionWidget<TProperties> { }
 
 /**
- * @public
- * @namespace DevExpress.ui.dxMultiView
- */
-export type Item = dxMultiViewItem;
-
-/**
  * @deprecated Use Item instead
  * @namespace DevExpress.ui
  */
-export interface dxMultiViewItem extends CollectionWidgetItem {
+export type dxMultiViewItem = Item;
+
+/**
+ * @docid
+ * @public
+ * @namespace DevExpress.ui.dxMultiView
+ */
+export interface Item extends CollectionWidgetItem {
 }
 
 interface MultiViewInstance extends dxMultiView<Properties> { }
 
-/** @public */
-export type Properties = dxMultiViewOptions<MultiViewInstance>;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxMultiViewOptions<T> = Properties<T>;
 
 /** @deprecated use Properties instead */
-export type Options = Properties;
+export type Options = Properties<MultiViewInstance>;

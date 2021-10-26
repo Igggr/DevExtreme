@@ -75,10 +75,10 @@ export type ShowingEvent = Cancelable & EventInfo<dxContextMenu>;
 export type ShownEvent = EventInfo<dxContextMenu>;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @public
+ * @docid
  */
-export interface dxContextMenuOptions extends dxMenuBaseOptions<dxContextMenu> {
+export interface Properties extends dxMenuBaseOptions<dxContextMenu> {
     /**
      * @docid
      * @default true
@@ -89,14 +89,14 @@ export interface dxContextMenuOptions extends dxMenuBaseOptions<dxContextMenu> {
     closeOnOutsideClick?: boolean | ((event: DxEvent) => boolean);
     /**
      * @docid
-     * @type string | Array<dxContextMenuItem> | Store | DataSource | DataSourceOptions
+     * @type string | Array<Item> | Store | DataSource | DataSourceOptions
      * @default null
      * @public
      */
     dataSource?: DataSourceLike<Item>;
     /**
      * @docid
-     * @type Array<dxContextMenuItem>
+     * @type Array<Item>
      * @public
      */
     items?: Array<Item>;
@@ -211,7 +211,7 @@ export interface dxContextMenuOptions extends dxMenuBaseOptions<dxContextMenu> {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxContextMenu extends dxMenuBase<dxContextMenuOptions> {
+export default class dxContextMenu extends dxMenuBase<Properties> {
     /**
      * @docid
      * @publicName hide()
@@ -236,26 +236,30 @@ export default class dxContextMenu extends dxMenuBase<dxContextMenuOptions> {
 }
 
 /**
- * @public
- * @namespace DevExpress.ui.dxContextMenu
- */
-export type Item = dxContextMenuItem;
-
-/**
  * @deprecated Use Item instead
  * @namespace DevExpress.ui
  */
-export interface dxContextMenuItem extends dxMenuBaseItem {
+export type dxContextMenuItem = Item;
+
+/**
+ * @namespace DevExpress.ui.dxContextMen
+ * @public
+ * @docid
+ */
+export interface Item extends dxMenuBaseItem {
     /**
      * @docid
      * @public
-     * @type Array<dxContextMenuItem>
+     * @type Array<Item>
      */
     items?: Array<Item>;
 }
 
-/** @public */
-export type Properties = dxContextMenuOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxContextMenuOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxContextMenuOptions;
+export type Options = Properties;

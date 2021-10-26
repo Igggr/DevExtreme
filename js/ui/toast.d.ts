@@ -44,10 +44,10 @@ export type ShowingEvent = Cancelable & EventInfo<dxToast>;
 export type ShownEvent = EventInfo<dxToast>;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxToastOptions extends dxOverlayOptions<dxToast> {
+export interface Properties extends dxOverlayOptions<dxToast> {
     /**
      * @docid
      * @default { show: { type: "fade", duration: 400, from: 0, to: 1 }, hide: { type: "fade", duration: 400, to: 0 } }
@@ -158,10 +158,13 @@ export interface dxToastAnimation extends dxOverlayAnimation {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxToast extends dxOverlay<dxToastOptions> { }
+export default class dxToast extends dxOverlay<Properties> { }
 
-/** @public */
-export type Properties = dxToastOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxToastOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxToastOptions;
+export type Options = Properties;

@@ -104,10 +104,10 @@ export type SelectAllValueChangedEvent = EventInfo<dxTreeView> & {
 export type SelectionChangedEvent = EventInfo<dxTreeView>;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxTreeViewOptions extends Skip<HierarchicalCollectionWidgetOptions<dxTreeView>, 'dataSource'>, SearchBoxMixinOptions {
+export interface Properties extends Skip<HierarchicalCollectionWidgetOptions<dxTreeView>, 'dataSource'>, SearchBoxMixinOptions {
     /**
      * @docid
      * @default true
@@ -123,7 +123,7 @@ export interface dxTreeViewOptions extends Skip<HierarchicalCollectionWidgetOpti
     createChildren?: ((parentNode: Node) => PromiseLike<any> | Array<any>);
     /**
      * @docid
-     * @type string | Array<dxTreeViewItem> | Store | DataSource | DataSourceOptions
+     * @type string | Array<Item> | Store | DataSource | DataSourceOptions
      * @default null
      * @public
      */
@@ -169,7 +169,7 @@ export interface dxTreeViewOptions extends Skip<HierarchicalCollectionWidgetOpti
     hasItemsExpr?: string | Function;
     /**
      * @docid
-     * @type Array<dxTreeViewItem>
+     * @type Array<Item>
      * @public
      */
     items?: Array<Item>;
@@ -379,7 +379,7 @@ export interface dxTreeViewOptions extends Skip<HierarchicalCollectionWidgetOpti
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxTreeView extends HierarchicalCollectionWidget<dxTreeViewOptions> {
+export default class dxTreeView extends HierarchicalCollectionWidget<Properties> {
     /**
      * @docid
      * @publicName collapseAll()
@@ -538,16 +538,17 @@ export default class dxTreeView extends HierarchicalCollectionWidget<dxTreeViewO
 }
 
 /**
- * @public
- * @namespace DevExpress.ui.dxTreeView
- */
-export type Item = dxTreeViewItem;
-
-/**
  * @deprecated Use Item instead
  * @namespace DevExpress.ui
  */
-export interface dxTreeViewItem extends CollectionWidgetItem {
+export type dxTreeViewItem = Item;
+
+/**
+ * @docid
+ * @public
+ * @namespace  DevExpress.ui.dxTreeView
+ */
+export interface Item extends CollectionWidgetItem {
     /**
      * @docid
      * @default false
@@ -568,7 +569,7 @@ export interface dxTreeViewItem extends CollectionWidgetItem {
     /**
      * @docid
      * @public
-     * @type Array<dxTreeViewItem>
+     * @type Array<Item>
      */
     items?: Array<Item>;
     /**
@@ -591,21 +592,23 @@ export interface dxTreeViewItem extends CollectionWidgetItem {
     selected?: boolean;
 }
 
-/** @public */
-export type Node = dxTreeViewNode;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated {ui/tree_view.Node}
+ */
+export type dxTreeViewNode = Node;
 
 /**
  * @docid
- * @deprecated {ui/tree_view.Node}
+ * @public
  * @type object
- * @namespace DevExpress.ui
  */
-export interface dxTreeViewNode {
+export interface Node {
     /**
      * @docid
      * @public
      */
-    children?: Array<dxTreeViewNode>;
+    children?: Array<Node>;
     /**
      * @docid
      * @public
@@ -630,7 +633,7 @@ export interface dxTreeViewNode {
      * @docid
      * @public
      */
-    parent?: dxTreeViewNode;
+    parent?: Node;
     /**
      * @docid
      * @public
@@ -643,8 +646,11 @@ export interface dxTreeViewNode {
     text?: string;
 }
 
-/** @public */
-export type Properties = dxTreeViewOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxTreeViewOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxTreeViewOptions;
+export type Options = Properties;

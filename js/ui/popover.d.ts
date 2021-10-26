@@ -24,7 +24,7 @@ import {
 
 import dxPopup, {
     dxPopupAnimation,
-    dxPopupOptions,
+    Properties as dxPopupOptions,
     TitleRenderedInfo,
 } from './popup';
 
@@ -56,10 +56,10 @@ export type ShownEvent = EventInfo<dxPopover>;
 export type TitleRenderedEvent = EventInfo<dxPopup> & TitleRenderedInfo;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxPopoverOptions<TComponent> extends dxPopupOptions<TComponent> {
+export interface Properties<TComponent=PopoverInstance> extends dxPopupOptions<TComponent> {
     /**
      * @docid
      * @default { show: { type: "fade", from: 0, to: 1 }, hide: { type: "fade", to: 0 } }
@@ -189,8 +189,11 @@ export default class dxPopover<TProperties = Properties> extends dxPopup<TProper
 
 interface PopoverInstance extends dxPopover<Properties> { }
 
-/** @public */
-export type Properties = dxPopoverOptions<PopoverInstance>;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxPopoverOptions<T> = Properties<T>;
 
 /** @deprecated use Properties instead */
-export type Options = Properties;
+export type Options = Properties<PopoverInstance>;

@@ -6,7 +6,7 @@ import {
 } from '../events/index';
 
 import dxPopover, {
-    dxPopoverOptions,
+    Properties as dxPopoverOptions,
 } from './popover';
 
 /** @public */
@@ -34,10 +34,10 @@ export type ShowingEvent = Cancelable & EventInfo<dxTooltip>;
 export type ShownEvent = EventInfo<dxTooltip>;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxTooltipOptions extends dxPopoverOptions<dxTooltip> {
+export interface Properties extends dxPopoverOptions<dxTooltip> {
 }
 /**
  * @docid
@@ -46,10 +46,13 @@ export interface dxTooltipOptions extends dxPopoverOptions<dxTooltip> {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxTooltip extends dxPopover<dxTooltipOptions> { }
+export default class dxTooltip extends dxPopover<Properties> { }
 
-/** @public */
-export type Properties = dxTooltipOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxTooltipOption = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxTooltipOptions;
+export type Options = Properties;

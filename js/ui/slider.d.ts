@@ -33,10 +33,10 @@ export type OptionChangedEvent = EventInfo<dxSlider> & ChangedOptionInfo;
 export type ValueChangedEvent = NativeEventInfo<dxSlider> & ValueChangedInfo;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxSliderOptions extends dxSliderBaseOptions<dxSlider> {
+export interface Properties extends dxSliderBaseOptions<dxSlider> {
     /**
      * @docid
      * @default 50
@@ -51,7 +51,7 @@ export interface dxSliderOptions extends dxSliderBaseOptions<dxSlider> {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxSlider extends dxTrackBar<dxSliderOptions> { }
+export default class dxSlider extends dxTrackBar<Properties> { }
 
 /**
  * @docid dxSliderBase
@@ -154,8 +154,11 @@ export interface dxSliderBaseOptions<TComponent> extends dxTrackBarOptions<TComp
     };
 }
 
-/** @public */
-export type Properties = dxSliderOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxSliderOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxSliderOptions;
+export type Options = Properties;

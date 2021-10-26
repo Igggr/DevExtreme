@@ -46,20 +46,20 @@ export type ItemRenderedEvent = NativeEventInfo<dxToolbar> & ItemInfo;
 export type OptionChangedEvent = EventInfo<dxToolbar> & ChangedOptionInfo;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxToolbarOptions extends CollectionWidgetOptions<dxToolbar> {
+export interface Properties extends CollectionWidgetOptions<dxToolbar> {
     /**
      * @docid
-     * @type string | Array<string | dxToolbarItem | any> | Store | DataSource | DataSourceOptions
+     * @type string | Array<string | Item | any> | Store | DataSource | DataSourceOptions
      * @default null
      * @public
      */
     dataSource?: DataSourceLike<string | Item | any>;
     /**
      * @docid
-     * @type Array<string | dxToolbarItem | any>
+     * @type Array<string | Item | any>
      * @fires dxToolbarOptions.onOptionChanged
      * @public
      */
@@ -86,19 +86,20 @@ export interface dxToolbarOptions extends CollectionWidgetOptions<dxToolbar> {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxToolbar extends CollectionWidget<dxToolbarOptions> { }
-
-/**
- * @public
- * @namespace DevExpress.ui.dxToolbar
- * */
-export type Item = dxToolbarItem;
+export default class dxToolbar extends CollectionWidget<Properties> { }
 
 /**
  * @deprecated Use Item instead
  * @namespace DevExpress.ui
+ * */
+export type dxToolbarItem = Item;
+
+/**
+ * @docid
+ * @public
+ * @namespace DevExpress.ui.dxToolbar
  */
-export interface dxToolbarItem extends CollectionWidgetItem {
+export interface Item extends CollectionWidgetItem {
     /**
      * @docid
      * @default undefined
@@ -145,8 +146,11 @@ export interface dxToolbarItem extends CollectionWidgetItem {
     widget?: 'dxAutocomplete' | 'dxButton' | 'dxCheckBox' | 'dxDateBox' | 'dxMenu' | 'dxSelectBox' | 'dxTabs' | 'dxTextBox' | 'dxButtonGroup' | 'dxDropDownButton';
 }
 
-/** @public */
-export type Properties = dxToolbarOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxToolbarOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxToolbarOptions;
+export type Options = Properties;

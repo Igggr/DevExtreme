@@ -43,10 +43,10 @@ export type OptionChangedEvent = EventInfo<dxButtonGroup> & ChangedOptionInfo;
 export type SelectionChangedEvent = EventInfo<dxButtonGroup> & SelectionChangedInfo;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @public
+ * @docid
  */
-export interface dxButtonGroupOptions extends WidgetOptions<dxButtonGroup> {
+export interface Properties extends WidgetOptions<dxButtonGroup> {
     /**
      * @docid
      * @default "content"
@@ -69,7 +69,7 @@ export interface dxButtonGroupOptions extends WidgetOptions<dxButtonGroup> {
     hoverStateEnabled?: boolean;
     /**
      * @docid
-     * @type Array<dxButtonGroupItem>
+     * @type Array<Item>
      * @public
      */
     items?: Array<Item>;
@@ -141,19 +141,20 @@ export interface dxButtonGroupOptions extends WidgetOptions<dxButtonGroup> {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxButtonGroup extends Widget<dxButtonGroupOptions> { }
-
-/**
- * @public
- * @namespace DevExpress.ui.dxButtonGroup
- */
-export type Item = dxButtonGroupItem;
+export default class dxButtonGroup extends Widget<Properties> { }
 
 /**
  * @deprecated Use Item instead
  * @namespace DevExpress.ui
  */
-export interface dxButtonGroupItem extends CollectionWidgetItem {
+export type dxButtonGroupItem = Item;
+
+/**
+ * @namespace DevExpress.ui.dxButtonGroup
+ * @public
+ * @docid
+ */
+export interface Item extends CollectionWidgetItem {
     /**
      * @docid
      * @public
@@ -179,8 +180,10 @@ export interface dxButtonGroupItem extends CollectionWidgetItem {
     elementAttr?: { [key: string]: any };
 }
 
-/** @public */
-export type Properties = dxButtonGroupOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead */
+export type dxButtonGroupOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxButtonGroupOptions;
+export type Options = Properties;

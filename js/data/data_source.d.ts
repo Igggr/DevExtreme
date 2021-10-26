@@ -8,19 +8,22 @@ import { Options as ArrayStoreOptions } from './array_store';
 import { Options as LocalStoreOptions } from './local_store';
 import { Options as ODataStoreOptions } from './odata/store';
 
-/** @public */
-export type Options<
-    TStoreItem = any,
-    TMappedItem = TStoreItem,
-    TItem = TMappedItem,
-    TKey = any,
-> = DataSourceOptions<TStoreItem, TItem, TMappedItem, TKey>;
-
 /**
  * @namespace DevExpress.data
  * @deprecated Use Options instead
  */
-export interface DataSourceOptions<
+export type DataSourceOptions<
+    TStoreItem = any,
+    TMappedItem = TStoreItem,
+    TItem = TMappedItem,
+    TKey = any,
+> = Options<TStoreItem, TItem, TMappedItem, TKey>;
+
+/**
+ * @public
+ * @docid
+ */
+export interface Options<
     TStoreItem = any,
     TMappedItem = TStoreItem,
     TItem = TMappedItem,
@@ -429,7 +432,7 @@ export default class DataSource<
 
 /**
  * @docid
- * @type Store|DataSource|DataSourceOptions|string|Array<any>
+ * @type Store|DataSource|Options|string|Array<any>
  * */
 export type DataSourceLike<TItem, TKey = any> =
     string |

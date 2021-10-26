@@ -6,8 +6,11 @@ import dxOverlay, {
     dxOverlayOptions,
 } from './overlay';
 
-/** @namespace DevExpress.ui */
-export interface dxValidationMessageOptions extends dxOverlayOptions<dxValidationMessage> {
+/**
+ * @docid
+ * @public
+ */
+export interface Properties extends dxOverlayOptions<dxValidationMessage> {
     mode?: string;
 
     validationErrors?: Array<object> | null;
@@ -19,10 +22,13 @@ export interface dxValidationMessageOptions extends dxOverlayOptions<dxValidatio
     offset?: object;
 }
 /** @namespace DevExpress.ui */
-export default class dxValidationMessage extends dxOverlay<dxValidationMessageOptions> { }
+export default class dxValidationMessage extends dxOverlay<Properties> { }
 
-/** @public */
-export type Properties = dxValidationMessageOptions;
+/**
+ * @deprecated use Properties instead
+ * @namespace DevExpress.ui
+ * */
+export type dxValidationMessageOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxValidationMessageOptions;
+export type Options = Properties;

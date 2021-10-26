@@ -79,10 +79,10 @@ export type TitleRenderedEvent = EventInfo<dxLookup> & TitleRenderedInfo;
 export type ValueChangedEvent = NativeEventInfo<dxLookup> & ValueChangedInfo;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxLookupOptions extends dxDropDownListOptions<dxLookup> {
+export interface Properties extends dxDropDownListOptions<dxLookup> {
     /**
      * @docid
      * @default "OK"
@@ -318,10 +318,13 @@ export interface dxLookupOptions extends dxDropDownListOptions<dxLookup> {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxLookup extends dxDropDownList<dxLookupOptions> { }
+export default class dxLookup extends dxDropDownList<Properties> { }
 
-/** @public */
-export type Properties = dxLookupOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxLookupOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxLookupOptions;
+export type Options = Properties;

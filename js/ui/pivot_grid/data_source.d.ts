@@ -155,14 +155,17 @@ interface dxPivotGridSummaryCell {
     value(postProcessed: boolean): any;
 }
 
-/** @public */
-export type Options = PivotGridDataSourceOptions;
-
 /**
  * @namespace DevExpress.data
  * @deprecated Use Options instead
  */
-export interface PivotGridDataSourceOptions {
+export type PivotGridDataSourceOptions = Options;
+
+/**
+ * @public
+ * @docid
+ */
+export interface Options {
     /**
      * @docid
      * @type Array<Object>
@@ -241,15 +244,17 @@ export interface PivotGridDataSourceOptions {
 
 /**
  * @public
- * @namespace DevExpress.data.PivotGridDataSource
+ * @deprecated Use Field instead
+ * @namespace DevExpress.data
  */
-export type Field = PivotGridDataSourceField;
+export type PivotGridDataSourceField = Field;
 
 /**
- * @namespace DevExpress.data
- * @deprecated Use Field instead
+ * @namespace DevExpress.data.PivotGridDataSource
+ * @public
+ * @docid
  */
-export interface PivotGridDataSourceField {
+export interface Field {
     /**
      * @docid PivotGridDataSourceOptions.fields.allowCrossGroupCalculation
      * @default false

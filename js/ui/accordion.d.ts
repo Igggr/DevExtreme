@@ -57,10 +57,10 @@ export type OptionChangedEvent = EventInfo<dxAccordion> & ChangedOptionInfo;
 export type SelectionChangedEvent = EventInfo<dxAccordion> & SelectionChangedInfo;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @public
+ * @docid
  */
-export interface dxAccordionOptions extends CollectionWidgetOptions<dxAccordion> {
+export interface Properties extends CollectionWidgetOptions<dxAccordion> {
     /**
      * @docid
      * @default 300
@@ -76,7 +76,7 @@ export interface dxAccordionOptions extends CollectionWidgetOptions<dxAccordion>
     collapsible?: boolean;
     /**
      * @docid
-     * @type string | Array<string | dxAccordionItem | any> | Store | DataSource | DataSourceOptions
+     * @type string | Array<string | Item | any> | Store | DataSource | DataSourceOptions
      * @default null
      * @public
      */
@@ -123,7 +123,7 @@ export interface dxAccordionOptions extends CollectionWidgetOptions<dxAccordion>
     itemTitleTemplate?: template | ((itemData: any, itemIndex: number, itemElement: DxElement) => string | UserDefinedElement);
     /**
      * @docid
-     * @type Array<string | dxAccordionItem | any>
+     * @type Array<string | Item | any>
      * @fires dxAccordionOptions.onOptionChanged
      * @public
      */
@@ -169,7 +169,7 @@ export interface dxAccordionOptions extends CollectionWidgetOptions<dxAccordion>
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxAccordion extends CollectionWidget<dxAccordionOptions> {
+export default class dxAccordion extends CollectionWidget<Properties> {
     /**
      * @docid
      * @publicName collapseItem(index)
@@ -196,16 +196,17 @@ export default class dxAccordion extends CollectionWidget<dxAccordionOptions> {
 }
 
 /**
- * @public
- * @namespace DevExpress.ui.dxAccordion
- */
-export type Item = dxAccordionItem;
-
-/**
  * @deprecated Use Item instead
  * @namespace DevExpress.ui
  */
-export interface dxAccordionItem extends CollectionWidgetItem {
+export type dxAccordionItem = Item;
+
+/**
+ * @namespace DevExpress.ui.dxAccordion
+ * @public
+ * @docid
+ */
+export interface Item extends CollectionWidgetItem {
     /**
      * @docid
      * @public
@@ -218,8 +219,11 @@ export interface dxAccordionItem extends CollectionWidgetItem {
     title?: string;
 }
 
-/** @public */
-export type Properties = dxAccordionOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxAccordionOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxAccordionOptions;
+export type Options = Properties;

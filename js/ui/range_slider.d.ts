@@ -35,10 +35,10 @@ export type ValueChangedEvent = NativeEventInfo<dxRangeSlider> & ValueChangedInf
 };
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxRangeSliderOptions extends dxSliderBaseOptions<dxRangeSlider> {
+export interface Properties extends dxSliderBaseOptions<dxRangeSlider> {
     /**
      * @docid
      * @default 60
@@ -90,10 +90,13 @@ export interface dxRangeSliderOptions extends dxSliderBaseOptions<dxRangeSlider>
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxRangeSlider extends dxTrackBar<dxRangeSliderOptions> { }
+export default class dxRangeSlider extends dxTrackBar<Properties> { }
 
-/** @public */
-export type Properties = dxRangeSliderOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxRangeSliderOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxRangeSliderOptions;
+export type Options = Properties;

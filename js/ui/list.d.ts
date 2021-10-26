@@ -27,7 +27,7 @@ import CollectionWidget, {
 } from './collection/ui.collection_widget.base';
 
 import {
-    dxSortableOptions,
+    Properties as dxSortableOptions,
 } from './sortable';
 
 import {
@@ -118,11 +118,10 @@ export type SelectAllValueChangedEvent<TItem extends ItemLike = any, TKey = any>
 export type SelectionChangedEvent<TItem extends ItemLike = any, TKey = any> = EventInfo<dxList<TItem, TKey>> & SelectionChangedInfo<TItem>;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
  * @public
  */
-export interface dxListOptions<
+export interface Properties<
     TItem extends ItemLike = any,
     TKey = any,
 > extends CollectionWidgetOptions<dxList<TItem, TKey>, TItem, TKey>, SearchBoxMixinOptions {
@@ -153,7 +152,7 @@ export interface dxListOptions<
     collapsibleGroups?: boolean;
     /**
      * @docid
-     * @type string | Array<string | dxListItem | any> | Store | DataSource | DataSourceOptions
+     * @type string | Array<string | Item | any> | Store | DataSource | DataSourceOptions
      * @default null
      * @public
      */
@@ -213,7 +212,7 @@ export interface dxListOptions<
     itemDragging?: dxSortableOptions;
     /**
      * @docid
-     * @type Array<string | dxListItem | any>
+     * @type Array<string | Item | any>
      * @fires dxListOptions.onOptionChanged
      * @public
      */
@@ -543,7 +542,7 @@ export interface dxListOptions<
 export default class dxList<
     TItem extends ItemLike = any,
     TKey = any,
-> extends CollectionWidget<dxListOptions<TItem, TKey>, TItem, TKey> {
+> extends CollectionWidget<Properties<TItem, TKey>, TItem, TKey> {
     /**
      * @docid
      * @publicName clientHeight()
@@ -706,16 +705,17 @@ export default class dxList<
 }
 
 /**
- * @public
- * @namespace DevExpress.ui.dxList
- */
-export type Item = dxListItem;
-
-/**
  * @deprecated Use Item instead
  * @namespace DevExpress.ui
  */
-export interface dxListItem extends CollectionWidgetItem {
+export type dxListItem = Item;
+
+/**
+ * @docid
+ * @public
+ * @namespace DevExpress.ui.dxList
+ */
+export interface Item extends CollectionWidgetItem {
     /**
      * @docid
      * @public
@@ -764,11 +764,14 @@ export type ExplicitTypes<
     SelectionChangedEvent: SelectionChangedEvent<TItem, TKey>;
 };
 
-/** @public */
-export type Properties<
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxListOptions<
     TItem extends ItemLike = any,
     TKey = any,
-> = dxListOptions<TItem, TKey>;
+> = Properties<TItem, TKey>;
 
 /** @deprecated use Properties instead */
 export type Options<

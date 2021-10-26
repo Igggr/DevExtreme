@@ -32,10 +32,10 @@ export type InitializedEvent = InitializedEventInfo<dxDrawer>;
 export type OptionChangedEvent = EventInfo<dxDrawer> & ChangedOptionInfo;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @public
+ * @docid
  */
-export interface dxDrawerOptions extends WidgetOptions<dxDrawer> {
+export interface Properties extends WidgetOptions<dxDrawer> {
     /**
      * @docid
      * @default 400
@@ -122,7 +122,7 @@ export interface dxDrawerOptions extends WidgetOptions<dxDrawer> {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxDrawer extends Widget<dxDrawerOptions> {
+export default class dxDrawer extends Widget<Properties> {
     /**
      * @docid
      * @publicName content()
@@ -152,8 +152,11 @@ export default class dxDrawer extends Widget<dxDrawerOptions> {
     toggle(): DxPromise<void>;
 }
 
-/** @public */
-export type Properties = dxDrawerOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxDrawerOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxDrawerOptions;
+export type Options = Properties;

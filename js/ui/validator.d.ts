@@ -38,10 +38,10 @@ export type ValidatedEvent = {
 };
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxValidatorOptions extends DOMComponentOptions<dxValidator> {
+export interface Properties extends DOMComponentOptions<dxValidator> {
     /**
      * @docid
      * @public
@@ -111,7 +111,7 @@ export interface dxValidatorOptions extends DOMComponentOptions<dxValidator> {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxValidator extends DOMComponent<dxValidatorOptions> {
+export default class dxValidator extends DOMComponent<Properties> {
     /**
      * @docid
      * @publicName focus()
@@ -133,16 +133,17 @@ export default class dxValidator extends DOMComponent<dxValidatorOptions> {
     validate(): ValidationResult;
 }
 
-/** @public */
-export type ValidationResult = dxValidatorResult;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated {ui/validator.ValidationResult} */
+export type dxValidationResult = ValidationResult;
 
 /**
  * @docid
  * @type object
- * @namespace DevExpress.ui
- * @deprecated {ui/validator.ValidationResult}
+ * @public
  */
-export interface dxValidatorResult {
+export interface ValidationResult {
     /**
      * @docid
      * @type RequiredRule | NumericRule | RangeRule | StringLengthRule | CustomRule | CompareRule | PatternRule | EmailRule | AsyncRule
@@ -157,10 +158,10 @@ export interface dxValidatorResult {
     brokenRules?: Array<ValidationRule>;
     /**
      * @docid
-     * @type Promise<dxValidatorResult>
+     * @type Promise<ValidationResult>
      * @public
      */
-    complete?: DxPromise<dxValidatorResult>;
+    complete?: DxPromise<ValidationResult>;
     /**
      * @docid
      * @public
@@ -190,8 +191,10 @@ export interface dxValidatorResult {
     value?: any;
 }
 
-/** @public */
-export type Properties = dxValidatorOptions;
+/**
+ * @deprecated use Properties instead
+ * @namespace DevExpress.ui */
+export type dxValidatorOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxValidatorOptions;
+export type Options = Properties;

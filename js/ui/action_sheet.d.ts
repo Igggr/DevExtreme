@@ -51,10 +51,10 @@ export type ItemRenderedEvent = NativeEventInfo<dxActionSheet> & ItemInfo;
 export type OptionChangedEvent = EventInfo<dxActionSheet> & ChangedOptionInfo;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @public
+ * @docid
  */
-export interface dxActionSheetOptions extends CollectionWidgetOptions<dxActionSheet> {
+export interface Properties extends CollectionWidgetOptions<dxActionSheet> {
     /**
      * @docid
      * @default "Cancel"
@@ -63,14 +63,14 @@ export interface dxActionSheetOptions extends CollectionWidgetOptions<dxActionSh
     cancelText?: string;
     /**
      * @docid
-     * @type string | Array<string | dxActionSheetItem | any> | Store | DataSource | DataSourceOptions
+     * @type string | Array<string | Item | any> | Store | DataSource | DataSourceOptions
      * @default null
      * @public
      */
     dataSource?: DataSourceLike<string | Item | any>;
     /**
      * @docid
-     * @type Array<string | dxActionSheetItem | any>
+     * @type Array<string | Item | any>
      * @fires dxActionSheetOptions.onOptionChanged
      * @public
      */
@@ -132,7 +132,7 @@ export interface dxActionSheetOptions extends CollectionWidgetOptions<dxActionSh
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxActionSheet extends CollectionWidget<dxActionSheetOptions> {
+export default class dxActionSheet extends CollectionWidget<Properties> {
     /**
      * @docid
      * @publicName hide()
@@ -157,16 +157,17 @@ export default class dxActionSheet extends CollectionWidget<dxActionSheetOptions
 }
 
 /**
- * @public
- * @namespace DevExpress.ui.dxActionSheet
- */
-export type Item = dxActionSheetItem;
-
-/**
  * @deprecated Use Item instead
  * @namespace DevExpress.ui
  */
-export interface dxActionSheetItem extends CollectionWidgetItem {
+export type dxActionSheetItem = Item;
+
+/**
+ * @namespace DevExpress.ui.dxActionSheet
+ * @public
+ * @docid
+ */
+export interface Item extends CollectionWidgetItem {
     /**
      * @docid
      * @public
@@ -197,8 +198,11 @@ export interface dxActionSheetItem extends CollectionWidgetItem {
     stylingMode?: 'text' | 'outlined' | 'contained' ;
 }
 
-/** @public */
-export type Properties = dxActionSheetOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxActionSheetOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxActionSheetOptions;
+export type Options = Properties;

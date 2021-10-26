@@ -3,7 +3,7 @@ import {
 } from '../core/utils/deferred';
 
 import {
-    dxButtonOptions,
+    Properties as dxButtonOptions,
 } from './button';
 
 /**

@@ -22,7 +22,7 @@ import {
 
 import dxMultiView, {
     Item as dxMultiViewItem,
-    dxMultiViewOptions,
+    Properties as dxMultiViewOptions,
 } from './multi_view';
 
 /** @public */
@@ -71,10 +71,10 @@ export type TitleRenderedEvent = EventInfo<dxTabPanel> & {
 };
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxTabPanelOptions extends dxMultiViewOptions<dxTabPanel> {
+export interface Properties extends dxMultiViewOptions<dxTabPanel> {
     /**
      * @docid
      * @default false
@@ -84,7 +84,7 @@ export interface dxTabPanelOptions extends dxMultiViewOptions<dxTabPanel> {
     animationEnabled?: boolean;
     /**
      * @docid
-     * @type string | Array<string | dxTabPanelItem | any> | Store | DataSource | DataSourceOptions
+     * @type string | Array<string | Item | any> | Store | DataSource | DataSourceOptions
      * @default null
      * @public
      */
@@ -105,7 +105,7 @@ export interface dxTabPanelOptions extends dxMultiViewOptions<dxTabPanel> {
     itemTitleTemplate?: template | ((itemData: any, itemIndex: number, itemElement: DxElement) => string | UserDefinedElement);
     /**
      * @docid
-     * @type Array<string | dxTabPanelItem | any>
+     * @type Array<string | Item | any>
      * @fires dxTabPanelOptions.onOptionChanged
      * @public
      */
@@ -189,19 +189,20 @@ export interface dxTabPanelOptions extends dxMultiViewOptions<dxTabPanel> {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxTabPanel extends dxMultiView<dxTabPanelOptions> { }
-
-/**
- * @public
- * @namespace DevExpress.ui.dxTabPanel
- */
-export type Item = dxTabPanelItem;
+export default class dxTabPanel extends dxMultiView<Properties> { }
 
 /**
  * @deprecated Use Item instead
  * @namespace DevExpress.ui
  */
-export interface dxTabPanelItem extends dxMultiViewItem {
+export type dxTabPanelItem = Item;
+
+/**
+ * @docid
+ * @public
+ * @namespace DevExpress.ui.dxTabPanel
+ */
+export interface Item extends dxMultiViewItem {
     /**
      * @docid
      * @public
@@ -225,8 +226,11 @@ export interface dxTabPanelItem extends dxMultiViewItem {
     title?: string;
 }
 
-/** @public */
-export type Properties = dxTabPanelOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxTabPanelOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxTabPanelOptions;
+export type Options = Properties;

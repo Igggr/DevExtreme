@@ -32,10 +32,10 @@ export type OptionChangedEvent = EventInfo<dxRadioGroup> & ChangedOptionInfo;
 export type ValueChangedEvent = NativeEventInfo<dxRadioGroup> & ValueChangedInfo;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxRadioGroupOptions extends EditorOptions<dxRadioGroup>, DataExpressionMixinOptions<dxRadioGroup> {
+export interface Properties extends EditorOptions<dxRadioGroup>, DataExpressionMixinOptions<dxRadioGroup> {
     /**
      * @docid
      * @default true
@@ -82,12 +82,15 @@ export interface dxRadioGroupOptions extends EditorOptions<dxRadioGroup>, DataEx
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxRadioGroup extends Editor<dxRadioGroupOptions> {
+export default class dxRadioGroup extends Editor<Properties> {
     getDataSource(): DataSource;
 }
 
-/** @public */
-export type Properties = dxRadioGroupOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxRadioGroupOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxRadioGroupOptions;
+export type Options = Properties;

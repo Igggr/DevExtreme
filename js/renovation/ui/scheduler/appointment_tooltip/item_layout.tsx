@@ -3,7 +3,7 @@ import {
   OneWay, Template, Event, JSXTemplate,
 } from '@devextreme-generator/declarations';
 /* eslint-disable-next-line import/named */
-import { dxSchedulerAppointment } from '../../../../ui/scheduler';
+import { Appointment as dxSchedulerAppointment } from '../../../../ui/scheduler';
 import {
   AppointmentItem,
   FormattedContent,

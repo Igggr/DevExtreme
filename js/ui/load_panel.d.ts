@@ -47,10 +47,10 @@ export type ShowingEvent = Cancelable & EventInfo<dxLoadPanel>;
 export type ShownEvent = EventInfo<dxLoadPanel>;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxLoadPanelOptions extends dxOverlayOptions<dxLoadPanel> {
+export interface Properties extends dxOverlayOptions<dxLoadPanel> {
     /**
      * @docid
      * @default null
@@ -162,10 +162,13 @@ export interface dxLoadPanelAnimation extends dxOverlayAnimation {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxLoadPanel extends dxOverlay<dxLoadPanelOptions> { }
+export default class dxLoadPanel extends dxOverlay<Properties> { }
 
-/** @public */
-export type Properties = dxLoadPanelOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxLoadPanelOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxLoadPanelOptions;
+export type Options = Properties;

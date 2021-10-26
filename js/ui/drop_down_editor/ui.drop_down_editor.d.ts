@@ -8,8 +8,7 @@ import {
 } from '../../core/templates/template';
 
 import dxTextBox, {
-    dxTextBoxOptions,
-
+    Properties as dxTextBoxOptions,
 } from '../text_box';
 
 import {

@@ -88,10 +88,10 @@ export type FieldEditorTemplate = {
 };
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @public
+ * @docid
  */
-export interface dxFilterBuilderOptions extends WidgetOptions<dxFilterBuilder> {
+export interface Properties extends WidgetOptions<dxFilterBuilder> {
     /**
      * @docid
      * @default false
@@ -294,7 +294,7 @@ export interface dxFilterBuilderOptions extends WidgetOptions<dxFilterBuilder> {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxFilterBuilder extends Widget<dxFilterBuilderOptions> {
+export default class dxFilterBuilder extends Widget<Properties> {
     /**
      * @docid
      * @publicName getFilterExpression()
@@ -483,8 +483,11 @@ export interface dxFilterBuilderField {
     trueText?: string;
 }
 
-/** @public */
-export type Properties = dxFilterBuilderOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxFilterBuilderOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxFilterBuilderOptions;
+export type Options = Properties;

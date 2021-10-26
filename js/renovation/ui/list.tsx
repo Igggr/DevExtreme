@@ -4,7 +4,7 @@ import {
 /* eslint-disable import/named */
 import DataSource, { Options as DataSourceOptions } from '../../data/data_source';
 import Store from '../../data/abstract_store';
-import LegacyList, { dxListItem } from '../../ui/list';
+import LegacyList, { Item as dxListItem } from '../../ui/list';
 import { DxElement } from '../../core/element';
 import { EventExtension, DxEvent } from '../../events/index';
 

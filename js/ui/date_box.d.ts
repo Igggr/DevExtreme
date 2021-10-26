@@ -7,7 +7,7 @@ import {
 
 import {
     ComponentDisabledDate,
-    dxCalendarOptions,
+    Properties as dxCalendarOptions,
 } from './calendar';
 
 import dxDropDownEditor, {
@@ -88,10 +88,10 @@ export type DisabledDate = ComponentDisabledDate<dxDateBox>;
 export type DropDownButtonTemplateData = DropDownButtonTemplateDataModel;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @public
+ * @docid
  */
-export interface dxDateBoxOptions extends dxDropDownEditorOptions<dxDateBox> {
+export interface Properties extends dxDropDownEditorOptions<dxDateBox> {
     /**
      * @docid
      * @default false
@@ -224,7 +224,7 @@ export interface dxDateBoxOptions extends dxDropDownEditorOptions<dxDateBox> {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxDateBox extends dxDropDownEditor<dxDateBoxOptions> {
+export default class dxDateBox extends dxDropDownEditor<Properties> {
     /**
      * @docid
      * @publicName close()
@@ -239,8 +239,11 @@ export default class dxDateBox extends dxDropDownEditor<dxDateBoxOptions> {
     open(): void;
 }
 
-/** @public */
-export type Properties = dxDateBoxOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxDateBoxOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxDateBoxOptions;
+export type Options = Properties;

@@ -38,10 +38,10 @@ export type ItemRenderedEvent = NativeEventInfo<dxResponsiveBox> & ItemInfo;
 export type OptionChangedEvent = EventInfo<dxResponsiveBox> & ChangedOptionInfo;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxResponsiveBoxOptions extends CollectionWidgetOptions<dxResponsiveBox> {
+export interface Properties extends CollectionWidgetOptions<dxResponsiveBox> {
     /**
      * @docid
      * @public
@@ -71,7 +71,7 @@ export interface dxResponsiveBoxOptions extends CollectionWidgetOptions<dxRespon
     }>;
     /**
      * @docid
-     * @type string | Array<string | dxResponsiveBoxItem | any> | Store | DataSource | DataSourceOptions
+     * @type string | Array<string | Item | any> | Store | DataSource | DataSourceOptions
      * @default null
      * @public
      */
@@ -84,7 +84,7 @@ export interface dxResponsiveBoxOptions extends CollectionWidgetOptions<dxRespon
     height?: number | string | (() => number | string);
     /**
      * @docid
-     * @type Array<string | dxResponsiveBoxItem | any>
+     * @type Array<string | Item | any>
      * @fires dxResponsiveBoxOptions.onOptionChanged
      * @public
      */
@@ -141,19 +141,20 @@ export interface dxResponsiveBoxOptions extends CollectionWidgetOptions<dxRespon
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxResponsiveBox extends CollectionWidget<dxResponsiveBoxOptions> { }
-
-/**
- * @public
- * @namespace DevExpress.ui.dxResponsiveBox
- */
-export type Item = dxResponsiveBoxItem;
+export default class dxResponsiveBox extends CollectionWidget<Properties> { }
 
 /**
  * @deprecated Use Item instead
  * @namespace DevExpress.ui
  */
-export interface dxResponsiveBoxItem extends CollectionWidgetItem {
+export type dxResponsiveBoxItem = Item;
+
+/**
+ * @docid
+ * @public
+ * @namespace DevExpress.ui.dxResponsiveBox
+ */
+export interface Item extends CollectionWidgetItem {
     /**
      * @docid
      * @public
@@ -185,8 +186,11 @@ export interface dxResponsiveBoxItem extends CollectionWidgetItem {
     } | Array<{ col?: number; colspan?: number; row?: number; rowspan?: number; screen?: string }>;
 }
 
-/** @public */
-export type Properties = dxResponsiveBoxOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxResponsiveBoxOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxResponsiveBoxOptions;
+export type Options = Properties;

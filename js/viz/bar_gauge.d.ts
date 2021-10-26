@@ -61,16 +61,17 @@ export interface BarGaugeBarInfo {
 }
 
 /**
- * @public
- * @namespace DevExpress.viz.dxBarGauge
- */
-export type LegendItem = BarGaugeLegendItem;
-
-/**
  * @deprecated Use LegendItem instead
  * @namespace DevExpress.viz
  */
-export interface BarGaugeLegendItem extends BaseLegendItem {
+export type BarGaugeLegendItem = LegendItem;
+
+/**
+ * @public
+ * @docid
+ * @namespace DevExpress.viz.dxBarGauge
+ */
+export interface LegendItem extends BaseLegendItem {
     /**
      * @docid
      * @public
@@ -113,10 +114,10 @@ export type TooltipHiddenEvent = EventInfo<dxBarGauge> & TooltipInfo;
 export type TooltipShownEvent = EventInfo<dxBarGauge> & TooltipInfo;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.viz
+ * @public
+ * @docid
  */
-export interface dxBarGaugeOptions extends BaseWidgetOptions<dxBarGauge> {
+export interface Properties extends BaseWidgetOptions<dxBarGauge> {
     /**
      * @docid
      * @inherits BaseGaugeOptions.animation
@@ -375,7 +376,7 @@ export interface dxBarGaugeTooltip extends BaseWidgetTooltip {
  * @namespace DevExpress.viz
  * @public
  */
-export default class dxBarGauge extends BaseWidget<dxBarGaugeOptions> {
+export default class dxBarGauge extends BaseWidget<Properties> {
     /**
      * @docid
      * @publicName values()
@@ -390,8 +391,11 @@ export default class dxBarGauge extends BaseWidget<dxBarGaugeOptions> {
     values(values: Array<number>): void;
 }
 
-/** @public */
-export type Properties = dxBarGaugeOptions;
+/**
+ * @namespace DevExpress.viz
+ * @deprecated use Properties instead
+ */
+export type dxBarGaugeOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxBarGaugeOptions;
+export type Options = Properties;

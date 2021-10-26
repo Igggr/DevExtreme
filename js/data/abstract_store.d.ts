@@ -2,16 +2,20 @@ import { DxPromise } from '../core/utils/deferred';
 import { DeepPartial } from '../core/index';
 import { FilterDescriptor, GroupDescriptor, LoadOptions } from './index';
 
-export type Options<
-    TItem = any,
-    TKey = any,
-> = StoreOptions<TItem, TKey>;
-
 /**
  * @namespace DevExpress.data
  * @deprecated Use Options instead
  */
-export interface StoreOptions<
+export type StoreOptions<
+    TItem = any,
+    TKey = any,
+> = Options<TItem, TKey>;
+
+/**
+ * @public
+ * @docid
+ */
+export interface Options<
     TItem = any,
     TKey = any,
 > {

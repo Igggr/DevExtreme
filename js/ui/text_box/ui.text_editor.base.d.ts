@@ -3,7 +3,7 @@ import {
 } from '../../events/index';
 
 import dxButton, {
-    dxButtonOptions,
+    Properties as dxButtonOptions,
 } from '../button';
 
 import Editor, {

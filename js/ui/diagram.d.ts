@@ -77,10 +77,10 @@ export type CustomShapeToolboxTemplateData = {
 };
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @public
+ * @docid
  */
-export interface dxDiagramOptions extends WidgetOptions<dxDiagram> {
+export interface Properties extends WidgetOptions<dxDiagram> {
     /**
      * @docid
      * @type Enums.DiagramAutoZoomMode
@@ -1035,7 +1035,7 @@ export interface dxDiagramOptions extends WidgetOptions<dxDiagram> {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxDiagram extends Widget<dxDiagramOptions> {
+export default class dxDiagram extends Widget<Properties> {
     /**
      * @docid
      * @publicName getNodeDataSource()
@@ -1191,16 +1191,17 @@ export interface dxDiagramConnector extends Item {
 }
 
 /**
- * @public
- * @namespace DevExpress.ui.dxDiagram
- */
-export type Item = dxDiagramItem;
-
-/**
  * @deprecated Use Item instead
  * @namespace DevExpress.ui
  */
-export interface dxDiagramItem {
+export type dxDiagramItem = Item;
+
+/**
+ * @namespace DevExpress.ui.dxDiagram
+ * @public
+ * @docid
+ */
+export interface Item {
     /**
      * @docid
      * @public
@@ -1599,8 +1600,11 @@ export interface dxDiagramMoveShapeArgs {
   };
 }
 
-/** @public */
-export type Properties = dxDiagramOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+*/
+export type dxDiagramOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxDiagramOptions;
+export type Options = Properties;

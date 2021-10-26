@@ -62,13 +62,13 @@ export type SelectionChangedEvent = NativeEventInfo<dxDropDownButton> & {
 };
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @public
+ * @docid
  */
-export interface dxDropDownButtonOptions extends WidgetOptions<dxDropDownButton> {
+export interface Properties extends WidgetOptions<dxDropDownButton> {
     /**
      * @docid
-     * @type string | Array<dxDropDownButtonItem | any> | Store | DataSource | DataSourceOptions
+     * @type string | Array<Item | any> | Store | DataSource | DataSourceOptions
      * @default null
      * @public
      */
@@ -129,7 +129,7 @@ export interface dxDropDownButtonOptions extends WidgetOptions<dxDropDownButton>
     itemTemplate?: template | ((itemData: any, itemIndex: number, itemElement: DxElement) => string | UserDefinedElement);
     /**
      * @docid
-     * @type Array<dxDropDownButtonItem | any>
+     * @type Array<Item | any>
      * @default null
      * @public
      */
@@ -258,7 +258,7 @@ export interface dxDropDownButtonOptions extends WidgetOptions<dxDropDownButton>
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxDropDownButton extends Widget<dxDropDownButtonOptions> {
+export default class dxDropDownButton extends Widget<Properties> {
     /**
      * @docid
      * @publicName close()
@@ -291,16 +291,17 @@ export default class dxDropDownButton extends Widget<dxDropDownButtonOptions> {
 }
 
 /**
- * @public
- * @namespace DevExpress.ui.dxDropDownButton
- */
-export type Item = dxDropDownButtonItem;
-
-/**
  * @deprecated Use Item instead
  * @namespace DevExpress.ui
  */
-export interface dxDropDownButtonItem extends dxListItem {
+export type dxDropDownButtonItem = Item;
+
+/**
+ * @namespace DevExpress.ui.dxDropDownButton
+ * @public
+ * @docid
+ */
+export interface Item extends dxListItem {
     /**
      * @docid
      * @default null
@@ -317,8 +318,11 @@ export interface dxDropDownButtonItem extends dxListItem {
      onClick?: ((e: ItemClickEvent) => void) | string;
 }
 
-/** @public */
-export type Properties = dxDropDownButtonOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxDropDownButtonOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxDropDownButtonOptions;
+export type Options = Properties;

@@ -45,10 +45,10 @@ export type OptionChangedEvent = EventInfo<dxGallery> & ChangedOptionInfo;
 export type SelectionChangedEvent = EventInfo<dxGallery> & SelectionChangedInfo;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @public
+ * @docid
  */
-export interface dxGalleryOptions extends CollectionWidgetOptions<dxGallery> {
+export interface Properties extends CollectionWidgetOptions<dxGallery> {
     /**
      * @docid
      * @default 400
@@ -63,7 +63,7 @@ export interface dxGalleryOptions extends CollectionWidgetOptions<dxGallery> {
     animationEnabled?: boolean;
     /**
      * @docid
-     * @type string | Array<string | dxGalleryItem | any> | Store | DataSource | DataSourceOptions
+     * @type string | Array<string | Item | any> | Store | DataSource | DataSourceOptions
      * @default null
      * @public
      */
@@ -88,7 +88,7 @@ export interface dxGalleryOptions extends CollectionWidgetOptions<dxGallery> {
     initialItemWidth?: number;
     /**
      * @docid
-     * @type Array<string | dxGalleryItem | any>
+     * @type Array<string | Item | any>
      * @fires dxGalleryOptions.onOptionChanged
      * @public
      */
@@ -153,7 +153,7 @@ export interface dxGalleryOptions extends CollectionWidgetOptions<dxGallery> {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxGallery extends CollectionWidget<dxGalleryOptions> {
+export default class dxGallery extends CollectionWidget<Properties> {
     /**
      * @docid
      * @publicName goToItem(itemIndex, animation)
@@ -179,16 +179,17 @@ export default class dxGallery extends CollectionWidget<dxGalleryOptions> {
 }
 
 /**
- * @public
- * @namespace DevExpress.ui.dxGallery
- */
-export type Item = dxGalleryItem;
-
-/**
  * @deprecated Use Item instead
  * @namespace DevExpress.ui
  */
-export interface dxGalleryItem extends CollectionWidgetItem {
+export type dxGalleryItem = Item;
+
+/**
+ * @docid
+ * @public
+ * @namespace DevExpress.ui.dxGallery
+ */
+export interface Item extends CollectionWidgetItem {
     /**
      * @docid
      * @public
@@ -201,8 +202,11 @@ export interface dxGalleryItem extends CollectionWidgetItem {
     imageSrc?: string;
 }
 
-/** @public */
-export type Properties = dxGalleryOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxGalleryOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxGalleryOptions;
+export type Options = Properties;

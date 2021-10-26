@@ -165,10 +165,10 @@ export interface PolarChartSeries extends dxPolarChartSeriesTypesCommonPolarChar
 }
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.viz
+ * @public
+ * @docid
  */
-export interface dxPolarChartOptions extends BaseChartOptions<dxPolarChart> {
+export interface Properties extends BaseChartOptions<dxPolarChart> {
     /**
      * @docid
      * @type object
@@ -1302,7 +1302,7 @@ export interface dxPolarChartValueAxisTick extends dxPolarChartCommonAxisSetting
  * @namespace DevExpress.viz
  * @public
  */
-export default class dxPolarChart extends BaseChart<dxPolarChartOptions> {
+export default class dxPolarChart extends BaseChart<Properties> {
     /**
      * @docid dxPolarChart.getValueAxis
      * @publicName getValueAxis()
@@ -2229,8 +2229,11 @@ export interface polarPointObject extends basePointObject {
 export interface polarChartSeriesObject extends baseSeriesObject {
 }
 
-/** @public */
-export type Properties = dxPolarChartOptions;
+/**
+ * @namespace DevExpress.viz
+ * @deprecated use Properties instead
+ */
+export type dxPolarChartOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxPolarChartOptions;
+export type Options = Properties;

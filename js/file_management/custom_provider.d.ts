@@ -5,14 +5,18 @@ import FileSystemProviderBase, {
 import FileSystemItem from './file_system_item';
 import UploadInfo from './upload_info';
 
-/** @public */
-export type Options = CustomFileSystemProviderOptions;
-
 /**
  * @deprecated Use Options instead
  * @namespace DevExpress.fileManagement
  */
-export interface CustomFileSystemProviderOptions extends FileSystemProviderBaseOptions<CustomFileSystemProvider> {
+export type CustomFileSystemProviderOptions = Options;
+
+/**
+ * @public
+ * @docid
+ * @namespace DevExpress.fileManagement
+ */
+export interface Options extends FileSystemProviderBaseOptions<CustomFileSystemProvider> {
     /**
      * @docid
      * @type_function_return Promise<any>|any

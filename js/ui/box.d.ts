@@ -38,10 +38,10 @@ export type ItemRenderedEvent = NativeEventInfo<dxBox> & ItemInfo;
 export type OptionChangedEvent = EventInfo<dxBox> & ChangedOptionInfo;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @public
+ * @docid
  */
-export interface dxBoxOptions extends CollectionWidgetOptions<dxBox> {
+export interface Properties extends CollectionWidgetOptions<dxBox> {
     /**
      * @docid
      * @type Enums.BoxAlign
@@ -58,7 +58,7 @@ export interface dxBoxOptions extends CollectionWidgetOptions<dxBox> {
     crossAlign?: 'center' | 'end' | 'start' | 'stretch';
     /**
      * @docid
-     * @type string | Array<string | dxBoxItem | any> | Store | DataSource | DataSourceOptions
+     * @type string | Array<string | Item | any> | Store | DataSource | DataSourceOptions
      * @default null
      * @public
      */
@@ -72,7 +72,7 @@ export interface dxBoxOptions extends CollectionWidgetOptions<dxBox> {
     direction?: 'col' | 'row';
     /**
      * @docid
-     * @type Array<string | dxBoxItem | any>
+     * @type Array<string | Item | any>
      * @fires dxBoxOptions.onOptionChanged
      * @public
      */
@@ -84,19 +84,20 @@ export interface dxBoxOptions extends CollectionWidgetOptions<dxBox> {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxBox extends CollectionWidget<dxBoxOptions> { }
+export default class dxBox extends CollectionWidget<Properties> { }
 
 /**
- * @public
- * @namespace DevExpress.ui.dxBox
- */
-export type Item = dxBoxItem;
-
-/**
- * @deprecated Use Item instead
  * @namespace DevExpress.ui
+ * @deprecated Use Item instead
  */
-export interface dxBoxItem extends CollectionWidgetItem {
+export type dxBoxItem = Item;
+
+/**
+ * @namespace DevExpress.ui.dxBox
+ * @public
+ * @docid
+ */
+export interface Item extends CollectionWidgetItem {
     /**
      * @docid
      * @type number | Enums.Mode
@@ -109,7 +110,7 @@ export interface dxBoxItem extends CollectionWidgetItem {
      * @default undefined
      * @public
      */
-    box?: dxBoxOptions;
+    box?: Properties;
     /**
      * @docid
      * @default 0
@@ -124,8 +125,11 @@ export interface dxBoxItem extends CollectionWidgetItem {
     shrink?: number;
 }
 
-/** @public */
-export type Properties = dxBoxOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxBoxOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxBoxOptions;
+export type Options = Properties;

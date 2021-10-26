@@ -42,13 +42,13 @@ export type OptionChangedEvent = EventInfo<dxTabs> & ChangedOptionInfo;
 export type SelectionChangedEvent = EventInfo<dxTabs> & SelectionChangedInfo;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxTabsOptions<TComponent> extends CollectionWidgetOptions<TComponent> {
+export interface Properties<TComponent=TabsInstance> extends CollectionWidgetOptions<TComponent> {
     /**
      * @docid
-     * @type string | Array<string | dxTabsItem | any> | Store | DataSource | DataSourceOptions
+     * @type string | Array<string | Item | any> | Store | DataSource | DataSourceOptions
      * @default null
      * @public
      */
@@ -67,7 +67,7 @@ export interface dxTabsOptions<TComponent> extends CollectionWidgetOptions<TComp
     hoverStateEnabled?: boolean;
     /**
      * @docid
-     * @type Array<string | dxTabsItem | any>
+     * @type Array<string | Item | any>
      * @fires dxTabsOptions.onOptionChanged
      * @public
      */
@@ -115,16 +115,17 @@ export interface dxTabsOptions<TComponent> extends CollectionWidgetOptions<TComp
 export default class dxTabs<TProperties = Properties> extends CollectionWidget<TProperties> { }
 
 /**
+ * @deprecated Use Item instea
+ * @namespace DevExpress.ui
+ */
+export type dxTabsItem = Item;
+
+/**
+ * @docid
  * @public
  * @namespace DevExpress.ui.dxTabs
  */
-export type Item = dxTabsItem;
-
-/**
- * @deprecated Use Item instead
- * @namespace DevExpress.ui
- */
-export interface dxTabsItem extends CollectionWidgetItem {
+export interface Item extends CollectionWidgetItem {
     /**
      * @docid
      * @public
@@ -139,8 +140,11 @@ export interface dxTabsItem extends CollectionWidgetItem {
 
 interface TabsInstance extends dxTabs<Properties> { }
 
-/** @public */
-export type Properties = dxTabsOptions<TabsInstance>;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxTabsOptions<T> = Properties<T>;
 
 /** @deprecated use Properties instead */
-export type Options = Properties;
+export type Options = Properties<TabsInstance>;

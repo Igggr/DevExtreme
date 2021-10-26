@@ -37,13 +37,13 @@ import {
 import dxDraggable from './draggable';
 
 import {
-    dxFilterBuilderOptions,
+    Properties as dxFilterBuilderOptions,
     FilterLookupDataSource,
 } from './filter_builder';
 
 import {
-    dxFormOptions,
-    dxFormSimpleItem,
+    Properties as dxFormOptions,
+    SimpleItem as dxFormSimpleItem,
 } from './form';
 
 import {
@@ -55,7 +55,7 @@ import dxScrollable from './scroll_view/ui.scrollable';
 import dxSortable from './sortable';
 
 import {
-    dxToolbarOptions, dxToolbarItem,
+    Properties as dxToolbarOptions, Item as dxToolbarItem,
 } from './toolbar';
 
 import {
@@ -3192,14 +3192,13 @@ export type DataRowTemplateData<TRowData = any, TKey = any> = {
 };
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
  * @public
+ * @docid
  */
-export interface dxDataGridOptions<TRowData = any, TKey = any> extends GridBaseOptions<dxDataGrid<TRowData, TKey>, TRowData, TKey> {
+export interface Properties<TRowData = any, TKey = any> extends GridBaseOptions<dxDataGrid<TRowData, TKey>, TRowData, TKey> {
     /**
      * @docid
-     * @type Array<dxDataGridColumn|string>
+     * @type Array<Column|string>
      * @default undefined
      * @public
      */
@@ -4301,7 +4300,7 @@ export type Selection = SelectionBase & {
  * @namespace DevExpress.ui
  * @public
  */
-declare class dxDataGrid<TRowData = any, TKey = any> extends Widget<dxDataGridOptions<TRowData, TKey>> implements GridBase<TRowData, TKey> {
+declare class dxDataGrid<TRowData = any, TKey = any> extends Widget<Properties<TRowData, TKey>> implements GridBase<TRowData, TKey> {
     /**
      * @docid
      * @publicName addColumn(columnOptions)
@@ -4488,15 +4487,16 @@ declare class dxDataGrid<TRowData = any, TKey = any> extends Widget<dxDataGridOp
 }
 
 /**
- * @public
- */
-export type Column<TRowData = any, TKey = any> = dxDataGridColumn<TRowData, TKey>;
-
-/**
  * @namespace DevExpress.ui
  * @deprecated Use the Column type instead
  */
-export interface dxDataGridColumn<TRowData = any, TKey = any> extends ColumnBase<TRowData> {
+export type dxDataGridColumn<TRowData = any, TKey = any> = Column<TRowData, TKey>;
+
+/**
+ * @public
+ * @docid
+ */
+export interface Column<TRowData = any, TKey = any> extends ColumnBase<TRowData> {
     /**
      * @docid dxDataGridColumn.allowExporting
      * @default true
@@ -4517,7 +4517,7 @@ export interface dxDataGridColumn<TRowData = any, TKey = any> extends ColumnBase
     autoExpandGroup?: boolean;
     /**
      * @docid dxDataGridColumn.buttons
-     * @type Array<Enums.GridColumnButtonName,dxDataGridColumnButton>
+     * @type Array<Enums.GridColumnButtonName,ColumnButton>
      * @public
      */
     buttons?: Array<'cancel' | 'delete' | 'edit' | 'save' | 'undelete' | ColumnButton<TRowData, TKey>>;
@@ -4547,7 +4547,7 @@ export interface dxDataGridColumn<TRowData = any, TKey = any> extends ColumnBase
     cellTemplate?: template | ((cellElement: DxElement, cellInfo: ColumnCellTemplateData<TRowData, TKey>) => any);
     /**
      * @docid dxDataGridColumn.columns
-     * @type Array<dxDataGridColumn|string>
+     * @type Array<Column|string>
      * @default undefined
      * @public
      */
@@ -4620,14 +4620,15 @@ export interface dxDataGridColumn<TRowData = any, TKey = any> extends ColumnBase
 }
 
 /**
- * @public
- */
-export type ColumnButton<TRowData = any, TKey = any> = dxDataGridColumnButton<TRowData, TKey>;
-/**
  * @namespace DevExpress.ui
  * @deprecated Use the DataGrid's ColumnButton type instead
  */
-export interface dxDataGridColumnButton<TRowData = any, TKey = any> extends ColumnButtonBase {
+export type dxDataGridColumnButton<TRowData = any, TKey = any> = ColumnButton<TRowData, TKey>;
+/**
+ * @public
+ * @docid
+ */
+export interface ColumnButton<TRowData = any, TKey = any> extends ColumnButtonBase {
     /**
      * @docid dxDataGridColumnButton.name
      * @type Enums.GridColumnButtonName|string
@@ -4822,10 +4823,13 @@ export type ExplicitTypes<TRowData, TKey> = {
   ToolbarPreparingEvent: ToolbarPreparingEvent<TRowData, TKey>;
 };
 
-/** @public */
-export type Properties<TRowData = any, TKey = any> = dxDataGridOptions<TRowData, TKey>;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxDataGridOptions<TRowData = any, TKey = any> = Properties<TRowData, TKey>;
 
 /** @deprecated use Properties instead */
-export type Options<TRowData = any, TKey = any> = dxDataGridOptions<TRowData, TKey>;
+export type Options<TRowData = any, TKey = any> = Properties<TRowData, TKey>;
 
 export default dxDataGrid;

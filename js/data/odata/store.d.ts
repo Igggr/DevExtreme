@@ -11,17 +11,20 @@ interface PromiseExtension<T> {
     ): Promise<TResult1 | TResult2>;
 }
 
-/** @public */
-export type Options<
-    TItem = any,
-    TKey = any,
-> = ODataStoreOptions<TItem, TKey>;
-
 /**
  * @namespace DevExpress.data
  * @deprecated Use Options instead
  */
-export interface ODataStoreOptions<
+export type ODataStoreOptions<
+    TItem = any,
+    TKey = any,
+> = Options<TItem, TKey>;
+
+/**
+ * @public
+ * @docid
+ */
+export interface Options<
     TItem = any,
     TKey = any,
 > extends StoreOptions<TItem, TKey> {

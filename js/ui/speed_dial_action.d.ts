@@ -33,10 +33,10 @@ export type InitializedEvent = InitializedEventInfo<dxSpeedDialAction>;
 export type OptionChangedEvent = EventInfo<dxSpeedDialAction> & ChangedOptionInfo;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxSpeedDialActionOptions extends WidgetOptions<dxSpeedDialAction> {
+export interface Properties extends WidgetOptions<dxSpeedDialAction> {
     /**
      * @docid
      * @default ""
@@ -90,10 +90,13 @@ export interface dxSpeedDialActionOptions extends WidgetOptions<dxSpeedDialActio
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxSpeedDialAction extends Widget<dxSpeedDialActionOptions> { }
+export default class dxSpeedDialAction extends Widget<Properties> { }
 
-/** @public */
-export type Properties = dxSpeedDialActionOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxSpeedDialActionOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxSpeedDialActionOptions;
+export type Options = Properties;

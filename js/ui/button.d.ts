@@ -42,10 +42,10 @@ export type TemplateData = {
 };
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @public
+ * @docid
  */
-export interface dxButtonOptions extends WidgetOptions<dxButton> {
+export interface Properties extends WidgetOptions<dxButton> {
     /**
      * @docid
      * @default true
@@ -133,10 +133,13 @@ export interface dxButtonOptions extends WidgetOptions<dxButton> {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxButton extends Widget<dxButtonOptions> { }
+export default class dxButton extends Widget<Properties> { }
 
-/** @public */
-export type Properties = dxButtonOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxButtonOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxButtonOptions;
+export type Options = Properties;

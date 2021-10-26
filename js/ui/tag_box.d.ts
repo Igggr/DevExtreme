@@ -29,7 +29,7 @@ import {
 } from './editor/editor';
 
 import dxSelectBox, {
-    dxSelectBoxOptions,
+    Properties as dxSelectBoxOptions,
     CustomItemCreatingInfo,
 } from './select_box';
 
@@ -103,10 +103,10 @@ export type ValueChangedEvent = NativeEventInfo<dxTagBox> & ValueChangedInfo;
 export type DropDownButtonTemplateData = DropDownButtonTemplateDataModel;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
- export interface dxTagBoxOptions extends Pick<dxSelectBoxOptions<dxTagBox>, Exclude<keyof dxSelectBoxOptions<dxTagBox>, 'onSelectionChanged'>> {
+ export interface Properties extends Pick<dxSelectBoxOptions<dxTagBox>, Exclude<keyof dxSelectBoxOptions<dxTagBox>, 'onSelectionChanged'>> {
     /**
      * @docid
      * @type Enums.EditorApplyValueMode
@@ -231,10 +231,13 @@ export type DropDownButtonTemplateData = DropDownButtonTemplateDataModel;
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxTagBox extends dxSelectBox<dxTagBoxOptions> { }
+export default class dxTagBox extends dxSelectBox<Properties> { }
 
-/** @public */
-export type Properties = dxTagBoxOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxTagBoxOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxTagBoxOptions;
+export type Options = Properties;

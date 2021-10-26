@@ -67,10 +67,10 @@ export type ValueChangedEvent = NativeEventInfo<dxRangeSelector> & {
 };
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.viz
+ * @public
+ * @docid
  */
-export interface dxRangeSelectorOptions extends BaseWidgetOptions<dxRangeSelector> {
+export interface Properties extends BaseWidgetOptions<dxRangeSelector> {
     /**
      * @docid
      * @public
@@ -747,7 +747,7 @@ export interface dxRangeSelectorOptions extends BaseWidgetOptions<dxRangeSelecto
  * @namespace DevExpress.viz
  * @public
  */
-export default class dxRangeSelector extends BaseWidget<dxRangeSelectorOptions> {
+export default class dxRangeSelector extends BaseWidget<Properties> {
     getDataSource(): DataSource;
     /**
      * @docid
@@ -772,8 +772,11 @@ export default class dxRangeSelector extends BaseWidget<dxRangeSelectorOptions> 
     setValue(value: Array<number | string | Date> | VizRange): void;
 }
 
-/** @public */
-export type Properties = dxRangeSelectorOptions;
+/**
+ * @namespace DevExpress.viz
+ * @deprecated use Properties instead
+ */
+export type dxRangeSelectorOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxRangeSelectorOptions;
+export type Options = Properties;

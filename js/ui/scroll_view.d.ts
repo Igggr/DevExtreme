@@ -35,10 +35,10 @@ export type ScrollEvent = ScrollEventInfo<dxScrollView>;
 export type UpdatedEvent = ScrollEventInfo<dxScrollView>;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxScrollViewOptions extends dxScrollableOptions<dxScrollView> {
+export interface Properties extends dxScrollableOptions<dxScrollView> {
     /**
      * @docid
      * @default null
@@ -97,7 +97,7 @@ export interface dxScrollViewOptions extends dxScrollableOptions<dxScrollView> {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxScrollView extends dxScrollable<dxScrollViewOptions> {
+export default class dxScrollView extends dxScrollable<Properties> {
     /**
      * @docid
      * @publicName refresh()
@@ -113,8 +113,11 @@ export default class dxScrollView extends dxScrollable<dxScrollViewOptions> {
     release(preventScrollBottom: boolean): DxPromise<void>;
 }
 
-/** @public */
-export type Properties = dxScrollViewOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxScrollViewOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxScrollViewOptions;
+export type Options = Properties;

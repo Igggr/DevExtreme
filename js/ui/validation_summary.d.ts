@@ -26,10 +26,10 @@ export type ItemClickEvent = NativeEventInfo<dxValidationSummary> & ItemInfo;
 export type OptionChangedEvent = EventInfo<dxValidationSummary> & ChangedOptionInfo;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxValidationSummaryOptions extends CollectionWidgetOptions<dxValidationSummary> {
+export interface Properties extends CollectionWidgetOptions<dxValidationSummary> {
     /**
      * @docid
      * @ref
@@ -43,10 +43,13 @@ export interface dxValidationSummaryOptions extends CollectionWidgetOptions<dxVa
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxValidationSummary extends CollectionWidget<dxValidationSummaryOptions> { }
+export default class dxValidationSummary extends CollectionWidget<Properties> { }
 
-/** @public */
-export type Properties = dxValidationSummaryOptions;
+/**
+ * @deprecated use Properties instead
+ * @namespace DevExpress.ui
+*/
+export type dxValidationSummaryOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxValidationSummaryOptions;
+export type Options = Properties;

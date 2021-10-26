@@ -104,16 +104,17 @@ export type TooltipHiddenEvent = EventInfo<dxPieChart> & TooltipInfo;
 export type TooltipShownEvent = EventInfo<dxPieChart> & TooltipInfo;
 
 /**
- * @public
- * @namespace DevExpress.viz.dxPieChart
- */
-export type LegendItem = PieChartLegendItem;
-
-/**
  * @deprecated Use LegendItem instead
  * @namespace DevExpress.viz
  */
-export interface PieChartLegendItem extends BaseLegendItem {
+export type PieChartLegendItem = LegendItem;
+
+/**
+ * @public
+ * @docid
+ * @namespace DevExpress.viz.dxPieChart
+ */
+export interface LegendItem extends BaseLegendItem {
     /**
      * @docid
      * @public
@@ -158,10 +159,10 @@ export interface PieChartSeries extends dxPieChartSeriesTypesCommonPieChartSerie
     tag?: any;
 }
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.viz
+ * @public
+ * @docid
  */
-export interface dxPieChartOptions extends BaseChartOptions<dxPieChart> {
+export interface Properties extends BaseChartOptions<dxPieChart> {
     /**
      * @docid
      * @type object
@@ -427,7 +428,7 @@ export interface dxPieChartLegend extends BaseChartLegend {
  * @namespace DevExpress.viz
  * @public
  */
-export default class dxPieChart extends BaseChart<dxPieChartOptions> {
+export default class dxPieChart extends BaseChart<Properties> {
     /**
      * @docid
      * @publicName getInnerRadius()
@@ -876,8 +877,11 @@ export interface pieChartSeriesObject extends baseSeriesObject {
   isHovered(): boolean;
 }
 
-/** @public */
-export type Properties = dxPieChartOptions;
+/**
+ * @namespace DevExpress.viz
+ * @deprecated use Properties instead
+ */
+export type dxPieChartOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxPieChartOptions;
+export type Options = Properties;

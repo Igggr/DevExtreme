@@ -18,13 +18,13 @@ import {
 } from '../events/index';
 
 import dxButton, {
-    dxButtonOptions,
+    Properties as dxButtonOptions,
 } from './button';
 
 import Editor from './editor/editor';
 
 import {
-    dxTabPanelOptions,
+   Properties as dxTabPanelOptions,
 } from './tab_panel';
 
 import {
@@ -86,10 +86,10 @@ export type SimpleItemTemplateData = {
 };
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxFormOptions extends WidgetOptions<dxForm> {
+export interface Properties extends WidgetOptions<dxForm> {
     /**
      * @docid
      * @default true
@@ -132,7 +132,7 @@ export interface dxFormOptions extends WidgetOptions<dxForm> {
     formData?: any;
     /**
      * @docid
-     * @type Array<dxFormSimpleItem | dxFormGroupItem | dxFormTabbedItem | dxFormEmptyItem | dxFormButtonItem>
+     * @type Array<SimpleItem | GroupItem | TabbedItem | EmptyItem | ButtonItem>
      * @default undefined
      * @public
      */
@@ -257,7 +257,7 @@ export interface dxFormOptions extends WidgetOptions<dxForm> {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxForm extends Widget<dxFormOptions> {
+export default class dxForm extends Widget<Properties> {
     /**
      * @docid
      * @publicName getButton(name)
@@ -334,16 +334,17 @@ export default class dxForm extends Widget<dxFormOptions> {
 export type Item = SimpleItem | GroupItem | TabbedItem | EmptyItem | ButtonItem;
 
 /**
- * @public
- * @namespace DevExpress.ui.dxForm
- */
-export type ButtonItem = dxFormButtonItem;
-
-/**
- * @deprecated Use ButtonItem instead
+ * @deprecated Use ButtonItem instea
  * @namespace DevExpress.ui
  */
-export interface dxFormButtonItem {
+export type dxFormButtonItem = ButtonItem;
+
+/**
+ * @namespace DevExpress.ui.dxForm
+ * @public
+ * @docid
+ */
+export interface ButtonItem {
     /**
      * @docid
      * @default undefined
@@ -404,16 +405,17 @@ export interface dxFormButtonItem {
 }
 
 /**
- * @public
- * @namespace DevExpress.ui.dxForm
- */
-export type EmptyItem = dxFormEmptyItem;
-
-/**
  * @deprecated Use EmptyItem instead
  * @namespace DevExpress.ui
  */
-export interface dxFormEmptyItem {
+export type dxFormEmptyItem = EmptyItem;
+
+/**
+ * @namespace DevExpress.ui.dxForm
+ * @public
+ * @docid
+ */
+export interface EmptyItem {
     /**
      * @docid
      * @default undefined
@@ -454,16 +456,17 @@ export interface dxFormEmptyItem {
 }
 
 /**
- * @public
- * @namespace DevExpress.ui.dxForm
- */
-export type GroupItem = dxFormGroupItem;
-
-/**
  * @deprecated Use GroupItem instead
  * @namespace DevExpress.ui
  */
-export interface dxFormGroupItem {
+export type dxFormGroupItem = GroupItem;
+
+/**
+ * @docid
+ * @namespace DevExpress.ui.dxForm
+ * @public
+ */
+export interface GroupItem {
     /**
      * @docid
      * @default true
@@ -511,7 +514,7 @@ export interface dxFormGroupItem {
     itemType?: 'empty' | 'group' | 'simple' | 'tabbed' | 'button';
     /**
      * @docid
-     * @type Array<dxFormSimpleItem | dxFormGroupItem | dxFormTabbedItem | dxFormEmptyItem | dxFormButtonItem>
+     * @type Array<SimpleItem | GroupItem | TabbedItem | EmptyItem | ButtonItem>
      * @default undefined
      * @public
      */
@@ -546,16 +549,17 @@ export interface dxFormGroupItem {
 }
 
 /**
- * @public
- * @namespace DevExpress.ui.dxForm
- */
-export type SimpleItem = dxFormSimpleItem;
-
-/**
  * @deprecated Use SimpleItem instead
  * @namespace DevExpress.ui
  */
-export interface dxFormSimpleItem {
+export type dxFormSimpleItem = SimpleItem;
+
+/**
+ * @docid
+ * @public
+ * @namespace DevExpress.ui.dxForm
+ */
+export interface SimpleItem {
     /**
      * @docid
      * @default undefined
@@ -678,16 +682,17 @@ export interface dxFormSimpleItem {
 }
 
 /**
- * @public
- * @namespace DevExpress.ui.dxForm
- */
-export type TabbedItem = dxFormTabbedItem;
-
-/**
  * @deprecated Use TabbedItem instead
  * @namespace DevExpress.ui
  */
-export interface dxFormTabbedItem {
+export type dxFormTabbedItem = TabbedItem;
+
+/**
+ * @docid
+ * @public
+ * @namespace DevExpress.ui.dxForm
+ */
+export interface TabbedItem {
     /**
      * @docid
      * @default undefined
@@ -759,7 +764,7 @@ export interface dxFormTabbedItem {
       icon?: string;
       /**
        * @docid
-       * @type Array<dxFormSimpleItem | dxFormGroupItem | dxFormTabbedItem | dxFormEmptyItem | dxFormButtonItem>
+       * @type Array<SimpleItem | GroupItem | TabbedItem | EmptyItem | ButtonItem>
        * @default undefined
        */
       items?: Array<Item>;
@@ -795,8 +800,11 @@ export interface dxFormTabbedItem {
     visibleIndex?: number;
 }
 
-/** @public */
-export type Properties = dxFormOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxFormOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxFormOptions;
+export type Options = Properties;

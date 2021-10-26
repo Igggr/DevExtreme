@@ -185,10 +185,10 @@ export type ItemDownloadingEvent = EventInfo<dxFileManager> & ActionEventInfo & 
 };
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @public
+ * @docid
  */
-export interface dxFileManagerOptions extends WidgetOptions<dxFileManager> {
+export interface Properties extends WidgetOptions<dxFileManager> {
     /**
      * @docid
      * @default []
@@ -675,7 +675,7 @@ export interface dxFileManagerOptions extends WidgetOptions<dxFileManager> {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxFileManager extends Widget<dxFileManagerOptions> {
+export default class dxFileManager extends Widget<Properties> {
     /**
      * @docid
      * @publicName getCurrentDirectory()
@@ -707,7 +707,7 @@ export default class dxFileManager extends Widget<dxFileManagerOptions> {
 export interface dxFileManagerContextMenu {
     /**
      * @docid
-     * @type Array<dxFileManagerContextMenuItem,Enums.FileManagerContextMenuItem>
+     * @type Array<ContextMenuItem,Enums.FileManagerContextMenuItem>
      * @default [ "create", "upload", "rename", "move", "copy", "delete", "refresh", "download" ]
      * @public
      */
@@ -715,20 +715,21 @@ export interface dxFileManagerContextMenu {
 }
 
 /**
- * @public
- * @namespace DevExpress.ui.dxFileManager
- */
-export type ContextMenuItem = dxFileManagerContextMenuItem;
-
-/**
  * @deprecated Use ContextMenuItem instead
  * @namespace DevExpress.ui
  */
-export interface dxFileManagerContextMenuItem extends dxContextMenuItem {
+export type dxFileManagerContextMenuItem = ContextMenuItem;
+
+/**
+ * @namespace DevExpress.ui.dxFileManager
+ * @public
+ * @docid
+ */
+export interface ContextMenuItem extends dxContextMenuItem {
     /**
      * @docid
      * @public
-     * @type Array<dxFileManagerContextMenuItem>
+     * @type Array<ContextMenuItem>
      */
     items?: Array<ContextMenuItem>;
     /**
@@ -758,14 +759,14 @@ export interface dxFileManagerContextMenuItem extends dxContextMenuItem {
 export interface dxFileManagerToolbar {
     /**
      * @docid
-     * @type Array<dxFileManagerToolbarItem,Enums.FileManagerToolbarItem>
+     * @type Array<ToolbarItem,Enums.FileManagerToolbarItem>
      * @default [ "download", "separator", "move", "copy", "rename", "separator", "delete", "clearSelection", { name: "separator", location: "after" }, "refresh" ]
      * @public
      */
     fileSelectionItems?: Array<ToolbarItem | 'showNavPane' | 'create' | 'upload' | 'refresh' | 'switchView' | 'download' | 'move' | 'copy' | 'rename' | 'delete' | 'clearSelection' | 'separator'>;
     /**
      * @docid
-     * @type Array<dxFileManagerToolbarItem,Enums.FileManagerToolbarItem>
+     * @type Array<ToolbarItem,Enums.FileManagerToolbarItem>
      * @default [ "showNavPane", "create", "upload", "switchView", { name: "separator", location: "after" }, "refresh" ]
      * @public
      */
@@ -773,16 +774,17 @@ export interface dxFileManagerToolbar {
 }
 
 /**
- * @public
- * @namespace DevExpress.ui.dxFileManager
- */
-export type ToolbarItem = dxFileManagerToolbarItem;
-
-/**
- * @deprecated Use ToolbarItem instead
+ * @deprecated Use ToolbarItem instea
  * @namespace DevExpress.ui
  */
-export interface dxFileManagerToolbarItem extends dxToolbarItem {
+export type dxFileManagerToolbarItem = ToolbarItem;
+
+/**
+ * @namespace DevExpress.ui.dxFileManager
+ * @public
+ * @docid
+ */
+export interface ToolbarItem extends dxToolbarItem {
     /**
      * @docid
      * @default ""
@@ -905,8 +907,11 @@ export interface dxFileManagerDetailsColumn {
     width?: number | string;
 }
 
-/** @public */
-export type Properties = dxFileManagerOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxFileManagerOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxFileManagerOptions;
+export type Options = Properties;

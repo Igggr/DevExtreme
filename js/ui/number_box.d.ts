@@ -67,10 +67,10 @@ export type PasteEvent = NativeEventInfo<dxNumberBox>;
 export type ValueChangedEvent = NativeEventInfo<dxNumberBox> & ValueChangedInfo;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxNumberBoxOptions extends dxTextEditorOptions<dxNumberBox> {
+export interface Properties extends dxTextEditorOptions<dxNumberBox> {
     /**
      * @docid
      * @type Array<Enums.NumberBoxButtonName,dxTextEditorButton>
@@ -143,10 +143,13 @@ export interface dxNumberBoxOptions extends dxTextEditorOptions<dxNumberBox> {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxNumberBox extends dxTextEditor<dxNumberBoxOptions> { }
+export default class dxNumberBox extends dxTextEditor<Properties> { }
 
-/** @public */
-export type Properties = dxNumberBoxOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxNumberBoxOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxNumberBoxOptions;
+export type Options = Properties;

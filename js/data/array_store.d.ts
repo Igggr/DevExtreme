@@ -3,17 +3,20 @@ import Store, {
 } from './abstract_store';
 import { Query } from './query';
 
-/** @public */
-export type Options<
-    TItem = any,
-    TKey = any,
-> = ArrayStoreOptions<TItem, TKey>;
-
 /**
- * @namespace DevExpress.data
+ *  @namespace DevExpress.data
  * @deprecated Use Options instead
  */
-export interface ArrayStoreOptions<
+export type ArrayStoreOptions<
+    TItem = any,
+    TKey = any,
+> = Options<TItem, TKey>;
+
+/**
+ * @public
+ * @docid
+ */
+export interface Options<
     TItem = any,
     TKey = any,
 > extends StoreOptions<TItem, TKey> {

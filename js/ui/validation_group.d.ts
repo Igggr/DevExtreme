@@ -34,10 +34,10 @@ export type InitializedEvent = InitializedEventInfo<dxValidationGroup>;
 export type OptionChangedEvent = EventInfo<dxValidationGroup> & ChangedOptionInfo;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxValidationGroupOptions extends DOMComponentOptions<dxValidationGroup> {
+export interface Properties extends DOMComponentOptions<dxValidationGroup> {
 }
 /**
  * @docid
@@ -46,7 +46,7 @@ export interface dxValidationGroupOptions extends DOMComponentOptions<dxValidati
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxValidationGroup extends DOMComponent<dxValidationGroupOptions> {
+export default class dxValidationGroup extends DOMComponent<Properties> {
     /**
      * @docid
      * @publicName reset()
@@ -62,16 +62,18 @@ export default class dxValidationGroup extends DOMComponent<dxValidationGroupOpt
     validate(): ValidationResult;
 }
 
-/** @public */
-export type ValidationResult = dxValidationGroupResult;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated {ui/validation_group.ValidationResult}
+ */
+export type dxValidationGroupResult = ValidationResult;
 
 /**
  * @docid
  * @type object
- * @namespace DevExpress.ui
- * @deprecated {ui/validation_group.ValidationResult}
+ * @public
  */
-export interface dxValidationGroupResult {
+export interface ValidationResult {
     /**
      * @docid
      * @public
@@ -79,10 +81,10 @@ export interface dxValidationGroupResult {
     brokenRules?: Array<RequiredRule | NumericRule | RangeRule | StringLengthRule | CustomRule | CompareRule | PatternRule | EmailRule | AsyncRule>;
     /**
      * @docid
-     * @type Promise<dxValidationGroupResult>
+     * @type Promise<ValidationResult>
      * @public
      */
-    complete?: DxPromise<dxValidationGroupResult>;
+    complete?: DxPromise<ValidationResult>;
     /**
      * @docid
      * @public
@@ -101,8 +103,11 @@ export interface dxValidationGroupResult {
     validators?: Array<any>;
 }
 
-/** @public */
-export type Properties = dxValidationGroupOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxValidationGroupOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxValidationGroupOptions;
+export type Options = Properties;

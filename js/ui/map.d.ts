@@ -72,10 +72,10 @@ export interface MapLocation {
 }
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxMapOptions extends WidgetOptions<dxMap> {
+export interface Properties extends WidgetOptions<dxMap> {
     /**
      * @docid
      * @default { bing: '', google: '', googleStatic: '' }
@@ -316,7 +316,7 @@ export interface dxMapOptions extends WidgetOptions<dxMap> {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxMap extends Widget<dxMapOptions> {
+export default class dxMap extends Widget<Properties> {
     /**
      * @docid
      * @publicName addMarker(markerOptions)
@@ -351,8 +351,11 @@ export default class dxMap extends Widget<dxMapOptions> {
     removeRoute(route: any | number | Array<any>): DxPromise<void>;
 }
 
-/** @public */
-export type Properties = dxMapOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxMapOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxMapOptions;
+export type Options = Properties;

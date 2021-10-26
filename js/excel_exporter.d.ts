@@ -4,16 +4,17 @@ import dxPivotGrid, { Cell } from './ui/pivot_grid';
 import { ExportLoadPanel } from './exporter/export_load_panel';
 
 /**
- * @public
+ * @deprecated Use DataGridCell instead
  * @namespace DevExpress.excelExporter
  */
-export type DataGridCell = ExcelDataGridCell;
+export type ExcelDataGridCell = DataGridCell;
 
 /**
  * @namespace DevExpress.excelExporter
- * @deprecated Use DataGridCell instead
+ * @public
+ * @docid
  */
-export interface ExcelDataGridCell {
+export interface DataGridCell {
     /**
      * @docid
      * @public
@@ -63,15 +64,17 @@ export interface ExcelDataGridCell {
 
 /**
  * @public
+ * @deprecated Use PivotGridCell instead
  * @namespace DevExpress.excelExporter
  */
-export type PivotGridCell = ExcelPivotGridCell;
+export type ExcelPivotGridCell = PivotGridCell;
 
 /**
  * @namespace DevExpress.excelExporter
- * @deprecated Use PivotGridCell instead
+ * @public
+ * @docid
  */
-export interface ExcelPivotGridCell extends Cell {
+export interface PivotGridCell extends Cell {
     /**
      * @docid
      * @public

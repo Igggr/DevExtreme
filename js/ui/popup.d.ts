@@ -73,10 +73,10 @@ export type ShowingEvent = Cancelable & EventInfo<dxPopup>;
 export type TitleRenderedEvent = EventInfo<dxPopup> & TitleRenderedInfo;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxPopupOptions<TComponent> extends dxOverlayOptions<TComponent> {
+export interface Properties<TComponent=PopupInstance> extends dxOverlayOptions<TComponent> {
     /**
      * @docid
      * @default { show: { type: 'slide', duration: 400, from: { position: { my: 'top', at: 'bottom', of: window } }, to: { position: { my: 'center', at: 'center', of: window } } }, hide: { type: 'slide', duration: 400, from: { position: { my: 'center', at: 'center', of: window } }, to: { position: { my: 'top', at: 'bottom', of: window } } }} &for(iOS)
@@ -235,16 +235,17 @@ export interface dxPopupAnimation extends dxOverlayAnimation {
 }
 
 /**
- * @public
- * @namespace DevExpress.ui.dxPopup
- */
-export type ToolbarItem = dxPopupToolbarItem;
-
-/**
  * @deprecated Use ToolbarItem instead
  * @namespace DevExpress.ui
  */
-export interface dxPopupToolbarItem {
+export type dxPopupToolbarItem = ToolbarItem;
+
+/**
+ * @docid
+ * @public
+ * @namespace DevExpress.ui.dxPopup
+ */
+export interface ToolbarItem {
     /**
      * @docid dxPopupOptions.toolbarItems.disabled
      * @default false
@@ -309,8 +310,11 @@ export default class dxPopup<TProperties = Properties> extends dxOverlay<TProper
 
 interface PopupInstance extends dxPopup<Properties> { }
 
-/** @public */
-export type Properties = dxPopupOptions<PopupInstance>;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxPopupOptions<T> = Properties<T>;
 
 /** @deprecated use Properties instead */
-export type Options = Properties;
+export type Options = Properties<PopupInstance>;

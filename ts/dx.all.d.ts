@@ -1611,21 +1611,16 @@ declare module DevExpress.data {
     createQuery(): Query;
   }
   module ArrayStore {
-    export type Options<TItem = any, TKey = any> = ArrayStoreOptions<
-      TItem,
-      TKey
-    >;
-  }
-  /**
-   * @deprecated Use Options instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface ArrayStoreOptions<TItem = any, TKey = any>
-    extends DevExpress.data.Store.Options<TItem, TKey> {
     /**
-     * [descr:ArrayStoreOptions.data]
+     * [descr:Options]
      */
-    data?: Array<TItem>;
+    export interface Options<TItem = any, TKey = any>
+      extends DevExpress.data.Store.Options<TItem, TKey> {
+      /**
+       * [descr:Options.data]
+       */
+      data?: Array<TItem>;
+    }
   }
   /**
    * [descr:Utils.base64_encode(input)]
@@ -1648,56 +1643,51 @@ declare module DevExpress.data {
     clearRawDataCache(): void;
   }
   module CustomStore {
-    export type Options<TItem = any, TKey = any> = CustomStoreOptions<
-      TItem,
-      TKey
-    >;
-  }
-  /**
-   * @deprecated Use Options instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface CustomStoreOptions<TItem = any, TKey = any>
-    extends DevExpress.data.Store.Options<TItem, TKey> {
     /**
-     * [descr:CustomStoreOptions.byKey]
+     * [descr:Options]
      */
-    byKey?: (key: TKey) => PromiseLike<TItem>;
-    /**
-     * [descr:CustomStoreOptions.cacheRawData]
-     */
-    cacheRawData?: boolean;
-    /**
-     * [descr:CustomStoreOptions.insert]
-     */
-    insert?: (values: TItem) => PromiseLike<TItem>;
-    /**
-     * [descr:CustomStoreOptions.load]
-     */
-    load: (options: LoadOptions<TItem>) => PromiseLike<TItem> | Array<TItem>;
-    /**
-     * [descr:CustomStoreOptions.loadMode]
-     */
-    loadMode?: 'processed' | 'raw';
-    /**
-     * [descr:CustomStoreOptions.remove]
-     */
-    remove?: (key: TKey) => PromiseLike<void>;
-    /**
-     * [descr:CustomStoreOptions.totalCount]
-     */
-    totalCount?: (loadOptions: {
-      filter?: FilterDescriptor | Array<FilterDescriptor>;
-      group?: GroupDescriptor<TItem> | Array<GroupDescriptor<TItem>>;
-    }) => PromiseLike<number>;
-    /**
-     * [descr:CustomStoreOptions.update]
-     */
-    update?: (key: TKey, values: TItem) => PromiseLike<any>;
-    /**
-     * [descr:CustomStoreOptions.useDefaultSearch]
-     */
-    useDefaultSearch?: boolean;
+    export interface Options<TItem = any, TKey = any>
+      extends DevExpress.data.Store.Options<TItem, TKey> {
+      /**
+       * [descr:Options.byKey]
+       */
+      byKey?: (key: TKey) => PromiseLike<TItem>;
+      /**
+       * [descr:Options.cacheRawData]
+       */
+      cacheRawData?: boolean;
+      /**
+       * [descr:Options.insert]
+       */
+      insert?: (values: TItem) => PromiseLike<TItem>;
+      /**
+       * [descr:Options.load]
+       */
+      load: (options: LoadOptions<TItem>) => PromiseLike<TItem> | Array<TItem>;
+      /**
+       * [descr:Options.loadMode]
+       */
+      loadMode?: 'processed' | 'raw';
+      /**
+       * [descr:Options.remove]
+       */
+      remove?: (key: TKey) => PromiseLike<void>;
+      /**
+       * [descr:Options.totalCount]
+       */
+      totalCount?: (loadOptions: {
+        filter?: FilterDescriptor | Array<FilterDescriptor>;
+        group?: GroupDescriptor<TItem> | Array<GroupDescriptor<TItem>>;
+      }) => PromiseLike<number>;
+      /**
+       * [descr:Options.update]
+       */
+      update?: (key: TKey, values: TItem) => PromiseLike<any>;
+      /**
+       * [descr:Options.useDefaultSearch]
+       */
+      useDefaultSearch?: boolean;
+    }
   }
   /**
    * [descr:DataSource]
@@ -1930,115 +1920,108 @@ declare module DevExpress.data {
      * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
      */
     type EventName = 'changed' | 'loadError' | 'loadingChanged';
-    export type Options<
+    /**
+     * [descr:Options]
+     */
+    export interface Options<
       TStoreItem = any,
       TMappedItem = TStoreItem,
       TItem = TMappedItem,
       TKey = any
-    > = DataSourceOptions<TStoreItem, TItem, TMappedItem, TKey>;
-  }
-  /**
-   * @deprecated Use Options instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface DataSourceOptions<
-    TStoreItem = any,
-    TMappedItem = TStoreItem,
-    TItem = TMappedItem,
-    TKey = any
-  > {
-    /**
-     * [descr:DataSourceOptions.customQueryParams]
-     */
-    customQueryParams?: any;
-    /**
-     * [descr:DataSourceOptions.expand]
-     */
-    expand?: Array<string> | string;
-    /**
-     * [descr:DataSourceOptions.filter]
-     */
-    filter?: FilterDescriptor | Array<FilterDescriptor>;
-    /**
-     * [descr:DataSourceOptions.group]
-     */
-    group?: GroupDescriptor<TItem> | Array<GroupDescriptor<TItem>>;
-    /**
-     * [descr:DataSourceOptions.map]
-     */
-    map?: (dataItem: TStoreItem) => TMappedItem;
-    /**
-     * [descr:DataSourceOptions.onChanged]
-     */
-    onChanged?: (e: { readonly changes?: Array<TMappedItem> }) => void;
-    /**
-     * [descr:DataSourceOptions.onLoadError]
-     */
-    onLoadError?: (error: { readonly message?: string }) => void;
-    /**
-     * [descr:DataSourceOptions.onLoadingChanged]
-     */
-    onLoadingChanged?: (isLoading: boolean) => void;
-    /**
-     * [descr:DataSourceOptions.pageSize]
-     */
-    pageSize?: number;
-    /**
-     * [descr:DataSourceOptions.paginate]
-     */
-    paginate?: boolean;
-    /**
-     * [descr:DataSourceOptions.postProcess]
-     */
-    postProcess?: (data: Array<TMappedItem>) => Array<TItem>;
-    /**
-     * [descr:DataSourceOptions.pushAggregationTimeout]
-     */
-    pushAggregationTimeout?: number;
-    /**
-     * [descr:DataSourceOptions.requireTotalCount]
-     */
-    requireTotalCount?: boolean;
-    /**
-     * [descr:DataSourceOptions.reshapeOnPush]
-     */
-    reshapeOnPush?: boolean;
-    /**
-     * [descr:DataSourceOptions.searchExpr]
-     */
-    searchExpr?: string | Function | Array<string | Function>;
-    /**
-     * [descr:DataSourceOptions.searchOperation]
-     */
-    searchOperation?: SearchOperation;
-    /**
-     * [descr:DataSourceOptions.searchValue]
-     */
-    searchValue?: any;
-    /**
-     * [descr:DataSourceOptions.select]
-     */
-    select?: SelectDescriptor<TItem>;
-    /**
-     * [descr:DataSourceOptions.sort]
-     */
-    sort?: SortDescriptor<TItem> | Array<SortDescriptor<TItem>>;
-    /**
-     * [descr:DataSourceOptions.store]
-     */
-    store?:
-      | Array<TStoreItem>
-      | Store<TStoreItem, TKey>
-      | (DevExpress.data.ArrayStore.Options<TStoreItem, TKey> & {
-          type: 'array';
-        })
-      | (DevExpress.data.LocalStore.Options<TStoreItem, TKey> & {
-          type: 'local';
-        })
-      | (DevExpress.data.ODataStore.Options<TStoreItem, TKey> & {
-          type: 'odata';
-        })
-      | DevExpress.data.CustomStore.Options<TStoreItem, TKey>;
+    > {
+      /**
+       * [descr:Options.customQueryParams]
+       */
+      customQueryParams?: any;
+      /**
+       * [descr:Options.expand]
+       */
+      expand?: Array<string> | string;
+      /**
+       * [descr:Options.filter]
+       */
+      filter?: FilterDescriptor | Array<FilterDescriptor>;
+      /**
+       * [descr:Options.group]
+       */
+      group?: GroupDescriptor<TItem> | Array<GroupDescriptor<TItem>>;
+      /**
+       * [descr:Options.map]
+       */
+      map?: (dataItem: TStoreItem) => TMappedItem;
+      /**
+       * [descr:Options.onChanged]
+       */
+      onChanged?: (e: { readonly changes?: Array<TMappedItem> }) => void;
+      /**
+       * [descr:Options.onLoadError]
+       */
+      onLoadError?: (error: { readonly message?: string }) => void;
+      /**
+       * [descr:Options.onLoadingChanged]
+       */
+      onLoadingChanged?: (isLoading: boolean) => void;
+      /**
+       * [descr:Options.pageSize]
+       */
+      pageSize?: number;
+      /**
+       * [descr:Options.paginate]
+       */
+      paginate?: boolean;
+      /**
+       * [descr:Options.postProcess]
+       */
+      postProcess?: (data: Array<TMappedItem>) => Array<TItem>;
+      /**
+       * [descr:Options.pushAggregationTimeout]
+       */
+      pushAggregationTimeout?: number;
+      /**
+       * [descr:Options.requireTotalCount]
+       */
+      requireTotalCount?: boolean;
+      /**
+       * [descr:Options.reshapeOnPush]
+       */
+      reshapeOnPush?: boolean;
+      /**
+       * [descr:Options.searchExpr]
+       */
+      searchExpr?: string | Function | Array<string | Function>;
+      /**
+       * [descr:Options.searchOperation]
+       */
+      searchOperation?: SearchOperation;
+      /**
+       * [descr:Options.searchValue]
+       */
+      searchValue?: any;
+      /**
+       * [descr:Options.select]
+       */
+      select?: SelectDescriptor<TItem>;
+      /**
+       * [descr:Options.sort]
+       */
+      sort?: SortDescriptor<TItem> | Array<SortDescriptor<TItem>>;
+      /**
+       * [descr:Options.store]
+       */
+      store?:
+        | Array<TStoreItem>
+        | Store<TStoreItem, TKey>
+        | (DevExpress.data.ArrayStore.Options<TStoreItem, TKey> & {
+            type: 'array';
+          })
+        | (DevExpress.data.LocalStore.Options<TStoreItem, TKey> & {
+            type: 'local';
+          })
+        | (DevExpress.data.ODataStore.Options<TStoreItem, TKey> & {
+            type: 'odata';
+          })
+        | DevExpress.data.CustomStore.Options<TStoreItem, TKey>;
+    }
   }
   /**
    * [descr:EdmLiteral]
@@ -2175,29 +2158,24 @@ declare module DevExpress.data {
     clear(): void;
   }
   module LocalStore {
-    export type Options<TItem = any, TKey = any> = LocalStoreOptions<
-      TItem,
-      TKey
-    >;
-  }
-  /**
-   * @deprecated Use Options instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface LocalStoreOptions<TItem = any, TKey = any>
-    extends ArrayStoreOptions<TItem, TKey> {
     /**
-     * [descr:LocalStoreOptions.flushInterval]
+     * [descr:Options]
      */
-    flushInterval?: number;
-    /**
-     * [descr:LocalStoreOptions.immediate]
-     */
-    immediate?: boolean;
-    /**
-     * [descr:LocalStoreOptions.name]
-     */
-    name?: string;
+    export interface Options<TItem = any, TKey = any>
+      extends DevExpress.data.ArrayStore.Options<TItem, TKey> {
+      /**
+       * [descr:Options.flushInterval]
+       */
+      flushInterval?: number;
+      /**
+       * [descr:Options.immediate]
+       */
+      immediate?: boolean;
+      /**
+       * [descr:Options.name]
+       */
+      name?: string;
+    }
   }
   /**
    * [descr:ODataContext]
@@ -2333,10 +2311,76 @@ declare module DevExpress.data {
       DevExpress.data.ODataStore.PromiseExtension<TItem>;
   }
   module ODataStore {
-    export type Options<TItem = any, TKey = any> = ODataStoreOptions<
-      TItem,
-      TKey
-    >;
+    /**
+     * [descr:Options]
+     */
+    export interface Options<TItem = any, TKey = any>
+      extends DevExpress.data.Store.Options<TItem, TKey> {
+      /**
+       * [descr:Options.beforeSend]
+       */
+      beforeSend?: (options: {
+        url: string;
+        async: boolean;
+        method: string;
+        timeout: number;
+        params: any;
+        payload: any;
+        headers: any;
+      }) => void;
+      /**
+       * [descr:Options.deserializeDates]
+       */
+      deserializeDates?: boolean;
+      /**
+       * [descr:Options.errorHandler]
+       */
+      errorHandler?: (e: {
+        httpStatus: number;
+        errorDetails: any;
+        requestOptions: DevExpress.data.ODataContext.ODataRequestOptions;
+      }) => void;
+      /**
+       * [descr:Options.fieldTypes]
+       */
+      fieldTypes?: any;
+      /**
+       * [descr:Options.filterToLower]
+       */
+      filterToLower?: boolean;
+      /**
+       * [descr:Options.jsonp]
+       */
+      jsonp?: boolean;
+      /**
+       * [descr:Options.keyType]
+       */
+      keyType?:
+        | 'String'
+        | 'Int32'
+        | 'Int64'
+        | 'Guid'
+        | 'Boolean'
+        | 'Single'
+        | 'Decimal'
+        | any;
+      /**
+       * [descr:Options.onLoading]
+       */
+      onLoading?: (loadOptions: LoadOptions<TItem>) => void;
+      /**
+       * [descr:Options.url]
+       */
+      url?: string;
+      /**
+       * [descr:Options.version]
+       */
+      version?: number;
+      /**
+       * [descr:Options.withCredentials]
+       */
+      withCredentials?: boolean;
+    }
     /**
      * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
      */
@@ -2355,77 +2399,6 @@ declare module DevExpress.data {
           | null
       ): Promise<TResult1 | TResult2>;
     }
-  }
-  /**
-   * @deprecated Use Options instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface ODataStoreOptions<TItem = any, TKey = any>
-    extends DevExpress.data.Store.Options<TItem, TKey> {
-    /**
-     * [descr:ODataStoreOptions.beforeSend]
-     */
-    beforeSend?: (options: {
-      url: string;
-      async: boolean;
-      method: string;
-      timeout: number;
-      params: any;
-      payload: any;
-      headers: any;
-    }) => void;
-    /**
-     * [descr:ODataStoreOptions.deserializeDates]
-     */
-    deserializeDates?: boolean;
-    /**
-     * [descr:ODataStoreOptions.errorHandler]
-     */
-    errorHandler?: (e: {
-      httpStatus: number;
-      errorDetails: any;
-      requestOptions: DevExpress.data.ODataContext.ODataRequestOptions;
-    }) => void;
-    /**
-     * [descr:ODataStoreOptions.fieldTypes]
-     */
-    fieldTypes?: any;
-    /**
-     * [descr:ODataStoreOptions.filterToLower]
-     */
-    filterToLower?: boolean;
-    /**
-     * [descr:ODataStoreOptions.jsonp]
-     */
-    jsonp?: boolean;
-    /**
-     * [descr:ODataStoreOptions.keyType]
-     */
-    keyType?:
-      | 'String'
-      | 'Int32'
-      | 'Int64'
-      | 'Guid'
-      | 'Boolean'
-      | 'Single'
-      | 'Decimal'
-      | any;
-    /**
-     * [descr:ODataStoreOptions.onLoading]
-     */
-    onLoading?: (loadOptions: LoadOptions<TItem>) => void;
-    /**
-     * [descr:ODataStoreOptions.url]
-     */
-    url?: string;
-    /**
-     * [descr:ODataStoreOptions.version]
-     */
-    version?: number;
-    /**
-     * [descr:ODataStoreOptions.withCredentials]
-     */
-    withCredentials?: boolean;
   }
   /**
    * [descr:PivotGridDataSource]
@@ -2553,251 +2526,73 @@ declare module DevExpress.data {
       | 'fieldsPrepared'
       | 'loadError'
       | 'loadingChanged';
-    export type Options = PivotGridDataSourceOptions;
+    /**
+     * [descr:Options]
+     */
+    export interface Options {
+      /**
+       * [descr:Options.fields]
+       */
+      fields?: Array<Field>;
+      /**
+       * [descr:Options.filter]
+       */
+      filter?: string | Array<any> | Function;
+      /**
+       * [descr:Options.onChanged]
+       */
+      onChanged?: Function;
+      /**
+       * [descr:Options.onFieldsPrepared]
+       */
+      onFieldsPrepared?: (fields: Array<Field>) => void;
+      /**
+       * [descr:Options.onLoadError]
+       */
+      onLoadError?: (error: any) => void;
+      /**
+       * [descr:Options.onLoadingChanged]
+       */
+      onLoadingChanged?: (isLoading: boolean) => void;
+      /**
+       * [descr:Options.paginate]
+       */
+      paginate?: boolean;
+      /**
+       * [descr:Options.remoteOperations]
+       */
+      remoteOperations?: boolean;
+      /**
+       * [descr:Options.retrieveFields]
+       */
+      retrieveFields?: boolean;
+      /**
+       * [descr:Options.store]
+       */
+      store?:
+        | Store
+        | DevExpress.data.Store.Options
+        | XmlaStore
+        | XmlaStoreOptions
+        | Array<{
+            /**
+             * [descr:Options.store.type]
+             */
+            type?: 'array' | 'local' | 'odata' | 'xmla';
+          }>
+        | {
+            /**
+             * [descr:Options.store.type]
+             */
+            type?: 'array' | 'local' | 'odata' | 'xmla';
+          };
+    }
   }
   /**
-   * @deprecated Use Field instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
+   * @deprecated Use DevExpress.data.PivotGridDataSource.Field instead
    */
-  export interface PivotGridDataSourceField {
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.allowCrossGroupCalculation]
-     */
-    allowCrossGroupCalculation?: boolean;
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.allowExpandAll]
-     */
-    allowExpandAll?: boolean;
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.allowFiltering]
-     */
-    allowFiltering?: boolean;
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.allowSorting]
-     */
-    allowSorting?: boolean;
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.allowSortingBySummary]
-     */
-    allowSortingBySummary?: boolean;
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.area]
-     */
-    area?: 'column' | 'data' | 'filter' | 'row' | undefined;
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.areaIndex]
-     */
-    areaIndex?: number;
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.calculateCustomSummary]
-     */
-    calculateCustomSummary?: (options: {
-      summaryProcess?: string;
-      value?: any;
-      totalValue?: any;
-    }) => void;
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.calculateSummaryValue]
-     */
-    calculateSummaryValue?: (e: DevExpress.ui.dxPivotGridSummaryCell) => number;
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.caption]
-     */
-    caption?: string;
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.customizeText]
-     */
-    customizeText?: (cellInfo: {
-      value?: string | number | Date;
-      valueText?: string;
-    }) => string;
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.dataField]
-     */
-    dataField?: string;
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.dataType]
-     */
-    dataType?: 'date' | 'number' | 'string';
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.displayFolder]
-     */
-    displayFolder?: string;
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.expanded]
-     */
-    expanded?: boolean;
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.filterType]
-     */
-    filterType?: 'exclude' | 'include';
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.filterValues]
-     */
-    filterValues?: Array<any>;
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.format]
-     */
-    format?: DevExpress.ui.Format;
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.groupIndex]
-     */
-    groupIndex?: number;
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.groupInterval]
-     */
-    groupInterval?: 'day' | 'dayOfWeek' | 'month' | 'quarter' | 'year' | number;
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.groupName]
-     */
-    groupName?: string;
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.headerFilter]
-     */
-    headerFilter?: { allowSearch?: boolean; height?: number; width?: number };
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.isMeasure]
-     */
-    isMeasure?: boolean;
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.name]
-     */
-    name?: string;
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.runningTotal]
-     */
-    runningTotal?: 'column' | 'row';
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.selector]
-     */
-    selector?: Function;
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.showGrandTotals]
-     */
-    showGrandTotals?: boolean;
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.showTotals]
-     */
-    showTotals?: boolean;
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.showValues]
-     */
-    showValues?: boolean;
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.sortBy]
-     */
-    sortBy?: 'displayText' | 'value' | 'none';
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.sortBySummaryField]
-     */
-    sortBySummaryField?: string;
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.sortBySummaryPath]
-     */
-    sortBySummaryPath?: Array<number | string>;
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.sortOrder]
-     */
-    sortOrder?: 'asc' | 'desc';
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.sortingMethod]
-     */
-    sortingMethod?: (
-      a: { value?: string | number; children?: Array<any> },
-      b: { value?: string | number; children?: Array<any> }
-    ) => number;
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.summaryDisplayMode]
-     */
-    summaryDisplayMode?:
-      | 'absoluteVariation'
-      | 'percentOfColumnGrandTotal'
-      | 'percentOfColumnTotal'
-      | 'percentOfGrandTotal'
-      | 'percentOfRowGrandTotal'
-      | 'percentOfRowTotal'
-      | 'percentVariation';
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.summaryType]
-     */
-    summaryType?: 'avg' | 'count' | 'custom' | 'max' | 'min' | 'sum' | string;
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.visible]
-     */
-    visible?: boolean;
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.width]
-     */
-    width?: number;
-    /**
-     * [descr:PivotGridDataSourceOptions.fields.wordWrapEnabled]
-     */
-    wordWrapEnabled?: boolean;
-  }
-  /**
-   * @deprecated Use Options instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface PivotGridDataSourceOptions {
-    /**
-     * [descr:PivotGridDataSourceOptions.fields]
-     */
-    fields?: Array<DevExpress.data.PivotGridDataSource.Field>;
-    /**
-     * [descr:PivotGridDataSourceOptions.filter]
-     */
-    filter?: string | Array<any> | Function;
-    /**
-     * [descr:PivotGridDataSourceOptions.onChanged]
-     */
-    onChanged?: Function;
-    /**
-     * [descr:PivotGridDataSourceOptions.onFieldsPrepared]
-     */
-    onFieldsPrepared?: (
-      fields: Array<DevExpress.data.PivotGridDataSource.Field>
-    ) => void;
-    /**
-     * [descr:PivotGridDataSourceOptions.onLoadError]
-     */
-    onLoadError?: (error: any) => void;
-    /**
-     * [descr:PivotGridDataSourceOptions.onLoadingChanged]
-     */
-    onLoadingChanged?: (isLoading: boolean) => void;
-    /**
-     * [descr:PivotGridDataSourceOptions.paginate]
-     */
-    paginate?: boolean;
-    /**
-     * [descr:PivotGridDataSourceOptions.remoteOperations]
-     */
-    remoteOperations?: boolean;
-    /**
-     * [descr:PivotGridDataSourceOptions.retrieveFields]
-     */
-    retrieveFields?: boolean;
-    /**
-     * [descr:PivotGridDataSourceOptions.store]
-     */
-    store?:
-      | Store
-      | DevExpress.data.Store.Options
-      | XmlaStore
-      | XmlaStoreOptions
-      | Array<{
-          /**
-           * [descr:PivotGridDataSourceOptions.store.type]
-           */
-          type?: 'array' | 'local' | 'odata' | 'xmla';
-        }>
-      | {
-          /**
-           * [descr:PivotGridDataSourceOptions.store.type]
-           */
-          type?: 'array' | 'local' | 'odata' | 'xmla';
-        };
-  }
+  export type PivotGridDataSourceField =
+    DevExpress.data.PivotGridDataSource.Field;
   /**
    * [descr:Utils.query(array)]
    */
@@ -3037,67 +2832,65 @@ declare module DevExpress.data {
       | 'modified'
       | 'modifying';
     /**
-     * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
+     * [descr:Options]
      */
-    export type Options<TItem = any, TKey = any> = StoreOptions<TItem, TKey>;
-  }
-  /**
-   * @deprecated Use Options instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface StoreOptions<TItem = any, TKey = any> {
-    /**
-     * [descr:StoreOptions.errorHandler]
-     */
-    errorHandler?: Function;
-    /**
-     * [descr:StoreOptions.key]
-     */
-    key?: string | Array<string>;
-    /**
-     * [descr:StoreOptions.onInserted]
-     */
-    onInserted?: (values: TItem, key: TKey) => void;
-    /**
-     * [descr:StoreOptions.onInserting]
-     */
-    onInserting?: (values: TItem) => void;
-    /**
-     * [descr:StoreOptions.onLoaded]
-     */
-    onLoaded?: (result: Array<TItem>, loadOptions: LoadOptions<TItem>) => void;
-    /**
-     * [descr:StoreOptions.onLoading]
-     */
-    onLoading?: (loadOptions: LoadOptions<TItem>) => void;
-    /**
-     * [descr:StoreOptions.onModified]
-     */
-    onModified?: Function;
-    /**
-     * [descr:StoreOptions.onModifying]
-     */
-    onModifying?: Function;
-    /**
-     * [descr:StoreOptions.onPush]
-     */
-    onPush?: (changes: Array<TItem>) => void;
-    /**
-     * [descr:StoreOptions.onRemoved]
-     */
-    onRemoved?: (key: TKey) => void;
-    /**
-     * [descr:StoreOptions.onRemoving]
-     */
-    onRemoving?: (key: TKey) => void;
-    /**
-     * [descr:StoreOptions.onUpdated]
-     */
-    onUpdated?: (key: TKey, values: TItem) => void;
-    /**
-     * [descr:StoreOptions.onUpdating]
-     */
-    onUpdating?: (key: TKey, values: TItem) => void;
+    export interface Options<TItem = any, TKey = any> {
+      /**
+       * [descr:Options.errorHandler]
+       */
+      errorHandler?: Function;
+      /**
+       * [descr:Options.key]
+       */
+      key?: string | Array<string>;
+      /**
+       * [descr:Options.onInserted]
+       */
+      onInserted?: (values: TItem, key: TKey) => void;
+      /**
+       * [descr:Options.onInserting]
+       */
+      onInserting?: (values: TItem) => void;
+      /**
+       * [descr:Options.onLoaded]
+       */
+      onLoaded?: (
+        result: Array<TItem>,
+        loadOptions: LoadOptions<TItem>
+      ) => void;
+      /**
+       * [descr:Options.onLoading]
+       */
+      onLoading?: (loadOptions: LoadOptions<TItem>) => void;
+      /**
+       * [descr:Options.onModified]
+       */
+      onModified?: Function;
+      /**
+       * [descr:Options.onModifying]
+       */
+      onModifying?: Function;
+      /**
+       * [descr:Options.onPush]
+       */
+      onPush?: (changes: Array<TItem>) => void;
+      /**
+       * [descr:Options.onRemoved]
+       */
+      onRemoved?: (key: TKey) => void;
+      /**
+       * [descr:Options.onRemoving]
+       */
+      onRemoving?: (key: TKey) => void;
+      /**
+       * [descr:Options.onUpdated]
+       */
+      onUpdated?: (key: TKey, values: TItem) => void;
+      /**
+       * [descr:Options.onUpdating]
+       */
+      onUpdating?: (key: TKey, values: TItem) => void;
+    }
   }
   /**
    * [descr:SummaryDescriptor]
@@ -3143,7 +2936,184 @@ declare module DevExpress.data {
   }
 }
 declare module DevExpress.data.PivotGridDataSource {
-  export type Field = PivotGridDataSourceField;
+  /**
+   * [descr:Field]
+   */
+  export interface Field {
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.allowCrossGroupCalculation]
+     */
+    allowCrossGroupCalculation?: boolean;
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.allowExpandAll]
+     */
+    allowExpandAll?: boolean;
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.allowFiltering]
+     */
+    allowFiltering?: boolean;
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.allowSorting]
+     */
+    allowSorting?: boolean;
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.allowSortingBySummary]
+     */
+    allowSortingBySummary?: boolean;
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.area]
+     */
+    area?: 'column' | 'data' | 'filter' | 'row' | undefined;
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.areaIndex]
+     */
+    areaIndex?: number;
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.calculateCustomSummary]
+     */
+    calculateCustomSummary?: (options: {
+      summaryProcess?: string;
+      value?: any;
+      totalValue?: any;
+    }) => void;
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.calculateSummaryValue]
+     */
+    calculateSummaryValue?: (e: DevExpress.ui.dxPivotGridSummaryCell) => number;
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.caption]
+     */
+    caption?: string;
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.customizeText]
+     */
+    customizeText?: (cellInfo: {
+      value?: string | number | Date;
+      valueText?: string;
+    }) => string;
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.dataField]
+     */
+    dataField?: string;
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.dataType]
+     */
+    dataType?: 'date' | 'number' | 'string';
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.displayFolder]
+     */
+    displayFolder?: string;
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.expanded]
+     */
+    expanded?: boolean;
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.filterType]
+     */
+    filterType?: 'exclude' | 'include';
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.filterValues]
+     */
+    filterValues?: Array<any>;
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.format]
+     */
+    format?: DevExpress.ui.Format;
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.groupIndex]
+     */
+    groupIndex?: number;
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.groupInterval]
+     */
+    groupInterval?: 'day' | 'dayOfWeek' | 'month' | 'quarter' | 'year' | number;
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.groupName]
+     */
+    groupName?: string;
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.headerFilter]
+     */
+    headerFilter?: { allowSearch?: boolean; height?: number; width?: number };
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.isMeasure]
+     */
+    isMeasure?: boolean;
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.name]
+     */
+    name?: string;
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.runningTotal]
+     */
+    runningTotal?: 'column' | 'row';
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.selector]
+     */
+    selector?: Function;
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.showGrandTotals]
+     */
+    showGrandTotals?: boolean;
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.showTotals]
+     */
+    showTotals?: boolean;
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.showValues]
+     */
+    showValues?: boolean;
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.sortBy]
+     */
+    sortBy?: 'displayText' | 'value' | 'none';
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.sortBySummaryField]
+     */
+    sortBySummaryField?: string;
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.sortBySummaryPath]
+     */
+    sortBySummaryPath?: Array<number | string>;
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.sortOrder]
+     */
+    sortOrder?: 'asc' | 'desc';
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.sortingMethod]
+     */
+    sortingMethod?: (
+      a: { value?: string | number; children?: Array<any> },
+      b: { value?: string | number; children?: Array<any> }
+    ) => number;
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.summaryDisplayMode]
+     */
+    summaryDisplayMode?:
+      | 'absoluteVariation'
+      | 'percentOfColumnGrandTotal'
+      | 'percentOfColumnTotal'
+      | 'percentOfGrandTotal'
+      | 'percentOfRowGrandTotal'
+      | 'percentOfRowTotal'
+      | 'percentVariation';
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.summaryType]
+     */
+    summaryType?: 'avg' | 'count' | 'custom' | 'max' | 'min' | 'sum' | string;
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.visible]
+     */
+    visible?: boolean;
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.width]
+     */
+    width?: number;
+    /**
+     * [descr:PivotGridDataSourceOptions.fields.wordWrapEnabled]
+     */
+    wordWrapEnabled?: boolean;
+  }
 }
 declare module DevExpress.data.utils {
   /**
@@ -3439,47 +3409,45 @@ declare module DevExpress.excelExporter {
      */
     to?: CellAddress;
   }
-  export type DataGridCell = ExcelDataGridCell;
   /**
-   * @deprecated Use DataGridCell instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
+   * [descr:DataGridCell]
    */
-  export interface ExcelDataGridCell {
+  export interface DataGridCell {
     /**
-     * [descr:ExcelDataGridCell.column]
+     * [descr:DataGridCell.column]
      */
     column?: DevExpress.ui.dxDataGrid.Column;
     /**
-     * [descr:ExcelDataGridCell.data]
+     * [descr:DataGridCell.data]
      */
     data?: any;
     /**
-     * [descr:ExcelDataGridCell.groupIndex]
+     * [descr:DataGridCell.groupIndex]
      */
     groupIndex?: number;
     /**
-     * [descr:ExcelDataGridCell.groupSummaryItems]
+     * [descr:DataGridCell.groupSummaryItems]
      */
     groupSummaryItems?: Array<{
       /**
-       * [descr:ExcelDataGridCell.groupSummaryItems.name]
+       * [descr:DataGridCell.groupSummaryItems.name]
        */
       name?: string;
       /**
-       * [descr:ExcelDataGridCell.groupSummaryItems.value]
+       * [descr:DataGridCell.groupSummaryItems.value]
        */
       value?: any;
     }>;
     /**
-     * [descr:ExcelDataGridCell.rowType]
+     * [descr:DataGridCell.rowType]
      */
     rowType?: string;
     /**
-     * [descr:ExcelDataGridCell.totalSummaryItemName]
+     * [descr:DataGridCell.totalSummaryItemName]
      */
     totalSummaryItemName?: string;
     /**
-     * [descr:ExcelDataGridCell.value]
+     * [descr:DataGridCell.value]
      */
     value?: any;
   }
@@ -3557,22 +3525,8 @@ declare module DevExpress.excelExporter {
   }
   /**
    * @deprecated Use PivotGridCell instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
    */
-  export interface ExcelPivotGridCell extends DevExpress.ui.dxPivotGrid.Cell {
-    /**
-     * [descr:ExcelPivotGridCell.area]
-     */
-    area?: string;
-    /**
-     * [descr:ExcelPivotGridCell.rowIndex]
-     */
-    rowIndex?: number;
-    /**
-     * [descr:ExcelPivotGridCell.columnIndex]
-     */
-    columnIndex?: number;
-  }
+  export type ExcelPivotGridCell = PivotGridCell;
   /**
    * [descr:excelExporter.exportDataGrid(options)]
    */
@@ -3585,7 +3539,23 @@ declare module DevExpress.excelExporter {
   export function exportPivotGrid(
     options: ExcelExportPivotGridProps
   ): DevExpress.core.utils.DxPromise<CellRange>;
-  export type PivotGridCell = ExcelPivotGridCell;
+  /**
+   * [descr:PivotGridCell]
+   */
+  export interface PivotGridCell extends DevExpress.ui.dxPivotGrid.Cell {
+    /**
+     * [descr:PivotGridCell.area]
+     */
+    area?: string;
+    /**
+     * [descr:PivotGridCell.rowIndex]
+     */
+    rowIndex?: number;
+    /**
+     * [descr:PivotGridCell.columnIndex]
+     */
+    columnIndex?: number;
+  }
 }
 declare module DevExpress.exporter {
   /**
@@ -3630,95 +3600,7 @@ declare module DevExpress.fileManagement {
    * [descr:CustomFileSystemProvider]
    */
   export class CustomFileSystemProvider extends FileSystemProviderBase {
-    constructor(
-      options?: DevExpress.fileManagement.CustomFileSystemProvider.Options
-    );
-  }
-  module CustomFileSystemProvider {
-    export type Options = CustomFileSystemProviderOptions;
-  }
-  /**
-   * @deprecated Use Options instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface CustomFileSystemProviderOptions
-    extends FileSystemProviderBaseOptions<CustomFileSystemProvider> {
-    /**
-     * [descr:CustomFileSystemProviderOptions.abortFileUpload]
-     */
-    abortFileUpload?: (
-      file: File,
-      uploadInfo: UploadInfo,
-      destinationDirectory: FileSystemItem
-    ) => PromiseLike<any> | any;
-
-    /**
-     * [descr:CustomFileSystemProviderOptions.copyItem]
-     */
-    copyItem?: (
-      item: FileSystemItem,
-      destinationDirectory: FileSystemItem
-    ) => PromiseLike<any> | any;
-
-    /**
-     * [descr:CustomFileSystemProviderOptions.createDirectory]
-     */
-    createDirectory?: (
-      parentDirectory: FileSystemItem,
-      name: string
-    ) => PromiseLike<any> | any;
-
-    /**
-     * [descr:CustomFileSystemProviderOptions.deleteItem]
-     */
-    deleteItem?: (item: FileSystemItem) => PromiseLike<any> | any;
-
-    /**
-     * [descr:CustomFileSystemProviderOptions.downloadItems]
-     */
-    downloadItems?: (items: Array<FileSystemItem>) => void;
-
-    /**
-     * [descr:CustomFileSystemProviderOptions.getItems]
-     */
-    getItems?: (
-      parentDirectory: FileSystemItem
-    ) => PromiseLike<Array<any>> | Array<any>;
-
-    /**
-     * [descr:CustomFileSystemProviderOptions.getItemsContent]
-     */
-    getItemsContent?: (items: Array<FileSystemItem>) => PromiseLike<any> | any;
-
-    /**
-     * [descr:CustomFileSystemProviderOptions.hasSubDirectoriesExpr]
-     */
-    hasSubDirectoriesExpr?: string | Function;
-
-    /**
-     * [descr:CustomFileSystemProviderOptions.moveItem]
-     */
-    moveItem?: (
-      item: FileSystemItem,
-      destinationDirectory: FileSystemItem
-    ) => PromiseLike<any> | any;
-
-    /**
-     * [descr:CustomFileSystemProviderOptions.renameItem]
-     */
-    renameItem?: (
-      item: FileSystemItem,
-      newName: string
-    ) => PromiseLike<any> | any;
-
-    /**
-     * [descr:CustomFileSystemProviderOptions.uploadFileChunk]
-     */
-    uploadFileChunk?: (
-      file: File,
-      uploadInfo: UploadInfo,
-      destinationDirectory: FileSystemItem
-    ) => PromiseLike<any> | any;
+    constructor(options?: Options);
   }
   /**
    * [descr:FileSystemError]
@@ -3925,26 +3807,106 @@ declare module DevExpress.fileManagement {
     );
   }
   module ObjectFileSystemProvider {
-    export type Options = ObjectFileSystemProviderOptions;
+    /**
+     * [descr:Options]
+     */
+    export interface Options
+      extends FileSystemProviderBaseOptions<ObjectFileSystemProvider> {
+      /**
+       * [descr:Options.contentExpr]
+       */
+      contentExpr?: string | Function;
+      /**
+       * [descr:Options.data]
+       */
+      data?: Array<any>;
+      /**
+       * [descr:Options.itemsExpr]
+       */
+      itemsExpr?: string | Function;
+    }
   }
   /**
-   * @deprecated Use Options instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
+   * [descr:Options]
    */
-  export interface ObjectFileSystemProviderOptions
-    extends FileSystemProviderBaseOptions<ObjectFileSystemProvider> {
+  export interface Options
+    extends FileSystemProviderBaseOptions<CustomFileSystemProvider> {
     /**
-     * [descr:ObjectFileSystemProviderOptions.contentExpr]
+     * [descr:Options.abortFileUpload]
      */
-    contentExpr?: string | Function;
+    abortFileUpload?: (
+      file: File,
+      uploadInfo: UploadInfo,
+      destinationDirectory: FileSystemItem
+    ) => PromiseLike<any> | any;
+
     /**
-     * [descr:ObjectFileSystemProviderOptions.data]
+     * [descr:Options.copyItem]
      */
-    data?: Array<any>;
+    copyItem?: (
+      item: FileSystemItem,
+      destinationDirectory: FileSystemItem
+    ) => PromiseLike<any> | any;
+
     /**
-     * [descr:ObjectFileSystemProviderOptions.itemsExpr]
+     * [descr:Options.createDirectory]
      */
-    itemsExpr?: string | Function;
+    createDirectory?: (
+      parentDirectory: FileSystemItem,
+      name: string
+    ) => PromiseLike<any> | any;
+
+    /**
+     * [descr:Options.deleteItem]
+     */
+    deleteItem?: (item: FileSystemItem) => PromiseLike<any> | any;
+
+    /**
+     * [descr:Options.downloadItems]
+     */
+    downloadItems?: (items: Array<FileSystemItem>) => void;
+
+    /**
+     * [descr:Options.getItems]
+     */
+    getItems?: (
+      parentDirectory: FileSystemItem
+    ) => PromiseLike<Array<any>> | Array<any>;
+
+    /**
+     * [descr:Options.getItemsContent]
+     */
+    getItemsContent?: (items: Array<FileSystemItem>) => PromiseLike<any> | any;
+
+    /**
+     * [descr:Options.hasSubDirectoriesExpr]
+     */
+    hasSubDirectoriesExpr?: string | Function;
+
+    /**
+     * [descr:Options.moveItem]
+     */
+    moveItem?: (
+      item: FileSystemItem,
+      destinationDirectory: FileSystemItem
+    ) => PromiseLike<any> | any;
+
+    /**
+     * [descr:Options.renameItem]
+     */
+    renameItem?: (
+      item: FileSystemItem,
+      newName: string
+    ) => PromiseLike<any> | any;
+
+    /**
+     * [descr:Options.uploadFileChunk]
+     */
+    uploadFileChunk?: (
+      file: File,
+      uploadInfo: UploadInfo,
+      destinationDirectory: FileSystemItem
+    ) => PromiseLike<any> | any;
   }
   /**
    * [descr:RemoteFileSystemProvider]
@@ -3955,38 +3917,36 @@ declare module DevExpress.fileManagement {
     );
   }
   module RemoteFileSystemProvider {
-    export type Options = RemoteFileSystemProviderOptions;
-  }
-  /**
-   * @deprecated Use Options instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface RemoteFileSystemProviderOptions
-    extends FileSystemProviderBaseOptions<RemoteFileSystemProvider> {
     /**
-     * [descr:RemoteFileSystemProviderOptions.beforeAjaxSend]
+     * [descr:Options]
      */
-    beforeAjaxSend?: (options: {
-      headers?: any;
-      xhrFields?: any;
-      formData?: any;
-    }) => void;
-    /**
-     * [descr:RemoteFileSystemProviderOptions.beforeSubmit]
-     */
-    beforeSubmit?: (options: { formData?: any }) => void;
-    /**
-     * [descr:RemoteFileSystemProviderOptions.endpointUrl]
-     */
-    endpointUrl?: string;
-    /**
-     * [descr:RemoteFileSystemProviderOptions.hasSubDirectoriesExpr]
-     */
-    hasSubDirectoriesExpr?: string | Function;
-    /**
-     * [descr:RemoteFileSystemProviderOptions.requestHeaders]
-     */
-    requestHeaders?: any;
+    export interface Options
+      extends FileSystemProviderBaseOptions<RemoteFileSystemProvider> {
+      /**
+       * [descr:Options.beforeAjaxSend]
+       */
+      beforeAjaxSend?: (options: {
+        headers?: any;
+        xhrFields?: any;
+        formData?: any;
+      }) => void;
+      /**
+       * [descr:Options.beforeSubmit]
+       */
+      beforeSubmit?: (options: { formData?: any }) => void;
+      /**
+       * [descr:Options.endpointUrl]
+       */
+      endpointUrl?: string;
+      /**
+       * [descr:Options.hasSubDirectoriesExpr]
+       */
+      hasSubDirectoriesExpr?: string | Function;
+      /**
+       * [descr:Options.requestHeaders]
+       */
+      requestHeaders?: any;
+    }
   }
   /**
    * [descr:UploadInfo]
@@ -4420,7 +4380,7 @@ declare module DevExpress.ui {
   export interface CustomDialogOptions {
     title?: string;
     messageHtml?: string;
-    buttons?: Array<dxButtonOptions>;
+    buttons?: Array<DevExpress.ui.dxButton.Properties>;
     showTitle?: boolean;
     message?: string;
     dragEnabled?: boolean;
@@ -4587,7 +4547,7 @@ declare module DevExpress.ui {
   /**
    * [descr:dxAccordion]
    */
-  export class dxAccordion extends CollectionWidget<dxAccordionOptions> {
+  export class dxAccordion extends CollectionWidget<DevExpress.ui.dxAccordion.Properties> {
     /**
      * [descr:dxAccordion.collapseItem(index)]
      */
@@ -4622,108 +4582,89 @@ declare module DevExpress.ui {
         DevExpress.events.ItemInfo;
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxAccordion> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxAccordionOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends CollectionWidgetOptions<dxAccordion> {
+      /**
+       * [descr:Properties.animationDuration]
+       */
+      animationDuration?: number;
+      /**
+       * [descr:Properties.collapsible]
+       */
+      collapsible?: boolean;
+      /**
+       * [descr:Properties.dataSource]
+       */
+      dataSource?: DevExpress.data.DataSource.DataSourceLike<
+        string | Item | any
+      >;
+      /**
+       * [descr:Properties.deferRendering]
+       */
+      deferRendering?: boolean;
+      /**
+       * [descr:Properties.focusStateEnabled]
+       */
+      focusStateEnabled?: boolean;
+      /**
+       * [descr:Properties.height]
+       */
+      height?: number | string | (() => number | string);
+      /**
+       * [descr:Properties.hoverStateEnabled]
+       */
+      hoverStateEnabled?: boolean;
+      /**
+       * [descr:Properties.itemTemplate]
+       */
+      itemTemplate?:
+        | DevExpress.core.template
+        | ((
+            itemData: any,
+            itemIndex: number,
+            itemElement: DevExpress.core.DxElement
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.itemTitleTemplate]
+       */
+      itemTitleTemplate?:
+        | DevExpress.core.template
+        | ((
+            itemData: any,
+            itemIndex: number,
+            itemElement: DevExpress.core.DxElement
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.items]
+       */
+      items?: Array<string | Item | any>;
+      /**
+       * [descr:Properties.multiple]
+       */
+      multiple?: boolean;
+      /**
+       * [descr:Properties.onItemTitleClick]
+       */
+      onItemTitleClick?: ((e: ItemTitleClickEvent) => void) | string;
+      /**
+       * [descr:Properties.repaintChangesOnly]
+       */
+      repaintChangesOnly?: boolean;
+      /**
+       * [descr:Properties.selectedIndex]
+       */
+      selectedIndex?: number;
+    }
     export type SelectionChangedEvent =
       DevExpress.events.EventInfo<dxAccordion> &
         DevExpress.ui.CollectionWidget.SelectionChangedInfo;
   }
   /**
-   * @deprecated Use Item instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxAccordionItem extends CollectionWidgetItem {
-    /**
-     * [descr:dxAccordionItem.icon]
-     */
-    icon?: string;
-    /**
-     * [descr:dxAccordionItem.title]
-     */
-    title?: string;
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxAccordionOptions
-    extends CollectionWidgetOptions<dxAccordion> {
-    /**
-     * [descr:dxAccordionOptions.animationDuration]
-     */
-    animationDuration?: number;
-    /**
-     * [descr:dxAccordionOptions.collapsible]
-     */
-    collapsible?: boolean;
-    /**
-     * [descr:dxAccordionOptions.dataSource]
-     */
-    dataSource?: DevExpress.data.DataSource.DataSourceLike<
-      string | DevExpress.ui.dxAccordion.Item | any
-    >;
-    /**
-     * [descr:dxAccordionOptions.deferRendering]
-     */
-    deferRendering?: boolean;
-    /**
-     * [descr:dxAccordionOptions.focusStateEnabled]
-     */
-    focusStateEnabled?: boolean;
-    /**
-     * [descr:dxAccordionOptions.height]
-     */
-    height?: number | string | (() => number | string);
-    /**
-     * [descr:dxAccordionOptions.hoverStateEnabled]
-     */
-    hoverStateEnabled?: boolean;
-    /**
-     * [descr:dxAccordionOptions.itemTemplate]
-     */
-    itemTemplate?:
-      | DevExpress.core.template
-      | ((
-          itemData: any,
-          itemIndex: number,
-          itemElement: DevExpress.core.DxElement
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxAccordionOptions.itemTitleTemplate]
-     */
-    itemTitleTemplate?:
-      | DevExpress.core.template
-      | ((
-          itemData: any,
-          itemIndex: number,
-          itemElement: DevExpress.core.DxElement
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxAccordionOptions.items]
-     */
-    items?: Array<string | DevExpress.ui.dxAccordion.Item | any>;
-    /**
-     * [descr:dxAccordionOptions.multiple]
-     */
-    multiple?: boolean;
-    /**
-     * [descr:dxAccordionOptions.onItemTitleClick]
-     */
-    onItemTitleClick?:
-      | ((e: DevExpress.ui.dxAccordion.ItemTitleClickEvent) => void)
-      | string;
-    /**
-     * [descr:dxAccordionOptions.repaintChangesOnly]
-     */
-    repaintChangesOnly?: boolean;
-    /**
-     * [descr:dxAccordionOptions.selectedIndex]
-     */
-    selectedIndex?: number;
-  }
-  /**
    * [descr:dxActionSheet]
    */
-  export class dxActionSheet extends CollectionWidget<dxActionSheetOptions> {
+  export class dxActionSheet extends CollectionWidget<DevExpress.ui.dxActionSheet.Properties> {
     /**
      * [descr:dxActionSheet.hide()]
      */
@@ -4759,92 +4700,58 @@ declare module DevExpress.ui {
     export type OptionChangedEvent =
       DevExpress.events.EventInfo<dxActionSheet> &
         DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxActionSheetOptions;
-  }
-  /**
-   * @deprecated Use Item instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxActionSheetItem extends CollectionWidgetItem {
     /**
-     * [descr:dxActionSheetItem.icon]
+     * [descr:Properties]
      */
-    icon?: string;
-    /**
-     * [descr:dxActionSheetItem.onClick]
-     */
-    onClick?:
-      | ((e: {
-          component?: dxActionSheet;
-          element?: DevExpress.core.DxElement;
-          model?: any;
-          event?: DevExpress.events.DxEvent;
-        }) => void)
-      | string;
-    /**
-     * [descr:dxActionSheetItem.type]
-     */
-    type?: 'back' | 'danger' | 'default' | 'normal' | 'success';
-    /**
-     * [descr:dxActionSheetItem.stylingMode]
-     */
-    stylingMode?: 'text' | 'outlined' | 'contained';
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxActionSheetOptions
-    extends CollectionWidgetOptions<dxActionSheet> {
-    /**
-     * [descr:dxActionSheetOptions.cancelText]
-     */
-    cancelText?: string;
-    /**
-     * [descr:dxActionSheetOptions.dataSource]
-     */
-    dataSource?: DevExpress.data.DataSource.DataSourceLike<
-      string | DevExpress.ui.dxActionSheet.Item | any
-    >;
-    /**
-     * [descr:dxActionSheetOptions.items]
-     */
-    items?: Array<string | DevExpress.ui.dxActionSheet.Item | any>;
-    /**
-     * [descr:dxActionSheetOptions.onCancelClick]
-     */
-    onCancelClick?:
-      | ((e: DevExpress.ui.dxActionSheet.CancelClickEvent) => void)
-      | string;
-    /**
-     * [descr:dxActionSheetOptions.showCancelButton]
-     */
-    showCancelButton?: boolean;
-    /**
-     * [descr:dxActionSheetOptions.showTitle]
-     */
-    showTitle?: boolean;
-    /**
-     * [descr:dxActionSheetOptions.target]
-     */
-    target?: string | DevExpress.core.UserDefinedElement;
-    /**
-     * [descr:dxActionSheetOptions.title]
-     */
-    title?: string;
-    /**
-     * [descr:dxActionSheetOptions.usePopover]
-     */
-    usePopover?: boolean;
-    /**
-     * [descr:dxActionSheetOptions.visible]
-     */
-    visible?: boolean;
+    export interface Properties extends CollectionWidgetOptions<dxActionSheet> {
+      /**
+       * [descr:Properties.cancelText]
+       */
+      cancelText?: string;
+      /**
+       * [descr:Properties.dataSource]
+       */
+      dataSource?: DevExpress.data.DataSource.DataSourceLike<
+        string | Item | any
+      >;
+      /**
+       * [descr:Properties.items]
+       */
+      items?: Array<string | Item | any>;
+      /**
+       * [descr:Properties.onCancelClick]
+       */
+      onCancelClick?: ((e: CancelClickEvent) => void) | string;
+      /**
+       * [descr:Properties.showCancelButton]
+       */
+      showCancelButton?: boolean;
+      /**
+       * [descr:Properties.showTitle]
+       */
+      showTitle?: boolean;
+      /**
+       * [descr:Properties.target]
+       */
+      target?: string | DevExpress.core.UserDefinedElement;
+      /**
+       * [descr:Properties.title]
+       */
+      title?: string;
+      /**
+       * [descr:Properties.usePopover]
+       */
+      usePopover?: boolean;
+      /**
+       * [descr:Properties.visible]
+       */
+      visible?: boolean;
+    }
   }
   /**
    * [descr:dxAutocomplete]
    */
-  export class dxAutocomplete extends dxDropDownList<dxAutocompleteOptions> {}
+  export class dxAutocomplete extends dxDropDownList<DevExpress.ui.dxAutocomplete.Properties> {}
   module dxAutocomplete {
     export type ChangeEvent = DevExpress.events.NativeEventInfo<dxAutocomplete>;
     export type ClosedEvent = DevExpress.events.EventInfo<dxAutocomplete>;
@@ -4876,7 +4783,32 @@ declare module DevExpress.ui {
       DevExpress.events.EventInfo<dxAutocomplete> &
         DevExpress.events.ChangedOptionInfo;
     export type PasteEvent = DevExpress.events.NativeEventInfo<dxAutocomplete>;
-    export type Properties = dxAutocompleteOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends dxDropDownListOptions<dxAutocomplete> {
+      /**
+       * [descr:Properties.maxItemCount]
+       */
+      maxItemCount?: number;
+      /**
+       * [descr:Properties.minSearchLength]
+       */
+      minSearchLength?: number;
+      /**
+       * [descr:Properties.showDropDownButton]
+       */
+      showDropDownButton?: boolean;
+      /**
+       * [descr:Properties.value]
+       */
+      value?: string;
+
+      /**
+       * [descr:Properties.dropDownOptions]
+       */
+      dropDownOptions?: DevExpress.ui.dxPopup.Properties;
+    }
     export type SelectionChangedEvent =
       DevExpress.events.EventInfo<dxAutocomplete> &
         DevExpress.ui.dxDropDownList.SelectionChangedInfo;
@@ -4885,37 +4817,9 @@ declare module DevExpress.ui {
         DevExpress.ui.Editor.ValueChangedInfo;
   }
   /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxAutocompleteOptions
-    extends dxDropDownListOptions<dxAutocomplete> {
-    /**
-     * [descr:dxAutocompleteOptions.maxItemCount]
-     */
-    maxItemCount?: number;
-    /**
-     * [descr:dxAutocompleteOptions.minSearchLength]
-     */
-    minSearchLength?: number;
-    /**
-     * [descr:dxAutocompleteOptions.showDropDownButton]
-     */
-    showDropDownButton?: boolean;
-    /**
-     * [descr:dxAutocompleteOptions.value]
-     */
-    value?: string;
-
-    /**
-     * [descr:dxAutocompleteOptions.dropDownOptions]
-     */
-    dropDownOptions?: DevExpress.ui.dxPopup.Properties;
-  }
-  /**
    * [descr:dxBox]
    */
-  export class dxBox extends CollectionWidget<dxBoxOptions> {}
+  export class dxBox extends CollectionWidget<DevExpress.ui.dxBox.Properties> {}
   module dxBox {
     export type ContentReadyEvent = DevExpress.events.EventInfo<dxBox>;
     export type DisposingEvent = DevExpress.events.EventInfo<dxBox>;
@@ -4931,62 +4835,38 @@ declare module DevExpress.ui {
       DevExpress.events.ItemInfo;
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxBox> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxBoxOptions;
-  }
-  /**
-   * @deprecated Use Item instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxBoxItem extends CollectionWidgetItem {
     /**
-     * [descr:dxBoxItem.baseSize]
+     * [descr:Properties]
      */
-    baseSize?: number | 'auto';
-    /**
-     * [descr:dxBoxItem.box]
-     */
-    box?: dxBoxOptions;
-    /**
-     * [descr:dxBoxItem.ratio]
-     */
-    ratio?: number;
-    /**
-     * [descr:dxBoxItem.shrink]
-     */
-    shrink?: number;
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxBoxOptions extends CollectionWidgetOptions<dxBox> {
-    /**
-     * [descr:dxBoxOptions.align]
-     */
-    align?: 'center' | 'end' | 'space-around' | 'space-between' | 'start';
-    /**
-     * [descr:dxBoxOptions.crossAlign]
-     */
-    crossAlign?: 'center' | 'end' | 'start' | 'stretch';
-    /**
-     * [descr:dxBoxOptions.dataSource]
-     */
-    dataSource?: DevExpress.data.DataSource.DataSourceLike<
-      string | DevExpress.ui.dxBox.Item | any
-    >;
-    /**
-     * [descr:dxBoxOptions.direction]
-     */
-    direction?: 'col' | 'row';
-    /**
-     * [descr:dxBoxOptions.items]
-     */
-    items?: Array<string | DevExpress.ui.dxBox.Item | any>;
+    export interface Properties extends CollectionWidgetOptions<dxBox> {
+      /**
+       * [descr:Properties.align]
+       */
+      align?: 'center' | 'end' | 'space-around' | 'space-between' | 'start';
+      /**
+       * [descr:Properties.crossAlign]
+       */
+      crossAlign?: 'center' | 'end' | 'start' | 'stretch';
+      /**
+       * [descr:Properties.dataSource]
+       */
+      dataSource?: DevExpress.data.DataSource.DataSourceLike<
+        string | Item | any
+      >;
+      /**
+       * [descr:Properties.direction]
+       */
+      direction?: 'col' | 'row';
+      /**
+       * [descr:Properties.items]
+       */
+      items?: Array<string | Item | any>;
+    }
   }
   /**
    * [descr:dxButton]
    */
-  export class dxButton extends Widget<dxButtonOptions> {}
+  export class dxButton extends Widget<DevExpress.ui.dxButton.Properties> {}
   module dxButton {
     export type ClickEvent = DevExpress.events.NativeEventInfo<dxButton> & {
       validationGroup?: any;
@@ -4997,7 +4877,60 @@ declare module DevExpress.ui {
       DevExpress.events.InitializedEventInfo<dxButton>;
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxButton> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxButtonOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends WidgetOptions<dxButton> {
+      /**
+       * [descr:Properties.activeStateEnabled]
+       */
+      activeStateEnabled?: boolean;
+      /**
+       * [descr:Properties.focusStateEnabled]
+       */
+      focusStateEnabled?: boolean;
+      /**
+       * [descr:Properties.hoverStateEnabled]
+       */
+      hoverStateEnabled?: boolean;
+      /**
+       * [descr:Properties.icon]
+       */
+      icon?: string;
+      /**
+       * [descr:Properties.onClick]
+       */
+      onClick?: (e: ClickEvent) => void;
+      /**
+       * [descr:Properties.stylingMode]
+       */
+      stylingMode?: 'text' | 'outlined' | 'contained';
+      /**
+       * [descr:Properties.template]
+       */
+      template?:
+        | DevExpress.core.template
+        | ((
+            data: TemplateData,
+            contentElement: DevExpress.core.DxElement
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.text]
+       */
+      text?: string;
+      /**
+       * [descr:Properties.type]
+       */
+      type?: 'back' | 'danger' | 'default' | 'normal' | 'success';
+      /**
+       * [descr:Properties.useSubmitBehavior]
+       */
+      useSubmitBehavior?: boolean;
+      /**
+       * [descr:Properties.validationGroup]
+       */
+      validationGroup?: string;
+    }
     export type TemplateData = {
       readonly text?: string;
       readonly icon?: string;
@@ -5006,7 +4939,7 @@ declare module DevExpress.ui {
   /**
    * [descr:dxButtonGroup]
    */
-  export class dxButtonGroup extends Widget<dxButtonGroupOptions> {}
+  export class dxButtonGroup extends Widget<DevExpress.ui.dxButtonGroup.Properties> {}
   module dxButtonGroup {
     export type ContentReadyEvent = DevExpress.events.EventInfo<dxButtonGroup>;
     export type DisposingEvent = DevExpress.events.EventInfo<dxButtonGroup>;
@@ -5018,150 +4951,68 @@ declare module DevExpress.ui {
     export type OptionChangedEvent =
       DevExpress.events.EventInfo<dxButtonGroup> &
         DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxButtonGroupOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends WidgetOptions<dxButtonGroup> {
+      /**
+       * [descr:Properties.buttonTemplate]
+       */
+      buttonTemplate?:
+        | DevExpress.core.template
+        | ((
+            buttonData: any,
+            buttonContent: DevExpress.core.DxElement
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.focusStateEnabled]
+       */
+      focusStateEnabled?: boolean;
+      /**
+       * [descr:Properties.hoverStateEnabled]
+       */
+      hoverStateEnabled?: boolean;
+      /**
+       * [descr:Properties.items]
+       */
+      items?: Array<Item>;
+      /**
+       * [descr:Properties.keyExpr]
+       */
+      keyExpr?: string | Function;
+      /**
+       * [descr:Properties.onItemClick]
+       */
+      onItemClick?: (e: ItemClickEvent) => void;
+      /**
+       * [descr:Properties.onSelectionChanged]
+       */
+      onSelectionChanged?: (e: SelectionChangedEvent) => void;
+      /**
+       * [descr:Properties.selectedItemKeys]
+       */
+      selectedItemKeys?: Array<any>;
+      /**
+       * [descr:Properties.selectedItems]
+       */
+      selectedItems?: Array<any>;
+      /**
+       * [descr:Properties.selectionMode]
+       */
+      selectionMode?: 'multiple' | 'single' | 'none';
+      /**
+       * [descr:Properties.stylingMode]
+       */
+      stylingMode?: 'text' | 'outlined' | 'contained';
+    }
     export type SelectionChangedEvent =
       DevExpress.events.EventInfo<dxButtonGroup> &
         DevExpress.ui.CollectionWidget.SelectionChangedInfo;
   }
   /**
-   * @deprecated Use Item instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxButtonGroupItem extends CollectionWidgetItem {
-    /**
-     * [descr:dxButtonGroupItem.hint]
-     */
-    hint?: string;
-    /**
-     * [descr:dxButtonGroupItem.icon]
-     */
-    icon?: string;
-    /**
-     * [descr:dxButtonGroupItem.type]
-     */
-    type?: 'back' | 'danger' | 'default' | 'normal' | 'success';
-
-    /**
-     * [descr:dxButtonGroupItem.elementAttr]
-     */
-    elementAttr?: { [key: string]: any };
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxButtonGroupOptions extends WidgetOptions<dxButtonGroup> {
-    /**
-     * [descr:dxButtonGroupOptions.buttonTemplate]
-     */
-    buttonTemplate?:
-      | DevExpress.core.template
-      | ((
-          buttonData: any,
-          buttonContent: DevExpress.core.DxElement
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxButtonGroupOptions.focusStateEnabled]
-     */
-    focusStateEnabled?: boolean;
-    /**
-     * [descr:dxButtonGroupOptions.hoverStateEnabled]
-     */
-    hoverStateEnabled?: boolean;
-    /**
-     * [descr:dxButtonGroupOptions.items]
-     */
-    items?: Array<DevExpress.ui.dxButtonGroup.Item>;
-    /**
-     * [descr:dxButtonGroupOptions.keyExpr]
-     */
-    keyExpr?: string | Function;
-    /**
-     * [descr:dxButtonGroupOptions.onItemClick]
-     */
-    onItemClick?: (e: DevExpress.ui.dxButtonGroup.ItemClickEvent) => void;
-    /**
-     * [descr:dxButtonGroupOptions.onSelectionChanged]
-     */
-    onSelectionChanged?: (
-      e: DevExpress.ui.dxButtonGroup.SelectionChangedEvent
-    ) => void;
-    /**
-     * [descr:dxButtonGroupOptions.selectedItemKeys]
-     */
-    selectedItemKeys?: Array<any>;
-    /**
-     * [descr:dxButtonGroupOptions.selectedItems]
-     */
-    selectedItems?: Array<any>;
-    /**
-     * [descr:dxButtonGroupOptions.selectionMode]
-     */
-    selectionMode?: 'multiple' | 'single' | 'none';
-    /**
-     * [descr:dxButtonGroupOptions.stylingMode]
-     */
-    stylingMode?: 'text' | 'outlined' | 'contained';
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxButtonOptions extends WidgetOptions<dxButton> {
-    /**
-     * [descr:dxButtonOptions.activeStateEnabled]
-     */
-    activeStateEnabled?: boolean;
-    /**
-     * [descr:dxButtonOptions.focusStateEnabled]
-     */
-    focusStateEnabled?: boolean;
-    /**
-     * [descr:dxButtonOptions.hoverStateEnabled]
-     */
-    hoverStateEnabled?: boolean;
-    /**
-     * [descr:dxButtonOptions.icon]
-     */
-    icon?: string;
-    /**
-     * [descr:dxButtonOptions.onClick]
-     */
-    onClick?: (e: DevExpress.ui.dxButton.ClickEvent) => void;
-    /**
-     * [descr:dxButtonOptions.stylingMode]
-     */
-    stylingMode?: 'text' | 'outlined' | 'contained';
-    /**
-     * [descr:dxButtonOptions.template]
-     */
-    template?:
-      | DevExpress.core.template
-      | ((
-          data: DevExpress.ui.dxButton.TemplateData,
-          contentElement: DevExpress.core.DxElement
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxButtonOptions.text]
-     */
-    text?: string;
-    /**
-     * [descr:dxButtonOptions.type]
-     */
-    type?: 'back' | 'danger' | 'default' | 'normal' | 'success';
-    /**
-     * [descr:dxButtonOptions.useSubmitBehavior]
-     */
-    useSubmitBehavior?: boolean;
-    /**
-     * [descr:dxButtonOptions.validationGroup]
-     */
-    validationGroup?: string;
-  }
-  /**
    * [descr:dxCalendar]
    */
-  export class dxCalendar extends Editor<dxCalendarOptions> {}
+  export class dxCalendar extends Editor<DevExpress.ui.dxCalendar.Properties> {}
   module dxCalendar {
     export type CellTemplateData = {
       readonly date: Date;
@@ -5178,84 +5029,80 @@ declare module DevExpress.ui {
     }
     export type ContentReadyEvent = DevExpress.events.EventInfo<dxCalendar>;
     export type DisabledDate = ComponentDisabledDate<dxCalendar>;
-    export type Properties = dxCalendarOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends EditorOptions<dxCalendar> {
+      /**
+       * [descr:Properties.activeStateEnabled]
+       */
+      activeStateEnabled?: boolean;
+      /**
+       * [descr:Properties.cellTemplate]
+       */
+      cellTemplate?:
+        | DevExpress.core.template
+        | ((
+            itemData: CellTemplateData,
+            itemIndex: number,
+            itemElement: DevExpress.core.DxElement
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.dateSerializationFormat]
+       */
+      dateSerializationFormat?: string;
+      /**
+       * [descr:Properties.disabledDates]
+       */
+      disabledDates?: Array<Date> | ((data: DisabledDate) => boolean);
+      /**
+       * [descr:Properties.firstDayOfWeek]
+       */
+      firstDayOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
+      /**
+       * [descr:Properties.focusStateEnabled]
+       */
+      focusStateEnabled?: boolean;
+      /**
+       * [descr:Properties.hoverStateEnabled]
+       */
+      hoverStateEnabled?: boolean;
+      /**
+       * [descr:Properties.max]
+       */
+      max?: Date | number | string;
+      /**
+       * [descr:Properties.maxZoomLevel]
+       */
+      maxZoomLevel?: 'century' | 'decade' | 'month' | 'year';
+      /**
+       * [descr:Properties.min]
+       */
+      min?: Date | number | string;
+      /**
+       * [descr:Properties.minZoomLevel]
+       */
+      minZoomLevel?: 'century' | 'decade' | 'month' | 'year';
+      /**
+       * [descr:Properties.name]
+       */
+      name?: string;
+      /**
+       * [descr:Properties.showTodayButton]
+       */
+      showTodayButton?: boolean;
+      /**
+       * [descr:Properties.value]
+       */
+      value?: Date | number | string;
+      /**
+       * [descr:Properties.zoomLevel]
+       */
+      zoomLevel?: 'century' | 'decade' | 'month' | 'year';
+    }
     export type ValueChangedEvent =
       DevExpress.events.NativeEventInfo<dxCalendar> &
         DevExpress.ui.Editor.ValueChangedInfo;
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxCalendarOptions extends EditorOptions<dxCalendar> {
-    /**
-     * [descr:dxCalendarOptions.activeStateEnabled]
-     */
-    activeStateEnabled?: boolean;
-    /**
-     * [descr:dxCalendarOptions.cellTemplate]
-     */
-    cellTemplate?:
-      | DevExpress.core.template
-      | ((
-          itemData: DevExpress.ui.dxCalendar.CellTemplateData,
-          itemIndex: number,
-          itemElement: DevExpress.core.DxElement
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxCalendarOptions.dateSerializationFormat]
-     */
-    dateSerializationFormat?: string;
-    /**
-     * [descr:dxCalendarOptions.disabledDates]
-     */
-    disabledDates?:
-      | Array<Date>
-      | ((data: DevExpress.ui.dxCalendar.DisabledDate) => boolean);
-    /**
-     * [descr:dxCalendarOptions.firstDayOfWeek]
-     */
-    firstDayOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
-    /**
-     * [descr:dxCalendarOptions.focusStateEnabled]
-     */
-    focusStateEnabled?: boolean;
-    /**
-     * [descr:dxCalendarOptions.hoverStateEnabled]
-     */
-    hoverStateEnabled?: boolean;
-    /**
-     * [descr:dxCalendarOptions.max]
-     */
-    max?: Date | number | string;
-    /**
-     * [descr:dxCalendarOptions.maxZoomLevel]
-     */
-    maxZoomLevel?: 'century' | 'decade' | 'month' | 'year';
-    /**
-     * [descr:dxCalendarOptions.min]
-     */
-    min?: Date | number | string;
-    /**
-     * [descr:dxCalendarOptions.minZoomLevel]
-     */
-    minZoomLevel?: 'century' | 'decade' | 'month' | 'year';
-    /**
-     * [descr:dxCalendarOptions.name]
-     */
-    name?: string;
-    /**
-     * [descr:dxCalendarOptions.showTodayButton]
-     */
-    showTodayButton?: boolean;
-    /**
-     * [descr:dxCalendarOptions.value]
-     */
-    value?: Date | number | string;
-    /**
-     * [descr:dxCalendarOptions.zoomLevel]
-     */
-    zoomLevel?: 'century' | 'decade' | 'month' | 'year';
   }
   /**
    * [descr:dxCheckBox]
@@ -5315,7 +5162,7 @@ declare module DevExpress.ui {
   /**
    * [descr:dxColorBox]
    */
-  export class dxColorBox extends dxDropDownEditor<dxColorBoxOptions> {}
+  export class dxColorBox extends dxDropDownEditor<DevExpress.ui.dxColorBox.Properties> {}
   module dxColorBox {
     export type ChangeEvent = DevExpress.events.NativeEventInfo<dxColorBox>;
     export type ClosedEvent = DevExpress.events.EventInfo<dxColorBox>;
@@ -5337,60 +5184,57 @@ declare module DevExpress.ui {
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxColorBox> &
       DevExpress.events.ChangedOptionInfo;
     export type PasteEvent = DevExpress.events.NativeEventInfo<dxColorBox>;
-    export type Properties = dxColorBoxOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends dxDropDownEditorOptions<dxColorBox> {
+      /**
+       * [descr:Properties.applyButtonText]
+       */
+      applyButtonText?: string;
+      /**
+       * [descr:Properties.applyValueMode]
+       */
+      applyValueMode?: 'instantly' | 'useButtons';
+      /**
+       * [descr:Properties.cancelButtonText]
+       */
+      cancelButtonText?: string;
+      /**
+       * [descr:Properties.editAlphaChannel]
+       */
+      editAlphaChannel?: boolean;
+      /**
+       * [descr:Properties.fieldTemplate]
+       */
+      fieldTemplate?:
+        | DevExpress.core.template
+        | ((
+            value: string,
+            fieldElement: DevExpress.core.DxElement
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.keyStep]
+       */
+      keyStep?: number;
+      /**
+       * [descr:Properties.value]
+       */
+      value?: string;
+
+      /**
+       * [descr:Properties.dropDownOptions]
+       */
+      dropDownOptions?: DevExpress.ui.dxPopup.Properties;
+    }
     export type ValueChangedEvent =
       DevExpress.events.NativeEventInfo<dxColorBox> &
         DevExpress.ui.Editor.ValueChangedInfo;
   }
   /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxColorBoxOptions
-    extends dxDropDownEditorOptions<dxColorBox> {
-    /**
-     * [descr:dxColorBoxOptions.applyButtonText]
-     */
-    applyButtonText?: string;
-    /**
-     * [descr:dxColorBoxOptions.applyValueMode]
-     */
-    applyValueMode?: 'instantly' | 'useButtons';
-    /**
-     * [descr:dxColorBoxOptions.cancelButtonText]
-     */
-    cancelButtonText?: string;
-    /**
-     * [descr:dxColorBoxOptions.editAlphaChannel]
-     */
-    editAlphaChannel?: boolean;
-    /**
-     * [descr:dxColorBoxOptions.fieldTemplate]
-     */
-    fieldTemplate?:
-      | DevExpress.core.template
-      | ((
-          value: string,
-          fieldElement: DevExpress.core.DxElement
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxColorBoxOptions.keyStep]
-     */
-    keyStep?: number;
-    /**
-     * [descr:dxColorBoxOptions.value]
-     */
-    value?: string;
-
-    /**
-     * [descr:dxColorBoxOptions.dropDownOptions]
-     */
-    dropDownOptions?: DevExpress.ui.dxPopup.Properties;
-  }
-  /**
    * [descr:dxContextMenu]
    */
-  export class dxContextMenu extends dxMenuBase<dxContextMenuOptions> {
+  export class dxContextMenu extends dxMenuBase<DevExpress.ui.dxContextMenu.Properties> {
     /**
      * [descr:dxContextMenu.hide()]
      */
@@ -5428,7 +5272,76 @@ declare module DevExpress.ui {
       DevExpress.events.NativeEventInfo<dxContextMenu> & {
         readonly position: PositionConfig;
       };
-    export type Properties = dxContextMenuOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends dxMenuBaseOptions<dxContextMenu> {
+      /**
+       * [descr:Properties.closeOnOutsideClick]
+       */
+      closeOnOutsideClick?:
+        | boolean
+        | ((event: DevExpress.events.DxEvent) => boolean);
+      /**
+       * [descr:Properties.dataSource]
+       */
+      dataSource?: DevExpress.data.DataSource.DataSourceLike<Item>;
+      /**
+       * [descr:Properties.items]
+       */
+      items?: Array<Item>;
+      /**
+       * [descr:Properties.onHidden]
+       */
+      onHidden?: (e: HiddenEvent) => void;
+      /**
+       * [descr:Properties.onHiding]
+       */
+      onHiding?: (e: HidingEvent) => void;
+      /**
+       * [descr:Properties.onPositioning]
+       */
+      onPositioning?: (e: PositioningEvent) => void;
+      /**
+       * [descr:Properties.onShowing]
+       */
+      onShowing?: (e: ShowingEvent) => void;
+      /**
+       * [descr:Properties.onShown]
+       */
+      onShown?: (e: ShownEvent) => void;
+      /**
+       * [descr:Properties.position]
+       */
+      position?: PositionConfig;
+      /**
+       * [descr:Properties.showEvent]
+       */
+      showEvent?:
+        | {
+            /**
+             * [descr:Properties.showEvent.delay]
+             */
+            delay?: number;
+            /**
+             * [descr:Properties.showEvent.name]
+             */
+            name?: string;
+          }
+        | string;
+      /**
+       * [descr:Properties.submenuDirection]
+       */
+      submenuDirection?: 'auto' | 'left' | 'right';
+      /**
+       * [descr:Properties.target]
+       */
+      target?: string | DevExpress.core.UserDefinedElement;
+      /**
+       * [descr:Properties.visible]
+       */
+      visible?: boolean;
+    }
     export type SelectionChangedEvent =
       DevExpress.events.EventInfo<dxContextMenu> &
         DevExpress.ui.CollectionWidget.SelectionChangedInfo;
@@ -5437,92 +5350,10 @@ declare module DevExpress.ui {
     export type ShownEvent = DevExpress.events.EventInfo<dxContextMenu>;
   }
   /**
-   * @deprecated Use DevExpress.ui.dxContextMenu.Item instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxContextMenuItem extends dxMenuBaseItem {
-    /**
-     * [descr:dxContextMenuItem.items]
-     */
-    items?: Array<DevExpress.ui.dxContextMenu.Item>;
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxContextMenuOptions
-    extends dxMenuBaseOptions<dxContextMenu> {
-    /**
-     * [descr:dxContextMenuOptions.closeOnOutsideClick]
-     */
-    closeOnOutsideClick?:
-      | boolean
-      | ((event: DevExpress.events.DxEvent) => boolean);
-    /**
-     * [descr:dxContextMenuOptions.dataSource]
-     */
-    dataSource?: DevExpress.data.DataSource.DataSourceLike<DevExpress.ui.dxContextMenu.Item>;
-    /**
-     * [descr:dxContextMenuOptions.items]
-     */
-    items?: Array<DevExpress.ui.dxContextMenu.Item>;
-    /**
-     * [descr:dxContextMenuOptions.onHidden]
-     */
-    onHidden?: (e: DevExpress.ui.dxContextMenu.HiddenEvent) => void;
-    /**
-     * [descr:dxContextMenuOptions.onHiding]
-     */
-    onHiding?: (e: DevExpress.ui.dxContextMenu.HidingEvent) => void;
-    /**
-     * [descr:dxContextMenuOptions.onPositioning]
-     */
-    onPositioning?: (e: DevExpress.ui.dxContextMenu.PositioningEvent) => void;
-    /**
-     * [descr:dxContextMenuOptions.onShowing]
-     */
-    onShowing?: (e: DevExpress.ui.dxContextMenu.ShowingEvent) => void;
-    /**
-     * [descr:dxContextMenuOptions.onShown]
-     */
-    onShown?: (e: DevExpress.ui.dxContextMenu.ShownEvent) => void;
-    /**
-     * [descr:dxContextMenuOptions.position]
-     */
-    position?: PositionConfig;
-    /**
-     * [descr:dxContextMenuOptions.showEvent]
-     */
-    showEvent?:
-      | {
-          /**
-           * [descr:dxContextMenuOptions.showEvent.delay]
-           */
-          delay?: number;
-          /**
-           * [descr:dxContextMenuOptions.showEvent.name]
-           */
-          name?: string;
-        }
-      | string;
-    /**
-     * [descr:dxContextMenuOptions.submenuDirection]
-     */
-    submenuDirection?: 'auto' | 'left' | 'right';
-    /**
-     * [descr:dxContextMenuOptions.target]
-     */
-    target?: string | DevExpress.core.UserDefinedElement;
-    /**
-     * [descr:dxContextMenuOptions.visible]
-     */
-    visible?: boolean;
-  }
-  /**
    * [descr:dxDataGrid]
    */
   export class dxDataGrid<TRowData = any, TKey = any>
-    extends Widget<dxDataGridOptions<TRowData, TKey>>
+    extends Widget<DevExpress.ui.dxDataGrid.Properties<TRowData, TKey>>
     implements GridBase<TRowData, TKey>
   {
     /**
@@ -5769,10 +5600,97 @@ declare module DevExpress.ui {
       readonly watch?: Function;
       readonly oldValue?: any;
     };
-    export type Column<TRowData = any, TKey = any> = dxDataGridColumn<
-      TRowData,
-      TKey
-    >;
+    /**
+     * [descr:Column]
+     */
+    export interface Column<TRowData = any, TKey = any>
+      extends ColumnBase<TRowData> {
+      /**
+       * [descr:dxDataGridColumn.allowExporting]
+       */
+      allowExporting?: boolean;
+      /**
+       * [descr:dxDataGridColumn.allowGrouping]
+       */
+      allowGrouping?: boolean;
+      /**
+       * [descr:dxDataGridColumn.autoExpandGroup]
+       */
+      autoExpandGroup?: boolean;
+      /**
+       * [descr:dxDataGridColumn.buttons]
+       */
+      buttons?: Array<
+        | 'cancel'
+        | 'delete'
+        | 'edit'
+        | 'save'
+        | 'undelete'
+        | ColumnButton<TRowData, TKey>
+      >;
+      /**
+       * [descr:dxDataGridColumn.calculateGroupValue]
+       */
+      calculateGroupValue?: string | ((rowData: TRowData) => any);
+      /**
+       * [descr:dxDataGridColumn.cellTemplate]
+       */
+      cellTemplate?:
+        | DevExpress.core.template
+        | ((
+            cellElement: DevExpress.core.DxElement,
+            cellInfo: ColumnCellTemplateData<TRowData, TKey>
+          ) => any);
+      /**
+       * [descr:dxDataGridColumn.columns]
+       */
+      columns?: Array<Column<TRowData, TKey> | string>;
+      /**
+       * [descr:dxDataGridColumn.editCellTemplate]
+       */
+      editCellTemplate?:
+        | DevExpress.core.template
+        | ((
+            cellElement: DevExpress.core.DxElement,
+            cellInfo: ColumnEditCellTemplateData<TRowData, TKey>
+          ) => any);
+      /**
+       * [descr:dxDataGridColumn.groupCellTemplate]
+       */
+      groupCellTemplate?:
+        | DevExpress.core.template
+        | ((
+            cellElement: DevExpress.core.DxElement,
+            cellInfo: ColumnGroupCellTemplateData<TRowData, TKey>
+          ) => any);
+      /**
+       * [descr:dxDataGridColumn.groupIndex]
+       */
+      groupIndex?: number;
+      /**
+       * [descr:dxDataGridColumn.headerCellTemplate]
+       */
+      headerCellTemplate?:
+        | DevExpress.core.template
+        | ((
+            columnHeader: DevExpress.core.DxElement,
+            headerInfo: ColumnHeaderCellTemplateData<TRowData, TKey>
+          ) => any);
+      /**
+       * [descr:dxDataGridColumn.showWhenGrouped]
+       */
+      showWhenGrouped?: boolean;
+      /**
+       * [descr:dxDataGridColumn.type]
+       */
+      type?:
+        | 'adaptive'
+        | 'buttons'
+        | 'detailExpand'
+        | 'groupExpand'
+        | 'selection'
+        | 'drag';
+    }
     /**
      * [descr:GridBaseColumn]
      * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
@@ -5919,7 +5837,7 @@ declare module DevExpress.ui {
       /**
        * [descr:GridBaseColumn.formItem]
        */
-      formItem?: dxFormSimpleItem;
+      formItem?: DevExpress.ui.dxForm.SimpleItem;
       /**
        * [descr:GridBaseColumn.format]
        */
@@ -6030,10 +5948,49 @@ declare module DevExpress.ui {
        */
       width?: number | string;
     }
-    export type ColumnButton<
-      TRowData = any,
-      TKey = any
-    > = dxDataGridColumnButton<TRowData, TKey>;
+    /**
+     * [descr:ColumnButton]
+     */
+    export interface ColumnButton<TRowData = any, TKey = any>
+      extends ColumnButtonBase {
+      /**
+       * [descr:dxDataGridColumnButton.name]
+       */
+      name?: 'cancel' | 'delete' | 'edit' | 'save' | 'undelete' | string;
+      /**
+       * [descr:dxDataGridColumnButton.onClick]
+       */
+      onClick?: (e: ColumnButtonClickEvent<TRowData, TKey>) => void;
+      /**
+       * [descr:dxDataGridColumnButton.template]
+       */
+      template?:
+        | DevExpress.core.template
+        | ((
+            cellElement: DevExpress.core.DxElement,
+            cellInfo: ColumnButtonTemplateData<TRowData, TKey>
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:dxDataGridColumnButton.visible]
+       */
+      visible?:
+        | boolean
+        | ((options: {
+            component?: dxDataGrid<TRowData, TKey>;
+            row?: Row<TRowData, TKey>;
+            column?: Column<TRowData, TKey>;
+          }) => boolean);
+      /**
+       * [descr:dxDataGridColumnButton.disabled]
+       */
+      disabled?:
+        | boolean
+        | ((options: {
+            component?: dxDataGrid<TRowData, TKey>;
+            row?: Row<TRowData, TKey>;
+            column?: Column<TRowData, TKey>;
+          }) => boolean);
+    }
     /**
      * [descr:GridBaseColumnButton]
      * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
@@ -6466,7 +6423,7 @@ declare module DevExpress.ui {
       /**
        * [descr:GridBaseOptions.editing.form]
        */
-      form?: dxFormOptions;
+      form?: DevExpress.ui.dxForm.Properties;
       /**
        * [descr:GridBaseOptions.editing.mode]
        */
@@ -7262,10 +7219,208 @@ declare module DevExpress.ui {
        */
       pageSize?: number;
     }
-    export type Properties<TRowData = any, TKey = any> = dxDataGridOptions<
-      TRowData,
-      TKey
-    >;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties<TRowData = any, TKey = any>
+      extends GridBaseOptions<dxDataGrid<TRowData, TKey>, TRowData, TKey> {
+      /**
+       * [descr:Properties.columns]
+       */
+      columns?: Array<Column<TRowData, TKey> | string>;
+      /**
+       * [descr:Properties.customizeColumns]
+       */
+      customizeColumns?: (columns: Array<Column<TRowData, TKey>>) => void;
+      /**
+       * [descr:Properties.customizeExportData]
+       * @deprecated [depNote:Properties.customizeExportData]
+       */
+      customizeExportData?: (
+        columns: Array<Column<TRowData, TKey>>,
+        rows: Array<Row<TRowData, TKey>>
+      ) => void;
+      /**
+       * [descr:Properties.editing]
+       */
+      editing?: Editing<TRowData, TKey>;
+      /**
+       * [descr:Properties.export]
+       */
+      export?: Export<TRowData, TKey>;
+      /**
+       * [descr:Properties.groupPanel]
+       */
+      groupPanel?: GroupPanel;
+      /**
+       * [descr:Properties.grouping]
+       */
+      grouping?: Grouping;
+      /**
+       * [descr:Properties.keyExpr]
+       */
+      keyExpr?: string | Array<string>;
+      /**
+       * [descr:Properties.masterDetail]
+       */
+      masterDetail?: MasterDetail<TRowData, TKey>;
+      /**
+       * [descr:Properties.onCellClick]
+       */
+      onCellClick?: (e: CellClickEvent<TRowData, TKey>) => void;
+      /**
+       * [descr:Properties.onCellDblClick]
+       */
+      onCellDblClick?: (e: CellDblClickEvent<TRowData, TKey>) => void;
+      /**
+       * [descr:Properties.onCellHoverChanged]
+       */
+      onCellHoverChanged?: (e: CellHoverChangedEvent<TRowData, TKey>) => void;
+      /**
+       * [descr:Properties.onCellPrepared]
+       */
+      onCellPrepared?: (e: CellPreparedEvent<TRowData, TKey>) => void;
+      /**
+       * [descr:Properties.onContextMenuPreparing]
+       */
+      onContextMenuPreparing?: (
+        e: ContextMenuPreparingEvent<TRowData, TKey>
+      ) => void;
+      /**
+       * [descr:Properties.onEditingStart]
+       */
+      onEditingStart?: (e: EditingStartEvent<TRowData, TKey>) => void;
+      /**
+       * [descr:Properties.onEditorPrepared]
+       */
+      onEditorPrepared?: (options: EditorPreparedEvent<TRowData, TKey>) => void;
+      /**
+       * [descr:Properties.onEditorPreparing]
+       */
+      onEditorPreparing?: (e: EditorPreparingEvent<TRowData, TKey>) => void;
+      /**
+       * [descr:Properties.onExported]
+       * @deprecated [depNote:Properties.onExported]
+       */
+      onExported?: (e: ExportedEvent<TRowData, TKey>) => void;
+      /**
+       * [descr:Properties.onExporting]
+       */
+      onExporting?: (e: ExportingEvent<TRowData, TKey>) => void;
+      /**
+       * [descr:Properties.onFileSaving]
+       * @deprecated [depNote:Properties.onFileSaving]
+       */
+      onFileSaving?: (e: FileSavingEvent<TRowData, TKey>) => void;
+      /**
+       * [descr:Properties.onFocusedCellChanged]
+       */
+      onFocusedCellChanged?: (
+        e: FocusedCellChangedEvent<TRowData, TKey>
+      ) => void;
+      /**
+       * [descr:Properties.onFocusedCellChanging]
+       */
+      onFocusedCellChanging?: (
+        e: FocusedCellChangingEvent<TRowData, TKey>
+      ) => void;
+      /**
+       * [descr:Properties.onFocusedRowChanged]
+       */
+      onFocusedRowChanged?: (e: FocusedRowChangedEvent<TRowData, TKey>) => void;
+      /**
+       * [descr:Properties.onFocusedRowChanging]
+       */
+      onFocusedRowChanging?: (
+        e: FocusedRowChangingEvent<TRowData, TKey>
+      ) => void;
+      /**
+       * [descr:Properties.onRowClick]
+       */
+      onRowClick?: (e: RowClickEvent<TRowData, TKey>) => void;
+      /**
+       * [descr:Properties.onRowDblClick]
+       */
+      onRowDblClick?: (e: RowDblClickEvent<TRowData, TKey>) => void;
+      /**
+       * [descr:Properties.onRowPrepared]
+       */
+      onRowPrepared?: (e: RowPreparedEvent<TRowData, TKey>) => void;
+      /**
+       * [descr:Properties.remoteOperations]
+       */
+      remoteOperations?:
+        | boolean
+        | {
+            /**
+             * [descr:Properties.remoteOperations.filtering]
+             */
+            filtering?: boolean;
+            /**
+             * [descr:Properties.remoteOperations.groupPaging]
+             */
+            groupPaging?: boolean;
+            /**
+             * [descr:Properties.remoteOperations.grouping]
+             */
+            grouping?: boolean;
+            /**
+             * [descr:Properties.remoteOperations.paging]
+             */
+            paging?: boolean;
+            /**
+             * [descr:Properties.remoteOperations.sorting]
+             */
+            sorting?: boolean;
+            /**
+             * [descr:Properties.remoteOperations.summary]
+             */
+            summary?: boolean;
+          }
+        | 'auto';
+      /**
+       * [descr:Properties.rowTemplate]
+       */
+      rowTemplate?:
+        | DevExpress.core.template
+        | ((
+            rowElement: DevExpress.core.DxElement,
+            rowInfo: RowTemplateData<TRowData, TKey>
+          ) => any);
+      /**
+       * [descr:Properties.dataRowTemplate]
+       */
+      dataRowTemplate?:
+        | DevExpress.core.template
+        | ((
+            rowElement: DevExpress.core.DxElement,
+            rowInfo: DataRowTemplateData<TRowData, TKey>
+          ) => any);
+      /**
+       * [descr:Properties.scrolling]
+       */
+      scrolling?: Scrolling;
+      /**
+       * [descr:Properties.selection]
+       */
+      selection?: Selection;
+      /**
+       * [descr:Properties.selectionFilter]
+       */
+      selectionFilter?: string | Array<any> | Function;
+      /**
+       * [descr:Properties.sortByGroupSummaryInfo]
+       */
+      sortByGroupSummaryInfo?: Array<dxDataGridSortByGroupSummaryInfoItem>;
+      /**
+       * [descr:Properties.summary]
+       */
+      summary?: Summary<TRowData, TKey>;
+      /**
+       * [descr:Properties.toolbar]
+       */
+      toolbar?: dxDataGridToolbar;
+    }
     /**
      * [descr:dxDataGridRowObject]
      */
@@ -8070,161 +8225,8 @@ declare module DevExpress.ui {
      * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
      */
     export interface ToolbarPreparingInfo {
-      toolbarOptions: dxToolbarOptions;
+      toolbarOptions: DevExpress.ui.dxToolbar.Properties;
     }
-  }
-  /**
-   * @deprecated Use the DevExpress.ui.dxDataGrid.Column type instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxDataGridColumn<TRowData = any, TKey = any>
-    extends DevExpress.ui.dxDataGrid.ColumnBase<TRowData> {
-    /**
-     * [descr:dxDataGridColumn.allowExporting]
-     */
-    allowExporting?: boolean;
-    /**
-     * [descr:dxDataGridColumn.allowGrouping]
-     */
-    allowGrouping?: boolean;
-    /**
-     * [descr:dxDataGridColumn.autoExpandGroup]
-     */
-    autoExpandGroup?: boolean;
-    /**
-     * [descr:dxDataGridColumn.buttons]
-     */
-    buttons?: Array<
-      | 'cancel'
-      | 'delete'
-      | 'edit'
-      | 'save'
-      | 'undelete'
-      | DevExpress.ui.dxDataGrid.ColumnButton<TRowData, TKey>
-    >;
-    /**
-     * [descr:dxDataGridColumn.calculateGroupValue]
-     */
-    calculateGroupValue?: string | ((rowData: TRowData) => any);
-    /**
-     * [descr:dxDataGridColumn.cellTemplate]
-     */
-    cellTemplate?:
-      | DevExpress.core.template
-      | ((
-          cellElement: DevExpress.core.DxElement,
-          cellInfo: DevExpress.ui.dxDataGrid.ColumnCellTemplateData<
-            TRowData,
-            TKey
-          >
-        ) => any);
-    /**
-     * [descr:dxDataGridColumn.columns]
-     */
-    columns?: Array<DevExpress.ui.dxDataGrid.Column<TRowData, TKey> | string>;
-    /**
-     * [descr:dxDataGridColumn.editCellTemplate]
-     */
-    editCellTemplate?:
-      | DevExpress.core.template
-      | ((
-          cellElement: DevExpress.core.DxElement,
-          cellInfo: DevExpress.ui.dxDataGrid.ColumnEditCellTemplateData<
-            TRowData,
-            TKey
-          >
-        ) => any);
-    /**
-     * [descr:dxDataGridColumn.groupCellTemplate]
-     */
-    groupCellTemplate?:
-      | DevExpress.core.template
-      | ((
-          cellElement: DevExpress.core.DxElement,
-          cellInfo: DevExpress.ui.dxDataGrid.ColumnGroupCellTemplateData<
-            TRowData,
-            TKey
-          >
-        ) => any);
-    /**
-     * [descr:dxDataGridColumn.groupIndex]
-     */
-    groupIndex?: number;
-    /**
-     * [descr:dxDataGridColumn.headerCellTemplate]
-     */
-    headerCellTemplate?:
-      | DevExpress.core.template
-      | ((
-          columnHeader: DevExpress.core.DxElement,
-          headerInfo: DevExpress.ui.dxDataGrid.ColumnHeaderCellTemplateData<
-            TRowData,
-            TKey
-          >
-        ) => any);
-    /**
-     * [descr:dxDataGridColumn.showWhenGrouped]
-     */
-    showWhenGrouped?: boolean;
-    /**
-     * [descr:dxDataGridColumn.type]
-     */
-    type?:
-      | 'adaptive'
-      | 'buttons'
-      | 'detailExpand'
-      | 'groupExpand'
-      | 'selection'
-      | 'drag';
-  }
-  /**
-   * @deprecated Use the DataGrid's ColumnButton type instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxDataGridColumnButton<TRowData = any, TKey = any>
-    extends DevExpress.ui.dxDataGrid.ColumnButtonBase {
-    /**
-     * [descr:dxDataGridColumnButton.name]
-     */
-    name?: 'cancel' | 'delete' | 'edit' | 'save' | 'undelete' | string;
-    /**
-     * [descr:dxDataGridColumnButton.onClick]
-     */
-    onClick?: (
-      e: DevExpress.ui.dxDataGrid.ColumnButtonClickEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxDataGridColumnButton.template]
-     */
-    template?:
-      | DevExpress.core.template
-      | ((
-          cellElement: DevExpress.core.DxElement,
-          cellInfo: DevExpress.ui.dxDataGrid.ColumnButtonTemplateData<
-            TRowData,
-            TKey
-          >
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxDataGridColumnButton.visible]
-     */
-    visible?:
-      | boolean
-      | ((options: {
-          component?: dxDataGrid<TRowData, TKey>;
-          row?: DevExpress.ui.dxDataGrid.Row<TRowData, TKey>;
-          column?: DevExpress.ui.dxDataGrid.Column<TRowData, TKey>;
-        }) => boolean);
-    /**
-     * [descr:dxDataGridColumnButton.disabled]
-     */
-    disabled?:
-      | boolean
-      | ((options: {
-          component?: dxDataGrid<TRowData, TKey>;
-          row?: DevExpress.ui.dxDataGrid.Row<TRowData, TKey>;
-          column?: DevExpress.ui.dxDataGrid.Column<TRowData, TKey>;
-        }) => boolean);
   }
   /**
    * @deprecated Use DevExpress.ui.dxDataGrid.Editing instead
@@ -8233,238 +8235,6 @@ declare module DevExpress.ui {
     TRowData,
     TKey = any
   > = DevExpress.ui.dxDataGrid.Editing<TRowData, TKey>;
-  /**
-   * @deprecated use Properties instead
-   */
-  export interface dxDataGridOptions<TRowData = any, TKey = any>
-    extends GridBaseOptions<dxDataGrid<TRowData, TKey>, TRowData, TKey> {
-    /**
-     * [descr:dxDataGridOptions.columns]
-     */
-    columns?: Array<DevExpress.ui.dxDataGrid.Column<TRowData, TKey> | string>;
-    /**
-     * [descr:dxDataGridOptions.customizeColumns]
-     */
-    customizeColumns?: (
-      columns: Array<DevExpress.ui.dxDataGrid.Column<TRowData, TKey>>
-    ) => void;
-    /**
-     * [descr:dxDataGridOptions.customizeExportData]
-     * @deprecated [depNote:dxDataGridOptions.customizeExportData]
-     */
-    customizeExportData?: (
-      columns: Array<DevExpress.ui.dxDataGrid.Column<TRowData, TKey>>,
-      rows: Array<DevExpress.ui.dxDataGrid.Row<TRowData, TKey>>
-    ) => void;
-    /**
-     * [descr:dxDataGridOptions.editing]
-     */
-    editing?: DevExpress.ui.dxDataGrid.Editing<TRowData, TKey>;
-    /**
-     * [descr:dxDataGridOptions.export]
-     */
-    export?: DevExpress.ui.dxDataGrid.Export<TRowData, TKey>;
-    /**
-     * [descr:dxDataGridOptions.groupPanel]
-     */
-    groupPanel?: DevExpress.ui.dxDataGrid.GroupPanel;
-    /**
-     * [descr:dxDataGridOptions.grouping]
-     */
-    grouping?: DevExpress.ui.dxDataGrid.Grouping;
-    /**
-     * [descr:dxDataGridOptions.keyExpr]
-     */
-    keyExpr?: string | Array<string>;
-    /**
-     * [descr:dxDataGridOptions.masterDetail]
-     */
-    masterDetail?: DevExpress.ui.dxDataGrid.MasterDetail<TRowData, TKey>;
-    /**
-     * [descr:dxDataGridOptions.onCellClick]
-     */
-    onCellClick?: (
-      e: DevExpress.ui.dxDataGrid.CellClickEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxDataGridOptions.onCellDblClick]
-     */
-    onCellDblClick?: (
-      e: DevExpress.ui.dxDataGrid.CellDblClickEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxDataGridOptions.onCellHoverChanged]
-     */
-    onCellHoverChanged?: (
-      e: DevExpress.ui.dxDataGrid.CellHoverChangedEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxDataGridOptions.onCellPrepared]
-     */
-    onCellPrepared?: (
-      e: DevExpress.ui.dxDataGrid.CellPreparedEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxDataGridOptions.onContextMenuPreparing]
-     */
-    onContextMenuPreparing?: (
-      e: DevExpress.ui.dxDataGrid.ContextMenuPreparingEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxDataGridOptions.onEditingStart]
-     */
-    onEditingStart?: (
-      e: DevExpress.ui.dxDataGrid.EditingStartEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxDataGridOptions.onEditorPrepared]
-     */
-    onEditorPrepared?: (
-      options: DevExpress.ui.dxDataGrid.EditorPreparedEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxDataGridOptions.onEditorPreparing]
-     */
-    onEditorPreparing?: (
-      e: DevExpress.ui.dxDataGrid.EditorPreparingEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxDataGridOptions.onExported]
-     * @deprecated [depNote:dxDataGridOptions.onExported]
-     */
-    onExported?: (
-      e: DevExpress.ui.dxDataGrid.ExportedEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxDataGridOptions.onExporting]
-     */
-    onExporting?: (
-      e: DevExpress.ui.dxDataGrid.ExportingEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxDataGridOptions.onFileSaving]
-     * @deprecated [depNote:dxDataGridOptions.onFileSaving]
-     */
-    onFileSaving?: (
-      e: DevExpress.ui.dxDataGrid.FileSavingEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxDataGridOptions.onFocusedCellChanged]
-     */
-    onFocusedCellChanged?: (
-      e: DevExpress.ui.dxDataGrid.FocusedCellChangedEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxDataGridOptions.onFocusedCellChanging]
-     */
-    onFocusedCellChanging?: (
-      e: DevExpress.ui.dxDataGrid.FocusedCellChangingEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxDataGridOptions.onFocusedRowChanged]
-     */
-    onFocusedRowChanged?: (
-      e: DevExpress.ui.dxDataGrid.FocusedRowChangedEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxDataGridOptions.onFocusedRowChanging]
-     */
-    onFocusedRowChanging?: (
-      e: DevExpress.ui.dxDataGrid.FocusedRowChangingEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxDataGridOptions.onRowClick]
-     */
-    onRowClick?: (
-      e: DevExpress.ui.dxDataGrid.RowClickEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxDataGridOptions.onRowDblClick]
-     */
-    onRowDblClick?: (
-      e: DevExpress.ui.dxDataGrid.RowDblClickEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxDataGridOptions.onRowPrepared]
-     */
-    onRowPrepared?: (
-      e: DevExpress.ui.dxDataGrid.RowPreparedEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxDataGridOptions.remoteOperations]
-     */
-    remoteOperations?:
-      | boolean
-      | {
-          /**
-           * [descr:dxDataGridOptions.remoteOperations.filtering]
-           */
-          filtering?: boolean;
-          /**
-           * [descr:dxDataGridOptions.remoteOperations.groupPaging]
-           */
-          groupPaging?: boolean;
-          /**
-           * [descr:dxDataGridOptions.remoteOperations.grouping]
-           */
-          grouping?: boolean;
-          /**
-           * [descr:dxDataGridOptions.remoteOperations.paging]
-           */
-          paging?: boolean;
-          /**
-           * [descr:dxDataGridOptions.remoteOperations.sorting]
-           */
-          sorting?: boolean;
-          /**
-           * [descr:dxDataGridOptions.remoteOperations.summary]
-           */
-          summary?: boolean;
-        }
-      | 'auto';
-    /**
-     * [descr:dxDataGridOptions.rowTemplate]
-     */
-    rowTemplate?:
-      | DevExpress.core.template
-      | ((
-          rowElement: DevExpress.core.DxElement,
-          rowInfo: DevExpress.ui.dxDataGrid.RowTemplateData<TRowData, TKey>
-        ) => any);
-    /**
-     * [descr:dxDataGridOptions.dataRowTemplate]
-     */
-    dataRowTemplate?:
-      | DevExpress.core.template
-      | ((
-          rowElement: DevExpress.core.DxElement,
-          rowInfo: DevExpress.ui.dxDataGrid.DataRowTemplateData<TRowData, TKey>
-        ) => any);
-    /**
-     * [descr:dxDataGridOptions.scrolling]
-     */
-    scrolling?: DevExpress.ui.dxDataGrid.Scrolling;
-    /**
-     * [descr:dxDataGridOptions.selection]
-     */
-    selection?: DevExpress.ui.dxDataGrid.Selection;
-    /**
-     * [descr:dxDataGridOptions.selectionFilter]
-     */
-    selectionFilter?: string | Array<any> | Function;
-    /**
-     * [descr:dxDataGridOptions.sortByGroupSummaryInfo]
-     */
-    sortByGroupSummaryInfo?: Array<DevExpress.ui.dxDataGrid.dxDataGridSortByGroupSummaryInfoItem>;
-    /**
-     * [descr:dxDataGridOptions.summary]
-     */
-    summary?: DevExpress.ui.dxDataGrid.Summary<TRowData, TKey>;
-    /**
-     * [descr:dxDataGridOptions.toolbar]
-     */
-    toolbar?: dxDataGridToolbar;
-  }
   /**
    * @deprecated Use DevExpress.ui.dxDataGrid.Scrolling instead
    */
@@ -8498,7 +8268,7 @@ declare module DevExpress.ui {
    * [descr:dxDataGridToolbarItem]
    * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
    */
-  export interface dxDataGridToolbarItem extends dxToolbarItem {
+  export interface dxDataGridToolbarItem extends DevExpress.ui.dxToolbar.Item {
     /**
      * [descr:dxDataGridToolbarItem.name]
      */
@@ -8511,7 +8281,7 @@ declare module DevExpress.ui {
   /**
    * [descr:dxDateBox]
    */
-  export class dxDateBox extends dxDropDownEditor<dxDateBoxOptions> {
+  export class dxDateBox extends dxDropDownEditor<DevExpress.ui.dxDateBox.Properties> {
     /**
      * [descr:dxDateBox.close()]
      */
@@ -8545,100 +8315,96 @@ declare module DevExpress.ui {
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxDateBox> &
       DevExpress.events.ChangedOptionInfo;
     export type PasteEvent = DevExpress.events.NativeEventInfo<dxDateBox>;
-    export type Properties = dxDateBoxOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends dxDropDownEditorOptions<dxDateBox> {
+      /**
+       * [descr:Properties.adaptivityEnabled]
+       */
+      adaptivityEnabled?: boolean;
+      /**
+       * [descr:Properties.applyButtonText]
+       */
+      applyButtonText?: string;
+      /**
+       * [descr:Properties.calendarOptions]
+       */
+      calendarOptions?: DevExpress.ui.dxCalendar.Properties;
+      /**
+       * [descr:Properties.cancelButtonText]
+       */
+      cancelButtonText?: string;
+      /**
+       * [descr:Properties.dateOutOfRangeMessage]
+       */
+      dateOutOfRangeMessage?: string;
+      /**
+       * [descr:Properties.dateSerializationFormat]
+       */
+      dateSerializationFormat?: string;
+      /**
+       * [descr:Properties.disabledDates]
+       */
+      disabledDates?: Array<Date> | ((data: DisabledDate) => boolean);
+      /**
+       * [descr:Properties.displayFormat]
+       */
+      displayFormat?: Format;
+      /**
+       * [descr:Properties.interval]
+       */
+      interval?: number;
+      /**
+       * [descr:Properties.invalidDateMessage]
+       */
+      invalidDateMessage?: string;
+      /**
+       * [descr:Properties.max]
+       */
+      max?: Date | number | string;
+      /**
+       * [descr:Properties.min]
+       */
+      min?: Date | number | string;
+      /**
+       * [descr:Properties.pickerType]
+       */
+      pickerType?: 'calendar' | 'list' | 'native' | 'rollers';
+      /**
+       * [descr:Properties.placeholder]
+       */
+      placeholder?: string;
+      /**
+       * [descr:Properties.showAnalogClock]
+       */
+      showAnalogClock?: boolean;
+      /**
+       * [descr:Properties.type]
+       */
+      type?: 'date' | 'datetime' | 'time';
+      /**
+       * [descr:Properties.useMaskBehavior]
+       */
+      useMaskBehavior?: boolean;
+      /**
+       * [descr:Properties.value]
+       */
+      value?: Date | number | string;
+
+      /**
+       * [descr:Properties.dropDownOptions]
+       */
+      dropDownOptions?: DevExpress.ui.dxPopup.Properties;
+    }
     export type ValueChangedEvent =
       DevExpress.events.NativeEventInfo<dxDateBox> &
         DevExpress.ui.Editor.ValueChangedInfo;
   }
   /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxDateBoxOptions extends dxDropDownEditorOptions<dxDateBox> {
-    /**
-     * [descr:dxDateBoxOptions.adaptivityEnabled]
-     */
-    adaptivityEnabled?: boolean;
-    /**
-     * [descr:dxDateBoxOptions.applyButtonText]
-     */
-    applyButtonText?: string;
-    /**
-     * [descr:dxDateBoxOptions.calendarOptions]
-     */
-    calendarOptions?: dxCalendarOptions;
-    /**
-     * [descr:dxDateBoxOptions.cancelButtonText]
-     */
-    cancelButtonText?: string;
-    /**
-     * [descr:dxDateBoxOptions.dateOutOfRangeMessage]
-     */
-    dateOutOfRangeMessage?: string;
-    /**
-     * [descr:dxDateBoxOptions.dateSerializationFormat]
-     */
-    dateSerializationFormat?: string;
-    /**
-     * [descr:dxDateBoxOptions.disabledDates]
-     */
-    disabledDates?:
-      | Array<Date>
-      | ((data: DevExpress.ui.dxDateBox.DisabledDate) => boolean);
-    /**
-     * [descr:dxDateBoxOptions.displayFormat]
-     */
-    displayFormat?: Format;
-    /**
-     * [descr:dxDateBoxOptions.interval]
-     */
-    interval?: number;
-    /**
-     * [descr:dxDateBoxOptions.invalidDateMessage]
-     */
-    invalidDateMessage?: string;
-    /**
-     * [descr:dxDateBoxOptions.max]
-     */
-    max?: Date | number | string;
-    /**
-     * [descr:dxDateBoxOptions.min]
-     */
-    min?: Date | number | string;
-    /**
-     * [descr:dxDateBoxOptions.pickerType]
-     */
-    pickerType?: 'calendar' | 'list' | 'native' | 'rollers';
-    /**
-     * [descr:dxDateBoxOptions.placeholder]
-     */
-    placeholder?: string;
-    /**
-     * [descr:dxDateBoxOptions.showAnalogClock]
-     */
-    showAnalogClock?: boolean;
-    /**
-     * [descr:dxDateBoxOptions.type]
-     */
-    type?: 'date' | 'datetime' | 'time';
-    /**
-     * [descr:dxDateBoxOptions.useMaskBehavior]
-     */
-    useMaskBehavior?: boolean;
-    /**
-     * [descr:dxDateBoxOptions.value]
-     */
-    value?: Date | number | string;
-
-    /**
-     * [descr:dxDateBoxOptions.dropDownOptions]
-     */
-    dropDownOptions?: DevExpress.ui.dxPopup.Properties;
-  }
-  /**
    * [descr:dxDeferRendering]
    */
-  export class dxDeferRendering extends Widget<dxDeferRenderingOptions> {}
+  export class dxDeferRendering extends Widget<DevExpress.ui.dxDeferRendering.Properties> {}
   module dxDeferRendering {
     export type ContentReadyEvent =
       DevExpress.events.EventInfo<dxDeferRendering>;
@@ -8648,53 +8414,50 @@ declare module DevExpress.ui {
     export type OptionChangedEvent =
       DevExpress.events.EventInfo<dxDeferRendering> &
         DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxDeferRenderingOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends WidgetOptions<dxDeferRendering> {
+      /**
+       * [descr:Properties.animation]
+       */
+      animation?: AnimationConfig;
+      /**
+       * [descr:Properties.onRendered]
+       */
+      onRendered?: (e: {
+        component?: dxDeferRendering;
+        element?: DevExpress.core.DxElement;
+        model?: any;
+      }) => void;
+      /**
+       * [descr:Properties.onShown]
+       */
+      onShown?: (e: {
+        component?: dxDeferRendering;
+        element?: DevExpress.core.DxElement;
+        model?: any;
+      }) => void;
+      /**
+       * [descr:Properties.renderWhen]
+       */
+      renderWhen?: PromiseLike<void> | boolean;
+      /**
+       * [descr:Properties.showLoadIndicator]
+       */
+      showLoadIndicator?: boolean;
+      /**
+       * [descr:Properties.staggerItemSelector]
+       */
+      staggerItemSelector?: string;
+    }
     export type RenderedEvent = DevExpress.events.EventInfo<dxDeferRendering>;
     export type ShownEvent = DevExpress.events.EventInfo<dxDeferRendering>;
   }
   /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxDeferRenderingOptions
-    extends WidgetOptions<dxDeferRendering> {
-    /**
-     * [descr:dxDeferRenderingOptions.animation]
-     */
-    animation?: AnimationConfig;
-    /**
-     * [descr:dxDeferRenderingOptions.onRendered]
-     */
-    onRendered?: (e: {
-      component?: dxDeferRendering;
-      element?: DevExpress.core.DxElement;
-      model?: any;
-    }) => void;
-    /**
-     * [descr:dxDeferRenderingOptions.onShown]
-     */
-    onShown?: (e: {
-      component?: dxDeferRendering;
-      element?: DevExpress.core.DxElement;
-      model?: any;
-    }) => void;
-    /**
-     * [descr:dxDeferRenderingOptions.renderWhen]
-     */
-    renderWhen?: PromiseLike<void> | boolean;
-    /**
-     * [descr:dxDeferRenderingOptions.showLoadIndicator]
-     */
-    showLoadIndicator?: boolean;
-    /**
-     * [descr:dxDeferRenderingOptions.staggerItemSelector]
-     */
-    staggerItemSelector?: string;
-  }
-  /**
    * [descr:dxDiagram]
    */
-  export class dxDiagram extends Widget<dxDiagramOptions> {
+  export class dxDiagram extends Widget<DevExpress.ui.dxDiagram.Properties> {
     /**
      * [descr:dxDiagram.getNodeDataSource()]
      */
@@ -8776,7 +8539,1243 @@ declare module DevExpress.ui {
     };
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxDiagram> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxDiagramOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends WidgetOptions<dxDiagram> {
+      /**
+       * [descr:Properties.autoZoomMode]
+       */
+      autoZoomMode?: 'fitContent' | 'fitWidth' | 'disabled';
+      /**
+       * [descr:Properties.contextMenu]
+       */
+      contextMenu?: {
+        /**
+         * [descr:Properties.contextMenu.commands]
+         */
+        commands?: Array<
+          | 'separator'
+          | 'exportSvg'
+          | 'exportPng'
+          | 'exportJpg'
+          | 'undo'
+          | 'redo'
+          | 'cut'
+          | 'copy'
+          | 'paste'
+          | 'selectAll'
+          | 'delete'
+          | 'fontName'
+          | 'fontSize'
+          | 'bold'
+          | 'italic'
+          | 'underline'
+          | 'lineStyle'
+          | 'lineWidth'
+          | 'textAlignLeft'
+          | 'textAlignCenter'
+          | 'textAlignRight'
+          | 'lock'
+          | 'unlock'
+          | 'sendToBack'
+          | 'bringToFront'
+          | 'insertShapeImage'
+          | 'editShapeImage'
+          | 'deleteShapeImage'
+          | 'connectorLineType'
+          | 'connectorLineStart'
+          | 'connectorLineEnd'
+          | 'layoutTreeTopToBottom'
+          | 'layoutTreeBottomToTop'
+          | 'layoutTreeLeftToRight'
+          | 'layoutTreeRightToLeft'
+          | 'layoutLayeredTopToBottom'
+          | 'layoutLayeredBottomToTop'
+          | 'layoutLayeredLeftToRight'
+          | 'layoutLayeredRightToLeft'
+          | 'fullScreen'
+          | 'zoomLevel'
+          | 'showGrid'
+          | 'snapToGrid'
+          | 'gridSize'
+          | 'units'
+          | 'pageSize'
+          | 'pageOrientation'
+          | 'pageColor'
+          | 'simpleView'
+          | 'toolbox'
+        >;
+        /**
+         * [descr:Properties.contextMenu.enabled]
+         */
+        enabled?: boolean;
+      };
+      /**
+       * [descr:Properties.contextToolbox]
+       */
+      contextToolbox?: {
+        /**
+         * [descr:Properties.contextToolbox.category]
+         */
+        category?:
+          | 'general'
+          | 'flowchart'
+          | 'orgChart'
+          | 'containers'
+          | 'custom'
+          | string;
+        /**
+         * [descr:Properties.contextToolbox.displayMode]
+         */
+        displayMode?: 'icons' | 'texts';
+        /**
+         * [descr:Properties.contextToolbox.enabled]
+         */
+        enabled?: boolean;
+        /**
+         * [descr:Properties.contextToolbox.shapeIconsPerRow]
+         */
+        shapeIconsPerRow?: number;
+        /**
+         * [descr:Properties.contextToolbox.shapes]
+         */
+        shapes?:
+          | Array<
+              | 'text'
+              | 'rectangle'
+              | 'ellipse'
+              | 'cross'
+              | 'triangle'
+              | 'diamond'
+              | 'heart'
+              | 'pentagon'
+              | 'hexagon'
+              | 'octagon'
+              | 'star'
+              | 'arrowLeft'
+              | 'arrowTop'
+              | 'arrowRight'
+              | 'arrowBottom'
+              | 'arrowNorthSouth'
+              | 'arrowEastWest'
+              | 'process'
+              | 'decision'
+              | 'terminator'
+              | 'predefinedProcess'
+              | 'document'
+              | 'multipleDocuments'
+              | 'manualInput'
+              | 'preparation'
+              | 'data'
+              | 'database'
+              | 'hardDisk'
+              | 'internalStorage'
+              | 'paperTape'
+              | 'manualOperation'
+              | 'delay'
+              | 'storedData'
+              | 'display'
+              | 'merge'
+              | 'connector'
+              | 'or'
+              | 'summingJunction'
+              | 'verticalContainer'
+              | 'horizontalContainer'
+              | 'cardWithImageOnLeft'
+              | 'cardWithImageOnTop'
+              | 'cardWithImageOnRight'
+            >
+          | Array<string>;
+        /**
+         * [descr:Properties.contextToolbox.width]
+         */
+        width?: number;
+      };
+      /**
+       * [descr:Properties.onCustomCommand]
+       */
+      onCustomCommand?: (e: CustomCommandEvent) => void;
+      /**
+       * [descr:Properties.customShapeTemplate]
+       */
+      customShapeTemplate?:
+        | DevExpress.core.template
+        | ((
+            container: DevExpress.core.DxElement<SVGElement>,
+            data: CustomShapeTemplateData
+          ) => any);
+      /**
+       * [descr:Properties.customShapeToolboxTemplate]
+       */
+      customShapeToolboxTemplate?:
+        | DevExpress.core.template
+        | ((
+            container: DevExpress.core.DxElement<SVGElement>,
+            data: CustomShapeToolboxTemplateData
+          ) => any);
+      /**
+       * [descr:Properties.customShapes]
+       */
+      customShapes?: Array<{
+        /**
+         * [descr:Properties.customShapes.allowEditImage]
+         */
+        allowEditImage?: boolean;
+        /**
+         * [descr:Properties.customShapes.allowEditText]
+         */
+        allowEditText?: boolean;
+        /**
+         * [descr:Properties.customShapes.allowResize]
+         */
+        allowResize?: boolean;
+        /**
+         * [descr:Properties.customShapes.backgroundImageHeight]
+         */
+        backgroundImageHeight?: number;
+        /**
+         * [descr:Properties.customShapes.backgroundImageLeft]
+         */
+        backgroundImageLeft?: number;
+        /**
+         * [descr:Properties.customShapes.backgroundImageTop]
+         */
+        backgroundImageTop?: number;
+        /**
+         * [descr:Properties.customShapes.backgroundImageUrl]
+         */
+        backgroundImageUrl?: string;
+        /**
+         * [descr:Properties.customShapes.backgroundImageToolboxUrl]
+         */
+        backgroundImageToolboxUrl?: string;
+        /**
+         * [descr:Properties.customShapes.backgroundImageWidth]
+         */
+        backgroundImageWidth?: number;
+        /**
+         * [descr:Properties.customShapes.baseType]
+         */
+        baseType?:
+          | 'text'
+          | 'rectangle'
+          | 'ellipse'
+          | 'cross'
+          | 'triangle'
+          | 'diamond'
+          | 'heart'
+          | 'pentagon'
+          | 'hexagon'
+          | 'octagon'
+          | 'star'
+          | 'arrowLeft'
+          | 'arrowTop'
+          | 'arrowRight'
+          | 'arrowBottom'
+          | 'arrowNorthSouth'
+          | 'arrowEastWest'
+          | 'process'
+          | 'decision'
+          | 'terminator'
+          | 'predefinedProcess'
+          | 'document'
+          | 'multipleDocuments'
+          | 'manualInput'
+          | 'preparation'
+          | 'data'
+          | 'database'
+          | 'hardDisk'
+          | 'internalStorage'
+          | 'paperTape'
+          | 'manualOperation'
+          | 'delay'
+          | 'storedData'
+          | 'display'
+          | 'merge'
+          | 'connector'
+          | 'or'
+          | 'summingJunction'
+          | 'verticalContainer'
+          | 'horizontalContainer'
+          | 'cardWithImageOnLeft'
+          | 'cardWithImageOnTop'
+          | 'cardWithImageOnRight'
+          | string;
+        /**
+         * [descr:Properties.customShapes.category]
+         */
+        category?: string;
+        /**
+         * [descr:Properties.customShapes.connectionPoints]
+         */
+        connectionPoints?: Array<{
+          /**
+           * [descr:Properties.customShapes.connectionPoints.x]
+           */
+          x?: number;
+          /**
+           * [descr:Properties.customShapes.connectionPoints.y]
+           */
+          y?: number;
+        }>;
+        /**
+         * [descr:Properties.customShapes.defaultHeight]
+         */
+        defaultHeight?: number;
+        /**
+         * [descr:Properties.customShapes.defaultImageUrl]
+         */
+        defaultImageUrl?: string;
+        /**
+         * [descr:Properties.customShapes.defaultText]
+         */
+        defaultText?: string;
+        /**
+         * [descr:Properties.customShapes.defaultWidth]
+         */
+        defaultWidth?: number;
+        /**
+         * [descr:Properties.customShapes.imageHeight]
+         */
+        imageHeight?: number;
+        /**
+         * [descr:Properties.customShapes.imageLeft]
+         */
+        imageLeft?: number;
+        /**
+         * [descr:Properties.customShapes.imageTop]
+         */
+        imageTop?: number;
+        /**
+         * [descr:Properties.customShapes.imageWidth]
+         */
+        imageWidth?: number;
+        /**
+         * [descr:Properties.customShapes.keepRatioOnAutoSize]
+         */
+        keepRatioOnAutoSize?: boolean;
+        /**
+         * [descr:Properties.customShapes.maxHeight]
+         */
+        maxHeight?: number;
+        /**
+         * [descr:Properties.customShapes.maxWidth]
+         */
+        maxWidth?: number;
+        /**
+         * [descr:Properties.customShapes.minHeight]
+         */
+        minHeight?: number;
+        /**
+         * [descr:Properties.customShapes.minWidth]
+         */
+        minWidth?: number;
+        /**
+         * [descr:Properties.customShapes.template]
+         */
+        template?:
+          | DevExpress.core.template
+          | ((
+              container: DevExpress.core.DxElement<SVGElement>,
+              data: CustomShapeTemplateData
+            ) => any);
+        /**
+         * [descr:Properties.customShapes.templateHeight]
+         */
+        templateHeight?: number;
+        /**
+         * [descr:Properties.customShapes.templateLeft]
+         */
+        templateLeft?: number;
+        /**
+         * [descr:Properties.customShapes.templateTop]
+         */
+        templateTop?: number;
+        /**
+         * [descr:Properties.customShapes.templateWidth]
+         */
+        templateWidth?: number;
+        /**
+         * [descr:Properties.customShapes.textHeight]
+         */
+        textHeight?: number;
+        /**
+         * [descr:Properties.customShapes.textLeft]
+         */
+        textLeft?: number;
+        /**
+         * [descr:Properties.customShapes.textTop]
+         */
+        textTop?: number;
+        /**
+         * [descr:Properties.customShapes.textWidth]
+         */
+        textWidth?: number;
+        /**
+         * [descr:Properties.customShapes.title]
+         */
+        title?: string;
+        /**
+         * [descr:Properties.customShapes.toolboxTemplate]
+         */
+        toolboxTemplate?:
+          | DevExpress.core.template
+          | ((
+              container: DevExpress.core.DxElement<SVGElement>,
+              data: CustomShapeToolboxTemplateData
+            ) => any);
+        /**
+         * [descr:Properties.customShapes.toolboxWidthToHeightRatio]
+         */
+        toolboxWidthToHeightRatio?: number;
+        /**
+         * [descr:Properties.customShapes.type]
+         */
+        type?: string;
+      }>;
+      /**
+       * [descr:Properties.defaultItemProperties]
+       */
+      defaultItemProperties?: {
+        /**
+         * [descr:Properties.defaultItemProperties.style]
+         */
+        style?: Object;
+        /**
+         * [descr:Properties.defaultItemProperties.textStyle]
+         */
+        textStyle?: Object;
+        /**
+         * [descr:Properties.defaultItemProperties.connectorLineType]
+         */
+        connectorLineType?: 'straight' | 'orthogonal';
+        /**
+         * [descr:Properties.defaultItemProperties.connectorLineStart]
+         */
+        connectorLineStart?:
+          | 'none'
+          | 'arrow'
+          | 'outlinedTriangle'
+          | 'filledTriangle';
+        /**
+         * [descr:Properties.defaultItemProperties.connectorLineEnd]
+         */
+        connectorLineEnd?:
+          | 'none'
+          | 'arrow'
+          | 'outlinedTriangle'
+          | 'filledTriangle';
+        /**
+         * [descr:Properties.defaultItemProperties.shapeMinWidth]
+         */
+        shapeMinWidth?: number;
+        /**
+         * [descr:Properties.defaultItemProperties.shapeMaxWidth]
+         */
+        shapeMaxWidth?: number;
+        /**
+         * [descr:Properties.defaultItemProperties.shapeMinHeight]
+         */
+        shapeMinHeight?: number;
+        /**
+         * [descr:Properties.defaultItemProperties.shapeMaxHeight]
+         */
+        shapeMaxHeight?: number;
+      };
+      /**
+       * [descr:Properties.editing]
+       */
+      editing?: {
+        /**
+         * [descr:Properties.editing.allowAddShape]
+         */
+        allowAddShape?: boolean;
+        /**
+         * [descr:Properties.editing.allowDeleteShape]
+         */
+        allowDeleteShape?: boolean;
+        /**
+         * [descr:Properties.editing.allowDeleteConnector]
+         */
+        allowDeleteConnector?: boolean;
+        /**
+         * [descr:Properties.editing.allowChangeConnection]
+         */
+        allowChangeConnection?: boolean;
+        /**
+         * [descr:Properties.editing.allowChangeConnectorPoints]
+         */
+        allowChangeConnectorPoints?: boolean;
+        /**
+         * [descr:Properties.editing.allowChangeConnectorText]
+         */
+        allowChangeConnectorText?: boolean;
+        /**
+         * [descr:Properties.editing.allowChangeShapeText]
+         */
+        allowChangeShapeText?: boolean;
+        /**
+         * [descr:Properties.editing.allowResizeShape]
+         */
+        allowResizeShape?: boolean;
+        /**
+         * [descr:Properties.editing.allowMoveShape]
+         */
+        allowMoveShape?: boolean;
+      };
+      /**
+       * [descr:Properties.edges]
+       */
+      edges?: {
+        /**
+         * [descr:Properties.edges.customDataExpr]
+         */
+        customDataExpr?: string | ((data: any, value?: any) => any);
+        /**
+         * [descr:Properties.edges.dataSource]
+         */
+        dataSource?: DevExpress.data.DataSource.DataSourceLike<any>;
+        /**
+         * [descr:Properties.edges.fromExpr]
+         */
+        fromExpr?: string | ((data: any, value?: any) => any);
+        /**
+         * [descr:Properties.edges.fromLineEndExpr]
+         */
+        fromLineEndExpr?: string | ((data: any, value?: any) => any);
+        /**
+         * [descr:Properties.edges.fromPointIndexExpr]
+         */
+        fromPointIndexExpr?: string | ((data: any, value?: any) => any);
+        /**
+         * [descr:Properties.edges.keyExpr]
+         */
+        keyExpr?: string | ((data: any, value?: any) => any);
+        /**
+         * [descr:Properties.edges.lineTypeExpr]
+         */
+        lineTypeExpr?: string | ((data: any, value?: any) => any);
+        /**
+         * [descr:Properties.edges.lockedExpr]
+         */
+        lockedExpr?: string | ((data: any, value?: any) => any);
+        /**
+         * [descr:Properties.edges.pointsExpr]
+         */
+        pointsExpr?: string | ((data: any, value?: any) => any);
+        /**
+         * [descr:Properties.edges.styleExpr]
+         */
+        styleExpr?: string | ((data: any, value?: any) => any);
+        /**
+         * [descr:Properties.edges.textExpr]
+         */
+        textExpr?: string | ((data: any, value?: any) => any);
+        /**
+         * [descr:Properties.edges.textStyleExpr]
+         */
+        textStyleExpr?: string | ((data: any, value?: any) => any);
+        /**
+         * [descr:Properties.edges.toExpr]
+         */
+        toExpr?: string | ((data: any, value?: any) => any);
+        /**
+         * [descr:Properties.edges.toLineEndExpr]
+         */
+        toLineEndExpr?: string | ((data: any, value?: any) => any);
+        /**
+         * [descr:Properties.edges.toPointIndexExpr]
+         */
+        toPointIndexExpr?: string | ((data: any, value?: any) => any);
+        /**
+         * [descr:Properties.edges.zIndexExpr]
+         */
+        zIndexExpr?: string | ((data: any, value?: any) => any);
+      };
+      /**
+       * [descr:Properties.export]
+       */
+      export?: {
+        /**
+         * [descr:Properties.export.fileName]
+         */
+        fileName?: string;
+        /**
+         * [descr:Properties.export.proxyUrl]
+         * @deprecated [depNote:Properties.export.proxyUrl]
+         */
+        proxyUrl?: string;
+      };
+      /**
+       * [descr:Properties.fullScreen]
+       */
+      fullScreen?: boolean;
+      /**
+       * [descr:Properties.gridSize]
+       */
+      gridSize?:
+        | number
+        | {
+            /**
+             * [descr:Properties.gridSize.items]
+             */
+            items?: Array<number>;
+            /**
+             * [descr:Properties.gridSize.value]
+             */
+            value?: number;
+          };
+      /**
+       * [descr:Properties.nodes]
+       */
+      nodes?: {
+        /**
+         * [descr:Properties.nodes.autoLayout]
+         */
+        autoLayout?:
+          | 'off'
+          | 'tree'
+          | 'layered'
+          | {
+              /**
+               * [descr:Properties.nodes.autoLayout.orientation]
+               */
+              orientation?: 'vertical' | 'horizontal';
+              /**
+               * [descr:Properties.nodes.autoLayout.type]
+               */
+              type?: 'off' | 'tree' | 'layered';
+            };
+        /**
+         * [descr:Properties.nodes.autoSizeEnabled]
+         */
+        autoSizeEnabled?: boolean;
+        /**
+         * [descr:Properties.nodes.containerKeyExpr]
+         */
+        containerKeyExpr?: string | ((data: any, value?: any) => any);
+        /**
+         * [descr:Properties.nodes.containerChildrenExpr]
+         */
+        containerChildrenExpr?: string | ((data: any, value?: any) => any);
+        /**
+         * [descr:Properties.nodes.customDataExpr]
+         */
+        customDataExpr?: string | ((data: any, value?: any) => any);
+        /**
+         * [descr:Properties.nodes.dataSource]
+         */
+        dataSource?: DevExpress.data.DataSource.DataSourceLike<any>;
+        /**
+         * [descr:Properties.nodes.heightExpr]
+         */
+        heightExpr?: string | ((data: any, value?: any) => any);
+        /**
+         * [descr:Properties.nodes.imageUrlExpr]
+         */
+        imageUrlExpr?: string | ((data: any, value?: any) => any);
+        /**
+         * [descr:Properties.nodes.itemsExpr]
+         */
+        itemsExpr?: string | ((data: any, value?: any) => any);
+        /**
+         * [descr:Properties.nodes.keyExpr]
+         */
+        keyExpr?: string | ((data: any, value?: any) => any);
+        /**
+         * [descr:Properties.nodes.leftExpr]
+         */
+        leftExpr?: string | ((data: any, value?: any) => any);
+        /**
+         * [descr:Properties.nodes.lockedExpr]
+         */
+        lockedExpr?: string | ((data: any, value?: any) => any);
+        /**
+         * [descr:Properties.nodes.parentKeyExpr]
+         */
+        parentKeyExpr?: string | ((data: any, value?: any) => any);
+        /**
+         * [descr:Properties.nodes.styleExpr]
+         */
+        styleExpr?: string | ((data: any, value?: any) => any);
+        /**
+         * [descr:Properties.nodes.textExpr]
+         */
+        textExpr?: string | ((data: any, value?: any) => any);
+        /**
+         * [descr:Properties.nodes.textStyleExpr]
+         */
+        textStyleExpr?: string | ((data: any, value?: any) => any);
+        /**
+         * [descr:Properties.nodes.topExpr]
+         */
+        topExpr?: string | ((data: any, value?: any) => any);
+        /**
+         * [descr:Properties.nodes.typeExpr]
+         */
+        typeExpr?: string | ((data: any, value?: any) => any);
+        /**
+         * [descr:Properties.nodes.widthExpr]
+         */
+        widthExpr?: string | ((data: any, value?: any) => any);
+        /**
+         * [descr:Properties.nodes.zIndexExpr]
+         */
+        zIndexExpr?: string | ((data: any, value?: any) => any);
+      };
+      /**
+       * [descr:Properties.hasChanges]
+       */
+      hasChanges?: boolean;
+      /**
+       * [descr:Properties.onItemClick]
+       */
+      onItemClick?: (e: ItemClickEvent) => void;
+      /**
+       * [descr:Properties.onItemDblClick]
+       */
+      onItemDblClick?: (e: ItemDblClickEvent) => void;
+      /**
+       * [descr:Properties.onSelectionChanged]
+       */
+      onSelectionChanged?: (e: SelectionChangedEvent) => void;
+      /**
+       * [descr:Properties.onRequestEditOperation]
+       */
+      onRequestEditOperation?: (e: RequestEditOperationEvent) => void;
+      /**
+       * [descr:Properties.onRequestLayoutUpdate]
+       */
+      onRequestLayoutUpdate?: (e: RequestLayoutUpdateEvent) => void;
+      /**
+       * [descr:Properties.pageColor]
+       */
+      pageColor?: string;
+      /**
+       * [descr:Properties.pageOrientation]
+       */
+      pageOrientation?: 'portrait' | 'landscape';
+      /**
+       * [descr:Properties.pageSize]
+       */
+      pageSize?: {
+        /**
+         * [descr:Properties.pageSize.height]
+         */
+        height?: number;
+        /**
+         * [descr:Properties.pageSize.items]
+         */
+        items?: Array<{
+          /**
+           * [descr:Properties.pageSize.items.height]
+           */
+          height?: number;
+          /**
+           * [descr:Properties.pageSize.items.text]
+           */
+          text?: string;
+          /**
+           * [descr:Properties.pageSize.items.width]
+           */
+          width?: number;
+        }>;
+        /**
+         * [descr:Properties.pageSize.width]
+         */
+        width?: number;
+      };
+      /**
+       * [descr:Properties.propertiesPanel]
+       */
+      propertiesPanel?: {
+        /**
+         * [descr:Properties.propertiesPanel.tabs]
+         */
+        tabs?: Array<{
+          /**
+           * [descr:Properties.propertiesPanel.tabs.commands]
+           */
+          commands?: Array<
+            | 'separator'
+            | 'exportSvg'
+            | 'exportPng'
+            | 'exportJpg'
+            | 'undo'
+            | 'redo'
+            | 'cut'
+            | 'copy'
+            | 'paste'
+            | 'selectAll'
+            | 'delete'
+            | 'fontName'
+            | 'fontSize'
+            | 'bold'
+            | 'italic'
+            | 'underline'
+            | 'fontColor'
+            | 'lineStyle'
+            | 'lineWidth'
+            | 'lineColor'
+            | 'fillColor'
+            | 'textAlignLeft'
+            | 'textAlignCenter'
+            | 'textAlignRight'
+            | 'lock'
+            | 'unlock'
+            | 'sendToBack'
+            | 'bringToFront'
+            | 'insertShapeImage'
+            | 'editShapeImage'
+            | 'deleteShapeImage'
+            | 'connectorLineType'
+            | 'connectorLineStart'
+            | 'connectorLineEnd'
+            | 'layoutTreeTopToBottom'
+            | 'layoutTreeBottomToTop'
+            | 'layoutTreeLeftToRight'
+            | 'layoutTreeRightToLeft'
+            | 'layoutLayeredTopToBottom'
+            | 'layoutLayeredBottomToTop'
+            | 'layoutLayeredLeftToRight'
+            | 'layoutLayeredRightToLeft'
+            | 'fullScreen'
+            | 'zoomLevel'
+            | 'showGrid'
+            | 'snapToGrid'
+            | 'gridSize'
+            | 'units'
+            | 'pageSize'
+            | 'pageOrientation'
+            | 'pageColor'
+            | 'simpleView'
+            | 'toolbox'
+          >;
+          /**
+           * [descr:Properties.propertiesPanel.tabs.groups]
+           */
+          groups?: Array<{
+            /**
+             * [descr:Properties.propertiesPanel.tabs.groups.commands]
+             */
+            commands?: Array<
+              | 'separator'
+              | 'exportSvg'
+              | 'exportPng'
+              | 'exportJpg'
+              | 'undo'
+              | 'redo'
+              | 'cut'
+              | 'copy'
+              | 'paste'
+              | 'selectAll'
+              | 'delete'
+              | 'fontName'
+              | 'fontSize'
+              | 'bold'
+              | 'italic'
+              | 'underline'
+              | 'fontColor'
+              | 'lineStyle'
+              | 'lineWidth'
+              | 'lineColor'
+              | 'fillColor'
+              | 'textAlignLeft'
+              | 'textAlignCenter'
+              | 'textAlignRight'
+              | 'lock'
+              | 'unlock'
+              | 'sendToBack'
+              | 'bringToFront'
+              | 'insertShapeImage'
+              | 'editShapeImage'
+              | 'deleteShapeImage'
+              | 'connectorLineType'
+              | 'connectorLineStart'
+              | 'connectorLineEnd'
+              | 'layoutTreeTopToBottom'
+              | 'layoutTreeBottomToTop'
+              | 'layoutTreeLeftToRight'
+              | 'layoutTreeRightToLeft'
+              | 'layoutLayeredTopToBottom'
+              | 'layoutLayeredBottomToTop'
+              | 'layoutLayeredLeftToRight'
+              | 'layoutLayeredRightToLeft'
+              | 'fullScreen'
+              | 'zoomLevel'
+              | 'showGrid'
+              | 'snapToGrid'
+              | 'gridSize'
+              | 'units'
+              | 'pageSize'
+              | 'pageOrientation'
+              | 'pageColor'
+              | 'simpleView'
+              | 'toolbox'
+            >;
+            /**
+             * [descr:Properties.propertiesPanel.tabs.groups.title]
+             */
+            title?: string;
+          }>;
+          /**
+           * [descr:Properties.propertiesPanel.tabs.title]
+           */
+          title?: string;
+        }>;
+        /**
+         * [descr:Properties.propertiesPanel.visibility]
+         */
+        visibility?: 'auto' | 'visible' | 'collapsed' | 'disabled';
+      };
+      /**
+       * [descr:Properties.readOnly]
+       */
+      readOnly?: boolean;
+      /**
+       * [descr:Properties.showGrid]
+       */
+      showGrid?: boolean;
+      /**
+       * [descr:Properties.simpleView]
+       */
+      simpleView?: boolean;
+      /**
+       * [descr:Properties.useNativeScrolling]
+       */
+      useNativeScrolling?: boolean;
+      /**
+       * [descr:Properties.snapToGrid]
+       */
+      snapToGrid?: boolean;
+      /**
+       * [descr:Properties.mainToolbar]
+       */
+      mainToolbar?: {
+        /**
+         * [descr:Properties.mainToolbar.commands]
+         */
+        commands?: Array<
+          | 'separator'
+          | 'exportSvg'
+          | 'exportPng'
+          | 'exportJpg'
+          | 'undo'
+          | 'redo'
+          | 'cut'
+          | 'copy'
+          | 'paste'
+          | 'selectAll'
+          | 'delete'
+          | 'fontName'
+          | 'fontSize'
+          | 'bold'
+          | 'italic'
+          | 'underline'
+          | 'fontColor'
+          | 'lineStyle'
+          | 'lineWidth'
+          | 'lineColor'
+          | 'fillColor'
+          | 'textAlignLeft'
+          | 'textAlignCenter'
+          | 'textAlignRight'
+          | 'lock'
+          | 'unlock'
+          | 'sendToBack'
+          | 'bringToFront'
+          | 'insertShapeImage'
+          | 'editShapeImage'
+          | 'deleteShapeImage'
+          | 'connectorLineType'
+          | 'connectorLineStart'
+          | 'connectorLineEnd'
+          | 'layoutTreeTopToBottom'
+          | 'layoutTreeBottomToTop'
+          | 'layoutTreeLeftToRight'
+          | 'layoutTreeRightToLeft'
+          | 'layoutLayeredTopToBottom'
+          | 'layoutLayeredBottomToTop'
+          | 'layoutLayeredLeftToRight'
+          | 'layoutLayeredRightToLeft'
+          | 'fullScreen'
+          | 'zoomLevel'
+          | 'showGrid'
+          | 'snapToGrid'
+          | 'gridSize'
+          | 'units'
+          | 'pageSize'
+          | 'pageOrientation'
+          | 'pageColor'
+          | 'simpleView'
+          | 'toolbox'
+        >;
+        /**
+         * [descr:Properties.mainToolbar.visible]
+         */
+        visible?: boolean;
+      };
+      /**
+       * [descr:Properties.historyToolbar]
+       */
+      historyToolbar?: {
+        /**
+         * [descr:Properties.historyToolbar.commands]
+         */
+        commands?: Array<
+          | 'separator'
+          | 'exportSvg'
+          | 'exportPng'
+          | 'exportJpg'
+          | 'undo'
+          | 'redo'
+          | 'cut'
+          | 'copy'
+          | 'paste'
+          | 'selectAll'
+          | 'delete'
+          | 'fontName'
+          | 'fontSize'
+          | 'bold'
+          | 'italic'
+          | 'underline'
+          | 'fontColor'
+          | 'lineStyle'
+          | 'lineWidth'
+          | 'lineColor'
+          | 'fillColor'
+          | 'textAlignLeft'
+          | 'textAlignCenter'
+          | 'textAlignRight'
+          | 'lock'
+          | 'unlock'
+          | 'sendToBack'
+          | 'bringToFront'
+          | 'insertShapeImage'
+          | 'editShapeImage'
+          | 'deleteShapeImage'
+          | 'connectorLineType'
+          | 'connectorLineStart'
+          | 'connectorLineEnd'
+          | 'layoutTreeTopToBottom'
+          | 'layoutTreeBottomToTop'
+          | 'layoutTreeLeftToRight'
+          | 'layoutTreeRightToLeft'
+          | 'layoutLayeredTopToBottom'
+          | 'layoutLayeredBottomToTop'
+          | 'layoutLayeredLeftToRight'
+          | 'layoutLayeredRightToLeft'
+          | 'fullScreen'
+          | 'zoomLevel'
+          | 'showGrid'
+          | 'snapToGrid'
+          | 'gridSize'
+          | 'units'
+          | 'pageSize'
+          | 'pageOrientation'
+          | 'pageColor'
+          | 'simpleView'
+          | 'toolbox'
+        >;
+        /**
+         * [descr:Properties.historyToolbar.visible]
+         */
+        visible?: boolean;
+      };
+      /**
+       * [descr:Properties.viewToolbar]
+       */
+      viewToolbar?: {
+        /**
+         * [descr:Properties.viewToolbar.commands]
+         */
+        commands?: Array<
+          | 'separator'
+          | 'exportSvg'
+          | 'exportPng'
+          | 'exportJpg'
+          | 'undo'
+          | 'redo'
+          | 'cut'
+          | 'copy'
+          | 'paste'
+          | 'selectAll'
+          | 'delete'
+          | 'fontName'
+          | 'fontSize'
+          | 'bold'
+          | 'italic'
+          | 'underline'
+          | 'fontColor'
+          | 'lineStyle'
+          | 'lineWidth'
+          | 'lineColor'
+          | 'fillColor'
+          | 'textAlignLeft'
+          | 'textAlignCenter'
+          | 'textAlignRight'
+          | 'lock'
+          | 'unlock'
+          | 'sendToBack'
+          | 'bringToFront'
+          | 'insertShapeImage'
+          | 'editShapeImage'
+          | 'deleteShapeImage'
+          | 'connectorLineType'
+          | 'connectorLineStart'
+          | 'connectorLineEnd'
+          | 'layoutTreeTopToBottom'
+          | 'layoutTreeBottomToTop'
+          | 'layoutTreeLeftToRight'
+          | 'layoutTreeRightToLeft'
+          | 'layoutLayeredTopToBottom'
+          | 'layoutLayeredBottomToTop'
+          | 'layoutLayeredLeftToRight'
+          | 'layoutLayeredRightToLeft'
+          | 'fullScreen'
+          | 'zoomLevel'
+          | 'showGrid'
+          | 'snapToGrid'
+          | 'gridSize'
+          | 'units'
+          | 'pageSize'
+          | 'pageOrientation'
+          | 'pageColor'
+          | 'simpleView'
+          | 'toolbox'
+        >;
+        /**
+         * [descr:Properties.viewToolbar.visible]
+         */
+        visible?: boolean;
+      };
+      /**
+       * [descr:Properties.toolbox]
+       */
+      toolbox?: {
+        /**
+         * [descr:Properties.toolbox.groups]
+         */
+        groups?:
+          | Array<{
+              /**
+               * [descr:Properties.toolbox.groups.category]
+               */
+              category?:
+                | 'general'
+                | 'flowchart'
+                | 'orgChart'
+                | 'containers'
+                | 'custom'
+                | string;
+              /**
+               * [descr:Properties.toolbox.groups.displayMode]
+               */
+              displayMode?: 'icons' | 'texts';
+              /**
+               * [descr:Properties.toolbox.groups.expanded]
+               */
+              expanded?: boolean;
+              /**
+               * [descr:Properties.toolbox.groups.shapes]
+               */
+              shapes?:
+                | Array<
+                    | 'text'
+                    | 'rectangle'
+                    | 'ellipse'
+                    | 'cross'
+                    | 'triangle'
+                    | 'diamond'
+                    | 'heart'
+                    | 'pentagon'
+                    | 'hexagon'
+                    | 'octagon'
+                    | 'star'
+                    | 'arrowLeft'
+                    | 'arrowTop'
+                    | 'arrowRight'
+                    | 'arrowBottom'
+                    | 'arrowNorthSouth'
+                    | 'arrowEastWest'
+                    | 'process'
+                    | 'decision'
+                    | 'terminator'
+                    | 'predefinedProcess'
+                    | 'document'
+                    | 'multipleDocuments'
+                    | 'manualInput'
+                    | 'preparation'
+                    | 'data'
+                    | 'database'
+                    | 'hardDisk'
+                    | 'internalStorage'
+                    | 'paperTape'
+                    | 'manualOperation'
+                    | 'delay'
+                    | 'storedData'
+                    | 'display'
+                    | 'merge'
+                    | 'connector'
+                    | 'or'
+                    | 'summingJunction'
+                    | 'verticalContainer'
+                    | 'horizontalContainer'
+                    | 'cardWithImageOnLeft'
+                    | 'cardWithImageOnTop'
+                    | 'cardWithImageOnRight'
+                  >
+                | Array<string>;
+              /**
+               * [descr:Properties.toolbox.groups.title]
+               */
+              title?: string;
+            }>
+          | Array<
+              'general' | 'flowchart' | 'orgChart' | 'containers' | 'custom'
+            >;
+        /**
+         * [descr:Properties.toolbox.shapeIconsPerRow]
+         */
+        shapeIconsPerRow?: number;
+        /**
+         * [descr:Properties.toolbox.showSearch]
+         */
+        showSearch?: boolean;
+        /**
+         * [descr:Properties.toolbox.visibility]
+         */
+        visibility?: 'auto' | 'visible' | 'collapsed' | 'disabled';
+        /**
+         * [descr:Properties.toolbox.width]
+         */
+        width?: number;
+      };
+      /**
+       * [descr:Properties.units]
+       */
+      units?: 'in' | 'cm' | 'px';
+      /**
+       * [descr:Properties.viewUnits]
+       */
+      viewUnits?: 'in' | 'cm' | 'px';
+      /**
+       * [descr:Properties.zoomLevel]
+       */
+      zoomLevel?:
+        | number
+        | {
+            /**
+             * [descr:Properties.zoomLevel.items]
+             */
+            items?: Array<number>;
+            /**
+             * [descr:Properties.zoomLevel.value]
+             */
+            value?: number;
+          };
+    }
     export type RequestEditOperationEvent =
       DevExpress.events.EventInfo<dxDiagram> & {
         readonly operation:
@@ -9098,28 +10097,6 @@ declare module DevExpress.ui {
     shape?: dxDiagramShape;
   }
   /**
-   * @deprecated Use Item instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxDiagramItem {
-    /**
-     * [descr:dxDiagramItem.dataItem]
-     */
-    dataItem?: any;
-    /**
-     * [descr:dxDiagramItem.id]
-     */
-    id?: string;
-    /**
-     * [descr:dxDiagramItem.key]
-     */
-    key?: Object;
-    /**
-     * [descr:dxDiagramItem.itemType]
-     */
-    itemType?: 'shape' | 'connector';
-  }
-  /**
    * [descr:dxDiagramMoveShapeArgs]
    * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
    */
@@ -9154,1248 +10131,6 @@ declare module DevExpress.ui {
        */
       y?: number;
     };
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxDiagramOptions extends WidgetOptions<dxDiagram> {
-    /**
-     * [descr:dxDiagramOptions.autoZoomMode]
-     */
-    autoZoomMode?: 'fitContent' | 'fitWidth' | 'disabled';
-    /**
-     * [descr:dxDiagramOptions.contextMenu]
-     */
-    contextMenu?: {
-      /**
-       * [descr:dxDiagramOptions.contextMenu.commands]
-       */
-      commands?: Array<
-        | 'separator'
-        | 'exportSvg'
-        | 'exportPng'
-        | 'exportJpg'
-        | 'undo'
-        | 'redo'
-        | 'cut'
-        | 'copy'
-        | 'paste'
-        | 'selectAll'
-        | 'delete'
-        | 'fontName'
-        | 'fontSize'
-        | 'bold'
-        | 'italic'
-        | 'underline'
-        | 'lineStyle'
-        | 'lineWidth'
-        | 'textAlignLeft'
-        | 'textAlignCenter'
-        | 'textAlignRight'
-        | 'lock'
-        | 'unlock'
-        | 'sendToBack'
-        | 'bringToFront'
-        | 'insertShapeImage'
-        | 'editShapeImage'
-        | 'deleteShapeImage'
-        | 'connectorLineType'
-        | 'connectorLineStart'
-        | 'connectorLineEnd'
-        | 'layoutTreeTopToBottom'
-        | 'layoutTreeBottomToTop'
-        | 'layoutTreeLeftToRight'
-        | 'layoutTreeRightToLeft'
-        | 'layoutLayeredTopToBottom'
-        | 'layoutLayeredBottomToTop'
-        | 'layoutLayeredLeftToRight'
-        | 'layoutLayeredRightToLeft'
-        | 'fullScreen'
-        | 'zoomLevel'
-        | 'showGrid'
-        | 'snapToGrid'
-        | 'gridSize'
-        | 'units'
-        | 'pageSize'
-        | 'pageOrientation'
-        | 'pageColor'
-        | 'simpleView'
-        | 'toolbox'
-      >;
-      /**
-       * [descr:dxDiagramOptions.contextMenu.enabled]
-       */
-      enabled?: boolean;
-    };
-    /**
-     * [descr:dxDiagramOptions.contextToolbox]
-     */
-    contextToolbox?: {
-      /**
-       * [descr:dxDiagramOptions.contextToolbox.category]
-       */
-      category?:
-        | 'general'
-        | 'flowchart'
-        | 'orgChart'
-        | 'containers'
-        | 'custom'
-        | string;
-      /**
-       * [descr:dxDiagramOptions.contextToolbox.displayMode]
-       */
-      displayMode?: 'icons' | 'texts';
-      /**
-       * [descr:dxDiagramOptions.contextToolbox.enabled]
-       */
-      enabled?: boolean;
-      /**
-       * [descr:dxDiagramOptions.contextToolbox.shapeIconsPerRow]
-       */
-      shapeIconsPerRow?: number;
-      /**
-       * [descr:dxDiagramOptions.contextToolbox.shapes]
-       */
-      shapes?:
-        | Array<
-            | 'text'
-            | 'rectangle'
-            | 'ellipse'
-            | 'cross'
-            | 'triangle'
-            | 'diamond'
-            | 'heart'
-            | 'pentagon'
-            | 'hexagon'
-            | 'octagon'
-            | 'star'
-            | 'arrowLeft'
-            | 'arrowTop'
-            | 'arrowRight'
-            | 'arrowBottom'
-            | 'arrowNorthSouth'
-            | 'arrowEastWest'
-            | 'process'
-            | 'decision'
-            | 'terminator'
-            | 'predefinedProcess'
-            | 'document'
-            | 'multipleDocuments'
-            | 'manualInput'
-            | 'preparation'
-            | 'data'
-            | 'database'
-            | 'hardDisk'
-            | 'internalStorage'
-            | 'paperTape'
-            | 'manualOperation'
-            | 'delay'
-            | 'storedData'
-            | 'display'
-            | 'merge'
-            | 'connector'
-            | 'or'
-            | 'summingJunction'
-            | 'verticalContainer'
-            | 'horizontalContainer'
-            | 'cardWithImageOnLeft'
-            | 'cardWithImageOnTop'
-            | 'cardWithImageOnRight'
-          >
-        | Array<string>;
-      /**
-       * [descr:dxDiagramOptions.contextToolbox.width]
-       */
-      width?: number;
-    };
-    /**
-     * [descr:dxDiagramOptions.onCustomCommand]
-     */
-    onCustomCommand?: (e: DevExpress.ui.dxDiagram.CustomCommandEvent) => void;
-    /**
-     * [descr:dxDiagramOptions.customShapeTemplate]
-     */
-    customShapeTemplate?:
-      | DevExpress.core.template
-      | ((
-          container: DevExpress.core.DxElement<SVGElement>,
-          data: DevExpress.ui.dxDiagram.CustomShapeTemplateData
-        ) => any);
-    /**
-     * [descr:dxDiagramOptions.customShapeToolboxTemplate]
-     */
-    customShapeToolboxTemplate?:
-      | DevExpress.core.template
-      | ((
-          container: DevExpress.core.DxElement<SVGElement>,
-          data: DevExpress.ui.dxDiagram.CustomShapeToolboxTemplateData
-        ) => any);
-    /**
-     * [descr:dxDiagramOptions.customShapes]
-     */
-    customShapes?: Array<{
-      /**
-       * [descr:dxDiagramOptions.customShapes.allowEditImage]
-       */
-      allowEditImage?: boolean;
-      /**
-       * [descr:dxDiagramOptions.customShapes.allowEditText]
-       */
-      allowEditText?: boolean;
-      /**
-       * [descr:dxDiagramOptions.customShapes.allowResize]
-       */
-      allowResize?: boolean;
-      /**
-       * [descr:dxDiagramOptions.customShapes.backgroundImageHeight]
-       */
-      backgroundImageHeight?: number;
-      /**
-       * [descr:dxDiagramOptions.customShapes.backgroundImageLeft]
-       */
-      backgroundImageLeft?: number;
-      /**
-       * [descr:dxDiagramOptions.customShapes.backgroundImageTop]
-       */
-      backgroundImageTop?: number;
-      /**
-       * [descr:dxDiagramOptions.customShapes.backgroundImageUrl]
-       */
-      backgroundImageUrl?: string;
-      /**
-       * [descr:dxDiagramOptions.customShapes.backgroundImageToolboxUrl]
-       */
-      backgroundImageToolboxUrl?: string;
-      /**
-       * [descr:dxDiagramOptions.customShapes.backgroundImageWidth]
-       */
-      backgroundImageWidth?: number;
-      /**
-       * [descr:dxDiagramOptions.customShapes.baseType]
-       */
-      baseType?:
-        | 'text'
-        | 'rectangle'
-        | 'ellipse'
-        | 'cross'
-        | 'triangle'
-        | 'diamond'
-        | 'heart'
-        | 'pentagon'
-        | 'hexagon'
-        | 'octagon'
-        | 'star'
-        | 'arrowLeft'
-        | 'arrowTop'
-        | 'arrowRight'
-        | 'arrowBottom'
-        | 'arrowNorthSouth'
-        | 'arrowEastWest'
-        | 'process'
-        | 'decision'
-        | 'terminator'
-        | 'predefinedProcess'
-        | 'document'
-        | 'multipleDocuments'
-        | 'manualInput'
-        | 'preparation'
-        | 'data'
-        | 'database'
-        | 'hardDisk'
-        | 'internalStorage'
-        | 'paperTape'
-        | 'manualOperation'
-        | 'delay'
-        | 'storedData'
-        | 'display'
-        | 'merge'
-        | 'connector'
-        | 'or'
-        | 'summingJunction'
-        | 'verticalContainer'
-        | 'horizontalContainer'
-        | 'cardWithImageOnLeft'
-        | 'cardWithImageOnTop'
-        | 'cardWithImageOnRight'
-        | string;
-      /**
-       * [descr:dxDiagramOptions.customShapes.category]
-       */
-      category?: string;
-      /**
-       * [descr:dxDiagramOptions.customShapes.connectionPoints]
-       */
-      connectionPoints?: Array<{
-        /**
-         * [descr:dxDiagramOptions.customShapes.connectionPoints.x]
-         */
-        x?: number;
-        /**
-         * [descr:dxDiagramOptions.customShapes.connectionPoints.y]
-         */
-        y?: number;
-      }>;
-      /**
-       * [descr:dxDiagramOptions.customShapes.defaultHeight]
-       */
-      defaultHeight?: number;
-      /**
-       * [descr:dxDiagramOptions.customShapes.defaultImageUrl]
-       */
-      defaultImageUrl?: string;
-      /**
-       * [descr:dxDiagramOptions.customShapes.defaultText]
-       */
-      defaultText?: string;
-      /**
-       * [descr:dxDiagramOptions.customShapes.defaultWidth]
-       */
-      defaultWidth?: number;
-      /**
-       * [descr:dxDiagramOptions.customShapes.imageHeight]
-       */
-      imageHeight?: number;
-      /**
-       * [descr:dxDiagramOptions.customShapes.imageLeft]
-       */
-      imageLeft?: number;
-      /**
-       * [descr:dxDiagramOptions.customShapes.imageTop]
-       */
-      imageTop?: number;
-      /**
-       * [descr:dxDiagramOptions.customShapes.imageWidth]
-       */
-      imageWidth?: number;
-      /**
-       * [descr:dxDiagramOptions.customShapes.keepRatioOnAutoSize]
-       */
-      keepRatioOnAutoSize?: boolean;
-      /**
-       * [descr:dxDiagramOptions.customShapes.maxHeight]
-       */
-      maxHeight?: number;
-      /**
-       * [descr:dxDiagramOptions.customShapes.maxWidth]
-       */
-      maxWidth?: number;
-      /**
-       * [descr:dxDiagramOptions.customShapes.minHeight]
-       */
-      minHeight?: number;
-      /**
-       * [descr:dxDiagramOptions.customShapes.minWidth]
-       */
-      minWidth?: number;
-      /**
-       * [descr:dxDiagramOptions.customShapes.template]
-       */
-      template?:
-        | DevExpress.core.template
-        | ((
-            container: DevExpress.core.DxElement<SVGElement>,
-            data: DevExpress.ui.dxDiagram.CustomShapeTemplateData
-          ) => any);
-      /**
-       * [descr:dxDiagramOptions.customShapes.templateHeight]
-       */
-      templateHeight?: number;
-      /**
-       * [descr:dxDiagramOptions.customShapes.templateLeft]
-       */
-      templateLeft?: number;
-      /**
-       * [descr:dxDiagramOptions.customShapes.templateTop]
-       */
-      templateTop?: number;
-      /**
-       * [descr:dxDiagramOptions.customShapes.templateWidth]
-       */
-      templateWidth?: number;
-      /**
-       * [descr:dxDiagramOptions.customShapes.textHeight]
-       */
-      textHeight?: number;
-      /**
-       * [descr:dxDiagramOptions.customShapes.textLeft]
-       */
-      textLeft?: number;
-      /**
-       * [descr:dxDiagramOptions.customShapes.textTop]
-       */
-      textTop?: number;
-      /**
-       * [descr:dxDiagramOptions.customShapes.textWidth]
-       */
-      textWidth?: number;
-      /**
-       * [descr:dxDiagramOptions.customShapes.title]
-       */
-      title?: string;
-      /**
-       * [descr:dxDiagramOptions.customShapes.toolboxTemplate]
-       */
-      toolboxTemplate?:
-        | DevExpress.core.template
-        | ((
-            container: DevExpress.core.DxElement<SVGElement>,
-            data: DevExpress.ui.dxDiagram.CustomShapeToolboxTemplateData
-          ) => any);
-      /**
-       * [descr:dxDiagramOptions.customShapes.toolboxWidthToHeightRatio]
-       */
-      toolboxWidthToHeightRatio?: number;
-      /**
-       * [descr:dxDiagramOptions.customShapes.type]
-       */
-      type?: string;
-    }>;
-    /**
-     * [descr:dxDiagramOptions.defaultItemProperties]
-     */
-    defaultItemProperties?: {
-      /**
-       * [descr:dxDiagramOptions.defaultItemProperties.style]
-       */
-      style?: Object;
-      /**
-       * [descr:dxDiagramOptions.defaultItemProperties.textStyle]
-       */
-      textStyle?: Object;
-      /**
-       * [descr:dxDiagramOptions.defaultItemProperties.connectorLineType]
-       */
-      connectorLineType?: 'straight' | 'orthogonal';
-      /**
-       * [descr:dxDiagramOptions.defaultItemProperties.connectorLineStart]
-       */
-      connectorLineStart?:
-        | 'none'
-        | 'arrow'
-        | 'outlinedTriangle'
-        | 'filledTriangle';
-      /**
-       * [descr:dxDiagramOptions.defaultItemProperties.connectorLineEnd]
-       */
-      connectorLineEnd?:
-        | 'none'
-        | 'arrow'
-        | 'outlinedTriangle'
-        | 'filledTriangle';
-      /**
-       * [descr:dxDiagramOptions.defaultItemProperties.shapeMinWidth]
-       */
-      shapeMinWidth?: number;
-      /**
-       * [descr:dxDiagramOptions.defaultItemProperties.shapeMaxWidth]
-       */
-      shapeMaxWidth?: number;
-      /**
-       * [descr:dxDiagramOptions.defaultItemProperties.shapeMinHeight]
-       */
-      shapeMinHeight?: number;
-      /**
-       * [descr:dxDiagramOptions.defaultItemProperties.shapeMaxHeight]
-       */
-      shapeMaxHeight?: number;
-    };
-    /**
-     * [descr:dxDiagramOptions.editing]
-     */
-    editing?: {
-      /**
-       * [descr:dxDiagramOptions.editing.allowAddShape]
-       */
-      allowAddShape?: boolean;
-      /**
-       * [descr:dxDiagramOptions.editing.allowDeleteShape]
-       */
-      allowDeleteShape?: boolean;
-      /**
-       * [descr:dxDiagramOptions.editing.allowDeleteConnector]
-       */
-      allowDeleteConnector?: boolean;
-      /**
-       * [descr:dxDiagramOptions.editing.allowChangeConnection]
-       */
-      allowChangeConnection?: boolean;
-      /**
-       * [descr:dxDiagramOptions.editing.allowChangeConnectorPoints]
-       */
-      allowChangeConnectorPoints?: boolean;
-      /**
-       * [descr:dxDiagramOptions.editing.allowChangeConnectorText]
-       */
-      allowChangeConnectorText?: boolean;
-      /**
-       * [descr:dxDiagramOptions.editing.allowChangeShapeText]
-       */
-      allowChangeShapeText?: boolean;
-      /**
-       * [descr:dxDiagramOptions.editing.allowResizeShape]
-       */
-      allowResizeShape?: boolean;
-      /**
-       * [descr:dxDiagramOptions.editing.allowMoveShape]
-       */
-      allowMoveShape?: boolean;
-    };
-    /**
-     * [descr:dxDiagramOptions.edges]
-     */
-    edges?: {
-      /**
-       * [descr:dxDiagramOptions.edges.customDataExpr]
-       */
-      customDataExpr?: string | ((data: any, value?: any) => any);
-      /**
-       * [descr:dxDiagramOptions.edges.dataSource]
-       */
-      dataSource?: DevExpress.data.DataSource.DataSourceLike<any>;
-      /**
-       * [descr:dxDiagramOptions.edges.fromExpr]
-       */
-      fromExpr?: string | ((data: any, value?: any) => any);
-      /**
-       * [descr:dxDiagramOptions.edges.fromLineEndExpr]
-       */
-      fromLineEndExpr?: string | ((data: any, value?: any) => any);
-      /**
-       * [descr:dxDiagramOptions.edges.fromPointIndexExpr]
-       */
-      fromPointIndexExpr?: string | ((data: any, value?: any) => any);
-      /**
-       * [descr:dxDiagramOptions.edges.keyExpr]
-       */
-      keyExpr?: string | ((data: any, value?: any) => any);
-      /**
-       * [descr:dxDiagramOptions.edges.lineTypeExpr]
-       */
-      lineTypeExpr?: string | ((data: any, value?: any) => any);
-      /**
-       * [descr:dxDiagramOptions.edges.lockedExpr]
-       */
-      lockedExpr?: string | ((data: any, value?: any) => any);
-      /**
-       * [descr:dxDiagramOptions.edges.pointsExpr]
-       */
-      pointsExpr?: string | ((data: any, value?: any) => any);
-      /**
-       * [descr:dxDiagramOptions.edges.styleExpr]
-       */
-      styleExpr?: string | ((data: any, value?: any) => any);
-      /**
-       * [descr:dxDiagramOptions.edges.textExpr]
-       */
-      textExpr?: string | ((data: any, value?: any) => any);
-      /**
-       * [descr:dxDiagramOptions.edges.textStyleExpr]
-       */
-      textStyleExpr?: string | ((data: any, value?: any) => any);
-      /**
-       * [descr:dxDiagramOptions.edges.toExpr]
-       */
-      toExpr?: string | ((data: any, value?: any) => any);
-      /**
-       * [descr:dxDiagramOptions.edges.toLineEndExpr]
-       */
-      toLineEndExpr?: string | ((data: any, value?: any) => any);
-      /**
-       * [descr:dxDiagramOptions.edges.toPointIndexExpr]
-       */
-      toPointIndexExpr?: string | ((data: any, value?: any) => any);
-      /**
-       * [descr:dxDiagramOptions.edges.zIndexExpr]
-       */
-      zIndexExpr?: string | ((data: any, value?: any) => any);
-    };
-    /**
-     * [descr:dxDiagramOptions.export]
-     */
-    export?: {
-      /**
-       * [descr:dxDiagramOptions.export.fileName]
-       */
-      fileName?: string;
-      /**
-       * [descr:dxDiagramOptions.export.proxyUrl]
-       * @deprecated [depNote:dxDiagramOptions.export.proxyUrl]
-       */
-      proxyUrl?: string;
-    };
-    /**
-     * [descr:dxDiagramOptions.fullScreen]
-     */
-    fullScreen?: boolean;
-    /**
-     * [descr:dxDiagramOptions.gridSize]
-     */
-    gridSize?:
-      | number
-      | {
-          /**
-           * [descr:dxDiagramOptions.gridSize.items]
-           */
-          items?: Array<number>;
-          /**
-           * [descr:dxDiagramOptions.gridSize.value]
-           */
-          value?: number;
-        };
-    /**
-     * [descr:dxDiagramOptions.nodes]
-     */
-    nodes?: {
-      /**
-       * [descr:dxDiagramOptions.nodes.autoLayout]
-       */
-      autoLayout?:
-        | 'off'
-        | 'tree'
-        | 'layered'
-        | {
-            /**
-             * [descr:dxDiagramOptions.nodes.autoLayout.orientation]
-             */
-            orientation?: 'vertical' | 'horizontal';
-            /**
-             * [descr:dxDiagramOptions.nodes.autoLayout.type]
-             */
-            type?: 'off' | 'tree' | 'layered';
-          };
-      /**
-       * [descr:dxDiagramOptions.nodes.autoSizeEnabled]
-       */
-      autoSizeEnabled?: boolean;
-      /**
-       * [descr:dxDiagramOptions.nodes.containerKeyExpr]
-       */
-      containerKeyExpr?: string | ((data: any, value?: any) => any);
-      /**
-       * [descr:dxDiagramOptions.nodes.containerChildrenExpr]
-       */
-      containerChildrenExpr?: string | ((data: any, value?: any) => any);
-      /**
-       * [descr:dxDiagramOptions.nodes.customDataExpr]
-       */
-      customDataExpr?: string | ((data: any, value?: any) => any);
-      /**
-       * [descr:dxDiagramOptions.nodes.dataSource]
-       */
-      dataSource?: DevExpress.data.DataSource.DataSourceLike<any>;
-      /**
-       * [descr:dxDiagramOptions.nodes.heightExpr]
-       */
-      heightExpr?: string | ((data: any, value?: any) => any);
-      /**
-       * [descr:dxDiagramOptions.nodes.imageUrlExpr]
-       */
-      imageUrlExpr?: string | ((data: any, value?: any) => any);
-      /**
-       * [descr:dxDiagramOptions.nodes.itemsExpr]
-       */
-      itemsExpr?: string | ((data: any, value?: any) => any);
-      /**
-       * [descr:dxDiagramOptions.nodes.keyExpr]
-       */
-      keyExpr?: string | ((data: any, value?: any) => any);
-      /**
-       * [descr:dxDiagramOptions.nodes.leftExpr]
-       */
-      leftExpr?: string | ((data: any, value?: any) => any);
-      /**
-       * [descr:dxDiagramOptions.nodes.lockedExpr]
-       */
-      lockedExpr?: string | ((data: any, value?: any) => any);
-      /**
-       * [descr:dxDiagramOptions.nodes.parentKeyExpr]
-       */
-      parentKeyExpr?: string | ((data: any, value?: any) => any);
-      /**
-       * [descr:dxDiagramOptions.nodes.styleExpr]
-       */
-      styleExpr?: string | ((data: any, value?: any) => any);
-      /**
-       * [descr:dxDiagramOptions.nodes.textExpr]
-       */
-      textExpr?: string | ((data: any, value?: any) => any);
-      /**
-       * [descr:dxDiagramOptions.nodes.textStyleExpr]
-       */
-      textStyleExpr?: string | ((data: any, value?: any) => any);
-      /**
-       * [descr:dxDiagramOptions.nodes.topExpr]
-       */
-      topExpr?: string | ((data: any, value?: any) => any);
-      /**
-       * [descr:dxDiagramOptions.nodes.typeExpr]
-       */
-      typeExpr?: string | ((data: any, value?: any) => any);
-      /**
-       * [descr:dxDiagramOptions.nodes.widthExpr]
-       */
-      widthExpr?: string | ((data: any, value?: any) => any);
-      /**
-       * [descr:dxDiagramOptions.nodes.zIndexExpr]
-       */
-      zIndexExpr?: string | ((data: any, value?: any) => any);
-    };
-    /**
-     * [descr:dxDiagramOptions.hasChanges]
-     */
-    hasChanges?: boolean;
-    /**
-     * [descr:dxDiagramOptions.onItemClick]
-     */
-    onItemClick?: (e: DevExpress.ui.dxDiagram.ItemClickEvent) => void;
-    /**
-     * [descr:dxDiagramOptions.onItemDblClick]
-     */
-    onItemDblClick?: (e: DevExpress.ui.dxDiagram.ItemDblClickEvent) => void;
-    /**
-     * [descr:dxDiagramOptions.onSelectionChanged]
-     */
-    onSelectionChanged?: (
-      e: DevExpress.ui.dxDiagram.SelectionChangedEvent
-    ) => void;
-    /**
-     * [descr:dxDiagramOptions.onRequestEditOperation]
-     */
-    onRequestEditOperation?: (
-      e: DevExpress.ui.dxDiagram.RequestEditOperationEvent
-    ) => void;
-    /**
-     * [descr:dxDiagramOptions.onRequestLayoutUpdate]
-     */
-    onRequestLayoutUpdate?: (
-      e: DevExpress.ui.dxDiagram.RequestLayoutUpdateEvent
-    ) => void;
-    /**
-     * [descr:dxDiagramOptions.pageColor]
-     */
-    pageColor?: string;
-    /**
-     * [descr:dxDiagramOptions.pageOrientation]
-     */
-    pageOrientation?: 'portrait' | 'landscape';
-    /**
-     * [descr:dxDiagramOptions.pageSize]
-     */
-    pageSize?: {
-      /**
-       * [descr:dxDiagramOptions.pageSize.height]
-       */
-      height?: number;
-      /**
-       * [descr:dxDiagramOptions.pageSize.items]
-       */
-      items?: Array<{
-        /**
-         * [descr:dxDiagramOptions.pageSize.items.height]
-         */
-        height?: number;
-        /**
-         * [descr:dxDiagramOptions.pageSize.items.text]
-         */
-        text?: string;
-        /**
-         * [descr:dxDiagramOptions.pageSize.items.width]
-         */
-        width?: number;
-      }>;
-      /**
-       * [descr:dxDiagramOptions.pageSize.width]
-       */
-      width?: number;
-    };
-    /**
-     * [descr:dxDiagramOptions.propertiesPanel]
-     */
-    propertiesPanel?: {
-      /**
-       * [descr:dxDiagramOptions.propertiesPanel.tabs]
-       */
-      tabs?: Array<{
-        /**
-         * [descr:dxDiagramOptions.propertiesPanel.tabs.commands]
-         */
-        commands?: Array<
-          | 'separator'
-          | 'exportSvg'
-          | 'exportPng'
-          | 'exportJpg'
-          | 'undo'
-          | 'redo'
-          | 'cut'
-          | 'copy'
-          | 'paste'
-          | 'selectAll'
-          | 'delete'
-          | 'fontName'
-          | 'fontSize'
-          | 'bold'
-          | 'italic'
-          | 'underline'
-          | 'fontColor'
-          | 'lineStyle'
-          | 'lineWidth'
-          | 'lineColor'
-          | 'fillColor'
-          | 'textAlignLeft'
-          | 'textAlignCenter'
-          | 'textAlignRight'
-          | 'lock'
-          | 'unlock'
-          | 'sendToBack'
-          | 'bringToFront'
-          | 'insertShapeImage'
-          | 'editShapeImage'
-          | 'deleteShapeImage'
-          | 'connectorLineType'
-          | 'connectorLineStart'
-          | 'connectorLineEnd'
-          | 'layoutTreeTopToBottom'
-          | 'layoutTreeBottomToTop'
-          | 'layoutTreeLeftToRight'
-          | 'layoutTreeRightToLeft'
-          | 'layoutLayeredTopToBottom'
-          | 'layoutLayeredBottomToTop'
-          | 'layoutLayeredLeftToRight'
-          | 'layoutLayeredRightToLeft'
-          | 'fullScreen'
-          | 'zoomLevel'
-          | 'showGrid'
-          | 'snapToGrid'
-          | 'gridSize'
-          | 'units'
-          | 'pageSize'
-          | 'pageOrientation'
-          | 'pageColor'
-          | 'simpleView'
-          | 'toolbox'
-        >;
-        /**
-         * [descr:dxDiagramOptions.propertiesPanel.tabs.groups]
-         */
-        groups?: Array<{
-          /**
-           * [descr:dxDiagramOptions.propertiesPanel.tabs.groups.commands]
-           */
-          commands?: Array<
-            | 'separator'
-            | 'exportSvg'
-            | 'exportPng'
-            | 'exportJpg'
-            | 'undo'
-            | 'redo'
-            | 'cut'
-            | 'copy'
-            | 'paste'
-            | 'selectAll'
-            | 'delete'
-            | 'fontName'
-            | 'fontSize'
-            | 'bold'
-            | 'italic'
-            | 'underline'
-            | 'fontColor'
-            | 'lineStyle'
-            | 'lineWidth'
-            | 'lineColor'
-            | 'fillColor'
-            | 'textAlignLeft'
-            | 'textAlignCenter'
-            | 'textAlignRight'
-            | 'lock'
-            | 'unlock'
-            | 'sendToBack'
-            | 'bringToFront'
-            | 'insertShapeImage'
-            | 'editShapeImage'
-            | 'deleteShapeImage'
-            | 'connectorLineType'
-            | 'connectorLineStart'
-            | 'connectorLineEnd'
-            | 'layoutTreeTopToBottom'
-            | 'layoutTreeBottomToTop'
-            | 'layoutTreeLeftToRight'
-            | 'layoutTreeRightToLeft'
-            | 'layoutLayeredTopToBottom'
-            | 'layoutLayeredBottomToTop'
-            | 'layoutLayeredLeftToRight'
-            | 'layoutLayeredRightToLeft'
-            | 'fullScreen'
-            | 'zoomLevel'
-            | 'showGrid'
-            | 'snapToGrid'
-            | 'gridSize'
-            | 'units'
-            | 'pageSize'
-            | 'pageOrientation'
-            | 'pageColor'
-            | 'simpleView'
-            | 'toolbox'
-          >;
-          /**
-           * [descr:dxDiagramOptions.propertiesPanel.tabs.groups.title]
-           */
-          title?: string;
-        }>;
-        /**
-         * [descr:dxDiagramOptions.propertiesPanel.tabs.title]
-         */
-        title?: string;
-      }>;
-      /**
-       * [descr:dxDiagramOptions.propertiesPanel.visibility]
-       */
-      visibility?: 'auto' | 'visible' | 'collapsed' | 'disabled';
-    };
-    /**
-     * [descr:dxDiagramOptions.readOnly]
-     */
-    readOnly?: boolean;
-    /**
-     * [descr:dxDiagramOptions.showGrid]
-     */
-    showGrid?: boolean;
-    /**
-     * [descr:dxDiagramOptions.simpleView]
-     */
-    simpleView?: boolean;
-    /**
-     * [descr:dxDiagramOptions.useNativeScrolling]
-     */
-    useNativeScrolling?: boolean;
-    /**
-     * [descr:dxDiagramOptions.snapToGrid]
-     */
-    snapToGrid?: boolean;
-    /**
-     * [descr:dxDiagramOptions.mainToolbar]
-     */
-    mainToolbar?: {
-      /**
-       * [descr:dxDiagramOptions.mainToolbar.commands]
-       */
-      commands?: Array<
-        | 'separator'
-        | 'exportSvg'
-        | 'exportPng'
-        | 'exportJpg'
-        | 'undo'
-        | 'redo'
-        | 'cut'
-        | 'copy'
-        | 'paste'
-        | 'selectAll'
-        | 'delete'
-        | 'fontName'
-        | 'fontSize'
-        | 'bold'
-        | 'italic'
-        | 'underline'
-        | 'fontColor'
-        | 'lineStyle'
-        | 'lineWidth'
-        | 'lineColor'
-        | 'fillColor'
-        | 'textAlignLeft'
-        | 'textAlignCenter'
-        | 'textAlignRight'
-        | 'lock'
-        | 'unlock'
-        | 'sendToBack'
-        | 'bringToFront'
-        | 'insertShapeImage'
-        | 'editShapeImage'
-        | 'deleteShapeImage'
-        | 'connectorLineType'
-        | 'connectorLineStart'
-        | 'connectorLineEnd'
-        | 'layoutTreeTopToBottom'
-        | 'layoutTreeBottomToTop'
-        | 'layoutTreeLeftToRight'
-        | 'layoutTreeRightToLeft'
-        | 'layoutLayeredTopToBottom'
-        | 'layoutLayeredBottomToTop'
-        | 'layoutLayeredLeftToRight'
-        | 'layoutLayeredRightToLeft'
-        | 'fullScreen'
-        | 'zoomLevel'
-        | 'showGrid'
-        | 'snapToGrid'
-        | 'gridSize'
-        | 'units'
-        | 'pageSize'
-        | 'pageOrientation'
-        | 'pageColor'
-        | 'simpleView'
-        | 'toolbox'
-      >;
-      /**
-       * [descr:dxDiagramOptions.mainToolbar.visible]
-       */
-      visible?: boolean;
-    };
-    /**
-     * [descr:dxDiagramOptions.historyToolbar]
-     */
-    historyToolbar?: {
-      /**
-       * [descr:dxDiagramOptions.historyToolbar.commands]
-       */
-      commands?: Array<
-        | 'separator'
-        | 'exportSvg'
-        | 'exportPng'
-        | 'exportJpg'
-        | 'undo'
-        | 'redo'
-        | 'cut'
-        | 'copy'
-        | 'paste'
-        | 'selectAll'
-        | 'delete'
-        | 'fontName'
-        | 'fontSize'
-        | 'bold'
-        | 'italic'
-        | 'underline'
-        | 'fontColor'
-        | 'lineStyle'
-        | 'lineWidth'
-        | 'lineColor'
-        | 'fillColor'
-        | 'textAlignLeft'
-        | 'textAlignCenter'
-        | 'textAlignRight'
-        | 'lock'
-        | 'unlock'
-        | 'sendToBack'
-        | 'bringToFront'
-        | 'insertShapeImage'
-        | 'editShapeImage'
-        | 'deleteShapeImage'
-        | 'connectorLineType'
-        | 'connectorLineStart'
-        | 'connectorLineEnd'
-        | 'layoutTreeTopToBottom'
-        | 'layoutTreeBottomToTop'
-        | 'layoutTreeLeftToRight'
-        | 'layoutTreeRightToLeft'
-        | 'layoutLayeredTopToBottom'
-        | 'layoutLayeredBottomToTop'
-        | 'layoutLayeredLeftToRight'
-        | 'layoutLayeredRightToLeft'
-        | 'fullScreen'
-        | 'zoomLevel'
-        | 'showGrid'
-        | 'snapToGrid'
-        | 'gridSize'
-        | 'units'
-        | 'pageSize'
-        | 'pageOrientation'
-        | 'pageColor'
-        | 'simpleView'
-        | 'toolbox'
-      >;
-      /**
-       * [descr:dxDiagramOptions.historyToolbar.visible]
-       */
-      visible?: boolean;
-    };
-    /**
-     * [descr:dxDiagramOptions.viewToolbar]
-     */
-    viewToolbar?: {
-      /**
-       * [descr:dxDiagramOptions.viewToolbar.commands]
-       */
-      commands?: Array<
-        | 'separator'
-        | 'exportSvg'
-        | 'exportPng'
-        | 'exportJpg'
-        | 'undo'
-        | 'redo'
-        | 'cut'
-        | 'copy'
-        | 'paste'
-        | 'selectAll'
-        | 'delete'
-        | 'fontName'
-        | 'fontSize'
-        | 'bold'
-        | 'italic'
-        | 'underline'
-        | 'fontColor'
-        | 'lineStyle'
-        | 'lineWidth'
-        | 'lineColor'
-        | 'fillColor'
-        | 'textAlignLeft'
-        | 'textAlignCenter'
-        | 'textAlignRight'
-        | 'lock'
-        | 'unlock'
-        | 'sendToBack'
-        | 'bringToFront'
-        | 'insertShapeImage'
-        | 'editShapeImage'
-        | 'deleteShapeImage'
-        | 'connectorLineType'
-        | 'connectorLineStart'
-        | 'connectorLineEnd'
-        | 'layoutTreeTopToBottom'
-        | 'layoutTreeBottomToTop'
-        | 'layoutTreeLeftToRight'
-        | 'layoutTreeRightToLeft'
-        | 'layoutLayeredTopToBottom'
-        | 'layoutLayeredBottomToTop'
-        | 'layoutLayeredLeftToRight'
-        | 'layoutLayeredRightToLeft'
-        | 'fullScreen'
-        | 'zoomLevel'
-        | 'showGrid'
-        | 'snapToGrid'
-        | 'gridSize'
-        | 'units'
-        | 'pageSize'
-        | 'pageOrientation'
-        | 'pageColor'
-        | 'simpleView'
-        | 'toolbox'
-      >;
-      /**
-       * [descr:dxDiagramOptions.viewToolbar.visible]
-       */
-      visible?: boolean;
-    };
-    /**
-     * [descr:dxDiagramOptions.toolbox]
-     */
-    toolbox?: {
-      /**
-       * [descr:dxDiagramOptions.toolbox.groups]
-       */
-      groups?:
-        | Array<{
-            /**
-             * [descr:dxDiagramOptions.toolbox.groups.category]
-             */
-            category?:
-              | 'general'
-              | 'flowchart'
-              | 'orgChart'
-              | 'containers'
-              | 'custom'
-              | string;
-            /**
-             * [descr:dxDiagramOptions.toolbox.groups.displayMode]
-             */
-            displayMode?: 'icons' | 'texts';
-            /**
-             * [descr:dxDiagramOptions.toolbox.groups.expanded]
-             */
-            expanded?: boolean;
-            /**
-             * [descr:dxDiagramOptions.toolbox.groups.shapes]
-             */
-            shapes?:
-              | Array<
-                  | 'text'
-                  | 'rectangle'
-                  | 'ellipse'
-                  | 'cross'
-                  | 'triangle'
-                  | 'diamond'
-                  | 'heart'
-                  | 'pentagon'
-                  | 'hexagon'
-                  | 'octagon'
-                  | 'star'
-                  | 'arrowLeft'
-                  | 'arrowTop'
-                  | 'arrowRight'
-                  | 'arrowBottom'
-                  | 'arrowNorthSouth'
-                  | 'arrowEastWest'
-                  | 'process'
-                  | 'decision'
-                  | 'terminator'
-                  | 'predefinedProcess'
-                  | 'document'
-                  | 'multipleDocuments'
-                  | 'manualInput'
-                  | 'preparation'
-                  | 'data'
-                  | 'database'
-                  | 'hardDisk'
-                  | 'internalStorage'
-                  | 'paperTape'
-                  | 'manualOperation'
-                  | 'delay'
-                  | 'storedData'
-                  | 'display'
-                  | 'merge'
-                  | 'connector'
-                  | 'or'
-                  | 'summingJunction'
-                  | 'verticalContainer'
-                  | 'horizontalContainer'
-                  | 'cardWithImageOnLeft'
-                  | 'cardWithImageOnTop'
-                  | 'cardWithImageOnRight'
-                >
-              | Array<string>;
-            /**
-             * [descr:dxDiagramOptions.toolbox.groups.title]
-             */
-            title?: string;
-          }>
-        | Array<'general' | 'flowchart' | 'orgChart' | 'containers' | 'custom'>;
-      /**
-       * [descr:dxDiagramOptions.toolbox.shapeIconsPerRow]
-       */
-      shapeIconsPerRow?: number;
-      /**
-       * [descr:dxDiagramOptions.toolbox.showSearch]
-       */
-      showSearch?: boolean;
-      /**
-       * [descr:dxDiagramOptions.toolbox.visibility]
-       */
-      visibility?: 'auto' | 'visible' | 'collapsed' | 'disabled';
-      /**
-       * [descr:dxDiagramOptions.toolbox.width]
-       */
-      width?: number;
-    };
-    /**
-     * [descr:dxDiagramOptions.units]
-     */
-    units?: 'in' | 'cm' | 'px';
-    /**
-     * [descr:dxDiagramOptions.viewUnits]
-     */
-    viewUnits?: 'in' | 'cm' | 'px';
-    /**
-     * [descr:dxDiagramOptions.zoomLevel]
-     */
-    zoomLevel?:
-      | number
-      | {
-          /**
-           * [descr:dxDiagramOptions.zoomLevel.items]
-           */
-          items?: Array<number>;
-          /**
-           * [descr:dxDiagramOptions.zoomLevel.value]
-           */
-          value?: number;
-        };
   }
   /**
    * [descr:dxDiagramResizeShapeArgs]
@@ -10538,7 +10273,7 @@ declare module DevExpress.ui {
    * [descr:dxDraggable]
    */
   export class dxDraggable
-    extends DOMComponent<dxDraggableOptions>
+    extends DOMComponent<DevExpress.ui.dxDraggable.Properties>
     implements DraggableBase {}
   module dxDraggable {
     export type DisposingEvent = DevExpress.events.EventInfo<dxDraggable>;
@@ -10574,44 +10309,41 @@ declare module DevExpress.ui {
       DevExpress.events.InitializedEventInfo<dxDraggable>;
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxDraggable> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxDraggableOptions;
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxDraggableOptions
-    extends DraggableBaseOptions<dxDraggable> {
     /**
-     * [descr:dxDraggableOptions.clone]
+     * [descr:Properties]
      */
-    clone?: boolean;
-    /**
-     * [descr:dxDraggableOptions.dragTemplate]
-     */
-    dragTemplate?:
-      | DevExpress.core.template
-      | ((
-          dragInfo: DevExpress.ui.dxDraggable.DragTemplateData,
-          containerElement: DevExpress.core.DxElement
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxDraggableOptions.onDragEnd]
-     */
-    onDragEnd?: (e: DevExpress.ui.dxDraggable.DragEndEvent) => void;
-    /**
-     * [descr:dxDraggableOptions.onDragMove]
-     */
-    onDragMove?: (e: DevExpress.ui.dxDraggable.DragMoveEvent) => void;
-    /**
-     * [descr:dxDraggableOptions.onDragStart]
-     */
-    onDragStart?: (e: DevExpress.ui.dxDraggable.DragStartEvent) => void;
+    export interface Properties extends DraggableBaseOptions<dxDraggable> {
+      /**
+       * [descr:Properties.clone]
+       */
+      clone?: boolean;
+      /**
+       * [descr:Properties.dragTemplate]
+       */
+      dragTemplate?:
+        | DevExpress.core.template
+        | ((
+            dragInfo: DragTemplateData,
+            containerElement: DevExpress.core.DxElement
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.onDragEnd]
+       */
+      onDragEnd?: (e: DragEndEvent) => void;
+      /**
+       * [descr:Properties.onDragMove]
+       */
+      onDragMove?: (e: DragMoveEvent) => void;
+      /**
+       * [descr:Properties.onDragStart]
+       */
+      onDragStart?: (e: DragStartEvent) => void;
+    }
   }
   /**
    * [descr:dxDrawer]
    */
-  export class dxDrawer extends Widget<dxDrawerOptions> {
+  export class dxDrawer extends Widget<DevExpress.ui.dxDrawer.Properties> {
     /**
      * [descr:dxDrawer.content()]
      */
@@ -10635,71 +10367,69 @@ declare module DevExpress.ui {
       DevExpress.events.InitializedEventInfo<dxDrawer>;
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxDrawer> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxDrawerOptions;
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxDrawerOptions extends WidgetOptions<dxDrawer> {
     /**
-     * [descr:dxDrawerOptions.animationDuration]
+     * [descr:Properties]
      */
-    animationDuration?: number;
-    /**
-     * [descr:dxDrawerOptions.animationEnabled]
-     */
-    animationEnabled?: boolean;
-    /**
-     * [descr:dxDrawerOptions.closeOnOutsideClick]
-     */
-    closeOnOutsideClick?:
-      | boolean
-      | ((event: DevExpress.events.DxEvent) => boolean);
-    /**
-     * [descr:dxDrawerOptions.maxSize]
-     */
-    maxSize?: number;
-    /**
-     * [descr:dxDrawerOptions.minSize]
-     */
-    minSize?: number;
-    /**
-     * [descr:dxDrawerOptions.opened]
-     */
-    opened?: boolean;
-    /**
-     * [descr:dxDrawerOptions.openedStateMode]
-     */
-    openedStateMode?: 'overlap' | 'shrink' | 'push';
-    /**
-     * [descr:dxDrawerOptions.position]
-     */
-    position?: 'left' | 'right' | 'top' | 'bottom' | 'before' | 'after';
-    /**
-     * [descr:dxDrawerOptions.revealMode]
-     */
-    revealMode?: 'slide' | 'expand';
-    /**
-     * [descr:dxDrawerOptions.shading]
-     */
-    shading?: boolean;
-    /**
-     * [descr:dxDrawerOptions.target]
-     * @deprecated [depNote:dxDrawerOptions.target]
-     */
-    target?: string | DevExpress.core.UserDefinedElement;
-    /**
-     * [descr:dxDrawerOptions.template]
-     */
-    template?:
-      | DevExpress.core.template
-      | ((Element: DevExpress.core.DxElement) => any);
+    export interface Properties extends WidgetOptions<dxDrawer> {
+      /**
+       * [descr:Properties.animationDuration]
+       */
+      animationDuration?: number;
+      /**
+       * [descr:Properties.animationEnabled]
+       */
+      animationEnabled?: boolean;
+      /**
+       * [descr:Properties.closeOnOutsideClick]
+       */
+      closeOnOutsideClick?:
+        | boolean
+        | ((event: DevExpress.events.DxEvent) => boolean);
+      /**
+       * [descr:Properties.maxSize]
+       */
+      maxSize?: number;
+      /**
+       * [descr:Properties.minSize]
+       */
+      minSize?: number;
+      /**
+       * [descr:Properties.opened]
+       */
+      opened?: boolean;
+      /**
+       * [descr:Properties.openedStateMode]
+       */
+      openedStateMode?: 'overlap' | 'shrink' | 'push';
+      /**
+       * [descr:Properties.position]
+       */
+      position?: 'left' | 'right' | 'top' | 'bottom' | 'before' | 'after';
+      /**
+       * [descr:Properties.revealMode]
+       */
+      revealMode?: 'slide' | 'expand';
+      /**
+       * [descr:Properties.shading]
+       */
+      shading?: boolean;
+      /**
+       * [descr:Properties.target]
+       * @deprecated [depNote:Properties.target]
+       */
+      target?: string | DevExpress.core.UserDefinedElement;
+      /**
+       * [descr:Properties.template]
+       */
+      template?:
+        | DevExpress.core.template
+        | ((Element: DevExpress.core.DxElement) => any);
+    }
   }
   /**
    * [descr:dxDropDownBox]
    */
-  export class dxDropDownBox extends dxDropDownEditor<dxDropDownBoxOptions> {
+  export class dxDropDownBox extends dxDropDownEditor<DevExpress.ui.dxDropDownBox.Properties> {
     getDataSource(): DevExpress.data.DataSource;
   }
   module dxDropDownBox {
@@ -10731,70 +10461,68 @@ declare module DevExpress.ui {
       DevExpress.events.EventInfo<dxDropDownBox> &
         DevExpress.events.ChangedOptionInfo;
     export type PasteEvent = DevExpress.events.NativeEventInfo<dxDropDownBox>;
-    export type Properties = dxDropDownBoxOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties
+      extends DataExpressionMixinOptions<dxDropDownBox>,
+        dxDropDownEditorOptions<dxDropDownBox> {
+      /**
+       * [descr:Properties.acceptCustomValue]
+       */
+      acceptCustomValue?: boolean;
+      /**
+       * [descr:Properties.contentTemplate]
+       */
+      contentTemplate?:
+        | DevExpress.core.template
+        | ((
+            templateData: ContentTemplateData,
+            contentElement: DevExpress.core.DxElement
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.dataSource]
+       */
+      dataSource?: DevExpress.data.DataSource.DataSourceLike<any>;
+      /**
+       * [descr:Properties.displayValueFormatter]
+       */
+      displayValueFormatter?: (value: string | Array<any>) => string;
+      /**
+       * [descr:Properties.fieldTemplate]
+       */
+      fieldTemplate?:
+        | DevExpress.core.template
+        | ((
+            value: any,
+            fieldElement: DevExpress.core.DxElement
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.items]
+       */
+      items?: Array<any>;
+      /**
+       * [descr:Properties.openOnFieldClick]
+       */
+      openOnFieldClick?: boolean;
+      /**
+       * [descr:Properties.valueChangeEvent]
+       */
+      valueChangeEvent?: string;
+
+      /**
+       * [descr:Properties.dropDownOptions]
+       */
+      dropDownOptions?: DevExpress.ui.dxPopup.Properties;
+    }
     export type ValueChangedEvent =
       DevExpress.events.NativeEventInfo<dxDropDownBox> &
         DevExpress.ui.Editor.ValueChangedInfo;
   }
   /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxDropDownBoxOptions
-    extends DataExpressionMixinOptions<dxDropDownBox>,
-      dxDropDownEditorOptions<dxDropDownBox> {
-    /**
-     * [descr:dxDropDownBoxOptions.acceptCustomValue]
-     */
-    acceptCustomValue?: boolean;
-    /**
-     * [descr:dxDropDownBoxOptions.contentTemplate]
-     */
-    contentTemplate?:
-      | DevExpress.core.template
-      | ((
-          templateData: DevExpress.ui.dxDropDownBox.ContentTemplateData,
-          contentElement: DevExpress.core.DxElement
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxDropDownBoxOptions.dataSource]
-     */
-    dataSource?: DevExpress.data.DataSource.DataSourceLike<any>;
-    /**
-     * [descr:dxDropDownBoxOptions.displayValueFormatter]
-     */
-    displayValueFormatter?: (value: string | Array<any>) => string;
-    /**
-     * [descr:dxDropDownBoxOptions.fieldTemplate]
-     */
-    fieldTemplate?:
-      | DevExpress.core.template
-      | ((
-          value: any,
-          fieldElement: DevExpress.core.DxElement
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxDropDownBoxOptions.items]
-     */
-    items?: Array<any>;
-    /**
-     * [descr:dxDropDownBoxOptions.openOnFieldClick]
-     */
-    openOnFieldClick?: boolean;
-    /**
-     * [descr:dxDropDownBoxOptions.valueChangeEvent]
-     */
-    valueChangeEvent?: string;
-
-    /**
-     * [descr:dxDropDownBoxOptions.dropDownOptions]
-     */
-    dropDownOptions?: DevExpress.ui.dxPopup.Properties;
-  }
-  /**
    * [descr:dxDropDownButton]
    */
-  export class dxDropDownButton extends Widget<dxDropDownButtonOptions> {
+  export class dxDropDownButton extends Widget<DevExpress.ui.dxDropDownButton.Properties> {
     /**
      * [descr:dxDropDownButton.close()]
      */
@@ -10831,150 +10559,127 @@ declare module DevExpress.ui {
     export type OptionChangedEvent =
       DevExpress.events.EventInfo<dxDropDownButton> &
         DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxDropDownButtonOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends WidgetOptions<dxDropDownButton> {
+      /**
+       * [descr:Properties.dataSource]
+       */
+      dataSource?: DevExpress.data.DataSource.DataSourceLike<Item | any>;
+      /**
+       * [descr:Properties.deferRendering]
+       */
+      deferRendering?: boolean;
+      /**
+       * [descr:Properties.displayExpr]
+       */
+      displayExpr?: string | ((itemData: any) => string);
+      /**
+       * [descr:Properties.dropDownContentTemplate]
+       */
+      dropDownContentTemplate?:
+        | DevExpress.core.template
+        | ((
+            data: Array<string | number | any> | DevExpress.data.DataSource,
+            contentElement: DevExpress.core.DxElement
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.dropDownOptions]
+       */
+      dropDownOptions?: DevExpress.ui.dxPopup.Properties;
+      /**
+       * [descr:Properties.focusStateEnabled]
+       */
+      focusStateEnabled?: boolean;
+      /**
+       * [descr:Properties.hoverStateEnabled]
+       */
+      hoverStateEnabled?: boolean;
+      /**
+       * [descr:Properties.icon]
+       */
+      icon?: string;
+      /**
+       * [descr:Properties.itemTemplate]
+       */
+      itemTemplate?:
+        | DevExpress.core.template
+        | ((
+            itemData: any,
+            itemIndex: number,
+            itemElement: DevExpress.core.DxElement
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.items]
+       */
+      items?: Array<Item | any>;
+      /**
+       * [descr:Properties.keyExpr]
+       */
+      keyExpr?: string;
+      /**
+       * [descr:Properties.noDataText]
+       */
+      noDataText?: string;
+      /**
+       * [descr:Properties.onButtonClick]
+       */
+      onButtonClick?: ((e: ButtonClickEvent) => void) | string;
+      /**
+       * [descr:Properties.onItemClick]
+       */
+      onItemClick?: ((e: ItemClickEvent) => void) | string;
+      /**
+       * [descr:Properties.onSelectionChanged]
+       */
+      onSelectionChanged?: ((e: SelectionChangedEvent) => void) | string;
+      /**
+       * [descr:Properties.opened]
+       */
+      opened?: boolean;
+      /**
+       * [descr:Properties.selectedItem]
+       */
+      selectedItem?: string | number | any;
+      /**
+       * [descr:Properties.selectedItemKey]
+       */
+      selectedItemKey?: string | number;
+      /**
+       * [descr:Properties.showArrowIcon]
+       */
+      showArrowIcon?: boolean;
+      /**
+       * [descr:Properties.splitButton]
+       */
+      splitButton?: boolean;
+      /**
+       * [descr:Properties.stylingMode]
+       */
+      stylingMode?: 'text' | 'outlined' | 'contained';
+      /**
+       * [descr:Properties.text]
+       */
+      text?: string;
+      /**
+       * [descr:Properties.useSelectMode]
+       */
+      useSelectMode?: boolean;
+      /**
+       * [descr:Properties.wrapItemText]
+       */
+      wrapItemText?: boolean;
+      /**
+       * [descr:Properties.useItemTextAsTitle]
+       */
+      useItemTextAsTitle?: boolean;
+    }
     export type SelectionChangedEvent =
       DevExpress.events.NativeEventInfo<dxDropDownButton> & {
         readonly item: any;
         readonly previousItem: any;
       };
-  }
-  /**
-   * @deprecated Use Item instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxDropDownButtonItem extends DevExpress.ui.dxList.Item {
-    /**
-     * [descr:dxDropDownButtonItem.onClick]
-     */
-    onClick?:
-      | ((e: DevExpress.ui.dxDropDownButton.ItemClickEvent) => void)
-      | string;
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxDropDownButtonOptions
-    extends WidgetOptions<dxDropDownButton> {
-    /**
-     * [descr:dxDropDownButtonOptions.dataSource]
-     */
-    dataSource?: DevExpress.data.DataSource.DataSourceLike<
-      DevExpress.ui.dxDropDownButton.Item | any
-    >;
-    /**
-     * [descr:dxDropDownButtonOptions.deferRendering]
-     */
-    deferRendering?: boolean;
-    /**
-     * [descr:dxDropDownButtonOptions.displayExpr]
-     */
-    displayExpr?: string | ((itemData: any) => string);
-    /**
-     * [descr:dxDropDownButtonOptions.dropDownContentTemplate]
-     */
-    dropDownContentTemplate?:
-      | DevExpress.core.template
-      | ((
-          data: Array<string | number | any> | DevExpress.data.DataSource,
-          contentElement: DevExpress.core.DxElement
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxDropDownButtonOptions.dropDownOptions]
-     */
-    dropDownOptions?: DevExpress.ui.dxPopup.Properties;
-    /**
-     * [descr:dxDropDownButtonOptions.focusStateEnabled]
-     */
-    focusStateEnabled?: boolean;
-    /**
-     * [descr:dxDropDownButtonOptions.hoverStateEnabled]
-     */
-    hoverStateEnabled?: boolean;
-    /**
-     * [descr:dxDropDownButtonOptions.icon]
-     */
-    icon?: string;
-    /**
-     * [descr:dxDropDownButtonOptions.itemTemplate]
-     */
-    itemTemplate?:
-      | DevExpress.core.template
-      | ((
-          itemData: any,
-          itemIndex: number,
-          itemElement: DevExpress.core.DxElement
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxDropDownButtonOptions.items]
-     */
-    items?: Array<DevExpress.ui.dxDropDownButton.Item | any>;
-    /**
-     * [descr:dxDropDownButtonOptions.keyExpr]
-     */
-    keyExpr?: string;
-    /**
-     * [descr:dxDropDownButtonOptions.noDataText]
-     */
-    noDataText?: string;
-    /**
-     * [descr:dxDropDownButtonOptions.onButtonClick]
-     */
-    onButtonClick?:
-      | ((e: DevExpress.ui.dxDropDownButton.ButtonClickEvent) => void)
-      | string;
-    /**
-     * [descr:dxDropDownButtonOptions.onItemClick]
-     */
-    onItemClick?:
-      | ((e: DevExpress.ui.dxDropDownButton.ItemClickEvent) => void)
-      | string;
-    /**
-     * [descr:dxDropDownButtonOptions.onSelectionChanged]
-     */
-    onSelectionChanged?:
-      | ((e: DevExpress.ui.dxDropDownButton.SelectionChangedEvent) => void)
-      | string;
-    /**
-     * [descr:dxDropDownButtonOptions.opened]
-     */
-    opened?: boolean;
-    /**
-     * [descr:dxDropDownButtonOptions.selectedItem]
-     */
-    selectedItem?: string | number | any;
-    /**
-     * [descr:dxDropDownButtonOptions.selectedItemKey]
-     */
-    selectedItemKey?: string | number;
-    /**
-     * [descr:dxDropDownButtonOptions.showArrowIcon]
-     */
-    showArrowIcon?: boolean;
-    /**
-     * [descr:dxDropDownButtonOptions.splitButton]
-     */
-    splitButton?: boolean;
-    /**
-     * [descr:dxDropDownButtonOptions.stylingMode]
-     */
-    stylingMode?: 'text' | 'outlined' | 'contained';
-    /**
-     * [descr:dxDropDownButtonOptions.text]
-     */
-    text?: string;
-    /**
-     * [descr:dxDropDownButtonOptions.useSelectMode]
-     */
-    useSelectMode?: boolean;
-    /**
-     * [descr:dxDropDownButtonOptions.wrapItemText]
-     */
-    wrapItemText?: boolean;
-    /**
-     * [descr:dxDropDownButtonOptions.useItemTextAsTitle]
-     */
-    useItemTextAsTitle?: boolean;
   }
   /**
    * [descr:dxDropDownEditor]
@@ -11011,7 +10716,7 @@ declare module DevExpress.ui {
    * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
    */
   export interface dxDropDownEditorOptions<TComponent>
-    extends dxTextBoxOptions<TComponent> {
+    extends DevExpress.ui.dxTextBox.Properties<TComponent> {
     /**
      * [descr:dxDropDownEditorOptions.acceptCustomValue]
      */
@@ -11186,7 +10891,7 @@ declare module DevExpress.ui {
   /**
    * [descr:dxFileManager]
    */
-  export class dxFileManager extends Widget<dxFileManagerOptions> {
+  export class dxFileManager extends Widget<DevExpress.ui.dxFileManager.Properties> {
     /**
      * [descr:dxFileManager.getCurrentDirectory()]
      */
@@ -11312,7 +11017,232 @@ declare module DevExpress.ui {
     export type OptionChangedEvent =
       DevExpress.events.EventInfo<dxFileManager> &
         DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxFileManagerOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends WidgetOptions<dxFileManager> {
+      /**
+       * [descr:Properties.allowedFileExtensions]
+       */
+      allowedFileExtensions?: Array<string>;
+      /**
+       * [descr:Properties.contextMenu]
+       */
+      contextMenu?: dxFileManagerContextMenu;
+      /**
+       * [descr:Properties.currentPath]
+       */
+      currentPath?: string;
+      /**
+       * [descr:Properties.currentPathKeys]
+       */
+      currentPathKeys?: Array<string>;
+      /**
+       * [descr:Properties.customizeDetailColumns]
+       */
+      customizeDetailColumns?: (
+        columns: Array<dxFileManagerDetailsColumn>
+      ) => Array<dxFileManagerDetailsColumn>;
+      /**
+       * [descr:Properties.customizeThumbnail]
+       */
+      customizeThumbnail?: (
+        fileSystemItem: DevExpress.fileManagement.FileSystemItem
+      ) => string;
+      /**
+       * [descr:Properties.fileSystemProvider]
+       */
+      fileSystemProvider?: any;
+      /**
+       * [descr:Properties.itemView]
+       */
+      itemView?: {
+        /**
+         * [descr:Properties.itemView.details]
+         */
+        details?: {
+          /**
+           * [descr:Properties.itemView.details.columns]
+           */
+          columns?: Array<dxFileManagerDetailsColumn | string>;
+        };
+        /**
+         * [descr:Properties.itemView.mode]
+         */
+        mode?: 'details' | 'thumbnails';
+        /**
+         * [descr:Properties.itemView.showFolders]
+         */
+        showFolders?: boolean;
+        /**
+         * [descr:Properties.itemView.showParentFolder]
+         */
+        showParentFolder?: boolean;
+      };
+      /**
+       * [descr:Properties.notifications]
+       */
+      notifications?: {
+        /**
+         * [descr:Properties.notifications.showPanel]
+         */
+        showPanel?: boolean;
+        /**
+         * [descr:Properties.notifications.showPopup]
+         */
+        showPopup?: boolean;
+      };
+      /**
+       * [descr:Properties.onContextMenuItemClick]
+       */
+      onContextMenuItemClick?: (e: ContextMenuItemClickEvent) => void;
+      /**
+       * [descr:Properties.onContextMenuShowing]
+       */
+      onContextMenuShowing?: (e: ContextMenuShowingEvent) => void;
+      /**
+       * [descr:Properties.onCurrentDirectoryChanged]
+       */
+      onCurrentDirectoryChanged?: (e: CurrentDirectoryChangedEvent) => void;
+      /**
+       * [descr:Properties.onSelectedFileOpened]
+       */
+      onSelectedFileOpened?: (e: SelectedFileOpenedEvent) => void;
+      /**
+       * [descr:Properties.onSelectionChanged]
+       */
+      onSelectionChanged?: (e: SelectionChangedEvent) => void;
+      /**
+       * [descr:Properties.onToolbarItemClick]
+       */
+      onToolbarItemClick?: (e: ToolbarItemClickEvent) => void;
+      /**
+       * [descr:Properties.onFocusedItemChanged]
+       */
+      onFocusedItemChanged?: (e: FocusedItemChangedEvent) => void;
+      /**
+       * [descr:Properties.onErrorOccurred]
+       */
+      onErrorOccurred?: (e: ErrorOccurredEvent) => void;
+      /**
+       * [descr:Properties.onDirectoryCreating]
+       */
+      onDirectoryCreating?: (e: DirectoryCreatingEvent) => void;
+      /**
+       * [descr:Properties.onDirectoryCreated]
+       */
+      onDirectoryCreated?: (e: DirectoryCreatedEvent) => void;
+      /**
+       * [descr:Properties.onItemRenaming]
+       */
+      onItemRenaming?: (e: ItemRenamingEvent) => void;
+      /**
+       * [descr:Properties.onItemRenamed]
+       */
+      onItemRenamed?: (e: ItemRenamedEvent) => void;
+      /**
+       * [descr:Properties.onItemMoving]
+       */
+      onItemMoving?: (e: ItemMovingEvent) => void;
+      /**
+       * [descr:Properties.onItemMoved]
+       */
+      onItemMoved?: (e: ItemMovedEvent) => void;
+      /**
+       * [descr:Properties.onItemCopying]
+       */
+      onItemCopying?: (e: ItemCopyingEvent) => void;
+      /**
+       * [descr:Properties.onItemCopied]
+       */
+      onItemCopied?: (e: ItemCopiedEvent) => void;
+      /**
+       * [descr:Properties.onItemDeleting]
+       */
+      onItemDeleting?: (e: ItemDeletingEvent) => void;
+      /**
+       * [descr:Properties.onItemDeleted]
+       */
+      onItemDeleted?: (e: ItemDeletedEvent) => void;
+      /**
+       * [descr:Properties.onFileUploading]
+       */
+      onFileUploading?: (e: FileUploadingEvent) => void;
+      /**
+       * [descr:Properties.onFileUploaded]
+       */
+      onFileUploaded?: (e: FileUploadedEvent) => void;
+      /**
+       * [descr:Properties.onItemDownloading]
+       */
+      onItemDownloading?: (e: ItemDownloadingEvent) => void;
+      /**
+       * [descr:Properties.permissions]
+       */
+      permissions?: {
+        /**
+         * [descr:Properties.permissions.copy]
+         */
+        copy?: boolean;
+        /**
+         * [descr:Properties.permissions.create]
+         */
+        create?: boolean;
+        /**
+         * [descr:Properties.permissions.download]
+         */
+        download?: boolean;
+        /**
+         * [descr:Properties.permissions.move]
+         */
+        move?: boolean;
+        /**
+         * [descr:Properties.permissions.delete]
+         */
+        delete?: boolean;
+        /**
+         * [descr:Properties.permissions.rename]
+         */
+        rename?: boolean;
+        /**
+         * [descr:Properties.permissions.upload]
+         */
+        upload?: boolean;
+      };
+      /**
+       * [descr:Properties.rootFolderName]
+       */
+      rootFolderName?: string;
+      /**
+       * [descr:Properties.selectionMode]
+       */
+      selectionMode?: 'multiple' | 'single';
+      /**
+       * [descr:Properties.selectedItemKeys]
+       */
+      selectedItemKeys?: Array<string>;
+      /**
+       * [descr:Properties.focusedItemKey]
+       */
+      focusedItemKey?: string;
+      /**
+       * [descr:Properties.toolbar]
+       */
+      toolbar?: dxFileManagerToolbar;
+      /**
+       * [descr:Properties.upload]
+       */
+      upload?: {
+        /**
+         * [descr:Properties.upload.maxFileSize]
+         */
+        maxFileSize?: number;
+        /**
+         * [descr:Properties.upload.chunkSize]
+         */
+        chunkSize?: number;
+      };
+    }
     export type SelectedFileOpenedEvent =
       DevExpress.events.EventInfo<dxFileManager> & {
         readonly file: DevExpress.fileManagement.FileSystemItem;
@@ -11350,40 +11280,6 @@ declare module DevExpress.ui {
       | 'rename'
       | 'delete'
     >;
-  }
-  /**
-   * @deprecated Use DevExpress.ui.dxFileManager.ContextMenuItem instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxFileManagerContextMenuItem
-    extends DevExpress.ui.dxContextMenu.Item {
-    /**
-     * [descr:dxFileManagerContextMenuItem.items]
-     */
-    items?: Array<DevExpress.ui.dxFileManager.ContextMenuItem>;
-    /**
-     * [descr:dxFileManagerContextMenuItem.name]
-     */
-    name?:
-      | 'create'
-      | 'upload'
-      | 'refresh'
-      | 'download'
-      | 'move'
-      | 'copy'
-      | 'rename'
-      | 'delete'
-      | string;
-    /**
-     * [descr:dxFileManagerContextMenuItem.visible]
-     */
-    visible?: boolean;
-    /**
-     * [descr:dxFileManagerContextMenuItem.template]
-     */
-    template?:
-      | DevExpress.core.template
-      | (() => string | DevExpress.core.UserDefinedElement);
   }
   /**
    * [descr:dxFileManagerDetailsColumn]
@@ -11436,257 +11332,6 @@ declare module DevExpress.ui {
     width?: number | string;
   }
   /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxFileManagerOptions extends WidgetOptions<dxFileManager> {
-    /**
-     * [descr:dxFileManagerOptions.allowedFileExtensions]
-     */
-    allowedFileExtensions?: Array<string>;
-    /**
-     * [descr:dxFileManagerOptions.contextMenu]
-     */
-    contextMenu?: dxFileManagerContextMenu;
-    /**
-     * [descr:dxFileManagerOptions.currentPath]
-     */
-    currentPath?: string;
-    /**
-     * [descr:dxFileManagerOptions.currentPathKeys]
-     */
-    currentPathKeys?: Array<string>;
-    /**
-     * [descr:dxFileManagerOptions.customizeDetailColumns]
-     */
-    customizeDetailColumns?: (
-      columns: Array<dxFileManagerDetailsColumn>
-    ) => Array<dxFileManagerDetailsColumn>;
-    /**
-     * [descr:dxFileManagerOptions.customizeThumbnail]
-     */
-    customizeThumbnail?: (
-      fileSystemItem: DevExpress.fileManagement.FileSystemItem
-    ) => string;
-    /**
-     * [descr:dxFileManagerOptions.fileSystemProvider]
-     */
-    fileSystemProvider?: any;
-    /**
-     * [descr:dxFileManagerOptions.itemView]
-     */
-    itemView?: {
-      /**
-       * [descr:dxFileManagerOptions.itemView.details]
-       */
-      details?: {
-        /**
-         * [descr:dxFileManagerOptions.itemView.details.columns]
-         */
-        columns?: Array<dxFileManagerDetailsColumn | string>;
-      };
-      /**
-       * [descr:dxFileManagerOptions.itemView.mode]
-       */
-      mode?: 'details' | 'thumbnails';
-      /**
-       * [descr:dxFileManagerOptions.itemView.showFolders]
-       */
-      showFolders?: boolean;
-      /**
-       * [descr:dxFileManagerOptions.itemView.showParentFolder]
-       */
-      showParentFolder?: boolean;
-    };
-    /**
-     * [descr:dxFileManagerOptions.notifications]
-     */
-    notifications?: {
-      /**
-       * [descr:dxFileManagerOptions.notifications.showPanel]
-       */
-      showPanel?: boolean;
-      /**
-       * [descr:dxFileManagerOptions.notifications.showPopup]
-       */
-      showPopup?: boolean;
-    };
-    /**
-     * [descr:dxFileManagerOptions.onContextMenuItemClick]
-     */
-    onContextMenuItemClick?: (
-      e: DevExpress.ui.dxFileManager.ContextMenuItemClickEvent
-    ) => void;
-    /**
-     * [descr:dxFileManagerOptions.onContextMenuShowing]
-     */
-    onContextMenuShowing?: (
-      e: DevExpress.ui.dxFileManager.ContextMenuShowingEvent
-    ) => void;
-    /**
-     * [descr:dxFileManagerOptions.onCurrentDirectoryChanged]
-     */
-    onCurrentDirectoryChanged?: (
-      e: DevExpress.ui.dxFileManager.CurrentDirectoryChangedEvent
-    ) => void;
-    /**
-     * [descr:dxFileManagerOptions.onSelectedFileOpened]
-     */
-    onSelectedFileOpened?: (
-      e: DevExpress.ui.dxFileManager.SelectedFileOpenedEvent
-    ) => void;
-    /**
-     * [descr:dxFileManagerOptions.onSelectionChanged]
-     */
-    onSelectionChanged?: (
-      e: DevExpress.ui.dxFileManager.SelectionChangedEvent
-    ) => void;
-    /**
-     * [descr:dxFileManagerOptions.onToolbarItemClick]
-     */
-    onToolbarItemClick?: (
-      e: DevExpress.ui.dxFileManager.ToolbarItemClickEvent
-    ) => void;
-    /**
-     * [descr:dxFileManagerOptions.onFocusedItemChanged]
-     */
-    onFocusedItemChanged?: (
-      e: DevExpress.ui.dxFileManager.FocusedItemChangedEvent
-    ) => void;
-    /**
-     * [descr:dxFileManagerOptions.onErrorOccurred]
-     */
-    onErrorOccurred?: (
-      e: DevExpress.ui.dxFileManager.ErrorOccurredEvent
-    ) => void;
-    /**
-     * [descr:dxFileManagerOptions.onDirectoryCreating]
-     */
-    onDirectoryCreating?: (
-      e: DevExpress.ui.dxFileManager.DirectoryCreatingEvent
-    ) => void;
-    /**
-     * [descr:dxFileManagerOptions.onDirectoryCreated]
-     */
-    onDirectoryCreated?: (
-      e: DevExpress.ui.dxFileManager.DirectoryCreatedEvent
-    ) => void;
-    /**
-     * [descr:dxFileManagerOptions.onItemRenaming]
-     */
-    onItemRenaming?: (e: DevExpress.ui.dxFileManager.ItemRenamingEvent) => void;
-    /**
-     * [descr:dxFileManagerOptions.onItemRenamed]
-     */
-    onItemRenamed?: (e: DevExpress.ui.dxFileManager.ItemRenamedEvent) => void;
-    /**
-     * [descr:dxFileManagerOptions.onItemMoving]
-     */
-    onItemMoving?: (e: DevExpress.ui.dxFileManager.ItemMovingEvent) => void;
-    /**
-     * [descr:dxFileManagerOptions.onItemMoved]
-     */
-    onItemMoved?: (e: DevExpress.ui.dxFileManager.ItemMovedEvent) => void;
-    /**
-     * [descr:dxFileManagerOptions.onItemCopying]
-     */
-    onItemCopying?: (e: DevExpress.ui.dxFileManager.ItemCopyingEvent) => void;
-    /**
-     * [descr:dxFileManagerOptions.onItemCopied]
-     */
-    onItemCopied?: (e: DevExpress.ui.dxFileManager.ItemCopiedEvent) => void;
-    /**
-     * [descr:dxFileManagerOptions.onItemDeleting]
-     */
-    onItemDeleting?: (e: DevExpress.ui.dxFileManager.ItemDeletingEvent) => void;
-    /**
-     * [descr:dxFileManagerOptions.onItemDeleted]
-     */
-    onItemDeleted?: (e: DevExpress.ui.dxFileManager.ItemDeletedEvent) => void;
-    /**
-     * [descr:dxFileManagerOptions.onFileUploading]
-     */
-    onFileUploading?: (
-      e: DevExpress.ui.dxFileManager.FileUploadingEvent
-    ) => void;
-    /**
-     * [descr:dxFileManagerOptions.onFileUploaded]
-     */
-    onFileUploaded?: (e: DevExpress.ui.dxFileManager.FileUploadedEvent) => void;
-    /**
-     * [descr:dxFileManagerOptions.onItemDownloading]
-     */
-    onItemDownloading?: (
-      e: DevExpress.ui.dxFileManager.ItemDownloadingEvent
-    ) => void;
-    /**
-     * [descr:dxFileManagerOptions.permissions]
-     */
-    permissions?: {
-      /**
-       * [descr:dxFileManagerOptions.permissions.copy]
-       */
-      copy?: boolean;
-      /**
-       * [descr:dxFileManagerOptions.permissions.create]
-       */
-      create?: boolean;
-      /**
-       * [descr:dxFileManagerOptions.permissions.download]
-       */
-      download?: boolean;
-      /**
-       * [descr:dxFileManagerOptions.permissions.move]
-       */
-      move?: boolean;
-      /**
-       * [descr:dxFileManagerOptions.permissions.delete]
-       */
-      delete?: boolean;
-      /**
-       * [descr:dxFileManagerOptions.permissions.rename]
-       */
-      rename?: boolean;
-      /**
-       * [descr:dxFileManagerOptions.permissions.upload]
-       */
-      upload?: boolean;
-    };
-    /**
-     * [descr:dxFileManagerOptions.rootFolderName]
-     */
-    rootFolderName?: string;
-    /**
-     * [descr:dxFileManagerOptions.selectionMode]
-     */
-    selectionMode?: 'multiple' | 'single';
-    /**
-     * [descr:dxFileManagerOptions.selectedItemKeys]
-     */
-    selectedItemKeys?: Array<string>;
-    /**
-     * [descr:dxFileManagerOptions.focusedItemKey]
-     */
-    focusedItemKey?: string;
-    /**
-     * [descr:dxFileManagerOptions.toolbar]
-     */
-    toolbar?: dxFileManagerToolbar;
-    /**
-     * [descr:dxFileManagerOptions.upload]
-     */
-    upload?: {
-      /**
-       * [descr:dxFileManagerOptions.upload.maxFileSize]
-       */
-      maxFileSize?: number;
-      /**
-       * [descr:dxFileManagerOptions.upload.chunkSize]
-       */
-      chunkSize?: number;
-    };
-  }
-  /**
    * [descr:dxFileManagerToolbar]
    * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
    */
@@ -11729,61 +11374,9 @@ declare module DevExpress.ui {
     >;
   }
   /**
-   * @deprecated Use ToolbarItem instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxFileManagerToolbarItem
-    extends DevExpress.ui.dxToolbar.Item {
-    /**
-     * [descr:dxFileManagerToolbarItem.icon]
-     */
-    icon?: string;
-    /**
-     * [descr:dxFileManagerToolbarItem.location]
-     */
-    location?: 'after' | 'before' | 'center';
-    /**
-     * [descr:dxFileManagerToolbarItem.name]
-     */
-    name?:
-      | 'showNavPane'
-      | 'create'
-      | 'upload'
-      | 'refresh'
-      | 'switchView'
-      | 'download'
-      | 'move'
-      | 'copy'
-      | 'rename'
-      | 'delete'
-      | 'clearSelection'
-      | 'separator'
-      | string;
-    /**
-     * [descr:dxFileManagerToolbarItem.visible]
-     */
-    visible?: boolean;
-    /**
-     * [descr:dxFileManagerToolbarItem.html]
-     */
-    html?: string;
-    /**
-     * [descr:dxFileManagerToolbarItem.template]
-     */
-    template?:
-      | DevExpress.core.template
-      | (() => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxFileManagerToolbarItem.menuItemTemplate]
-     */
-    menuItemTemplate?:
-      | DevExpress.core.template
-      | (() => string | DevExpress.core.UserDefinedElement);
-  }
-  /**
    * [descr:dxFileUploader]
    */
-  export class dxFileUploader extends Editor<dxFileUploaderOptions> {
+  export class dxFileUploader extends Editor<DevExpress.ui.dxFileUploader.Properties> {
     /**
      * [descr:dxFileUploader.upload()]
      */
@@ -11849,7 +11442,196 @@ declare module DevExpress.ui {
         readonly bytesTotal: number;
         readonly request: XMLHttpRequest;
       };
-    export type Properties = dxFileUploaderOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends EditorOptions<dxFileUploader> {
+      /**
+       * [descr:Properties.abortUpload]
+       */
+      abortUpload?: (
+        file: File,
+        uploadInfo?: DevExpress.fileManagement.UploadInfo
+      ) => PromiseLike<any> | any;
+      /**
+       * [descr:Properties.accept]
+       */
+      accept?: string;
+      /**
+       * [descr:Properties.allowCanceling]
+       */
+      allowCanceling?: boolean;
+      /**
+       * [descr:Properties.allowedFileExtensions]
+       */
+      allowedFileExtensions?: Array<string>;
+      /**
+       * [descr:Properties.chunkSize]
+       */
+      chunkSize?: number;
+      /**
+       * [descr:Properties.focusStateEnabled]
+       */
+      focusStateEnabled?: boolean;
+      /**
+       * [descr:Properties.hoverStateEnabled]
+       */
+      hoverStateEnabled?: boolean;
+      /**
+       * [descr:Properties.invalidFileExtensionMessage]
+       */
+      invalidFileExtensionMessage?: string;
+      /**
+       * [descr:Properties.invalidMaxFileSizeMessage]
+       */
+      invalidMaxFileSizeMessage?: string;
+      /**
+       * [descr:Properties.invalidMinFileSizeMessage]
+       */
+      invalidMinFileSizeMessage?: string;
+      /**
+       * [descr:Properties.inputAttr]
+       */
+      inputAttr?: any;
+      /**
+       * [descr:Properties.labelText]
+       */
+      labelText?: string;
+      /**
+       * [descr:Properties.maxFileSize]
+       */
+      maxFileSize?: number;
+      /**
+       * [descr:Properties.minFileSize]
+       */
+      minFileSize?: number;
+      /**
+       * [descr:Properties.multiple]
+       */
+      multiple?: boolean;
+      /**
+       * [descr:Properties.name]
+       */
+      name?: string;
+      /**
+       * [descr:Properties.onBeforeSend]
+       */
+      onBeforeSend?: (e: BeforeSendEvent) => void;
+      /**
+       * [descr:Properties.onDropZoneEnter]
+       */
+      onDropZoneEnter?: (e: DropZoneEnterEvent) => void;
+      /**
+       * [descr:Properties.onDropZoneLeave]
+       */
+      onDropZoneLeave?: (e: DropZoneLeaveEvent) => void;
+      /**
+       * [descr:Properties.onFilesUploaded]
+       */
+      onFilesUploaded?: (e: FilesUploadedEvent) => void;
+      /**
+       * [descr:Properties.onProgress]
+       */
+      onProgress?: (e: ProgressEvent) => void;
+      /**
+       * [descr:Properties.onUploadAborted]
+       */
+      onUploadAborted?: (e: UploadAbortedEvent) => void;
+      /**
+       * [descr:Properties.onUploadError]
+       */
+      onUploadError?: (e: UploadErrorEvent) => void;
+      /**
+       * [descr:Properties.onUploadStarted]
+       */
+      onUploadStarted?: (e: UploadStartedEvent) => void;
+      /**
+       * [descr:Properties.onUploaded]
+       */
+      onUploaded?: (e: UploadedEvent) => void;
+      /**
+       * [descr:Properties.onValueChanged]
+       */
+      onValueChanged?: (e: ValueChangedEvent) => void;
+      /**
+       * [descr:Properties.progress]
+       */
+      progress?: number;
+      /**
+       * [descr:Properties.readyToUploadMessage]
+       */
+      readyToUploadMessage?: string;
+      /**
+       * [descr:Properties.selectButtonText]
+       */
+      selectButtonText?: string;
+      /**
+       * [descr:Properties.showFileList]
+       */
+      showFileList?: boolean;
+      /**
+       * [descr:Properties.dialogTrigger]
+       */
+      dialogTrigger?: string | DevExpress.core.UserDefinedElement;
+      /**
+       * [descr:Properties.dropZone]
+       */
+      dropZone?: string | DevExpress.core.UserDefinedElement;
+      /**
+       * [descr:Properties.uploadButtonText]
+       */
+      uploadButtonText?: string;
+      /**
+       * [descr:Properties.uploadChunk]
+       */
+      uploadChunk?: (
+        file: File,
+        uploadInfo: DevExpress.fileManagement.UploadInfo
+      ) => PromiseLike<any> | any;
+      /**
+       * [descr:Properties.uploadFailedMessage]
+       */
+      uploadFailedMessage?: string;
+      /**
+       * [descr:Properties.uploadAbortedMessage]
+       */
+      uploadAbortedMessage?: string;
+      /**
+       * [descr:Properties.uploadFile]
+       */
+      uploadFile?: (
+        file: File,
+        progressCallback: Function
+      ) => PromiseLike<any> | any;
+      /**
+       * [descr:Properties.uploadHeaders]
+       */
+      uploadHeaders?: any;
+      /**
+       * [descr:Properties.uploadCustomData]
+       */
+      uploadCustomData?: any;
+      /**
+       * [descr:Properties.uploadMethod]
+       */
+      uploadMethod?: 'POST' | 'PUT';
+      /**
+       * [descr:Properties.uploadMode]
+       */
+      uploadMode?: 'instantly' | 'useButtons' | 'useForm';
+      /**
+       * [descr:Properties.uploadUrl]
+       */
+      uploadUrl?: string;
+      /**
+       * [descr:Properties.uploadedMessage]
+       */
+      uploadedMessage?: string;
+      /**
+       * [descr:Properties.value]
+       */
+      value?: Array<File>;
+    }
     export type UploadAbortedEvent =
       DevExpress.events.NativeEventInfo<dxFileUploader> & {
         readonly file: File;
@@ -11881,212 +11663,9 @@ declare module DevExpress.ui {
       };
   }
   /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxFileUploaderOptions extends EditorOptions<dxFileUploader> {
-    /**
-     * [descr:dxFileUploaderOptions.abortUpload]
-     */
-    abortUpload?: (
-      file: File,
-      uploadInfo?: DevExpress.fileManagement.UploadInfo
-    ) => PromiseLike<any> | any;
-    /**
-     * [descr:dxFileUploaderOptions.accept]
-     */
-    accept?: string;
-    /**
-     * [descr:dxFileUploaderOptions.allowCanceling]
-     */
-    allowCanceling?: boolean;
-    /**
-     * [descr:dxFileUploaderOptions.allowedFileExtensions]
-     */
-    allowedFileExtensions?: Array<string>;
-    /**
-     * [descr:dxFileUploaderOptions.chunkSize]
-     */
-    chunkSize?: number;
-    /**
-     * [descr:dxFileUploaderOptions.focusStateEnabled]
-     */
-    focusStateEnabled?: boolean;
-    /**
-     * [descr:dxFileUploaderOptions.hoverStateEnabled]
-     */
-    hoverStateEnabled?: boolean;
-    /**
-     * [descr:dxFileUploaderOptions.invalidFileExtensionMessage]
-     */
-    invalidFileExtensionMessage?: string;
-    /**
-     * [descr:dxFileUploaderOptions.invalidMaxFileSizeMessage]
-     */
-    invalidMaxFileSizeMessage?: string;
-    /**
-     * [descr:dxFileUploaderOptions.invalidMinFileSizeMessage]
-     */
-    invalidMinFileSizeMessage?: string;
-    /**
-     * [descr:dxFileUploaderOptions.inputAttr]
-     */
-    inputAttr?: any;
-    /**
-     * [descr:dxFileUploaderOptions.labelText]
-     */
-    labelText?: string;
-    /**
-     * [descr:dxFileUploaderOptions.maxFileSize]
-     */
-    maxFileSize?: number;
-    /**
-     * [descr:dxFileUploaderOptions.minFileSize]
-     */
-    minFileSize?: number;
-    /**
-     * [descr:dxFileUploaderOptions.multiple]
-     */
-    multiple?: boolean;
-    /**
-     * [descr:dxFileUploaderOptions.name]
-     */
-    name?: string;
-    /**
-     * [descr:dxFileUploaderOptions.onBeforeSend]
-     */
-    onBeforeSend?: (e: DevExpress.ui.dxFileUploader.BeforeSendEvent) => void;
-    /**
-     * [descr:dxFileUploaderOptions.onDropZoneEnter]
-     */
-    onDropZoneEnter?: (
-      e: DevExpress.ui.dxFileUploader.DropZoneEnterEvent
-    ) => void;
-    /**
-     * [descr:dxFileUploaderOptions.onDropZoneLeave]
-     */
-    onDropZoneLeave?: (
-      e: DevExpress.ui.dxFileUploader.DropZoneLeaveEvent
-    ) => void;
-    /**
-     * [descr:dxFileUploaderOptions.onFilesUploaded]
-     */
-    onFilesUploaded?: (
-      e: DevExpress.ui.dxFileUploader.FilesUploadedEvent
-    ) => void;
-    /**
-     * [descr:dxFileUploaderOptions.onProgress]
-     */
-    onProgress?: (e: DevExpress.ui.dxFileUploader.ProgressEvent) => void;
-    /**
-     * [descr:dxFileUploaderOptions.onUploadAborted]
-     */
-    onUploadAborted?: (
-      e: DevExpress.ui.dxFileUploader.UploadAbortedEvent
-    ) => void;
-    /**
-     * [descr:dxFileUploaderOptions.onUploadError]
-     */
-    onUploadError?: (e: DevExpress.ui.dxFileUploader.UploadErrorEvent) => void;
-    /**
-     * [descr:dxFileUploaderOptions.onUploadStarted]
-     */
-    onUploadStarted?: (
-      e: DevExpress.ui.dxFileUploader.UploadStartedEvent
-    ) => void;
-    /**
-     * [descr:dxFileUploaderOptions.onUploaded]
-     */
-    onUploaded?: (e: DevExpress.ui.dxFileUploader.UploadedEvent) => void;
-    /**
-     * [descr:dxFileUploaderOptions.onValueChanged]
-     */
-    onValueChanged?: (
-      e: DevExpress.ui.dxFileUploader.ValueChangedEvent
-    ) => void;
-    /**
-     * [descr:dxFileUploaderOptions.progress]
-     */
-    progress?: number;
-    /**
-     * [descr:dxFileUploaderOptions.readyToUploadMessage]
-     */
-    readyToUploadMessage?: string;
-    /**
-     * [descr:dxFileUploaderOptions.selectButtonText]
-     */
-    selectButtonText?: string;
-    /**
-     * [descr:dxFileUploaderOptions.showFileList]
-     */
-    showFileList?: boolean;
-    /**
-     * [descr:dxFileUploaderOptions.dialogTrigger]
-     */
-    dialogTrigger?: string | DevExpress.core.UserDefinedElement;
-    /**
-     * [descr:dxFileUploaderOptions.dropZone]
-     */
-    dropZone?: string | DevExpress.core.UserDefinedElement;
-    /**
-     * [descr:dxFileUploaderOptions.uploadButtonText]
-     */
-    uploadButtonText?: string;
-    /**
-     * [descr:dxFileUploaderOptions.uploadChunk]
-     */
-    uploadChunk?: (
-      file: File,
-      uploadInfo: DevExpress.fileManagement.UploadInfo
-    ) => PromiseLike<any> | any;
-    /**
-     * [descr:dxFileUploaderOptions.uploadFailedMessage]
-     */
-    uploadFailedMessage?: string;
-    /**
-     * [descr:dxFileUploaderOptions.uploadAbortedMessage]
-     */
-    uploadAbortedMessage?: string;
-    /**
-     * [descr:dxFileUploaderOptions.uploadFile]
-     */
-    uploadFile?: (
-      file: File,
-      progressCallback: Function
-    ) => PromiseLike<any> | any;
-    /**
-     * [descr:dxFileUploaderOptions.uploadHeaders]
-     */
-    uploadHeaders?: any;
-    /**
-     * [descr:dxFileUploaderOptions.uploadCustomData]
-     */
-    uploadCustomData?: any;
-    /**
-     * [descr:dxFileUploaderOptions.uploadMethod]
-     */
-    uploadMethod?: 'POST' | 'PUT';
-    /**
-     * [descr:dxFileUploaderOptions.uploadMode]
-     */
-    uploadMode?: 'instantly' | 'useButtons' | 'useForm';
-    /**
-     * [descr:dxFileUploaderOptions.uploadUrl]
-     */
-    uploadUrl?: string;
-    /**
-     * [descr:dxFileUploaderOptions.uploadedMessage]
-     */
-    uploadedMessage?: string;
-    /**
-     * [descr:dxFileUploaderOptions.value]
-     */
-    value?: Array<File>;
-  }
-  /**
    * [descr:dxFilterBuilder]
    */
-  export class dxFilterBuilder extends Widget<dxFilterBuilderOptions> {
+  export class dxFilterBuilder extends Widget<DevExpress.ui.dxFilterBuilder.Properties> {
     /**
      * [descr:dxFilterBuilder.getFilterExpression()]
      */
@@ -12148,7 +11727,125 @@ declare module DevExpress.ui {
     export type OptionChangedEvent =
       DevExpress.events.EventInfo<dxFilterBuilder> &
         DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxFilterBuilderOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends WidgetOptions<dxFilterBuilder> {
+      /**
+       * [descr:Properties.allowHierarchicalFields]
+       */
+      allowHierarchicalFields?: boolean;
+      /**
+       * [descr:Properties.customOperations]
+       */
+      customOperations?: Array<dxFilterBuilderCustomOperation>;
+      /**
+       * [descr:Properties.fields]
+       */
+      fields?: Array<dxFilterBuilderField>;
+      /**
+       * [descr:Properties.filterOperationDescriptions]
+       */
+      filterOperationDescriptions?: {
+        /**
+         * [descr:Properties.filterOperationDescriptions.between]
+         */
+        between?: string;
+        /**
+         * [descr:Properties.filterOperationDescriptions.contains]
+         */
+        contains?: string;
+        /**
+         * [descr:Properties.filterOperationDescriptions.endsWith]
+         */
+        endsWith?: string;
+        /**
+         * [descr:Properties.filterOperationDescriptions.equal]
+         */
+        equal?: string;
+        /**
+         * [descr:Properties.filterOperationDescriptions.greaterThan]
+         */
+        greaterThan?: string;
+        /**
+         * [descr:Properties.filterOperationDescriptions.greaterThanOrEqual]
+         */
+        greaterThanOrEqual?: string;
+        /**
+         * [descr:Properties.filterOperationDescriptions.isBlank]
+         */
+        isBlank?: string;
+        /**
+         * [descr:Properties.filterOperationDescriptions.isNotBlank]
+         */
+        isNotBlank?: string;
+        /**
+         * [descr:Properties.filterOperationDescriptions.lessThan]
+         */
+        lessThan?: string;
+        /**
+         * [descr:Properties.filterOperationDescriptions.lessThanOrEqual]
+         */
+        lessThanOrEqual?: string;
+        /**
+         * [descr:Properties.filterOperationDescriptions.notContains]
+         */
+        notContains?: string;
+        /**
+         * [descr:Properties.filterOperationDescriptions.notEqual]
+         */
+        notEqual?: string;
+        /**
+         * [descr:Properties.filterOperationDescriptions.startsWith]
+         */
+        startsWith?: string;
+      };
+      /**
+       * [descr:Properties.groupOperationDescriptions]
+       */
+      groupOperationDescriptions?: {
+        /**
+         * [descr:Properties.groupOperationDescriptions.and]
+         */
+        and?: string;
+        /**
+         * [descr:Properties.groupOperationDescriptions.notAnd]
+         */
+        notAnd?: string;
+        /**
+         * [descr:Properties.groupOperationDescriptions.notOr]
+         */
+        notOr?: string;
+        /**
+         * [descr:Properties.groupOperationDescriptions.or]
+         */
+        or?: string;
+      };
+      /**
+       * [descr:Properties.groupOperations]
+       */
+      groupOperations?: Array<'and' | 'or' | 'notAnd' | 'notOr'>;
+      /**
+       * [descr:Properties.maxGroupLevel]
+       */
+      maxGroupLevel?: number;
+      /**
+       * [descr:Properties.onEditorPrepared]
+       */
+      onEditorPrepared?: (e: EditorPreparedEvent) => void;
+      /**
+       * [descr:Properties.onEditorPreparing]
+       */
+      onEditorPreparing?: (e: EditorPreparingEvent) => void;
+      /**
+       * [descr:Properties.onValueChanged]
+       */
+      onValueChanged?: (e: ValueChangedEvent) => void;
+      /**
+       * [descr:Properties.value]
+       */
+      value?: string | Array<any> | Function;
+    }
     export type ValueChangedEvent =
       DevExpress.events.EventInfo<dxFilterBuilder> & {
         readonly value?: any;
@@ -12309,136 +12006,9 @@ declare module DevExpress.ui {
     trueText?: string;
   }
   /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxFilterBuilderOptions
-    extends WidgetOptions<dxFilterBuilder> {
-    /**
-     * [descr:dxFilterBuilderOptions.allowHierarchicalFields]
-     */
-    allowHierarchicalFields?: boolean;
-    /**
-     * [descr:dxFilterBuilderOptions.customOperations]
-     */
-    customOperations?: Array<dxFilterBuilderCustomOperation>;
-    /**
-     * [descr:dxFilterBuilderOptions.fields]
-     */
-    fields?: Array<dxFilterBuilderField>;
-    /**
-     * [descr:dxFilterBuilderOptions.filterOperationDescriptions]
-     */
-    filterOperationDescriptions?: {
-      /**
-       * [descr:dxFilterBuilderOptions.filterOperationDescriptions.between]
-       */
-      between?: string;
-      /**
-       * [descr:dxFilterBuilderOptions.filterOperationDescriptions.contains]
-       */
-      contains?: string;
-      /**
-       * [descr:dxFilterBuilderOptions.filterOperationDescriptions.endsWith]
-       */
-      endsWith?: string;
-      /**
-       * [descr:dxFilterBuilderOptions.filterOperationDescriptions.equal]
-       */
-      equal?: string;
-      /**
-       * [descr:dxFilterBuilderOptions.filterOperationDescriptions.greaterThan]
-       */
-      greaterThan?: string;
-      /**
-       * [descr:dxFilterBuilderOptions.filterOperationDescriptions.greaterThanOrEqual]
-       */
-      greaterThanOrEqual?: string;
-      /**
-       * [descr:dxFilterBuilderOptions.filterOperationDescriptions.isBlank]
-       */
-      isBlank?: string;
-      /**
-       * [descr:dxFilterBuilderOptions.filterOperationDescriptions.isNotBlank]
-       */
-      isNotBlank?: string;
-      /**
-       * [descr:dxFilterBuilderOptions.filterOperationDescriptions.lessThan]
-       */
-      lessThan?: string;
-      /**
-       * [descr:dxFilterBuilderOptions.filterOperationDescriptions.lessThanOrEqual]
-       */
-      lessThanOrEqual?: string;
-      /**
-       * [descr:dxFilterBuilderOptions.filterOperationDescriptions.notContains]
-       */
-      notContains?: string;
-      /**
-       * [descr:dxFilterBuilderOptions.filterOperationDescriptions.notEqual]
-       */
-      notEqual?: string;
-      /**
-       * [descr:dxFilterBuilderOptions.filterOperationDescriptions.startsWith]
-       */
-      startsWith?: string;
-    };
-    /**
-     * [descr:dxFilterBuilderOptions.groupOperationDescriptions]
-     */
-    groupOperationDescriptions?: {
-      /**
-       * [descr:dxFilterBuilderOptions.groupOperationDescriptions.and]
-       */
-      and?: string;
-      /**
-       * [descr:dxFilterBuilderOptions.groupOperationDescriptions.notAnd]
-       */
-      notAnd?: string;
-      /**
-       * [descr:dxFilterBuilderOptions.groupOperationDescriptions.notOr]
-       */
-      notOr?: string;
-      /**
-       * [descr:dxFilterBuilderOptions.groupOperationDescriptions.or]
-       */
-      or?: string;
-    };
-    /**
-     * [descr:dxFilterBuilderOptions.groupOperations]
-     */
-    groupOperations?: Array<'and' | 'or' | 'notAnd' | 'notOr'>;
-    /**
-     * [descr:dxFilterBuilderOptions.maxGroupLevel]
-     */
-    maxGroupLevel?: number;
-    /**
-     * [descr:dxFilterBuilderOptions.onEditorPrepared]
-     */
-    onEditorPrepared?: (
-      e: DevExpress.ui.dxFilterBuilder.EditorPreparedEvent
-    ) => void;
-    /**
-     * [descr:dxFilterBuilderOptions.onEditorPreparing]
-     */
-    onEditorPreparing?: (
-      e: DevExpress.ui.dxFilterBuilder.EditorPreparingEvent
-    ) => void;
-    /**
-     * [descr:dxFilterBuilderOptions.onValueChanged]
-     */
-    onValueChanged?: (
-      e: DevExpress.ui.dxFilterBuilder.ValueChangedEvent
-    ) => void;
-    /**
-     * [descr:dxFilterBuilderOptions.value]
-     */
-    value?: string | Array<any> | Function;
-  }
-  /**
    * [descr:dxForm]
    */
-  export class dxForm extends Widget<dxFormOptions> {
+  export class dxForm extends Widget<DevExpress.ui.dxForm.Properties> {
     /**
      * [descr:dxForm.getButton(name)]
      */
@@ -12498,7 +12068,103 @@ declare module DevExpress.ui {
       DevExpress.events.InitializedEventInfo<dxForm>;
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxForm> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxFormOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends WidgetOptions<dxForm> {
+      /**
+       * [descr:Properties.alignItemLabels]
+       */
+      alignItemLabels?: boolean;
+      /**
+       * [descr:Properties.alignItemLabelsInAllGroups]
+       */
+      alignItemLabelsInAllGroups?: boolean;
+      /**
+       * [descr:Properties.colCount]
+       */
+      colCount?: number | 'auto';
+      /**
+       * [descr:Properties.colCountByScreen]
+       */
+      colCountByScreen?: any;
+      /**
+       * [descr:Properties.customizeItem]
+       */
+      customizeItem?: (item: Item) => void;
+      /**
+       * [descr:Properties.formData]
+       */
+      formData?: any;
+      /**
+       * [descr:Properties.items]
+       */
+      items?: Array<Item>;
+      /**
+       * [descr:Properties.labelLocation]
+       */
+      labelLocation?: 'left' | 'right' | 'top';
+      /**
+       * [descr:Properties.labelMode]
+       */
+      labelMode?: 'outside' | 'floating' | 'static' | 'hidden';
+      /**
+       * [descr:Properties.minColWidth]
+       */
+      minColWidth?: number;
+      /**
+       * [descr:Properties.onEditorEnterKey]
+       */
+      onEditorEnterKey?: (e: EditorEnterKeyEvent) => void;
+      /**
+       * [descr:Properties.onFieldDataChanged]
+       */
+      onFieldDataChanged?: (e: FieldDataChangedEvent) => void;
+      /**
+       * [descr:Properties.optionalMark]
+       */
+      optionalMark?: string;
+      /**
+       * [descr:Properties.readOnly]
+       */
+      readOnly?: boolean;
+      /**
+       * [descr:Properties.requiredMark]
+       */
+      requiredMark?: string;
+      /**
+       * [descr:Properties.requiredMessage]
+       */
+      requiredMessage?: string;
+      /**
+       * [descr:Properties.screenByWidth]
+       */
+      screenByWidth?: Function;
+      /**
+       * [descr:Properties.scrollingEnabled]
+       */
+      scrollingEnabled?: boolean;
+      /**
+       * [descr:Properties.showColonAfterLabel]
+       */
+      showColonAfterLabel?: boolean;
+      /**
+       * [descr:Properties.showOptionalMark]
+       */
+      showOptionalMark?: boolean;
+      /**
+       * [descr:Properties.showRequiredMark]
+       */
+      showRequiredMark?: boolean;
+      /**
+       * [descr:Properties.showValidationSummary]
+       */
+      showValidationSummary?: boolean;
+      /**
+       * [descr:Properties.validationGroup]
+       */
+      validationGroup?: string;
+    }
     export type SimpleItemTemplateData = {
       readonly component: dxForm;
       readonly dataField?: string;
@@ -12508,446 +12174,9 @@ declare module DevExpress.ui {
     };
   }
   /**
-   * @deprecated Use ButtonItem instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxFormButtonItem {
-    /**
-     * [descr:dxFormButtonItem.buttonOptions]
-     */
-    buttonOptions?: dxButtonOptions;
-    /**
-     * [descr:dxFormButtonItem.colSpan]
-     */
-    colSpan?: number;
-    /**
-     * [descr:dxFormButtonItem.cssClass]
-     */
-    cssClass?: string;
-    /**
-     * [descr:dxFormButtonItem.horizontalAlignment]
-     */
-    horizontalAlignment?: 'center' | 'left' | 'right';
-    /**
-     * [descr:dxFormButtonItem.itemType]
-     */
-    itemType?: 'empty' | 'group' | 'simple' | 'tabbed' | 'button';
-    /**
-     * [descr:dxFormButtonItem.name]
-     */
-    name?: string;
-    /**
-     * [descr:dxFormButtonItem.verticalAlignment]
-     */
-    verticalAlignment?: 'bottom' | 'center' | 'top';
-    /**
-     * [descr:dxFormButtonItem.visible]
-     */
-    visible?: boolean;
-    /**
-     * [descr:dxFormButtonItem.visibleIndex]
-     */
-    visibleIndex?: number;
-  }
-  /**
-   * @deprecated Use EmptyItem instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxFormEmptyItem {
-    /**
-     * [descr:dxFormEmptyItem.colSpan]
-     */
-    colSpan?: number;
-    /**
-     * [descr:dxFormEmptyItem.cssClass]
-     */
-    cssClass?: string;
-    /**
-     * [descr:dxFormEmptyItem.itemType]
-     */
-    itemType?: 'empty' | 'group' | 'simple' | 'tabbed' | 'button';
-    /**
-     * [descr:dxFormEmptyItem.name]
-     */
-    name?: string;
-    /**
-     * [descr:dxFormEmptyItem.visible]
-     */
-    visible?: boolean;
-    /**
-     * [descr:dxFormEmptyItem.visibleIndex]
-     */
-    visibleIndex?: number;
-  }
-  /**
-   * @deprecated Use GroupItem instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxFormGroupItem {
-    /**
-     * [descr:dxFormGroupItem.alignItemLabels]
-     */
-    alignItemLabels?: boolean;
-    /**
-     * [descr:dxFormGroupItem.caption]
-     */
-    caption?: string;
-    /**
-     * [descr:dxFormGroupItem.colCount]
-     */
-    colCount?: number;
-    /**
-     * [descr:dxFormGroupItem.colCountByScreen]
-     */
-    colCountByScreen?: any;
-    /**
-     * [descr:dxFormGroupItem.colSpan]
-     */
-    colSpan?: number;
-    /**
-     * [descr:dxFormGroupItem.cssClass]
-     */
-    cssClass?: string;
-    /**
-     * [descr:dxFormGroupItem.itemType]
-     */
-    itemType?: 'empty' | 'group' | 'simple' | 'tabbed' | 'button';
-    /**
-     * [descr:dxFormGroupItem.items]
-     */
-    items?: Array<DevExpress.ui.dxForm.Item>;
-    /**
-     * [descr:dxFormGroupItem.name]
-     */
-    name?: string;
-    /**
-     * [descr:dxFormGroupItem.template]
-     */
-    template?:
-      | DevExpress.core.template
-      | ((
-          data: DevExpress.ui.dxForm.GroupItemTemplateData,
-          itemElement: DevExpress.core.DxElement
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxFormGroupItem.visible]
-     */
-    visible?: boolean;
-    /**
-     * [descr:dxFormGroupItem.visibleIndex]
-     */
-    visibleIndex?: number;
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxFormOptions extends WidgetOptions<dxForm> {
-    /**
-     * [descr:dxFormOptions.alignItemLabels]
-     */
-    alignItemLabels?: boolean;
-    /**
-     * [descr:dxFormOptions.alignItemLabelsInAllGroups]
-     */
-    alignItemLabelsInAllGroups?: boolean;
-    /**
-     * [descr:dxFormOptions.colCount]
-     */
-    colCount?: number | 'auto';
-    /**
-     * [descr:dxFormOptions.colCountByScreen]
-     */
-    colCountByScreen?: any;
-    /**
-     * [descr:dxFormOptions.customizeItem]
-     */
-    customizeItem?: (item: DevExpress.ui.dxForm.Item) => void;
-    /**
-     * [descr:dxFormOptions.formData]
-     */
-    formData?: any;
-    /**
-     * [descr:dxFormOptions.items]
-     */
-    items?: Array<DevExpress.ui.dxForm.Item>;
-    /**
-     * [descr:dxFormOptions.labelLocation]
-     */
-    labelLocation?: 'left' | 'right' | 'top';
-    /**
-     * [descr:dxFormOptions.labelMode]
-     */
-    labelMode?: 'outside' | 'floating' | 'static' | 'hidden';
-    /**
-     * [descr:dxFormOptions.minColWidth]
-     */
-    minColWidth?: number;
-    /**
-     * [descr:dxFormOptions.onEditorEnterKey]
-     */
-    onEditorEnterKey?: (e: DevExpress.ui.dxForm.EditorEnterKeyEvent) => void;
-    /**
-     * [descr:dxFormOptions.onFieldDataChanged]
-     */
-    onFieldDataChanged?: (
-      e: DevExpress.ui.dxForm.FieldDataChangedEvent
-    ) => void;
-    /**
-     * [descr:dxFormOptions.optionalMark]
-     */
-    optionalMark?: string;
-    /**
-     * [descr:dxFormOptions.readOnly]
-     */
-    readOnly?: boolean;
-    /**
-     * [descr:dxFormOptions.requiredMark]
-     */
-    requiredMark?: string;
-    /**
-     * [descr:dxFormOptions.requiredMessage]
-     */
-    requiredMessage?: string;
-    /**
-     * [descr:dxFormOptions.screenByWidth]
-     */
-    screenByWidth?: Function;
-    /**
-     * [descr:dxFormOptions.scrollingEnabled]
-     */
-    scrollingEnabled?: boolean;
-    /**
-     * [descr:dxFormOptions.showColonAfterLabel]
-     */
-    showColonAfterLabel?: boolean;
-    /**
-     * [descr:dxFormOptions.showOptionalMark]
-     */
-    showOptionalMark?: boolean;
-    /**
-     * [descr:dxFormOptions.showRequiredMark]
-     */
-    showRequiredMark?: boolean;
-    /**
-     * [descr:dxFormOptions.showValidationSummary]
-     */
-    showValidationSummary?: boolean;
-    /**
-     * [descr:dxFormOptions.validationGroup]
-     */
-    validationGroup?: string;
-  }
-  /**
-   * @deprecated Use SimpleItem instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxFormSimpleItem {
-    /**
-     * [descr:dxFormSimpleItem.colSpan]
-     */
-    colSpan?: number;
-    /**
-     * [descr:dxFormSimpleItem.cssClass]
-     */
-    cssClass?: string;
-    /**
-     * [descr:dxFormSimpleItem.dataField]
-     */
-    dataField?: string;
-    /**
-     * [descr:dxFormSimpleItem.editorOptions]
-     */
-    editorOptions?: any;
-    /**
-     * [descr:dxFormSimpleItem.editorType]
-     */
-    editorType?:
-      | 'dxAutocomplete'
-      | 'dxCalendar'
-      | 'dxCheckBox'
-      | 'dxColorBox'
-      | 'dxDateBox'
-      | 'dxDropDownBox'
-      | 'dxHtmlEditor'
-      | 'dxLookup'
-      | 'dxNumberBox'
-      | 'dxRadioGroup'
-      | 'dxRangeSlider'
-      | 'dxSelectBox'
-      | 'dxSlider'
-      | 'dxSwitch'
-      | 'dxTagBox'
-      | 'dxTextArea'
-      | 'dxTextBox';
-    /**
-     * [descr:dxFormSimpleItem.helpText]
-     */
-    helpText?: string;
-    /**
-     * [descr:dxFormSimpleItem.isRequired]
-     */
-    isRequired?: boolean;
-    /**
-     * [descr:dxFormSimpleItem.itemType]
-     */
-    itemType?: 'empty' | 'group' | 'simple' | 'tabbed' | 'button';
-    /**
-     * [descr:dxFormSimpleItem.label]
-     */
-    label?: {
-      /**
-       * [descr:dxFormSimpleItem.label.alignment]
-       */
-      alignment?: 'center' | 'left' | 'right';
-      /**
-       * [descr:dxFormSimpleItem.label.location]
-       */
-      location?: 'left' | 'right' | 'top';
-      /**
-       * [descr:dxFormSimpleItem.label.showColon]
-       */
-      showColon?: boolean;
-      /**
-       * [descr:dxFormSimpleItem.label.text]
-       */
-      text?: string;
-      /**
-       * [descr:dxFormSimpleItem.label.visible]
-       */
-      visible?: boolean;
-    };
-    /**
-     * [descr:dxFormSimpleItem.name]
-     */
-    name?: string;
-    /**
-     * [descr:dxFormSimpleItem.template]
-     */
-    template?:
-      | DevExpress.core.template
-      | ((
-          data: DevExpress.ui.dxForm.SimpleItemTemplateData,
-          itemElement: DevExpress.core.DxElement
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxFormSimpleItem.validationRules]
-     */
-    validationRules?: Array<
-      | RequiredRule
-      | NumericRule
-      | RangeRule
-      | StringLengthRule
-      | CustomRule
-      | CompareRule
-      | PatternRule
-      | EmailRule
-      | AsyncRule
-    >;
-    /**
-     * [descr:dxFormSimpleItem.visible]
-     */
-    visible?: boolean;
-    /**
-     * [descr:dxFormSimpleItem.visibleIndex]
-     */
-    visibleIndex?: number;
-  }
-  /**
-   * @deprecated Use TabbedItem instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxFormTabbedItem {
-    /**
-     * [descr:dxFormTabbedItem.colSpan]
-     */
-    colSpan?: number;
-    /**
-     * [descr:dxFormTabbedItem.cssClass]
-     */
-    cssClass?: string;
-    /**
-     * [descr:dxFormTabbedItem.itemType]
-     */
-    itemType?: 'empty' | 'group' | 'simple' | 'tabbed' | 'button';
-    /**
-     * [descr:dxFormTabbedItem.name]
-     */
-    name?: string;
-    /**
-     * [descr:dxFormTabbedItem.tabPanelOptions]
-     */
-    tabPanelOptions?: dxTabPanelOptions;
-    /**
-     * [descr:dxFormTabbedItem.tabs]
-     */
-    tabs?: Array<{
-      /**
-       * [descr:dxFormTabbedItem.tabs.alignItemLabels]
-       */
-      alignItemLabels?: boolean;
-      /**
-       * [descr:dxFormTabbedItem.tabs.badge]
-       */
-      badge?: string;
-      /**
-       * [descr:dxFormTabbedItem.tabs.colCount]
-       */
-      colCount?: number;
-      /**
-       * [descr:dxFormTabbedItem.tabs.colCountByScreen]
-       */
-      colCountByScreen?: any;
-      /**
-       * [descr:dxFormTabbedItem.tabs.disabled]
-       */
-      disabled?: boolean;
-      /**
-       * [descr:dxFormTabbedItem.tabs.icon]
-       */
-      icon?: string;
-      /**
-       * [descr:dxFormTabbedItem.tabs.items]
-       */
-      items?: Array<DevExpress.ui.dxForm.Item>;
-      /**
-       * [descr:dxFormTabbedItem.tabs.tabTemplate]
-       */
-      tabTemplate?:
-        | DevExpress.core.template
-        | ((
-            tabData: any,
-            tabIndex: number,
-            tabElement: DevExpress.core.DxElement
-          ) => any);
-      /**
-       * [descr:dxFormTabbedItem.tabs.template]
-       */
-      template?:
-        | DevExpress.core.template
-        | ((
-            tabData: any,
-            tabIndex: number,
-            tabElement: DevExpress.core.DxElement
-          ) => any);
-      /**
-       * [descr:dxFormTabbedItem.tabs.title]
-       */
-      title?: string;
-    }>;
-    /**
-     * [descr:dxFormTabbedItem.visible]
-     */
-    visible?: boolean;
-    /**
-     * [descr:dxFormTabbedItem.visibleIndex]
-     */
-    visibleIndex?: number;
-  }
-  /**
    * [descr:dxGallery]
    */
-  export class dxGallery extends CollectionWidget<dxGalleryOptions> {
+  export class dxGallery extends CollectionWidget<DevExpress.ui.dxGallery.Properties> {
     /**
      * [descr:dxGallery.goToItem(itemIndex, animation)]
      */
@@ -12979,100 +12208,84 @@ declare module DevExpress.ui {
       DevExpress.events.NativeEventInfo<dxGallery> & DevExpress.events.ItemInfo;
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxGallery> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxGalleryOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends CollectionWidgetOptions<dxGallery> {
+      /**
+       * [descr:Properties.animationDuration]
+       */
+      animationDuration?: number;
+      /**
+       * [descr:Properties.animationEnabled]
+       */
+      animationEnabled?: boolean;
+      /**
+       * [descr:Properties.dataSource]
+       */
+      dataSource?: DevExpress.data.DataSource.DataSourceLike<
+        string | Item | any
+      >;
+      /**
+       * [descr:Properties.focusStateEnabled]
+       */
+      focusStateEnabled?: boolean;
+      /**
+       * [descr:Properties.indicatorEnabled]
+       */
+      indicatorEnabled?: boolean;
+      /**
+       * [descr:Properties.initialItemWidth]
+       */
+      initialItemWidth?: number;
+      /**
+       * [descr:Properties.items]
+       */
+      items?: Array<string | Item | any>;
+      /**
+       * [descr:Properties.loop]
+       */
+      loop?: boolean;
+      /**
+       * [descr:Properties.noDataText]
+       */
+      noDataText?: string;
+      /**
+       * [descr:Properties.selectedIndex]
+       */
+      selectedIndex?: number;
+      /**
+       * [descr:Properties.showIndicator]
+       */
+      showIndicator?: boolean;
+      /**
+       * [descr:Properties.showNavButtons]
+       */
+      showNavButtons?: boolean;
+      /**
+       * [descr:Properties.slideshowDelay]
+       */
+      slideshowDelay?: number;
+      /**
+       * [descr:Properties.stretchImages]
+       */
+      stretchImages?: boolean;
+      /**
+       * [descr:Properties.swipeEnabled]
+       */
+      swipeEnabled?: boolean;
+      /**
+       * [descr:Properties.wrapAround]
+       */
+      wrapAround?: boolean;
+    }
     export type SelectionChangedEvent = DevExpress.events.EventInfo<dxGallery> &
       DevExpress.ui.CollectionWidget.SelectionChangedInfo;
   }
   /**
-   * @deprecated Use Item instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxGalleryItem extends CollectionWidgetItem {
-    /**
-     * [descr:dxGalleryItem.imageAlt]
-     */
-    imageAlt?: string;
-    /**
-     * [descr:dxGalleryItem.imageSrc]
-     */
-    imageSrc?: string;
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxGalleryOptions extends CollectionWidgetOptions<dxGallery> {
-    /**
-     * [descr:dxGalleryOptions.animationDuration]
-     */
-    animationDuration?: number;
-    /**
-     * [descr:dxGalleryOptions.animationEnabled]
-     */
-    animationEnabled?: boolean;
-    /**
-     * [descr:dxGalleryOptions.dataSource]
-     */
-    dataSource?: DevExpress.data.DataSource.DataSourceLike<
-      string | DevExpress.ui.dxGallery.Item | any
-    >;
-    /**
-     * [descr:dxGalleryOptions.focusStateEnabled]
-     */
-    focusStateEnabled?: boolean;
-    /**
-     * [descr:dxGalleryOptions.indicatorEnabled]
-     */
-    indicatorEnabled?: boolean;
-    /**
-     * [descr:dxGalleryOptions.initialItemWidth]
-     */
-    initialItemWidth?: number;
-    /**
-     * [descr:dxGalleryOptions.items]
-     */
-    items?: Array<string | DevExpress.ui.dxGallery.Item | any>;
-    /**
-     * [descr:dxGalleryOptions.loop]
-     */
-    loop?: boolean;
-    /**
-     * [descr:dxGalleryOptions.noDataText]
-     */
-    noDataText?: string;
-    /**
-     * [descr:dxGalleryOptions.selectedIndex]
-     */
-    selectedIndex?: number;
-    /**
-     * [descr:dxGalleryOptions.showIndicator]
-     */
-    showIndicator?: boolean;
-    /**
-     * [descr:dxGalleryOptions.showNavButtons]
-     */
-    showNavButtons?: boolean;
-    /**
-     * [descr:dxGalleryOptions.slideshowDelay]
-     */
-    slideshowDelay?: number;
-    /**
-     * [descr:dxGalleryOptions.stretchImages]
-     */
-    stretchImages?: boolean;
-    /**
-     * [descr:dxGalleryOptions.swipeEnabled]
-     */
-    swipeEnabled?: boolean;
-    /**
-     * [descr:dxGalleryOptions.wrapAround]
-     */
-    wrapAround?: boolean;
-  }
-  /**
    * [descr:dxGantt]
    */
-  export class dxGantt extends Widget<dxGanttOptions> {
+  export class dxGantt extends Widget<DevExpress.ui.dxGantt.Properties> {
     /**
      * [descr:dxGantt.getTaskData(key)]
      */
@@ -13253,7 +12466,430 @@ declare module DevExpress.ui {
     export type ProgressTooltipTemplateData = {
       readonly progress: number;
     };
-    export type Properties = dxGanttOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends WidgetOptions<dxGantt> {
+      /**
+       * [descr:Properties.allowSelection]
+       */
+      allowSelection?: boolean;
+      /**
+       * [descr:Properties.columns]
+       */
+      columns?: Array<DevExpress.ui.dxTreeList.Column | string>;
+      /**
+       * [descr:Properties.dependencies]
+       */
+      dependencies?: {
+        /**
+         * [descr:Properties.dependencies.dataSource]
+         */
+        dataSource?: DevExpress.data.DataSource.DataSourceLike<any>;
+        /**
+         * [descr:Properties.dependencies.keyExpr]
+         */
+        keyExpr?: string | Function;
+        /**
+         * [descr:Properties.dependencies.predecessorIdExpr]
+         */
+        predecessorIdExpr?: string | Function;
+        /**
+         * [descr:Properties.dependencies.successorIdExpr]
+         */
+        successorIdExpr?: string | Function;
+        /**
+         * [descr:Properties.dependencies.typeExpr]
+         */
+        typeExpr?: string | Function;
+      };
+      /**
+       * [descr:Properties.editing]
+       */
+      editing?: {
+        /**
+         * [descr:Properties.editing.allowDependencyAdding]
+         */
+        allowDependencyAdding?: boolean;
+        /**
+         * [descr:Properties.editing.allowDependencyDeleting]
+         */
+        allowDependencyDeleting?: boolean;
+        /**
+         * [descr:Properties.editing.allowResourceAdding]
+         */
+        allowResourceAdding?: boolean;
+        /**
+         * [descr:Properties.editing.allowResourceDeleting]
+         */
+        allowResourceDeleting?: boolean;
+        /**
+         * [descr:Properties.editing.allowResourceUpdating]
+         */
+        allowResourceUpdating?: boolean;
+        /**
+         * [descr:Properties.editing.allowTaskAdding]
+         */
+        allowTaskAdding?: boolean;
+        /**
+         * [descr:Properties.editing.allowTaskDeleting]
+         */
+        allowTaskDeleting?: boolean;
+        /**
+         * [descr:Properties.editing.allowTaskResourceUpdating]
+         */
+        allowTaskResourceUpdating?: boolean;
+        /**
+         * [descr:Properties.editing.allowTaskUpdating]
+         */
+        allowTaskUpdating?: boolean;
+        /**
+         * [descr:Properties.editing.enabled]
+         */
+        enabled?: boolean;
+      };
+      /**
+       * [descr:Properties.validation]
+       */
+      validation?: {
+        /**
+         * [descr:Properties.validation.validateDependencies]
+         */
+        validateDependencies?: boolean;
+        /**
+         * [descr:Properties.validation.autoUpdateParentTasks]
+         */
+        autoUpdateParentTasks?: boolean;
+        /**
+         * [descr:Properties.validation.enablePredecessorGap]
+         */
+        enablePredecessorGap?: boolean;
+      };
+      /**
+       * [descr:Properties.sorting]
+       */
+      sorting?: dxGanttSorting;
+      /**
+       * [descr:Properties.filterRow]
+       */
+      filterRow?: dxGanttFilterRow;
+      /**
+       * [descr:Properties.headerFilter]
+       */
+      headerFilter?: dxGanttHeaderFilter;
+      /**
+       * [descr:Properties.onSelectionChanged]
+       */
+      onSelectionChanged?: (e: SelectionChangedEvent) => void;
+      /**
+       * [descr:Properties.onCustomCommand]
+       */
+      onCustomCommand?: (e: CustomCommandEvent) => void;
+      /**
+       * [descr:Properties.onContextMenuPreparing]
+       */
+      onContextMenuPreparing?: (e: ContextMenuPreparingEvent) => void;
+      /**
+       * [descr:Properties.onTaskInserting]
+       */
+      onTaskInserting?: (e: TaskInsertingEvent) => void;
+      /**
+       * [descr:Properties.onTaskInserted]
+       */
+      onTaskInserted?: (e: TaskInsertedEvent) => void;
+      /**
+       * [descr:Properties.onTaskDeleting]
+       */
+      onTaskDeleting?: (e: TaskDeletingEvent) => void;
+      /**
+       * [descr:Properties.onTaskDeleted]
+       */
+      onTaskDeleted?: (e: TaskDeletedEvent) => void;
+      /**
+       * [descr:Properties.onTaskUpdating]
+       */
+      onTaskUpdating?: (e: TaskUpdatingEvent) => void;
+      /**
+       * [descr:Properties.onTaskUpdated]
+       */
+      onTaskUpdated?: (e: TaskUpdatedEvent) => void;
+      /**
+       * [descr:Properties.onTaskMoving]
+       */
+      onTaskMoving?: (e: TaskMovingEvent) => void;
+      /**
+       * [descr:Properties.onTaskEditDialogShowing]
+       */
+      onTaskEditDialogShowing?: (e: TaskEditDialogShowingEvent) => void;
+      /**
+       * [descr:Properties.onResourceManagerDialogShowing]
+       */
+      onResourceManagerDialogShowing?: (
+        e: ResourceManagerDialogShowingEvent
+      ) => void;
+      /**
+       * [descr:Properties.onDependencyInserting]
+       */
+      onDependencyInserting?: (e: DependencyInsertingEvent) => void;
+      /**
+       * [descr:Properties.onDependencyInserted]
+       */
+      onDependencyInserted?: (e: DependencyInsertedEvent) => void;
+      /**
+       * [descr:Properties.onDependencyDeleting]
+       */
+      onDependencyDeleting?: (e: DependencyDeletingEvent) => void;
+      /**
+       * [descr:Properties.onDependencyDeleted]
+       */
+      onDependencyDeleted?: (e: DependencyDeletedEvent) => void;
+      /**
+       * [descr:Properties.onResourceInserting]
+       */
+      onResourceInserting?: (e: ResourceInsertingEvent) => void;
+      /**
+       * [descr:Properties.onResourceInserted]
+       */
+      onResourceInserted?: (e: ResourceInsertedEvent) => void;
+      /**
+       * [descr:Properties.onResourceDeleting]
+       */
+      onResourceDeleting?: (e: ResourceDeletingEvent) => void;
+      /**
+       * [descr:Properties.onResourceDeleted]
+       */
+      onResourceDeleted?: (e: ResourceDeletedEvent) => void;
+      /**
+       * [descr:Properties.onResourceAssigning]
+       */
+      onResourceAssigning?: (e: ResourceAssigningEvent) => void;
+      /**
+       * [descr:Properties.onResourceAssigned]
+       */
+      onResourceAssigned?: (e: ResourceAssignedEvent) => void;
+      /**
+       * [descr:Properties.onResourceUnassigning]
+       */
+      onResourceUnassigning?: (e: ResourceUnassigningEvent) => void;
+      /**
+       * [descr:Properties.onResourceUnassigned]
+       */
+      onResourceUnassigned?: (e: ResourceUnassignedEvent) => void;
+      /**
+       * [descr:Properties.onTaskClick]
+       */
+      onTaskClick?: (e: TaskClickEvent) => void;
+      /**
+       * [descr:Properties.onTaskDblClick]
+       */
+      onTaskDblClick?: (e: TaskDblClickEvent) => void;
+      /**
+       * [descr:Properties.resourceAssignments]
+       */
+      resourceAssignments?: {
+        /**
+         * [descr:Properties.resourceAssignments.dataSource]
+         */
+        dataSource?: DevExpress.data.DataSource.DataSourceLike<any>;
+        /**
+         * [descr:Properties.resourceAssignments.keyExpr]
+         */
+        keyExpr?: string | Function;
+        /**
+         * [descr:Properties.resourceAssignments.resourceIdExpr]
+         */
+        resourceIdExpr?: string | Function;
+        /**
+         * [descr:Properties.resourceAssignments.taskIdExpr]
+         */
+        taskIdExpr?: string | Function;
+      };
+      /**
+       * [descr:Properties.resources]
+       */
+      resources?: {
+        /**
+         * [descr:Properties.resources.colorExpr]
+         */
+        colorExpr?: string | Function;
+        /**
+         * [descr:Properties.resources.dataSource]
+         */
+        dataSource?: DevExpress.data.DataSource.DataSourceLike<any>;
+        /**
+         * [descr:Properties.resources.keyExpr]
+         */
+        keyExpr?: string | Function;
+        /**
+         * [descr:Properties.resources.textExpr]
+         */
+        textExpr?: string | Function;
+      };
+      /**
+       * [descr:Properties.scaleType]
+       */
+      scaleType?:
+        | 'auto'
+        | 'minutes'
+        | 'hours'
+        | 'days'
+        | 'weeks'
+        | 'months'
+        | 'quarters'
+        | 'years';
+      /**
+       * [descr:Properties.scaleTypeRange]
+       */
+      scaleTypeRange?: {
+        /**
+         * [descr:Properties.scaleTypeRange.min]
+         */
+        min?:
+          | 'minutes'
+          | 'hours'
+          | 'days'
+          | 'weeks'
+          | 'months'
+          | 'quarters'
+          | 'years';
+        /**
+         * [descr:Properties.scaleTypeRange.max]
+         */
+        max?:
+          | 'minutes'
+          | 'hours'
+          | 'days'
+          | 'weeks'
+          | 'months'
+          | 'quarters'
+          | 'years';
+      };
+      /**
+       * [descr:Properties.selectedRowKey]
+       */
+      selectedRowKey?: any;
+      /**
+       * [descr:Properties.showResources]
+       */
+      showResources?: boolean;
+      /**
+       * [descr:Properties.showDependencies]
+       */
+      showDependencies?: boolean;
+      /**
+       * [descr:Properties.showRowLines]
+       */
+      showRowLines?: boolean;
+      /**
+       * [descr:Properties.taskListWidth]
+       */
+      taskListWidth?: number;
+      /**
+       * [descr:Properties.taskTitlePosition]
+       */
+      taskTitlePosition?: 'inside' | 'outside' | 'none';
+      /**
+       * [descr:Properties.firstDayOfWeek]
+       */
+      firstDayOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
+      /**
+       * [descr:Properties.tasks]
+       */
+      tasks?: {
+        /**
+         * [descr:Properties.tasks.colorExpr]
+         */
+        colorExpr?: string | Function;
+        /**
+         * [descr:Properties.tasks.dataSource]
+         */
+        dataSource?: DevExpress.data.DataSource.DataSourceLike<any>;
+        /**
+         * [descr:Properties.tasks.endExpr]
+         */
+        endExpr?: string | Function;
+        /**
+         * [descr:Properties.tasks.keyExpr]
+         */
+        keyExpr?: string | Function;
+        /**
+         * [descr:Properties.tasks.parentIdExpr]
+         */
+        parentIdExpr?: string | Function;
+        /**
+         * [descr:Properties.tasks.progressExpr]
+         */
+        progressExpr?: string | Function;
+        /**
+         * [descr:Properties.tasks.startExpr]
+         */
+        startExpr?: string | Function;
+        /**
+         * [descr:Properties.tasks.titleExpr]
+         */
+        titleExpr?: string | Function;
+      };
+      /**
+       * [descr:Properties.toolbar]
+       */
+      toolbar?: dxGanttToolbar;
+      /**
+       * [descr:Properties.contextMenu]
+       */
+      contextMenu?: dxGanttContextMenu;
+      /**
+       * [descr:Properties.stripLines]
+       */
+      stripLines?: Array<dxGanttStripLine>;
+      /**
+       * [descr:Properties.taskTooltipContentTemplate]
+       */
+      taskTooltipContentTemplate?:
+        | DevExpress.core.template
+        | ((
+            container: DevExpress.core.DxElement,
+            task: any
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.taskTimeTooltipContentTemplate]
+       */
+      taskTimeTooltipContentTemplate?:
+        | DevExpress.core.template
+        | ((
+            container: DevExpress.core.DxElement,
+            item: TimeTooltipTemplateData
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.taskProgressTooltipContentTemplate]
+       */
+      taskProgressTooltipContentTemplate?:
+        | DevExpress.core.template
+        | ((
+            container: DevExpress.core.DxElement,
+            item: ProgressTooltipTemplateData
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.taskContentTemplate]
+       */
+      taskContentTemplate?:
+        | DevExpress.core.template
+        | ((
+            container: DevExpress.core.DxElement,
+            item: TaskContentTemplateData
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.rootValue]
+       */
+      rootValue?: any;
+      /**
+       * [descr:Properties.startDateRange]
+       */
+      startDateRange?: Date;
+      /**
+       * [descr:Properties.endDateRange]
+       */
+      endDateRange?: Date;
+    }
     export type ResourceAssignedEvent = DevExpress.events.EventInfo<dxGantt> & {
       readonly values: any;
       readonly key: any;
@@ -13388,29 +13024,6 @@ declare module DevExpress.ui {
     >;
   }
   /**
-   * @deprecated Use ContextMenuItem instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxGanttContextMenuItem
-    extends DevExpress.ui.dxContextMenu.Item {
-    /**
-     * [descr:dxGanttContextMenuItem.name]
-     */
-    name?:
-      | 'undo'
-      | 'redo'
-      | 'expandAll'
-      | 'collapseAll'
-      | 'addTask'
-      | 'deleteTask'
-      | 'zoomIn'
-      | 'zoomOut'
-      | 'deleteDependency'
-      | 'taskDetails'
-      | 'resourceManager'
-      | string;
-  }
-  /**
    * [descr:dxGanttFilterRow]
    * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
    */
@@ -13543,459 +13156,6 @@ declare module DevExpress.ui {
     ok?: string;
   }
   /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxGanttOptions extends WidgetOptions<dxGantt> {
-    /**
-     * [descr:dxGanttOptions.allowSelection]
-     */
-    allowSelection?: boolean;
-    /**
-     * [descr:dxGanttOptions.columns]
-     */
-    columns?: Array<DevExpress.ui.dxTreeList.Column | string>;
-    /**
-     * [descr:dxGanttOptions.dependencies]
-     */
-    dependencies?: {
-      /**
-       * [descr:dxGanttOptions.dependencies.dataSource]
-       */
-      dataSource?: DevExpress.data.DataSource.DataSourceLike<any>;
-      /**
-       * [descr:dxGanttOptions.dependencies.keyExpr]
-       */
-      keyExpr?: string | Function;
-      /**
-       * [descr:dxGanttOptions.dependencies.predecessorIdExpr]
-       */
-      predecessorIdExpr?: string | Function;
-      /**
-       * [descr:dxGanttOptions.dependencies.successorIdExpr]
-       */
-      successorIdExpr?: string | Function;
-      /**
-       * [descr:dxGanttOptions.dependencies.typeExpr]
-       */
-      typeExpr?: string | Function;
-    };
-    /**
-     * [descr:dxGanttOptions.editing]
-     */
-    editing?: {
-      /**
-       * [descr:dxGanttOptions.editing.allowDependencyAdding]
-       */
-      allowDependencyAdding?: boolean;
-      /**
-       * [descr:dxGanttOptions.editing.allowDependencyDeleting]
-       */
-      allowDependencyDeleting?: boolean;
-      /**
-       * [descr:dxGanttOptions.editing.allowResourceAdding]
-       */
-      allowResourceAdding?: boolean;
-      /**
-       * [descr:dxGanttOptions.editing.allowResourceDeleting]
-       */
-      allowResourceDeleting?: boolean;
-      /**
-       * [descr:dxGanttOptions.editing.allowResourceUpdating]
-       */
-      allowResourceUpdating?: boolean;
-      /**
-       * [descr:dxGanttOptions.editing.allowTaskAdding]
-       */
-      allowTaskAdding?: boolean;
-      /**
-       * [descr:dxGanttOptions.editing.allowTaskDeleting]
-       */
-      allowTaskDeleting?: boolean;
-      /**
-       * [descr:dxGanttOptions.editing.allowTaskResourceUpdating]
-       */
-      allowTaskResourceUpdating?: boolean;
-      /**
-       * [descr:dxGanttOptions.editing.allowTaskUpdating]
-       */
-      allowTaskUpdating?: boolean;
-      /**
-       * [descr:dxGanttOptions.editing.enabled]
-       */
-      enabled?: boolean;
-    };
-    /**
-     * [descr:dxGanttOptions.validation]
-     */
-    validation?: {
-      /**
-       * [descr:dxGanttOptions.validation.validateDependencies]
-       */
-      validateDependencies?: boolean;
-      /**
-       * [descr:dxGanttOptions.validation.autoUpdateParentTasks]
-       */
-      autoUpdateParentTasks?: boolean;
-      /**
-       * [descr:dxGanttOptions.validation.enablePredecessorGap]
-       */
-      enablePredecessorGap?: boolean;
-    };
-    /**
-     * [descr:dxGanttOptions.sorting]
-     */
-    sorting?: dxGanttSorting;
-    /**
-     * [descr:dxGanttOptions.filterRow]
-     */
-    filterRow?: dxGanttFilterRow;
-    /**
-     * [descr:dxGanttOptions.headerFilter]
-     */
-    headerFilter?: dxGanttHeaderFilter;
-    /**
-     * [descr:dxGanttOptions.onSelectionChanged]
-     */
-    onSelectionChanged?: (
-      e: DevExpress.ui.dxGantt.SelectionChangedEvent
-    ) => void;
-    /**
-     * [descr:dxGanttOptions.onCustomCommand]
-     */
-    onCustomCommand?: (e: DevExpress.ui.dxGantt.CustomCommandEvent) => void;
-    /**
-     * [descr:dxGanttOptions.onContextMenuPreparing]
-     */
-    onContextMenuPreparing?: (
-      e: DevExpress.ui.dxGantt.ContextMenuPreparingEvent
-    ) => void;
-    /**
-     * [descr:dxGanttOptions.onTaskInserting]
-     */
-    onTaskInserting?: (e: DevExpress.ui.dxGantt.TaskInsertingEvent) => void;
-    /**
-     * [descr:dxGanttOptions.onTaskInserted]
-     */
-    onTaskInserted?: (e: DevExpress.ui.dxGantt.TaskInsertedEvent) => void;
-    /**
-     * [descr:dxGanttOptions.onTaskDeleting]
-     */
-    onTaskDeleting?: (e: DevExpress.ui.dxGantt.TaskDeletingEvent) => void;
-    /**
-     * [descr:dxGanttOptions.onTaskDeleted]
-     */
-    onTaskDeleted?: (e: DevExpress.ui.dxGantt.TaskDeletedEvent) => void;
-    /**
-     * [descr:dxGanttOptions.onTaskUpdating]
-     */
-    onTaskUpdating?: (e: DevExpress.ui.dxGantt.TaskUpdatingEvent) => void;
-    /**
-     * [descr:dxGanttOptions.onTaskUpdated]
-     */
-    onTaskUpdated?: (e: DevExpress.ui.dxGantt.TaskUpdatedEvent) => void;
-    /**
-     * [descr:dxGanttOptions.onTaskMoving]
-     */
-    onTaskMoving?: (e: DevExpress.ui.dxGantt.TaskMovingEvent) => void;
-    /**
-     * [descr:dxGanttOptions.onTaskEditDialogShowing]
-     */
-    onTaskEditDialogShowing?: (
-      e: DevExpress.ui.dxGantt.TaskEditDialogShowingEvent
-    ) => void;
-    /**
-     * [descr:dxGanttOptions.onResourceManagerDialogShowing]
-     */
-    onResourceManagerDialogShowing?: (
-      e: DevExpress.ui.dxGantt.ResourceManagerDialogShowingEvent
-    ) => void;
-    /**
-     * [descr:dxGanttOptions.onDependencyInserting]
-     */
-    onDependencyInserting?: (
-      e: DevExpress.ui.dxGantt.DependencyInsertingEvent
-    ) => void;
-    /**
-     * [descr:dxGanttOptions.onDependencyInserted]
-     */
-    onDependencyInserted?: (
-      e: DevExpress.ui.dxGantt.DependencyInsertedEvent
-    ) => void;
-    /**
-     * [descr:dxGanttOptions.onDependencyDeleting]
-     */
-    onDependencyDeleting?: (
-      e: DevExpress.ui.dxGantt.DependencyDeletingEvent
-    ) => void;
-    /**
-     * [descr:dxGanttOptions.onDependencyDeleted]
-     */
-    onDependencyDeleted?: (
-      e: DevExpress.ui.dxGantt.DependencyDeletedEvent
-    ) => void;
-    /**
-     * [descr:dxGanttOptions.onResourceInserting]
-     */
-    onResourceInserting?: (
-      e: DevExpress.ui.dxGantt.ResourceInsertingEvent
-    ) => void;
-    /**
-     * [descr:dxGanttOptions.onResourceInserted]
-     */
-    onResourceInserted?: (
-      e: DevExpress.ui.dxGantt.ResourceInsertedEvent
-    ) => void;
-    /**
-     * [descr:dxGanttOptions.onResourceDeleting]
-     */
-    onResourceDeleting?: (
-      e: DevExpress.ui.dxGantt.ResourceDeletingEvent
-    ) => void;
-    /**
-     * [descr:dxGanttOptions.onResourceDeleted]
-     */
-    onResourceDeleted?: (e: DevExpress.ui.dxGantt.ResourceDeletedEvent) => void;
-    /**
-     * [descr:dxGanttOptions.onResourceAssigning]
-     */
-    onResourceAssigning?: (
-      e: DevExpress.ui.dxGantt.ResourceAssigningEvent
-    ) => void;
-    /**
-     * [descr:dxGanttOptions.onResourceAssigned]
-     */
-    onResourceAssigned?: (
-      e: DevExpress.ui.dxGantt.ResourceAssignedEvent
-    ) => void;
-    /**
-     * [descr:dxGanttOptions.onResourceUnassigning]
-     */
-    onResourceUnassigning?: (
-      e: DevExpress.ui.dxGantt.ResourceUnassigningEvent
-    ) => void;
-    /**
-     * [descr:dxGanttOptions.onResourceUnassigned]
-     */
-    onResourceUnassigned?: (
-      e: DevExpress.ui.dxGantt.ResourceUnassignedEvent
-    ) => void;
-    /**
-     * [descr:dxGanttOptions.onTaskClick]
-     */
-    onTaskClick?: (e: DevExpress.ui.dxGantt.TaskClickEvent) => void;
-    /**
-     * [descr:dxGanttOptions.onTaskDblClick]
-     */
-    onTaskDblClick?: (e: DevExpress.ui.dxGantt.TaskDblClickEvent) => void;
-    /**
-     * [descr:dxGanttOptions.resourceAssignments]
-     */
-    resourceAssignments?: {
-      /**
-       * [descr:dxGanttOptions.resourceAssignments.dataSource]
-       */
-      dataSource?: DevExpress.data.DataSource.DataSourceLike<any>;
-      /**
-       * [descr:dxGanttOptions.resourceAssignments.keyExpr]
-       */
-      keyExpr?: string | Function;
-      /**
-       * [descr:dxGanttOptions.resourceAssignments.resourceIdExpr]
-       */
-      resourceIdExpr?: string | Function;
-      /**
-       * [descr:dxGanttOptions.resourceAssignments.taskIdExpr]
-       */
-      taskIdExpr?: string | Function;
-    };
-    /**
-     * [descr:dxGanttOptions.resources]
-     */
-    resources?: {
-      /**
-       * [descr:dxGanttOptions.resources.colorExpr]
-       */
-      colorExpr?: string | Function;
-      /**
-       * [descr:dxGanttOptions.resources.dataSource]
-       */
-      dataSource?: DevExpress.data.DataSource.DataSourceLike<any>;
-      /**
-       * [descr:dxGanttOptions.resources.keyExpr]
-       */
-      keyExpr?: string | Function;
-      /**
-       * [descr:dxGanttOptions.resources.textExpr]
-       */
-      textExpr?: string | Function;
-    };
-    /**
-     * [descr:dxGanttOptions.scaleType]
-     */
-    scaleType?:
-      | 'auto'
-      | 'minutes'
-      | 'hours'
-      | 'days'
-      | 'weeks'
-      | 'months'
-      | 'quarters'
-      | 'years';
-    /**
-     * [descr:dxGanttOptions.scaleTypeRange]
-     */
-    scaleTypeRange?: {
-      /**
-       * [descr:dxGanttOptions.scaleTypeRange.min]
-       */
-      min?:
-        | 'minutes'
-        | 'hours'
-        | 'days'
-        | 'weeks'
-        | 'months'
-        | 'quarters'
-        | 'years';
-      /**
-       * [descr:dxGanttOptions.scaleTypeRange.max]
-       */
-      max?:
-        | 'minutes'
-        | 'hours'
-        | 'days'
-        | 'weeks'
-        | 'months'
-        | 'quarters'
-        | 'years';
-    };
-    /**
-     * [descr:dxGanttOptions.selectedRowKey]
-     */
-    selectedRowKey?: any;
-    /**
-     * [descr:dxGanttOptions.showResources]
-     */
-    showResources?: boolean;
-    /**
-     * [descr:dxGanttOptions.showDependencies]
-     */
-    showDependencies?: boolean;
-    /**
-     * [descr:dxGanttOptions.showRowLines]
-     */
-    showRowLines?: boolean;
-    /**
-     * [descr:dxGanttOptions.taskListWidth]
-     */
-    taskListWidth?: number;
-    /**
-     * [descr:dxGanttOptions.taskTitlePosition]
-     */
-    taskTitlePosition?: 'inside' | 'outside' | 'none';
-    /**
-     * [descr:dxGanttOptions.firstDayOfWeek]
-     */
-    firstDayOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
-    /**
-     * [descr:dxGanttOptions.tasks]
-     */
-    tasks?: {
-      /**
-       * [descr:dxGanttOptions.tasks.colorExpr]
-       */
-      colorExpr?: string | Function;
-      /**
-       * [descr:dxGanttOptions.tasks.dataSource]
-       */
-      dataSource?: DevExpress.data.DataSource.DataSourceLike<any>;
-      /**
-       * [descr:dxGanttOptions.tasks.endExpr]
-       */
-      endExpr?: string | Function;
-      /**
-       * [descr:dxGanttOptions.tasks.keyExpr]
-       */
-      keyExpr?: string | Function;
-      /**
-       * [descr:dxGanttOptions.tasks.parentIdExpr]
-       */
-      parentIdExpr?: string | Function;
-      /**
-       * [descr:dxGanttOptions.tasks.progressExpr]
-       */
-      progressExpr?: string | Function;
-      /**
-       * [descr:dxGanttOptions.tasks.startExpr]
-       */
-      startExpr?: string | Function;
-      /**
-       * [descr:dxGanttOptions.tasks.titleExpr]
-       */
-      titleExpr?: string | Function;
-    };
-    /**
-     * [descr:dxGanttOptions.toolbar]
-     */
-    toolbar?: dxGanttToolbar;
-    /**
-     * [descr:dxGanttOptions.contextMenu]
-     */
-    contextMenu?: dxGanttContextMenu;
-    /**
-     * [descr:dxGanttOptions.stripLines]
-     */
-    stripLines?: Array<dxGanttStripLine>;
-    /**
-     * [descr:dxGanttOptions.taskTooltipContentTemplate]
-     */
-    taskTooltipContentTemplate?:
-      | DevExpress.core.template
-      | ((
-          container: DevExpress.core.DxElement,
-          task: any
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxGanttOptions.taskTimeTooltipContentTemplate]
-     */
-    taskTimeTooltipContentTemplate?:
-      | DevExpress.core.template
-      | ((
-          container: DevExpress.core.DxElement,
-          item: DevExpress.ui.dxGantt.TimeTooltipTemplateData
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxGanttOptions.taskProgressTooltipContentTemplate]
-     */
-    taskProgressTooltipContentTemplate?:
-      | DevExpress.core.template
-      | ((
-          container: DevExpress.core.DxElement,
-          item: DevExpress.ui.dxGantt.ProgressTooltipTemplateData
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxGanttOptions.taskContentTemplate]
-     */
-    taskContentTemplate?:
-      | DevExpress.core.template
-      | ((
-          container: DevExpress.core.DxElement,
-          item: DevExpress.ui.dxGantt.TaskContentTemplateData
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxGanttOptions.rootValue]
-     */
-    rootValue?: any;
-    /**
-     * [descr:dxGanttOptions.startDateRange]
-     */
-    startDateRange?: Date;
-    /**
-     * [descr:dxGanttOptions.endDateRange]
-     */
-    endDateRange?: Date;
-  }
-  /**
    * [descr:dxGanttSorting]
    * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
    */
@@ -14070,38 +13230,9 @@ declare module DevExpress.ui {
     >;
   }
   /**
-   * @deprecated Use ToolbarItem instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxGanttToolbarItem extends DevExpress.ui.dxToolbar.Item {
-    /**
-     * [descr:dxGanttToolbarItem.name]
-     */
-    name?:
-      | 'separator'
-      | 'undo'
-      | 'redo'
-      | 'expandAll'
-      | 'collapseAll'
-      | 'addTask'
-      | 'deleteTask'
-      | 'zoomIn'
-      | 'zoomOut'
-      | 'taskDetails'
-      | 'fullScreen'
-      | 'resourceManager'
-      | 'toggleResources'
-      | 'toggleDependencies'
-      | string;
-    /**
-     * [descr:dxGanttToolbarItem.location]
-     */
-    location?: 'after' | 'before' | 'center';
-  }
-  /**
    * [descr:dxHtmlEditor]
    */
-  export class dxHtmlEditor extends Editor<dxHtmlEditorOptions> {
+  export class dxHtmlEditor extends Editor<DevExpress.ui.dxHtmlEditor.Properties> {
     /**
      * [descr:dxHtmlEditor.blur()]
      */
@@ -14303,7 +13434,71 @@ declare module DevExpress.ui {
     }
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxHtmlEditor> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxHtmlEditorOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends EditorOptions<dxHtmlEditor> {
+      /**
+       * [descr:Properties.allowSoftLineBreak]
+       */
+      allowSoftLineBreak?: boolean;
+      /**
+       * [descr:Properties.customizeModules]
+       */
+      customizeModules?: (config: any) => void;
+      /**
+       * [descr:Properties.focusStateEnabled]
+       */
+      focusStateEnabled?: boolean;
+      /**
+       * [descr:Properties.mediaResizing]
+       */
+      mediaResizing?: dxHtmlEditorMediaResizing;
+      /**
+       * [descr:Properties.tableResizing]
+       */
+      tableResizing?: dxHtmlEditorTableResizing;
+      /**
+       * [descr:Properties.mentions]
+       */
+      mentions?: Array<dxHtmlEditorMention>;
+      /**
+       * [descr:Properties.tableContextMenu]
+       */
+      tableContextMenu?: dxHtmlEditorTableContextMenu;
+      /**
+       * [descr:Properties.name]
+       */
+      name?: string;
+      /**
+       * [descr:Properties.onFocusIn]
+       */
+      onFocusIn?: (e: FocusInEvent) => void;
+      /**
+       * [descr:Properties.onFocusOut]
+       */
+      onFocusOut?: (e: FocusOutEvent) => void;
+      /**
+       * [descr:Properties.placeholder]
+       */
+      placeholder?: string;
+      /**
+       * [descr:Properties.toolbar]
+       */
+      toolbar?: dxHtmlEditorToolbar;
+      /**
+       * [descr:Properties.valueType]
+       */
+      valueType?: 'html' | 'markdown';
+      /**
+       * [descr:Properties.variables]
+       */
+      variables?: dxHtmlEditorVariables;
+      /**
+       * [descr:Properties.stylingMode]
+       */
+      stylingMode?: 'outlined' | 'underlined' | 'filled';
+    }
     export type ValueChangedEvent =
       DevExpress.events.NativeEventInfo<dxHtmlEditor> &
         DevExpress.ui.Editor.ValueChangedInfo;
@@ -14376,72 +13571,6 @@ declare module DevExpress.ui {
     valueExpr?: string | Function;
   }
   /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxHtmlEditorOptions extends EditorOptions<dxHtmlEditor> {
-    /**
-     * [descr:dxHtmlEditorOptions.allowSoftLineBreak]
-     */
-    allowSoftLineBreak?: boolean;
-    /**
-     * [descr:dxHtmlEditorOptions.customizeModules]
-     */
-    customizeModules?: (config: any) => void;
-    /**
-     * [descr:dxHtmlEditorOptions.focusStateEnabled]
-     */
-    focusStateEnabled?: boolean;
-    /**
-     * [descr:dxHtmlEditorOptions.mediaResizing]
-     */
-    mediaResizing?: dxHtmlEditorMediaResizing;
-    /**
-     * [descr:dxHtmlEditorOptions.tableResizing]
-     */
-    tableResizing?: dxHtmlEditorTableResizing;
-    /**
-     * [descr:dxHtmlEditorOptions.mentions]
-     */
-    mentions?: Array<dxHtmlEditorMention>;
-    /**
-     * [descr:dxHtmlEditorOptions.tableContextMenu]
-     */
-    tableContextMenu?: dxHtmlEditorTableContextMenu;
-    /**
-     * [descr:dxHtmlEditorOptions.name]
-     */
-    name?: string;
-    /**
-     * [descr:dxHtmlEditorOptions.onFocusIn]
-     */
-    onFocusIn?: (e: DevExpress.ui.dxHtmlEditor.FocusInEvent) => void;
-    /**
-     * [descr:dxHtmlEditorOptions.onFocusOut]
-     */
-    onFocusOut?: (e: DevExpress.ui.dxHtmlEditor.FocusOutEvent) => void;
-    /**
-     * [descr:dxHtmlEditorOptions.placeholder]
-     */
-    placeholder?: string;
-    /**
-     * [descr:dxHtmlEditorOptions.toolbar]
-     */
-    toolbar?: dxHtmlEditorToolbar;
-    /**
-     * [descr:dxHtmlEditorOptions.valueType]
-     */
-    valueType?: 'html' | 'markdown';
-    /**
-     * [descr:dxHtmlEditorOptions.variables]
-     */
-    variables?: dxHtmlEditorVariables;
-    /**
-     * [descr:dxHtmlEditorOptions.stylingMode]
-     */
-    stylingMode?: 'outlined' | 'underlined' | 'filled';
-  }
-  /**
    * [descr:dxHtmlEditorTableContextMenu]
    * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
    */
@@ -14452,93 +13581,6 @@ declare module DevExpress.ui {
     enabled?: boolean;
     /**
      * [descr:dxHtmlEditorTableContextMenu.items]
-     */
-    items?: Array<
-      | DevExpress.ui.dxHtmlEditor.ContextMenuItem
-      | 'background'
-      | 'bold'
-      | 'color'
-      | 'font'
-      | 'italic'
-      | 'link'
-      | 'image'
-      | 'strike'
-      | 'subscript'
-      | 'superscript'
-      | 'underline'
-      | 'blockquote'
-      | 'header'
-      | 'increaseIndent'
-      | 'decreaseIndent'
-      | 'orderedList'
-      | 'bulletList'
-      | 'alignLeft'
-      | 'alignCenter'
-      | 'alignRight'
-      | 'alignJustify'
-      | 'codeBlock'
-      | 'variable'
-      | 'separator'
-      | 'undo'
-      | 'redo'
-      | 'clear'
-      | 'insertTable'
-      | 'insertRowAbove'
-      | 'insertRowBelow'
-      | 'insertColumnLeft'
-      | 'insertColumnRight'
-      | 'deleteColumn'
-      | 'deleteRow'
-      | 'deleteTable'
-    >;
-  }
-  /**
-   * @deprecated Use DevExpress.ui.dxHtmlEditor.ContextMenuItem instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxHtmlEditorTableContextMenuItem
-    extends DevExpress.ui.dxMenu.MenuBasePlainItem {
-    /**
-     * [descr:dxHtmlEditorTableContextMenuItem.name]
-     */
-    name?:
-      | 'background'
-      | 'bold'
-      | 'color'
-      | 'font'
-      | 'italic'
-      | 'link'
-      | 'image'
-      | 'strike'
-      | 'subscript'
-      | 'superscript'
-      | 'underline'
-      | 'blockquote'
-      | 'header'
-      | 'increaseIndent'
-      | 'decreaseIndent'
-      | 'orderedList'
-      | 'bulletList'
-      | 'alignLeft'
-      | 'alignCenter'
-      | 'alignRight'
-      | 'alignJustify'
-      | 'codeBlock'
-      | 'variable'
-      | 'separator'
-      | 'undo'
-      | 'redo'
-      | 'clear'
-      | 'insertTable'
-      | 'insertRowAbove'
-      | 'insertRowBelow'
-      | 'insertColumnLeft'
-      | 'insertColumnRight'
-      | 'deleteColumn'
-      | 'deleteRow'
-      | 'deleteTable';
-    /**
-     * [descr:dxHtmlEditorTableContextMenuItem.items]
      */
     items?: Array<
       | DevExpress.ui.dxHtmlEditor.ContextMenuItem
@@ -14657,115 +13699,6 @@ declare module DevExpress.ui {
     multiline?: boolean;
   }
   /**
-   * @deprecated Use ToolbarItem instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxHtmlEditorToolbarItem
-    extends DevExpress.ui.dxToolbar.Item {
-    /**
-     * [descr:dxHtmlEditorToolbarItem.name]
-     */
-    name?:
-      | 'background'
-      | 'bold'
-      | 'color'
-      | 'font'
-      | 'italic'
-      | 'link'
-      | 'image'
-      | 'size'
-      | 'strike'
-      | 'subscript'
-      | 'superscript'
-      | 'underline'
-      | 'blockquote'
-      | 'header'
-      | 'increaseIndent'
-      | 'decreaseIndent'
-      | 'orderedList'
-      | 'bulletList'
-      | 'alignLeft'
-      | 'alignCenter'
-      | 'alignRight'
-      | 'alignJustify'
-      | 'codeBlock'
-      | 'variable'
-      | 'separator'
-      | 'undo'
-      | 'redo'
-      | 'clear'
-      | 'insertTable'
-      | 'insertHeaderRow'
-      | 'insertRowAbove'
-      | 'insertRowBelow'
-      | 'insertColumnLeft'
-      | 'insertColumnRight'
-      | 'deleteColumn'
-      | 'deleteRow'
-      | 'deleteTable'
-      | 'cellProperties'
-      | 'tableProperties'
-      | string;
-    /**
-     * [descr:dxHtmlEditorToolbarItem.formatName]
-     * @deprecated [depNote:dxHtmlEditorToolbarItem.formatName]
-     */
-    formatName?:
-      | 'background'
-      | 'bold'
-      | 'color'
-      | 'font'
-      | 'italic'
-      | 'link'
-      | 'image'
-      | 'size'
-      | 'strike'
-      | 'subscript'
-      | 'superscript'
-      | 'underline'
-      | 'blockquote'
-      | 'header'
-      | 'increaseIndent'
-      | 'decreaseIndent'
-      | 'orderedList'
-      | 'bulletList'
-      | 'alignLeft'
-      | 'alignCenter'
-      | 'alignRight'
-      | 'alignJustify'
-      | 'codeBlock'
-      | 'variable'
-      | 'separator'
-      | 'undo'
-      | 'redo'
-      | 'clear'
-      | 'insertTable'
-      | 'insertHeaderRow'
-      | 'insertRowAbove'
-      | 'insertRowBelow'
-      | 'insertColumnLeft'
-      | 'insertColumnRight'
-      | 'deleteColumn'
-      | 'deleteRow'
-      | 'deleteTable'
-      | 'cellProperties'
-      | 'tableProperties'
-      | string;
-    /**
-     * [descr:dxHtmlEditorToolbarItem.acceptedValues]
-     */
-    acceptedValues?: Array<string | number | boolean>;
-    /**
-     * [descr:dxHtmlEditorToolbarItem.formatValues]
-     * @deprecated [depNote:dxHtmlEditorToolbarItem.formatValues]
-     */
-    formatValues?: Array<string | number | boolean>;
-    /**
-     * [descr:dxHtmlEditorToolbarItem.location]
-     */
-    location?: 'after' | 'before' | 'center';
-  }
-  /**
    * [descr:dxHtmlEditorVariables]
    * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
    */
@@ -14789,7 +13722,11 @@ declare module DevExpress.ui {
   export class dxList<
     TItem extends DevExpress.ui.dxList.ItemLike = any,
     TKey = any
-  > extends CollectionWidget<dxListOptions<TItem, TKey>, TItem, TKey> {
+  > extends CollectionWidget<
+    DevExpress.ui.dxList.Properties<TItem, TKey>,
+    TItem,
+    TKey
+  > {
     /**
      * [descr:dxList.clientHeight()]
      */
@@ -14998,10 +13935,219 @@ declare module DevExpress.ui {
       TItem extends ItemLike = any,
       TKey = any
     > = DevExpress.events.EventInfo<dxList<TItem, TKey>>;
-    export type Properties<
-      TItem extends ItemLike = any,
-      TKey = any
-    > = dxListOptions<TItem, TKey>;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties<TItem extends ItemLike = any, TKey = any>
+      extends CollectionWidgetOptions<dxList<TItem, TKey>, TItem, TKey>,
+        SearchBoxMixinOptions {
+      /**
+       * [descr:Properties.activeStateEnabled]
+       */
+      activeStateEnabled?: boolean;
+      /**
+       * [descr:Properties.allowItemDeleting]
+       */
+      allowItemDeleting?: boolean;
+      /**
+       * [descr:Properties.bounceEnabled]
+       */
+      bounceEnabled?: boolean;
+      /**
+       * [descr:Properties.collapsibleGroups]
+       */
+      collapsibleGroups?: boolean;
+      /**
+       * [descr:Properties.dataSource]
+       */
+      dataSource?: DevExpress.data.DataSource.DataSourceLike<TItem, TKey>;
+      /**
+       * [descr:Properties.displayExpr]
+       */
+      displayExpr?: string | ((item: TItem) => string);
+      /**
+       * [descr:Properties.focusStateEnabled]
+       */
+      focusStateEnabled?: boolean;
+      /**
+       * [descr:Properties.groupTemplate]
+       */
+      groupTemplate?:
+        | DevExpress.core.template
+        | ((
+            groupData: any,
+            groupIndex: number,
+            groupElement: DevExpress.core.DxElement
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.grouped]
+       */
+      grouped?: boolean;
+      /**
+       * [descr:Properties.hoverStateEnabled]
+       */
+      hoverStateEnabled?: boolean;
+      /**
+       * [descr:Properties.indicateLoading]
+       */
+      indicateLoading?: boolean;
+      /**
+       * [descr:Properties.itemDeleteMode]
+       */
+      itemDeleteMode?:
+        | 'context'
+        | 'slideButton'
+        | 'slideItem'
+        | 'static'
+        | 'swipe'
+        | 'toggle';
+      /**
+       * [descr:Properties.itemDragging]
+       */
+      itemDragging?: DevExpress.ui.dxSortable.Properties;
+      /**
+       * [descr:Properties.items]
+       */
+      items?: Array<TItem>;
+      /**
+       * [descr:Properties.menuItems]
+       */
+      menuItems?: Array<{
+        /**
+         * [descr:Properties.menuItems.action]
+         */
+        action?: (
+          itemElement: DevExpress.core.DxElement,
+          itemData: TItem
+        ) => any;
+        /**
+         * [descr:Properties.menuItems.text]
+         */
+        text?: string;
+      }>;
+      /**
+       * [descr:Properties.menuMode]
+       */
+      menuMode?: 'context' | 'slide';
+      /**
+       * [descr:Properties.nextButtonText]
+       */
+      nextButtonText?: string;
+      /**
+       * [descr:Properties.onGroupRendered]
+       */
+      onGroupRendered?: (e: GroupRenderedEvent<TItem, TKey>) => void;
+      /**
+       * [descr:Properties.onItemClick]
+       */
+      onItemClick?: ((e: ItemClickEvent<TItem, TKey>) => void) | string;
+      /**
+       * [descr:Properties.onItemContextMenu]
+       */
+      onItemContextMenu?: (e: ItemContextMenuEvent<TItem, TKey>) => void;
+      /**
+       * [descr:Properties.onItemDeleted]
+       */
+      onItemDeleted?: (e: ItemDeletedEvent<TItem, TKey>) => void;
+      /**
+       * [descr:Properties.onItemDeleting]
+       */
+      onItemDeleting?: (e: ItemDeletingEvent<TItem, TKey>) => void;
+      /**
+       * [descr:Properties.onItemHold]
+       */
+      onItemHold?: (e: ItemHoldEvent<TItem, TKey>) => void;
+      /**
+       * [descr:Properties.onItemReordered]
+       */
+      onItemReordered?: (e: ItemReorderedEvent<TItem, TKey>) => void;
+      /**
+       * [descr:Properties.onItemSwipe]
+       */
+      onItemSwipe?: (e: ItemSwipeEvent<TItem, TKey>) => void;
+      /**
+       * [descr:Properties.onPageLoading]
+       */
+      onPageLoading?: (e: PageLoadingEvent<TItem, TKey>) => void;
+      /**
+       * [descr:Properties.onPullRefresh]
+       */
+      onPullRefresh?: (e: PullRefreshEvent<TItem, TKey>) => void;
+      /**
+       * [descr:Properties.onScroll]
+       */
+      onScroll?: (e: ScrollEvent<TItem, TKey>) => void;
+      /**
+       * [descr:Properties.onSelectAllValueChanged]
+       */
+      onSelectAllValueChanged?: (
+        e: SelectAllValueChangedEvent<TItem, TKey>
+      ) => void;
+      /**
+       * [descr:Properties.pageLoadMode]
+       */
+      pageLoadMode?: 'nextButton' | 'scrollBottom';
+      /**
+       * [descr:Properties.pageLoadingText]
+       */
+      pageLoadingText?: string;
+      /**
+       * [descr:Properties.pullRefreshEnabled]
+       */
+      pullRefreshEnabled?: boolean;
+      /**
+       * [descr:Properties.pulledDownText]
+       */
+      pulledDownText?: string;
+      /**
+       * [descr:Properties.pullingDownText]
+       */
+      pullingDownText?: string;
+      /**
+       * [descr:Properties.refreshingText]
+       */
+      refreshingText?: string;
+      /**
+       * [descr:Properties.repaintChangesOnly]
+       */
+      repaintChangesOnly?: boolean;
+      /**
+       * [descr:Properties.scrollByContent]
+       */
+      scrollByContent?: boolean;
+      /**
+       * [descr:Properties.scrollByThumb]
+       */
+      scrollByThumb?: boolean;
+      /**
+       * [descr:Properties.scrollingEnabled]
+       */
+      scrollingEnabled?: boolean;
+      /**
+       * [descr:Properties.selectAllMode]
+       */
+      selectAllMode?: 'allPages' | 'page';
+      /**
+       * [descr:Properties.selectionMode]
+       */
+      selectionMode?: 'all' | 'multiple' | 'none' | 'single';
+      /**
+       * [descr:Properties.showScrollbar]
+       */
+      showScrollbar?: 'always' | 'never' | 'onHover' | 'onScroll';
+      /**
+       * [descr:Properties.showSelectionControls]
+       */
+      showSelectionControls?: boolean;
+      /**
+       * [descr:Properties.selectAllText]
+       */
+      selectAllText?: string;
+      /**
+       * [descr:Properties.useNativeScrolling]
+       */
+      useNativeScrolling?: boolean;
+    }
     export type PullRefreshEvent<
       TItem extends ItemLike = any,
       TKey = any
@@ -15033,259 +14179,9 @@ declare module DevExpress.ui {
       DevExpress.ui.CollectionWidget.SelectionChangedInfo<TItem>;
   }
   /**
-   * @deprecated Use Item instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxListItem extends CollectionWidgetItem {
-    /**
-     * [descr:dxListItem.badge]
-     */
-    badge?: string;
-    /**
-     * [descr:dxListItem.icon]
-     */
-    icon?: string;
-    /**
-     * [descr:dxListItem.key]
-     */
-    key?: string;
-    /**
-     * [descr:dxListItem.showChevron]
-     */
-    showChevron?: boolean;
-  }
-  /**
-   * @deprecated use Properties instead
-   */
-  export interface dxListOptions<
-    TItem extends DevExpress.ui.dxList.ItemLike = any,
-    TKey = any
-  > extends CollectionWidgetOptions<dxList<TItem, TKey>, TItem, TKey>,
-      SearchBoxMixinOptions {
-    /**
-     * [descr:dxListOptions.activeStateEnabled]
-     */
-    activeStateEnabled?: boolean;
-    /**
-     * [descr:dxListOptions.allowItemDeleting]
-     */
-    allowItemDeleting?: boolean;
-    /**
-     * [descr:dxListOptions.bounceEnabled]
-     */
-    bounceEnabled?: boolean;
-    /**
-     * [descr:dxListOptions.collapsibleGroups]
-     */
-    collapsibleGroups?: boolean;
-    /**
-     * [descr:dxListOptions.dataSource]
-     */
-    dataSource?: DevExpress.data.DataSource.DataSourceLike<TItem, TKey>;
-    /**
-     * [descr:dxListOptions.displayExpr]
-     */
-    displayExpr?: string | ((item: TItem) => string);
-    /**
-     * [descr:dxListOptions.focusStateEnabled]
-     */
-    focusStateEnabled?: boolean;
-    /**
-     * [descr:dxListOptions.groupTemplate]
-     */
-    groupTemplate?:
-      | DevExpress.core.template
-      | ((
-          groupData: any,
-          groupIndex: number,
-          groupElement: DevExpress.core.DxElement
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxListOptions.grouped]
-     */
-    grouped?: boolean;
-    /**
-     * [descr:dxListOptions.hoverStateEnabled]
-     */
-    hoverStateEnabled?: boolean;
-    /**
-     * [descr:dxListOptions.indicateLoading]
-     */
-    indicateLoading?: boolean;
-    /**
-     * [descr:dxListOptions.itemDeleteMode]
-     */
-    itemDeleteMode?:
-      | 'context'
-      | 'slideButton'
-      | 'slideItem'
-      | 'static'
-      | 'swipe'
-      | 'toggle';
-    /**
-     * [descr:dxListOptions.itemDragging]
-     */
-    itemDragging?: dxSortableOptions;
-    /**
-     * [descr:dxListOptions.items]
-     */
-    items?: Array<TItem>;
-    /**
-     * [descr:dxListOptions.menuItems]
-     */
-    menuItems?: Array<{
-      /**
-       * [descr:dxListOptions.menuItems.action]
-       */
-      action?: (itemElement: DevExpress.core.DxElement, itemData: TItem) => any;
-      /**
-       * [descr:dxListOptions.menuItems.text]
-       */
-      text?: string;
-    }>;
-    /**
-     * [descr:dxListOptions.menuMode]
-     */
-    menuMode?: 'context' | 'slide';
-    /**
-     * [descr:dxListOptions.nextButtonText]
-     */
-    nextButtonText?: string;
-    /**
-     * [descr:dxListOptions.onGroupRendered]
-     */
-    onGroupRendered?: (
-      e: DevExpress.ui.dxList.GroupRenderedEvent<TItem, TKey>
-    ) => void;
-    /**
-     * [descr:dxListOptions.onItemClick]
-     */
-    onItemClick?:
-      | ((e: DevExpress.ui.dxList.ItemClickEvent<TItem, TKey>) => void)
-      | string;
-    /**
-     * [descr:dxListOptions.onItemContextMenu]
-     */
-    onItemContextMenu?: (
-      e: DevExpress.ui.dxList.ItemContextMenuEvent<TItem, TKey>
-    ) => void;
-    /**
-     * [descr:dxListOptions.onItemDeleted]
-     */
-    onItemDeleted?: (
-      e: DevExpress.ui.dxList.ItemDeletedEvent<TItem, TKey>
-    ) => void;
-    /**
-     * [descr:dxListOptions.onItemDeleting]
-     */
-    onItemDeleting?: (
-      e: DevExpress.ui.dxList.ItemDeletingEvent<TItem, TKey>
-    ) => void;
-    /**
-     * [descr:dxListOptions.onItemHold]
-     */
-    onItemHold?: (e: DevExpress.ui.dxList.ItemHoldEvent<TItem, TKey>) => void;
-    /**
-     * [descr:dxListOptions.onItemReordered]
-     */
-    onItemReordered?: (
-      e: DevExpress.ui.dxList.ItemReorderedEvent<TItem, TKey>
-    ) => void;
-    /**
-     * [descr:dxListOptions.onItemSwipe]
-     */
-    onItemSwipe?: (e: DevExpress.ui.dxList.ItemSwipeEvent<TItem, TKey>) => void;
-    /**
-     * [descr:dxListOptions.onPageLoading]
-     */
-    onPageLoading?: (
-      e: DevExpress.ui.dxList.PageLoadingEvent<TItem, TKey>
-    ) => void;
-    /**
-     * [descr:dxListOptions.onPullRefresh]
-     */
-    onPullRefresh?: (
-      e: DevExpress.ui.dxList.PullRefreshEvent<TItem, TKey>
-    ) => void;
-    /**
-     * [descr:dxListOptions.onScroll]
-     */
-    onScroll?: (e: DevExpress.ui.dxList.ScrollEvent<TItem, TKey>) => void;
-    /**
-     * [descr:dxListOptions.onSelectAllValueChanged]
-     */
-    onSelectAllValueChanged?: (
-      e: DevExpress.ui.dxList.SelectAllValueChangedEvent<TItem, TKey>
-    ) => void;
-    /**
-     * [descr:dxListOptions.pageLoadMode]
-     */
-    pageLoadMode?: 'nextButton' | 'scrollBottom';
-    /**
-     * [descr:dxListOptions.pageLoadingText]
-     */
-    pageLoadingText?: string;
-    /**
-     * [descr:dxListOptions.pullRefreshEnabled]
-     */
-    pullRefreshEnabled?: boolean;
-    /**
-     * [descr:dxListOptions.pulledDownText]
-     */
-    pulledDownText?: string;
-    /**
-     * [descr:dxListOptions.pullingDownText]
-     */
-    pullingDownText?: string;
-    /**
-     * [descr:dxListOptions.refreshingText]
-     */
-    refreshingText?: string;
-    /**
-     * [descr:dxListOptions.repaintChangesOnly]
-     */
-    repaintChangesOnly?: boolean;
-    /**
-     * [descr:dxListOptions.scrollByContent]
-     */
-    scrollByContent?: boolean;
-    /**
-     * [descr:dxListOptions.scrollByThumb]
-     */
-    scrollByThumb?: boolean;
-    /**
-     * [descr:dxListOptions.scrollingEnabled]
-     */
-    scrollingEnabled?: boolean;
-    /**
-     * [descr:dxListOptions.selectAllMode]
-     */
-    selectAllMode?: 'allPages' | 'page';
-    /**
-     * [descr:dxListOptions.selectionMode]
-     */
-    selectionMode?: 'all' | 'multiple' | 'none' | 'single';
-    /**
-     * [descr:dxListOptions.showScrollbar]
-     */
-    showScrollbar?: 'always' | 'never' | 'onHover' | 'onScroll';
-    /**
-     * [descr:dxListOptions.showSelectionControls]
-     */
-    showSelectionControls?: boolean;
-    /**
-     * [descr:dxListOptions.selectAllText]
-     */
-    selectAllText?: string;
-    /**
-     * [descr:dxListOptions.useNativeScrolling]
-     */
-    useNativeScrolling?: boolean;
-  }
-  /**
    * [descr:dxLoadIndicator]
    */
-  export class dxLoadIndicator extends Widget<dxLoadIndicatorOptions> {}
+  export class dxLoadIndicator extends Widget<DevExpress.ui.dxLoadIndicator.Properties> {}
   module dxLoadIndicator {
     export type ContentReadyEvent =
       DevExpress.events.EventInfo<dxLoadIndicator>;
@@ -15295,23 +14191,20 @@ declare module DevExpress.ui {
     export type OptionChangedEvent =
       DevExpress.events.EventInfo<dxLoadIndicator> &
         DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxLoadIndicatorOptions;
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxLoadIndicatorOptions
-    extends WidgetOptions<dxLoadIndicator> {
     /**
-     * [descr:dxLoadIndicatorOptions.indicatorSrc]
+     * [descr:Properties]
      */
-    indicatorSrc?: string;
+    export interface Properties extends WidgetOptions<dxLoadIndicator> {
+      /**
+       * [descr:Properties.indicatorSrc]
+       */
+      indicatorSrc?: string;
+    }
   }
   /**
    * [descr:dxLoadPanel]
    */
-  export class dxLoadPanel extends dxOverlay<dxLoadPanelOptions> {}
+  export class dxLoadPanel extends dxOverlay<DevExpress.ui.dxLoadPanel.Properties> {}
   module dxLoadPanel {
     export type ContentReadyEvent = DevExpress.events.EventInfo<dxLoadPanel>;
     export type DisposingEvent = DevExpress.events.EventInfo<dxLoadPanel>;
@@ -15322,7 +14215,78 @@ declare module DevExpress.ui {
       DevExpress.events.InitializedEventInfo<dxLoadPanel>;
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxLoadPanel> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxLoadPanelOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends dxOverlayOptions<dxLoadPanel> {
+      /**
+       * [descr:Properties.animation]
+       */
+      animation?: dxLoadPanelAnimation;
+      /**
+       * [descr:Properties.container]
+       */
+      container?: string | DevExpress.core.UserDefinedElement;
+      /**
+       * [descr:Properties.delay]
+       */
+      delay?: number;
+      /**
+       * [descr:Properties.focusStateEnabled]
+       */
+      focusStateEnabled?: boolean;
+      /**
+       * [descr:Properties.height]
+       */
+      height?: number | string | (() => number | string);
+      /**
+       * [descr:Properties.indicatorSrc]
+       */
+      indicatorSrc?: string;
+      /**
+       * [descr:Properties.maxHeight]
+       */
+      maxHeight?: number | string | (() => number | string);
+      /**
+       * [descr:Properties.maxWidth]
+       */
+      maxWidth?: number | string | (() => number | string);
+      /**
+       * [descr:Properties.message]
+       */
+      message?: string;
+      /**
+       * [descr:Properties.position]
+       */
+      position?:
+        | 'bottom'
+        | 'center'
+        | 'left'
+        | 'left bottom'
+        | 'left top'
+        | 'right'
+        | 'right bottom'
+        | 'right top'
+        | 'top'
+        | PositionConfig
+        | Function;
+      /**
+       * [descr:Properties.shadingColor]
+       */
+      shadingColor?: string;
+      /**
+       * [descr:Properties.showIndicator]
+       */
+      showIndicator?: boolean;
+      /**
+       * [descr:Properties.showPane]
+       */
+      showPane?: boolean;
+      /**
+       * [descr:Properties.width]
+       */
+      width?: number | string | (() => number | string);
+    }
     export type ShowingEvent = DevExpress.events.Cancelable &
       DevExpress.events.EventInfo<dxLoadPanel>;
     export type ShownEvent = DevExpress.events.EventInfo<dxLoadPanel>;
@@ -15341,82 +14305,9 @@ declare module DevExpress.ui {
     show?: AnimationConfig;
   }
   /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxLoadPanelOptions extends dxOverlayOptions<dxLoadPanel> {
-    /**
-     * [descr:dxLoadPanelOptions.animation]
-     */
-    animation?: dxLoadPanelAnimation;
-    /**
-     * [descr:dxLoadPanelOptions.container]
-     */
-    container?: string | DevExpress.core.UserDefinedElement;
-    /**
-     * [descr:dxLoadPanelOptions.delay]
-     */
-    delay?: number;
-    /**
-     * [descr:dxLoadPanelOptions.focusStateEnabled]
-     */
-    focusStateEnabled?: boolean;
-    /**
-     * [descr:dxLoadPanelOptions.height]
-     */
-    height?: number | string | (() => number | string);
-    /**
-     * [descr:dxLoadPanelOptions.indicatorSrc]
-     */
-    indicatorSrc?: string;
-    /**
-     * [descr:dxLoadPanelOptions.maxHeight]
-     */
-    maxHeight?: number | string | (() => number | string);
-    /**
-     * [descr:dxLoadPanelOptions.maxWidth]
-     */
-    maxWidth?: number | string | (() => number | string);
-    /**
-     * [descr:dxLoadPanelOptions.message]
-     */
-    message?: string;
-    /**
-     * [descr:dxLoadPanelOptions.position]
-     */
-    position?:
-      | 'bottom'
-      | 'center'
-      | 'left'
-      | 'left bottom'
-      | 'left top'
-      | 'right'
-      | 'right bottom'
-      | 'right top'
-      | 'top'
-      | PositionConfig
-      | Function;
-    /**
-     * [descr:dxLoadPanelOptions.shadingColor]
-     */
-    shadingColor?: string;
-    /**
-     * [descr:dxLoadPanelOptions.showIndicator]
-     */
-    showIndicator?: boolean;
-    /**
-     * [descr:dxLoadPanelOptions.showPane]
-     */
-    showPane?: boolean;
-    /**
-     * [descr:dxLoadPanelOptions.width]
-     */
-    width?: number | string | (() => number | string);
-  }
-  /**
    * [descr:dxLookup]
    */
-  export class dxLookup extends dxDropDownList<dxLookupOptions> {}
+  export class dxLookup extends dxDropDownList<DevExpress.ui.dxLookup.Properties> {}
   module dxLookup {
     export type ClosedEvent = DevExpress.events.EventInfo<dxLookup>;
     export type ContentReadyEvent = DevExpress.events.EventInfo<dxLookup>;
@@ -15429,7 +14320,143 @@ declare module DevExpress.ui {
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxLookup> &
       DevExpress.events.ChangedOptionInfo;
     export type PageLoadingEvent = DevExpress.events.EventInfo<dxLookup>;
-    export type Properties = dxLookupOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends dxDropDownListOptions<dxLookup> {
+      /**
+       * [descr:Properties.applyButtonText]
+       */
+      applyButtonText?: string;
+      /**
+       * [descr:Properties.applyValueMode]
+       */
+      applyValueMode?: 'instantly' | 'useButtons';
+      /**
+       * [descr:Properties.cancelButtonText]
+       */
+      cancelButtonText?: string;
+      /**
+       * [descr:Properties.cleanSearchOnOpening]
+       */
+      cleanSearchOnOpening?: boolean;
+      /**
+       * [descr:Properties.clearButtonText]
+       */
+      clearButtonText?: string;
+      /**
+       * [descr:Properties.fieldTemplate]
+       */
+      fieldTemplate?:
+        | DevExpress.core.template
+        | ((
+            selectedItem: any,
+            fieldElement: DevExpress.core.DxElement
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.focusStateEnabled]
+       */
+      focusStateEnabled?: boolean;
+      /**
+       * [descr:Properties.fullScreen]
+       * @deprecated [depNote:Properties.fullScreen]
+       */
+      fullScreen?: boolean;
+      /**
+       * [descr:Properties.groupTemplate]
+       */
+      groupTemplate?:
+        | DevExpress.core.template
+        | ((
+            itemData: any,
+            itemIndex: number,
+            itemElement: DevExpress.core.DxElement
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.grouped]
+       */
+      grouped?: boolean;
+      /**
+       * [descr:Properties.nextButtonText]
+       */
+      nextButtonText?: string;
+      /**
+       * [descr:Properties.onPageLoading]
+       */
+      onPageLoading?: (e: PageLoadingEvent) => void;
+      /**
+       * [descr:Properties.onPullRefresh]
+       */
+      onPullRefresh?: (e: PullRefreshEvent) => void;
+      /**
+       * [descr:Properties.onScroll]
+       */
+      onScroll?: (e: ScrollEvent) => void;
+      /**
+       * [descr:Properties.onValueChanged]
+       */
+      onValueChanged?: (e: ValueChangedEvent) => void;
+      /**
+       * [descr:Properties.pageLoadMode]
+       */
+      pageLoadMode?: 'nextButton' | 'scrollBottom';
+      /**
+       * [descr:Properties.pageLoadingText]
+       */
+      pageLoadingText?: string;
+      /**
+       * [descr:Properties.placeholder]
+       */
+      placeholder?: string;
+      /**
+       * [descr:Properties.pullRefreshEnabled]
+       */
+      pullRefreshEnabled?: boolean;
+      /**
+       * [descr:Properties.pulledDownText]
+       */
+      pulledDownText?: string;
+      /**
+       * [descr:Properties.pullingDownText]
+       */
+      pullingDownText?: string;
+      /**
+       * [descr:Properties.refreshingText]
+       */
+      refreshingText?: string;
+      /**
+       * [descr:Properties.searchEnabled]
+       */
+      searchEnabled?: boolean;
+      /**
+       * [descr:Properties.searchPlaceholder]
+       */
+      searchPlaceholder?: string;
+      /**
+       * [descr:Properties.showCancelButton]
+       */
+      showCancelButton?: boolean;
+      /**
+       * [descr:Properties.showClearButton]
+       */
+      showClearButton?: boolean;
+      /**
+       * [descr:Properties.useNativeScrolling]
+       */
+      useNativeScrolling?: boolean;
+      /**
+       * [descr:Properties.usePopover]
+       */
+      usePopover?: boolean;
+      /**
+       * [descr:Properties.dropDownCentered]
+       */
+      dropDownCentered?: boolean;
+      /**
+       * [descr:Properties.dropDownOptions]
+       */
+      dropDownOptions?: DevExpress.ui.dxPopover.Properties;
+    }
     export type PullRefreshEvent = DevExpress.events.EventInfo<dxLookup>;
     export type ScrollEvent = DevExpress.events.NativeEventInfo<dxLookup> &
       DevExpress.ui.dxList.ScrollInfo;
@@ -15442,147 +14469,9 @@ declare module DevExpress.ui {
         DevExpress.ui.Editor.ValueChangedInfo;
   }
   /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxLookupOptions extends dxDropDownListOptions<dxLookup> {
-    /**
-     * [descr:dxLookupOptions.applyButtonText]
-     */
-    applyButtonText?: string;
-    /**
-     * [descr:dxLookupOptions.applyValueMode]
-     */
-    applyValueMode?: 'instantly' | 'useButtons';
-    /**
-     * [descr:dxLookupOptions.cancelButtonText]
-     */
-    cancelButtonText?: string;
-    /**
-     * [descr:dxLookupOptions.cleanSearchOnOpening]
-     */
-    cleanSearchOnOpening?: boolean;
-    /**
-     * [descr:dxLookupOptions.clearButtonText]
-     */
-    clearButtonText?: string;
-    /**
-     * [descr:dxLookupOptions.fieldTemplate]
-     */
-    fieldTemplate?:
-      | DevExpress.core.template
-      | ((
-          selectedItem: any,
-          fieldElement: DevExpress.core.DxElement
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxLookupOptions.focusStateEnabled]
-     */
-    focusStateEnabled?: boolean;
-    /**
-     * [descr:dxLookupOptions.fullScreen]
-     * @deprecated [depNote:dxLookupOptions.fullScreen]
-     */
-    fullScreen?: boolean;
-    /**
-     * [descr:dxLookupOptions.groupTemplate]
-     */
-    groupTemplate?:
-      | DevExpress.core.template
-      | ((
-          itemData: any,
-          itemIndex: number,
-          itemElement: DevExpress.core.DxElement
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxLookupOptions.grouped]
-     */
-    grouped?: boolean;
-    /**
-     * [descr:dxLookupOptions.nextButtonText]
-     */
-    nextButtonText?: string;
-    /**
-     * [descr:dxLookupOptions.onPageLoading]
-     */
-    onPageLoading?: (e: DevExpress.ui.dxLookup.PageLoadingEvent) => void;
-    /**
-     * [descr:dxLookupOptions.onPullRefresh]
-     */
-    onPullRefresh?: (e: DevExpress.ui.dxLookup.PullRefreshEvent) => void;
-    /**
-     * [descr:dxLookupOptions.onScroll]
-     */
-    onScroll?: (e: DevExpress.ui.dxLookup.ScrollEvent) => void;
-    /**
-     * [descr:dxLookupOptions.onValueChanged]
-     */
-    onValueChanged?: (e: DevExpress.ui.dxLookup.ValueChangedEvent) => void;
-    /**
-     * [descr:dxLookupOptions.pageLoadMode]
-     */
-    pageLoadMode?: 'nextButton' | 'scrollBottom';
-    /**
-     * [descr:dxLookupOptions.pageLoadingText]
-     */
-    pageLoadingText?: string;
-    /**
-     * [descr:dxLookupOptions.placeholder]
-     */
-    placeholder?: string;
-    /**
-     * [descr:dxLookupOptions.pullRefreshEnabled]
-     */
-    pullRefreshEnabled?: boolean;
-    /**
-     * [descr:dxLookupOptions.pulledDownText]
-     */
-    pulledDownText?: string;
-    /**
-     * [descr:dxLookupOptions.pullingDownText]
-     */
-    pullingDownText?: string;
-    /**
-     * [descr:dxLookupOptions.refreshingText]
-     */
-    refreshingText?: string;
-    /**
-     * [descr:dxLookupOptions.searchEnabled]
-     */
-    searchEnabled?: boolean;
-    /**
-     * [descr:dxLookupOptions.searchPlaceholder]
-     */
-    searchPlaceholder?: string;
-    /**
-     * [descr:dxLookupOptions.showCancelButton]
-     */
-    showCancelButton?: boolean;
-    /**
-     * [descr:dxLookupOptions.showClearButton]
-     */
-    showClearButton?: boolean;
-    /**
-     * [descr:dxLookupOptions.useNativeScrolling]
-     */
-    useNativeScrolling?: boolean;
-    /**
-     * [descr:dxLookupOptions.usePopover]
-     */
-    usePopover?: boolean;
-    /**
-     * [descr:dxLookupOptions.dropDownCentered]
-     */
-    dropDownCentered?: boolean;
-    /**
-     * [descr:dxLookupOptions.dropDownOptions]
-     */
-    dropDownOptions?: DevExpress.ui.dxPopover.Properties;
-  }
-  /**
    * [descr:dxMap]
    */
-  export class dxMap extends Widget<dxMapOptions> {
+  export class dxMap extends Widget<DevExpress.ui.dxMap.Properties> {
     /**
      * [descr:dxMap.addMarker(markerOptions)]
      */
@@ -15620,7 +14509,151 @@ declare module DevExpress.ui {
     };
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxMap> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxMapOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends WidgetOptions<dxMap> {
+      /**
+       * [descr:Properties.apiKey]
+       */
+      apiKey?:
+        | string
+        | {
+            /**
+             * [descr:Properties.apiKey.bing]
+             */
+            bing?: string;
+            /**
+             * [descr:Properties.apiKey.google]
+             */
+            google?: string;
+            /**
+             * [descr:Properties.apiKey.googleStatic]
+             */
+            googleStatic?: string;
+          };
+      /**
+       * [descr:Properties.autoAdjust]
+       */
+      autoAdjust?: boolean;
+      /**
+       * [descr:Properties.center]
+       */
+      center?: any | string | Array<number>;
+      /**
+       * [descr:Properties.controls]
+       */
+      controls?: boolean;
+      /**
+       * [descr:Properties.focusStateEnabled]
+       */
+      focusStateEnabled?: boolean;
+      /**
+       * [descr:Properties.height]
+       */
+      height?: number | string | (() => number | string);
+      /**
+       * [descr:Properties.markerIconSrc]
+       */
+      markerIconSrc?: string;
+      /**
+       * [descr:Properties.markers]
+       */
+      markers?: Array<{
+        /**
+         * [descr:Properties.markers.iconSrc]
+         */
+        iconSrc?: string;
+        /**
+         * [descr:Properties.markers.location]
+         */
+        location?: any | string | Array<number>;
+        /**
+         * [descr:Properties.markers.onClick]
+         */
+        onClick?: Function;
+        /**
+         * [descr:Properties.markers.tooltip]
+         */
+        tooltip?:
+          | string
+          | {
+              /**
+               * [descr:Properties.markers.tooltip.isShown]
+               */
+              isShown?: boolean;
+              /**
+               * [descr:Properties.markers.tooltip.text]
+               */
+              text?: string;
+            };
+      }>;
+      /**
+       * [descr:Properties.onClick]
+       */
+      onClick?: ((e: ClickEvent) => void) | string;
+      /**
+       * [descr:Properties.onMarkerAdded]
+       */
+      onMarkerAdded?: (e: MarkerAddedEvent) => void;
+      /**
+       * [descr:Properties.onMarkerRemoved]
+       */
+      onMarkerRemoved?: (e: MarkerRemovedEvent) => void;
+      /**
+       * [descr:Properties.onReady]
+       */
+      onReady?: (e: ReadyEvent) => void;
+      /**
+       * [descr:Properties.onRouteAdded]
+       */
+      onRouteAdded?: (e: RouteAddedEvent) => void;
+      /**
+       * [descr:Properties.onRouteRemoved]
+       */
+      onRouteRemoved?: (e: RouteRemovedEvent) => void;
+      /**
+       * [descr:Properties.provider]
+       */
+      provider?: 'bing' | 'google' | 'googleStatic';
+      /**
+       * [descr:Properties.routes]
+       */
+      routes?: Array<{
+        /**
+         * [descr:Properties.routes.color]
+         */
+        color?: string;
+        /**
+         * [descr:Properties.routes.locations]
+         */
+        locations?: Array<any>;
+        /**
+         * [descr:Properties.routes.mode]
+         */
+        mode?: 'driving' | 'walking';
+        /**
+         * [descr:Properties.routes.opacity]
+         */
+        opacity?: number;
+        /**
+         * [descr:Properties.routes.weight]
+         */
+        weight?: number;
+      }>;
+      /**
+       * [descr:Properties.type]
+       */
+      type?: 'hybrid' | 'roadmap' | 'satellite';
+      /**
+       * [descr:Properties.width]
+       */
+      width?: number | string | (() => number | string);
+      /**
+       * [descr:Properties.zoom]
+       */
+      zoom?: number;
+    }
     export type ReadyEvent = DevExpress.events.EventInfo<dxMap> & {
       originalMap: any;
     };
@@ -15633,155 +14666,9 @@ declare module DevExpress.ui {
     };
   }
   /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxMapOptions extends WidgetOptions<dxMap> {
-    /**
-     * [descr:dxMapOptions.apiKey]
-     */
-    apiKey?:
-      | string
-      | {
-          /**
-           * [descr:dxMapOptions.apiKey.bing]
-           */
-          bing?: string;
-          /**
-           * [descr:dxMapOptions.apiKey.google]
-           */
-          google?: string;
-          /**
-           * [descr:dxMapOptions.apiKey.googleStatic]
-           */
-          googleStatic?: string;
-        };
-    /**
-     * [descr:dxMapOptions.autoAdjust]
-     */
-    autoAdjust?: boolean;
-    /**
-     * [descr:dxMapOptions.center]
-     */
-    center?: any | string | Array<number>;
-    /**
-     * [descr:dxMapOptions.controls]
-     */
-    controls?: boolean;
-    /**
-     * [descr:dxMapOptions.focusStateEnabled]
-     */
-    focusStateEnabled?: boolean;
-    /**
-     * [descr:dxMapOptions.height]
-     */
-    height?: number | string | (() => number | string);
-    /**
-     * [descr:dxMapOptions.markerIconSrc]
-     */
-    markerIconSrc?: string;
-    /**
-     * [descr:dxMapOptions.markers]
-     */
-    markers?: Array<{
-      /**
-       * [descr:dxMapOptions.markers.iconSrc]
-       */
-      iconSrc?: string;
-      /**
-       * [descr:dxMapOptions.markers.location]
-       */
-      location?: any | string | Array<number>;
-      /**
-       * [descr:dxMapOptions.markers.onClick]
-       */
-      onClick?: Function;
-      /**
-       * [descr:dxMapOptions.markers.tooltip]
-       */
-      tooltip?:
-        | string
-        | {
-            /**
-             * [descr:dxMapOptions.markers.tooltip.isShown]
-             */
-            isShown?: boolean;
-            /**
-             * [descr:dxMapOptions.markers.tooltip.text]
-             */
-            text?: string;
-          };
-    }>;
-    /**
-     * [descr:dxMapOptions.onClick]
-     */
-    onClick?: ((e: DevExpress.ui.dxMap.ClickEvent) => void) | string;
-    /**
-     * [descr:dxMapOptions.onMarkerAdded]
-     */
-    onMarkerAdded?: (e: DevExpress.ui.dxMap.MarkerAddedEvent) => void;
-    /**
-     * [descr:dxMapOptions.onMarkerRemoved]
-     */
-    onMarkerRemoved?: (e: DevExpress.ui.dxMap.MarkerRemovedEvent) => void;
-    /**
-     * [descr:dxMapOptions.onReady]
-     */
-    onReady?: (e: DevExpress.ui.dxMap.ReadyEvent) => void;
-    /**
-     * [descr:dxMapOptions.onRouteAdded]
-     */
-    onRouteAdded?: (e: DevExpress.ui.dxMap.RouteAddedEvent) => void;
-    /**
-     * [descr:dxMapOptions.onRouteRemoved]
-     */
-    onRouteRemoved?: (e: DevExpress.ui.dxMap.RouteRemovedEvent) => void;
-    /**
-     * [descr:dxMapOptions.provider]
-     */
-    provider?: 'bing' | 'google' | 'googleStatic';
-    /**
-     * [descr:dxMapOptions.routes]
-     */
-    routes?: Array<{
-      /**
-       * [descr:dxMapOptions.routes.color]
-       */
-      color?: string;
-      /**
-       * [descr:dxMapOptions.routes.locations]
-       */
-      locations?: Array<any>;
-      /**
-       * [descr:dxMapOptions.routes.mode]
-       */
-      mode?: 'driving' | 'walking';
-      /**
-       * [descr:dxMapOptions.routes.opacity]
-       */
-      opacity?: number;
-      /**
-       * [descr:dxMapOptions.routes.weight]
-       */
-      weight?: number;
-    }>;
-    /**
-     * [descr:dxMapOptions.type]
-     */
-    type?: 'hybrid' | 'roadmap' | 'satellite';
-    /**
-     * [descr:dxMapOptions.width]
-     */
-    width?: number | string | (() => number | string);
-    /**
-     * [descr:dxMapOptions.zoom]
-     */
-    zoom?: number;
-  }
-  /**
    * [descr:dxMenu]
    */
-  export class dxMenu extends dxMenuBase<dxMenuOptions> {}
+  export class dxMenu extends dxMenuBase<DevExpress.ui.dxMenu.Properties> {}
   module dxMenu {
     export type ContentReadyEvent = DevExpress.events.EventInfo<dxMenu>;
     export type DisposingEvent = DevExpress.events.EventInfo<dxMenu>;
@@ -15832,7 +14719,78 @@ declare module DevExpress.ui {
     }
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxMenu> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxMenuOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends dxMenuBaseOptions<dxMenu> {
+      /**
+       * [descr:Properties.adaptivityEnabled]
+       */
+      adaptivityEnabled?: boolean;
+      /**
+       * [descr:Properties.dataSource]
+       */
+      dataSource?: DevExpress.data.DataSource.DataSourceLike<Item>;
+      /**
+       * [descr:Properties.hideSubmenuOnMouseLeave]
+       */
+      hideSubmenuOnMouseLeave?: boolean;
+      /**
+       * [descr:Properties.items]
+       */
+      items?: Array<Item>;
+      /**
+       * [descr:Properties.onSubmenuHidden]
+       */
+      onSubmenuHidden?: (e: SubmenuHiddenEvent) => void;
+      /**
+       * [descr:Properties.onSubmenuHiding]
+       */
+      onSubmenuHiding?: (e: SubmenuHidingEvent) => void;
+      /**
+       * [descr:Properties.onSubmenuShowing]
+       */
+      onSubmenuShowing?: (e: SubmenuShowingEvent) => void;
+      /**
+       * [descr:Properties.onSubmenuShown]
+       */
+      onSubmenuShown?: (e: SubmenuShownEvent) => void;
+      /**
+       * [descr:Properties.orientation]
+       */
+      orientation?: 'horizontal' | 'vertical';
+      /**
+       * [descr:Properties.showFirstSubmenuMode]
+       */
+      showFirstSubmenuMode?:
+        | {
+            /**
+             * [descr:Properties.showFirstSubmenuMode.delay]
+             */
+            delay?:
+              | {
+                  /**
+                   * [descr:Properties.showFirstSubmenuMode.delay.hide]
+                   */
+                  hide?: number;
+                  /**
+                   * [descr:Properties.showFirstSubmenuMode.delay.show]
+                   */
+                  show?: number;
+                }
+              | number;
+            /**
+             * [descr:Properties.showFirstSubmenuMode.name]
+             */
+            name?: 'onClick' | 'onHover';
+          }
+        | 'onClick'
+        | 'onHover';
+      /**
+       * [descr:Properties.submenuDirection]
+       */
+      submenuDirection?: 'auto' | 'leftOrTop' | 'rightOrBottom';
+    }
     export type SelectionChangedEvent = DevExpress.events.EventInfo<dxMenu> &
       DevExpress.ui.CollectionWidget.SelectionChangedInfo;
     export type SubmenuHiddenEvent = DevExpress.events.EventInfo<dxMenu> & {
@@ -15950,89 +14908,6 @@ declare module DevExpress.ui {
       | 'onHover';
   }
   /**
-   * @deprecated Use DevExpress.ui.dxMenu.Item instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxMenuItem extends dxMenuBaseItem {
-    /**
-     * [descr:dxMenuItem.items]
-     */
-    items?: Array<DevExpress.ui.dxMenu.Item>;
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxMenuOptions extends dxMenuBaseOptions<dxMenu> {
-    /**
-     * [descr:dxMenuOptions.adaptivityEnabled]
-     */
-    adaptivityEnabled?: boolean;
-    /**
-     * [descr:dxMenuOptions.dataSource]
-     */
-    dataSource?: DevExpress.data.DataSource.DataSourceLike<DevExpress.ui.dxMenu.Item>;
-    /**
-     * [descr:dxMenuOptions.hideSubmenuOnMouseLeave]
-     */
-    hideSubmenuOnMouseLeave?: boolean;
-    /**
-     * [descr:dxMenuOptions.items]
-     */
-    items?: Array<DevExpress.ui.dxMenu.Item>;
-    /**
-     * [descr:dxMenuOptions.onSubmenuHidden]
-     */
-    onSubmenuHidden?: (e: DevExpress.ui.dxMenu.SubmenuHiddenEvent) => void;
-    /**
-     * [descr:dxMenuOptions.onSubmenuHiding]
-     */
-    onSubmenuHiding?: (e: DevExpress.ui.dxMenu.SubmenuHidingEvent) => void;
-    /**
-     * [descr:dxMenuOptions.onSubmenuShowing]
-     */
-    onSubmenuShowing?: (e: DevExpress.ui.dxMenu.SubmenuShowingEvent) => void;
-    /**
-     * [descr:dxMenuOptions.onSubmenuShown]
-     */
-    onSubmenuShown?: (e: DevExpress.ui.dxMenu.SubmenuShownEvent) => void;
-    /**
-     * [descr:dxMenuOptions.orientation]
-     */
-    orientation?: 'horizontal' | 'vertical';
-    /**
-     * [descr:dxMenuOptions.showFirstSubmenuMode]
-     */
-    showFirstSubmenuMode?:
-      | {
-          /**
-           * [descr:dxMenuOptions.showFirstSubmenuMode.delay]
-           */
-          delay?:
-            | {
-                /**
-                 * [descr:dxMenuOptions.showFirstSubmenuMode.delay.hide]
-                 */
-                hide?: number;
-                /**
-                 * [descr:dxMenuOptions.showFirstSubmenuMode.delay.show]
-                 */
-                show?: number;
-              }
-            | number;
-          /**
-           * [descr:dxMenuOptions.showFirstSubmenuMode.name]
-           */
-          name?: 'onClick' | 'onHover';
-        }
-      | 'onClick'
-      | 'onHover';
-    /**
-     * [descr:dxMenuOptions.submenuDirection]
-     */
-    submenuDirection?: 'auto' | 'leftOrTop' | 'rightOrBottom';
-  }
-  /**
    * [descr:dxMultiView]
    */
   export class dxMultiView<
@@ -16060,62 +14935,55 @@ declare module DevExpress.ui {
     interface MultiViewInstance extends dxMultiView<Properties> {}
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxMultiView> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxMultiViewOptions<MultiViewInstance>;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties<TComponent = MultiViewInstance>
+      extends CollectionWidgetOptions<TComponent> {
+      /**
+       * [descr:Properties.animationEnabled]
+       */
+      animationEnabled?: boolean;
+      /**
+       * [descr:Properties.dataSource]
+       */
+      dataSource?: DevExpress.data.DataSource.DataSourceLike<
+        string | Item | any
+      >;
+      /**
+       * [descr:Properties.deferRendering]
+       */
+      deferRendering?: boolean;
+      /**
+       * [descr:Properties.focusStateEnabled]
+       */
+      focusStateEnabled?: boolean;
+      /**
+       * [descr:Properties.items]
+       */
+      items?: Array<string | Item | any>;
+      /**
+       * [descr:Properties.loop]
+       */
+      loop?: boolean;
+      /**
+       * [descr:Properties.selectedIndex]
+       */
+      selectedIndex?: number;
+      /**
+       * [descr:Properties.swipeEnabled]
+       */
+      swipeEnabled?: boolean;
+    }
     export type SelectionChangedEvent =
       DevExpress.events.EventInfo<dxMultiView> &
         DevExpress.ui.CollectionWidget.SelectionChangedInfo;
   }
   /**
-   * @deprecated Use Item instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxMultiViewItem extends CollectionWidgetItem {}
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxMultiViewOptions<TComponent>
-    extends CollectionWidgetOptions<TComponent> {
-    /**
-     * [descr:dxMultiViewOptions.animationEnabled]
-     */
-    animationEnabled?: boolean;
-    /**
-     * [descr:dxMultiViewOptions.dataSource]
-     */
-    dataSource?: DevExpress.data.DataSource.DataSourceLike<
-      string | DevExpress.ui.dxMultiView.Item | any
-    >;
-    /**
-     * [descr:dxMultiViewOptions.deferRendering]
-     */
-    deferRendering?: boolean;
-    /**
-     * [descr:dxMultiViewOptions.focusStateEnabled]
-     */
-    focusStateEnabled?: boolean;
-    /**
-     * [descr:dxMultiViewOptions.items]
-     */
-    items?: Array<string | DevExpress.ui.dxMultiView.Item | any>;
-    /**
-     * [descr:dxMultiViewOptions.loop]
-     */
-    loop?: boolean;
-    /**
-     * [descr:dxMultiViewOptions.selectedIndex]
-     */
-    selectedIndex?: number;
-    /**
-     * [descr:dxMultiViewOptions.swipeEnabled]
-     */
-    swipeEnabled?: boolean;
-  }
-  /**
    * [descr:dxNavBar]
    * @deprecated [depNote:dxNavBar]
    */
-  export class dxNavBar extends dxTabs<dxNavBarOptions> {}
+  export class dxNavBar extends dxTabs<DevExpress.ui.dxNavBar.Properties> {}
   module dxNavBar {
     export type ContentReadyEvent = DevExpress.events.EventInfo<dxNavBar>;
     export type DisposingEvent = DevExpress.events.EventInfo<dxNavBar>;
@@ -16131,34 +14999,23 @@ declare module DevExpress.ui {
       DevExpress.events.NativeEventInfo<dxNavBar> & DevExpress.events.ItemInfo;
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxNavBar> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxNavBarOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties
+      extends DevExpress.ui.dxTabs.Properties<dxNavBar> {
+      /**
+       * [descr:Properties.scrollByContent]
+       */
+      scrollByContent?: boolean;
+    }
     export type SelectionChangedEvent = DevExpress.events.EventInfo<dxNavBar> &
       DevExpress.ui.CollectionWidget.SelectionChangedInfo;
   }
   /**
-   * @deprecated Use Item instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxNavBarItem extends DevExpress.ui.dxTabs.Item {
-    /**
-     * [descr:dxNavBarItem.badge]
-     */
-    badge?: string;
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxNavBarOptions extends dxTabsOptions<dxNavBar> {
-    /**
-     * [descr:dxNavBarOptions.scrollByContent]
-     */
-    scrollByContent?: boolean;
-  }
-  /**
    * [descr:dxNumberBox]
    */
-  export class dxNumberBox extends dxTextEditor<dxNumberBoxOptions> {}
+  export class dxNumberBox extends dxTextEditor<DevExpress.ui.dxNumberBox.Properties> {}
   module dxNumberBox {
     export type ChangeEvent = DevExpress.events.NativeEventInfo<dxNumberBox>;
     export type ContentReadyEvent = DevExpress.events.EventInfo<dxNumberBox>;
@@ -16177,56 +15034,54 @@ declare module DevExpress.ui {
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxNumberBox> &
       DevExpress.events.ChangedOptionInfo;
     export type PasteEvent = DevExpress.events.NativeEventInfo<dxNumberBox>;
-    export type Properties = dxNumberBoxOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends dxTextEditorOptions<dxNumberBox> {
+      /**
+       * [descr:Properties.buttons]
+       */
+      buttons?: Array<'clear' | 'spins' | dxTextEditorButton>;
+      /**
+       * [descr:Properties.format]
+       */
+      format?: Format;
+      /**
+       * [descr:Properties.invalidValueMessage]
+       */
+      invalidValueMessage?: string;
+      /**
+       * [descr:Properties.max]
+       */
+      max?: number;
+      /**
+       * [descr:Properties.min]
+       */
+      min?: number;
+      /**
+       * [descr:Properties.mode]
+       */
+      mode?: 'number' | 'text' | 'tel';
+      /**
+       * [descr:Properties.showSpinButtons]
+       */
+      showSpinButtons?: boolean;
+      /**
+       * [descr:Properties.step]
+       */
+      step?: number;
+      /**
+       * [descr:Properties.useLargeSpinButtons]
+       */
+      useLargeSpinButtons?: boolean;
+      /**
+       * [descr:Properties.value]
+       */
+      value?: number;
+    }
     export type ValueChangedEvent =
       DevExpress.events.NativeEventInfo<dxNumberBox> &
         DevExpress.ui.Editor.ValueChangedInfo;
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxNumberBoxOptions extends dxTextEditorOptions<dxNumberBox> {
-    /**
-     * [descr:dxNumberBoxOptions.buttons]
-     */
-    buttons?: Array<'clear' | 'spins' | dxTextEditorButton>;
-    /**
-     * [descr:dxNumberBoxOptions.format]
-     */
-    format?: Format;
-    /**
-     * [descr:dxNumberBoxOptions.invalidValueMessage]
-     */
-    invalidValueMessage?: string;
-    /**
-     * [descr:dxNumberBoxOptions.max]
-     */
-    max?: number;
-    /**
-     * [descr:dxNumberBoxOptions.min]
-     */
-    min?: number;
-    /**
-     * [descr:dxNumberBoxOptions.mode]
-     */
-    mode?: 'number' | 'text' | 'tel';
-    /**
-     * [descr:dxNumberBoxOptions.showSpinButtons]
-     */
-    showSpinButtons?: boolean;
-    /**
-     * [descr:dxNumberBoxOptions.step]
-     */
-    step?: number;
-    /**
-     * [descr:dxNumberBoxOptions.useLargeSpinButtons]
-     */
-    useLargeSpinButtons?: boolean;
-    /**
-     * [descr:dxNumberBoxOptions.value]
-     */
-    value?: number;
   }
   /**
    * [descr:dxOverlay]
@@ -16388,7 +15243,7 @@ declare module DevExpress.ui {
   /**
    * [descr:dxPivotGrid]
    */
-  export class dxPivotGrid extends Widget<dxPivotGridOptions> {
+  export class dxPivotGrid extends Widget<DevExpress.ui.dxPivotGrid.Properties> {
     /**
      * [descr:dxPivotGrid.bindChart(chart, integrationOptions)]
      */
@@ -16472,12 +15327,419 @@ declare module DevExpress.ui {
       DevExpress.events.InitializedEventInfo<dxPivotGrid>;
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxPivotGrid> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxPivotGridOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends WidgetOptions<dxPivotGrid> {
+      /**
+       * [descr:Properties.allowExpandAll]
+       */
+      allowExpandAll?: boolean;
+      /**
+       * [descr:Properties.allowFiltering]
+       */
+      allowFiltering?: boolean;
+      /**
+       * [descr:Properties.allowSorting]
+       */
+      allowSorting?: boolean;
+      /**
+       * [descr:Properties.allowSortingBySummary]
+       */
+      allowSortingBySummary?: boolean;
+      /**
+       * [descr:Properties.dataFieldArea]
+       */
+      dataFieldArea?: 'column' | 'row';
+      /**
+       * [descr:Properties.dataSource]
+       */
+      dataSource?:
+        | Array<any>
+        | DevExpress.data.PivotGridDataSource
+        | DevExpress.data.PivotGridDataSource.Options;
+      /**
+       * [descr:Properties.encodeHtml]
+       */
+      encodeHtml?: boolean;
+      /**
+       * [descr:Properties.export]
+       */
+      export?: {
+        /**
+         * [descr:Properties.export.enabled]
+         */
+        enabled?: boolean;
+        /**
+         * [descr:Properties.export.fileName]
+         * @deprecated [depNote:Properties.export.fileName]
+         */
+        fileName?: string;
+        /**
+         * [descr:Properties.export.ignoreExcelErrors]
+         * @deprecated [depNote:Properties.export.ignoreExcelErrors]
+         */
+        ignoreExcelErrors?: boolean;
+        /**
+         * [descr:Properties.export.proxyUrl]
+         * @deprecated [depNote:Properties.export.proxyUrl]
+         */
+        proxyUrl?: string;
+      };
+      /**
+       * [descr:Properties.fieldChooser]
+       */
+      fieldChooser?: {
+        /**
+         * [descr:Properties.fieldChooser.allowSearch]
+         */
+        allowSearch?: boolean;
+        /**
+         * [descr:Properties.fieldChooser.applyChangesMode]
+         */
+        applyChangesMode?: 'instantly' | 'onDemand';
+        /**
+         * [descr:Properties.fieldChooser.enabled]
+         */
+        enabled?: boolean;
+        /**
+         * [descr:Properties.fieldChooser.height]
+         */
+        height?: number;
+        /**
+         * [descr:Properties.fieldChooser.layout]
+         */
+        layout?: 0 | 1 | 2;
+        /**
+         * [descr:Properties.fieldChooser.searchTimeout]
+         */
+        searchTimeout?: number;
+        /**
+         * [descr:Properties.fieldChooser.texts]
+         */
+        texts?: {
+          /**
+           * [descr:Properties.fieldChooser.texts.allFields]
+           */
+          allFields?: string;
+          /**
+           * [descr:Properties.fieldChooser.texts.columnFields]
+           */
+          columnFields?: string;
+          /**
+           * [descr:Properties.fieldChooser.texts.dataFields]
+           */
+          dataFields?: string;
+          /**
+           * [descr:Properties.fieldChooser.texts.filterFields]
+           */
+          filterFields?: string;
+          /**
+           * [descr:Properties.fieldChooser.texts.rowFields]
+           */
+          rowFields?: string;
+        };
+        /**
+         * [descr:Properties.fieldChooser.title]
+         */
+        title?: string;
+        /**
+         * [descr:Properties.fieldChooser.width]
+         */
+        width?: number;
+      };
+      /**
+       * [descr:Properties.fieldPanel]
+       */
+      fieldPanel?: {
+        /**
+         * [descr:Properties.fieldPanel.allowFieldDragging]
+         */
+        allowFieldDragging?: boolean;
+        /**
+         * [descr:Properties.fieldPanel.showColumnFields]
+         */
+        showColumnFields?: boolean;
+        /**
+         * [descr:Properties.fieldPanel.showDataFields]
+         */
+        showDataFields?: boolean;
+        /**
+         * [descr:Properties.fieldPanel.showFilterFields]
+         */
+        showFilterFields?: boolean;
+        /**
+         * [descr:Properties.fieldPanel.showRowFields]
+         */
+        showRowFields?: boolean;
+        /**
+         * [descr:Properties.fieldPanel.texts]
+         */
+        texts?: {
+          /**
+           * [descr:Properties.fieldPanel.texts.columnFieldArea]
+           */
+          columnFieldArea?: string;
+          /**
+           * [descr:Properties.fieldPanel.texts.dataFieldArea]
+           */
+          dataFieldArea?: string;
+          /**
+           * [descr:Properties.fieldPanel.texts.filterFieldArea]
+           */
+          filterFieldArea?: string;
+          /**
+           * [descr:Properties.fieldPanel.texts.rowFieldArea]
+           */
+          rowFieldArea?: string;
+        };
+        /**
+         * [descr:Properties.fieldPanel.visible]
+         */
+        visible?: boolean;
+      };
+      /**
+       * [descr:Properties.headerFilter]
+       */
+      headerFilter?: {
+        /**
+         * [descr:Properties.headerFilter.allowSearch]
+         */
+        allowSearch?: boolean;
+        /**
+         * [descr:Properties.headerFilter.height]
+         */
+        height?: number;
+        /**
+         * [descr:Properties.headerFilter.searchTimeout]
+         */
+        searchTimeout?: number;
+        /**
+         * [descr:Properties.headerFilter.showRelevantValues]
+         */
+        showRelevantValues?: boolean;
+        /**
+         * [descr:Properties.headerFilter.texts]
+         */
+        texts?: {
+          /**
+           * [descr:Properties.headerFilter.texts.cancel]
+           */
+          cancel?: string;
+          /**
+           * [descr:Properties.headerFilter.texts.emptyValue]
+           */
+          emptyValue?: string;
+          /**
+           * [descr:Properties.headerFilter.texts.ok]
+           */
+          ok?: string;
+        };
+        /**
+         * [descr:Properties.headerFilter.width]
+         */
+        width?: number;
+      };
+      /**
+       * [descr:Properties.hideEmptySummaryCells]
+       */
+      hideEmptySummaryCells?: boolean;
+      /**
+       * [descr:Properties.loadPanel]
+       */
+      loadPanel?: {
+        /**
+         * [descr:Properties.loadPanel.enabled]
+         */
+        enabled?: boolean;
+        /**
+         * [descr:Properties.loadPanel.height]
+         */
+        height?: number;
+        /**
+         * [descr:Properties.loadPanel.indicatorSrc]
+         */
+        indicatorSrc?: string;
+        /**
+         * [descr:Properties.loadPanel.shading]
+         */
+        shading?: boolean;
+        /**
+         * [descr:Properties.loadPanel.shadingColor]
+         */
+        shadingColor?: string;
+        /**
+         * [descr:Properties.loadPanel.showIndicator]
+         */
+        showIndicator?: boolean;
+        /**
+         * [descr:Properties.loadPanel.showPane]
+         */
+        showPane?: boolean;
+        /**
+         * [descr:Properties.loadPanel.text]
+         */
+        text?: string;
+        /**
+         * [descr:Properties.loadPanel.width]
+         */
+        width?: number;
+      };
+      /**
+       * [descr:Properties.onCellClick]
+       */
+      onCellClick?: (e: CellClickEvent) => void;
+      /**
+       * [descr:Properties.onCellPrepared]
+       */
+      onCellPrepared?: (e: CellPreparedEvent) => void;
+      /**
+       * [descr:Properties.onContextMenuPreparing]
+       */
+      onContextMenuPreparing?: (e: ContextMenuPreparingEvent) => void;
+      /**
+       * [descr:Properties.onExported]
+       * @deprecated [depNote:Properties.onExported]
+       */
+      onExported?: (e: ExportedEvent) => void;
+      /**
+       * [descr:Properties.onExporting]
+       */
+      onExporting?: (e: ExportingEvent) => void;
+      /**
+       * [descr:Properties.onFileSaving]
+       * @deprecated [depNote:Properties.onFileSaving]
+       */
+      onFileSaving?: (e: FileSavingEvent) => void;
+      /**
+       * [descr:Properties.rowHeaderLayout]
+       */
+      rowHeaderLayout?: 'standard' | 'tree';
+      /**
+       * [descr:Properties.scrolling]
+       */
+      scrolling?: {
+        /**
+         * [descr:Properties.scrolling.mode]
+         */
+        mode?: 'standard' | 'virtual';
+        /**
+         * [descr:Properties.scrolling.useNative]
+         */
+        useNative?: boolean | 'auto';
+      };
+      /**
+       * [descr:Properties.showBorders]
+       */
+      showBorders?: boolean;
+      /**
+       * [descr:Properties.showColumnGrandTotals]
+       */
+      showColumnGrandTotals?: boolean;
+      /**
+       * [descr:Properties.showColumnTotals]
+       */
+      showColumnTotals?: boolean;
+      /**
+       * [descr:Properties.showRowGrandTotals]
+       */
+      showRowGrandTotals?: boolean;
+      /**
+       * [descr:Properties.showRowTotals]
+       */
+      showRowTotals?: boolean;
+      /**
+       * [descr:Properties.showTotalsPrior]
+       */
+      showTotalsPrior?: 'both' | 'columns' | 'none' | 'rows';
+      /**
+       * [descr:Properties.stateStoring]
+       */
+      stateStoring?: {
+        /**
+         * [descr:Properties.stateStoring.customLoad]
+         */
+        customLoad?: () => PromiseLike<any>;
+        /**
+         * [descr:Properties.stateStoring.customSave]
+         */
+        customSave?: (state: any) => any;
+        /**
+         * [descr:Properties.stateStoring.enabled]
+         */
+        enabled?: boolean;
+        /**
+         * [descr:Properties.stateStoring.savingTimeout]
+         */
+        savingTimeout?: number;
+        /**
+         * [descr:Properties.stateStoring.storageKey]
+         */
+        storageKey?: string;
+        /**
+         * [descr:Properties.stateStoring.type]
+         */
+        type?: 'custom' | 'localStorage' | 'sessionStorage';
+      };
+      /**
+       * [descr:Properties.texts]
+       */
+      texts?: {
+        /**
+         * [descr:Properties.texts.collapseAll]
+         */
+        collapseAll?: string;
+        /**
+         * [descr:Properties.texts.dataNotAvailable]
+         */
+        dataNotAvailable?: string;
+        /**
+         * [descr:Properties.texts.expandAll]
+         */
+        expandAll?: string;
+        /**
+         * [descr:Properties.texts.exportToExcel]
+         */
+        exportToExcel?: string;
+        /**
+         * [descr:Properties.texts.grandTotal]
+         */
+        grandTotal?: string;
+        /**
+         * [descr:Properties.texts.noData]
+         */
+        noData?: string;
+        /**
+         * [descr:Properties.texts.removeAllSorting]
+         */
+        removeAllSorting?: string;
+        /**
+         * [descr:Properties.texts.showFieldChooser]
+         */
+        showFieldChooser?: string;
+        /**
+         * [descr:Properties.texts.sortColumnBySummary]
+         */
+        sortColumnBySummary?: string;
+        /**
+         * [descr:Properties.texts.sortRowBySummary]
+         */
+        sortRowBySummary?: string;
+        /**
+         * [descr:Properties.texts.total]
+         */
+        total?: string;
+      };
+      /**
+       * [descr:Properties.wordWrapEnabled]
+       */
+      wordWrapEnabled?: boolean;
+    }
   }
   /**
    * [descr:dxPivotGridFieldChooser]
    */
-  export class dxPivotGridFieldChooser extends Widget<dxPivotGridFieldChooserOptions> {
+  export class dxPivotGridFieldChooser extends Widget<DevExpress.ui.dxPivotGridFieldChooser.Properties> {
     /**
      * [descr:dxPivotGridFieldChooser.applyChanges()]
      */
@@ -16512,572 +15774,110 @@ declare module DevExpress.ui {
     export type OptionChangedEvent =
       DevExpress.events.EventInfo<dxPivotGridFieldChooser> &
         DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxPivotGridFieldChooserOptions;
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxPivotGridFieldChooserOptions
-    extends WidgetOptions<dxPivotGridFieldChooser> {
     /**
-     * [descr:dxPivotGridFieldChooserOptions.allowSearch]
+     * [descr:Properties]
      */
-    allowSearch?: boolean;
-    /**
-     * [descr:dxPivotGridFieldChooserOptions.applyChangesMode]
-     */
-    applyChangesMode?: 'instantly' | 'onDemand';
-    /**
-     * [descr:dxPivotGridFieldChooserOptions.dataSource]
-     */
-    dataSource?: DevExpress.data.PivotGridDataSource;
-    /**
-     * [descr:dxPivotGridFieldChooserOptions.headerFilter]
-     */
-    headerFilter?: {
+    export interface Properties extends WidgetOptions<dxPivotGridFieldChooser> {
       /**
-       * [descr:dxPivotGridFieldChooserOptions.headerFilter.allowSearch]
+       * [descr:Properties.allowSearch]
        */
       allowSearch?: boolean;
       /**
-       * [descr:dxPivotGridFieldChooserOptions.headerFilter.height]
-       */
-      height?: number;
-      /**
-       * [descr:dxPivotGridFieldChooserOptions.headerFilter.searchTimeout]
-       */
-      searchTimeout?: number;
-      /**
-       * [descr:dxPivotGridFieldChooserOptions.headerFilter.showRelevantValues]
-       */
-      showRelevantValues?: boolean;
-      /**
-       * [descr:dxPivotGridFieldChooserOptions.headerFilter.texts]
-       */
-      texts?: {
-        /**
-         * [descr:dxPivotGridFieldChooserOptions.headerFilter.texts.cancel]
-         */
-        cancel?: string;
-        /**
-         * [descr:dxPivotGridFieldChooserOptions.headerFilter.texts.emptyValue]
-         */
-        emptyValue?: string;
-        /**
-         * [descr:dxPivotGridFieldChooserOptions.headerFilter.texts.ok]
-         */
-        ok?: string;
-      };
-      /**
-       * [descr:dxPivotGridFieldChooserOptions.headerFilter.width]
-       */
-      width?: number;
-    };
-    /**
-     * [descr:dxPivotGridFieldChooserOptions.height]
-     */
-    height?: number | string | (() => number | string);
-    /**
-     * [descr:dxPivotGridFieldChooserOptions.layout]
-     */
-    layout?: 0 | 1 | 2;
-    /**
-     * [descr:dxPivotGridFieldChooserOptions.onContextMenuPreparing]
-     */
-    onContextMenuPreparing?: (
-      e: DevExpress.ui.dxPivotGridFieldChooser.ContextMenuPreparingEvent
-    ) => void;
-    /**
-     * [descr:dxPivotGridFieldChooserOptions.searchTimeout]
-     */
-    searchTimeout?: number;
-    /**
-     * [descr:dxPivotGridFieldChooserOptions.state]
-     */
-    state?: any;
-    /**
-     * [descr:dxPivotGridFieldChooserOptions.texts]
-     */
-    texts?: {
-      /**
-       * [descr:dxPivotGridFieldChooserOptions.texts.allFields]
-       */
-      allFields?: string;
-      /**
-       * [descr:dxPivotGridFieldChooserOptions.texts.columnFields]
-       */
-      columnFields?: string;
-      /**
-       * [descr:dxPivotGridFieldChooserOptions.texts.dataFields]
-       */
-      dataFields?: string;
-      /**
-       * [descr:dxPivotGridFieldChooserOptions.texts.filterFields]
-       */
-      filterFields?: string;
-      /**
-       * [descr:dxPivotGridFieldChooserOptions.texts.rowFields]
-       */
-      rowFields?: string;
-    };
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxPivotGridOptions extends WidgetOptions<dxPivotGrid> {
-    /**
-     * [descr:dxPivotGridOptions.allowExpandAll]
-     */
-    allowExpandAll?: boolean;
-    /**
-     * [descr:dxPivotGridOptions.allowFiltering]
-     */
-    allowFiltering?: boolean;
-    /**
-     * [descr:dxPivotGridOptions.allowSorting]
-     */
-    allowSorting?: boolean;
-    /**
-     * [descr:dxPivotGridOptions.allowSortingBySummary]
-     */
-    allowSortingBySummary?: boolean;
-    /**
-     * [descr:dxPivotGridOptions.dataFieldArea]
-     */
-    dataFieldArea?: 'column' | 'row';
-    /**
-     * [descr:dxPivotGridOptions.dataSource]
-     */
-    dataSource?:
-      | Array<any>
-      | DevExpress.data.PivotGridDataSource
-      | DevExpress.data.PivotGridDataSource.Options;
-    /**
-     * [descr:dxPivotGridOptions.encodeHtml]
-     */
-    encodeHtml?: boolean;
-    /**
-     * [descr:dxPivotGridOptions.export]
-     */
-    export?: {
-      /**
-       * [descr:dxPivotGridOptions.export.enabled]
-       */
-      enabled?: boolean;
-      /**
-       * [descr:dxPivotGridOptions.export.fileName]
-       * @deprecated [depNote:dxPivotGridOptions.export.fileName]
-       */
-      fileName?: string;
-      /**
-       * [descr:dxPivotGridOptions.export.ignoreExcelErrors]
-       * @deprecated [depNote:dxPivotGridOptions.export.ignoreExcelErrors]
-       */
-      ignoreExcelErrors?: boolean;
-      /**
-       * [descr:dxPivotGridOptions.export.proxyUrl]
-       * @deprecated [depNote:dxPivotGridOptions.export.proxyUrl]
-       */
-      proxyUrl?: string;
-    };
-    /**
-     * [descr:dxPivotGridOptions.fieldChooser]
-     */
-    fieldChooser?: {
-      /**
-       * [descr:dxPivotGridOptions.fieldChooser.allowSearch]
-       */
-      allowSearch?: boolean;
-      /**
-       * [descr:dxPivotGridOptions.fieldChooser.applyChangesMode]
+       * [descr:Properties.applyChangesMode]
        */
       applyChangesMode?: 'instantly' | 'onDemand';
       /**
-       * [descr:dxPivotGridOptions.fieldChooser.enabled]
+       * [descr:Properties.dataSource]
        */
-      enabled?: boolean;
+      dataSource?: DevExpress.data.PivotGridDataSource;
       /**
-       * [descr:dxPivotGridOptions.fieldChooser.height]
+       * [descr:Properties.headerFilter]
        */
-      height?: number;
+      headerFilter?: {
+        /**
+         * [descr:Properties.headerFilter.allowSearch]
+         */
+        allowSearch?: boolean;
+        /**
+         * [descr:Properties.headerFilter.height]
+         */
+        height?: number;
+        /**
+         * [descr:Properties.headerFilter.searchTimeout]
+         */
+        searchTimeout?: number;
+        /**
+         * [descr:Properties.headerFilter.showRelevantValues]
+         */
+        showRelevantValues?: boolean;
+        /**
+         * [descr:Properties.headerFilter.texts]
+         */
+        texts?: {
+          /**
+           * [descr:Properties.headerFilter.texts.cancel]
+           */
+          cancel?: string;
+          /**
+           * [descr:Properties.headerFilter.texts.emptyValue]
+           */
+          emptyValue?: string;
+          /**
+           * [descr:Properties.headerFilter.texts.ok]
+           */
+          ok?: string;
+        };
+        /**
+         * [descr:Properties.headerFilter.width]
+         */
+        width?: number;
+      };
       /**
-       * [descr:dxPivotGridOptions.fieldChooser.layout]
+       * [descr:Properties.height]
+       */
+      height?: number | string | (() => number | string);
+      /**
+       * [descr:Properties.layout]
        */
       layout?: 0 | 1 | 2;
       /**
-       * [descr:dxPivotGridOptions.fieldChooser.searchTimeout]
+       * [descr:Properties.onContextMenuPreparing]
+       */
+      onContextMenuPreparing?: (e: ContextMenuPreparingEvent) => void;
+      /**
+       * [descr:Properties.searchTimeout]
        */
       searchTimeout?: number;
       /**
-       * [descr:dxPivotGridOptions.fieldChooser.texts]
+       * [descr:Properties.state]
+       */
+      state?: any;
+      /**
+       * [descr:Properties.texts]
        */
       texts?: {
         /**
-         * [descr:dxPivotGridOptions.fieldChooser.texts.allFields]
+         * [descr:Properties.texts.allFields]
          */
         allFields?: string;
         /**
-         * [descr:dxPivotGridOptions.fieldChooser.texts.columnFields]
+         * [descr:Properties.texts.columnFields]
          */
         columnFields?: string;
         /**
-         * [descr:dxPivotGridOptions.fieldChooser.texts.dataFields]
+         * [descr:Properties.texts.dataFields]
          */
         dataFields?: string;
         /**
-         * [descr:dxPivotGridOptions.fieldChooser.texts.filterFields]
+         * [descr:Properties.texts.filterFields]
          */
         filterFields?: string;
         /**
-         * [descr:dxPivotGridOptions.fieldChooser.texts.rowFields]
+         * [descr:Properties.texts.rowFields]
          */
         rowFields?: string;
       };
-      /**
-       * [descr:dxPivotGridOptions.fieldChooser.title]
-       */
-      title?: string;
-      /**
-       * [descr:dxPivotGridOptions.fieldChooser.width]
-       */
-      width?: number;
-    };
-    /**
-     * [descr:dxPivotGridOptions.fieldPanel]
-     */
-    fieldPanel?: {
-      /**
-       * [descr:dxPivotGridOptions.fieldPanel.allowFieldDragging]
-       */
-      allowFieldDragging?: boolean;
-      /**
-       * [descr:dxPivotGridOptions.fieldPanel.showColumnFields]
-       */
-      showColumnFields?: boolean;
-      /**
-       * [descr:dxPivotGridOptions.fieldPanel.showDataFields]
-       */
-      showDataFields?: boolean;
-      /**
-       * [descr:dxPivotGridOptions.fieldPanel.showFilterFields]
-       */
-      showFilterFields?: boolean;
-      /**
-       * [descr:dxPivotGridOptions.fieldPanel.showRowFields]
-       */
-      showRowFields?: boolean;
-      /**
-       * [descr:dxPivotGridOptions.fieldPanel.texts]
-       */
-      texts?: {
-        /**
-         * [descr:dxPivotGridOptions.fieldPanel.texts.columnFieldArea]
-         */
-        columnFieldArea?: string;
-        /**
-         * [descr:dxPivotGridOptions.fieldPanel.texts.dataFieldArea]
-         */
-        dataFieldArea?: string;
-        /**
-         * [descr:dxPivotGridOptions.fieldPanel.texts.filterFieldArea]
-         */
-        filterFieldArea?: string;
-        /**
-         * [descr:dxPivotGridOptions.fieldPanel.texts.rowFieldArea]
-         */
-        rowFieldArea?: string;
-      };
-      /**
-       * [descr:dxPivotGridOptions.fieldPanel.visible]
-       */
-      visible?: boolean;
-    };
-    /**
-     * [descr:dxPivotGridOptions.headerFilter]
-     */
-    headerFilter?: {
-      /**
-       * [descr:dxPivotGridOptions.headerFilter.allowSearch]
-       */
-      allowSearch?: boolean;
-      /**
-       * [descr:dxPivotGridOptions.headerFilter.height]
-       */
-      height?: number;
-      /**
-       * [descr:dxPivotGridOptions.headerFilter.searchTimeout]
-       */
-      searchTimeout?: number;
-      /**
-       * [descr:dxPivotGridOptions.headerFilter.showRelevantValues]
-       */
-      showRelevantValues?: boolean;
-      /**
-       * [descr:dxPivotGridOptions.headerFilter.texts]
-       */
-      texts?: {
-        /**
-         * [descr:dxPivotGridOptions.headerFilter.texts.cancel]
-         */
-        cancel?: string;
-        /**
-         * [descr:dxPivotGridOptions.headerFilter.texts.emptyValue]
-         */
-        emptyValue?: string;
-        /**
-         * [descr:dxPivotGridOptions.headerFilter.texts.ok]
-         */
-        ok?: string;
-      };
-      /**
-       * [descr:dxPivotGridOptions.headerFilter.width]
-       */
-      width?: number;
-    };
-    /**
-     * [descr:dxPivotGridOptions.hideEmptySummaryCells]
-     */
-    hideEmptySummaryCells?: boolean;
-    /**
-     * [descr:dxPivotGridOptions.loadPanel]
-     */
-    loadPanel?: {
-      /**
-       * [descr:dxPivotGridOptions.loadPanel.enabled]
-       */
-      enabled?: boolean;
-      /**
-       * [descr:dxPivotGridOptions.loadPanel.height]
-       */
-      height?: number;
-      /**
-       * [descr:dxPivotGridOptions.loadPanel.indicatorSrc]
-       */
-      indicatorSrc?: string;
-      /**
-       * [descr:dxPivotGridOptions.loadPanel.shading]
-       */
-      shading?: boolean;
-      /**
-       * [descr:dxPivotGridOptions.loadPanel.shadingColor]
-       */
-      shadingColor?: string;
-      /**
-       * [descr:dxPivotGridOptions.loadPanel.showIndicator]
-       */
-      showIndicator?: boolean;
-      /**
-       * [descr:dxPivotGridOptions.loadPanel.showPane]
-       */
-      showPane?: boolean;
-      /**
-       * [descr:dxPivotGridOptions.loadPanel.text]
-       */
-      text?: string;
-      /**
-       * [descr:dxPivotGridOptions.loadPanel.width]
-       */
-      width?: number;
-    };
-    /**
-     * [descr:dxPivotGridOptions.onCellClick]
-     */
-    onCellClick?: (e: DevExpress.ui.dxPivotGrid.CellClickEvent) => void;
-    /**
-     * [descr:dxPivotGridOptions.onCellPrepared]
-     */
-    onCellPrepared?: (e: DevExpress.ui.dxPivotGrid.CellPreparedEvent) => void;
-    /**
-     * [descr:dxPivotGridOptions.onContextMenuPreparing]
-     */
-    onContextMenuPreparing?: (
-      e: DevExpress.ui.dxPivotGrid.ContextMenuPreparingEvent
-    ) => void;
-    /**
-     * [descr:dxPivotGridOptions.onExported]
-     * @deprecated [depNote:dxPivotGridOptions.onExported]
-     */
-    onExported?: (e: DevExpress.ui.dxPivotGrid.ExportedEvent) => void;
-    /**
-     * [descr:dxPivotGridOptions.onExporting]
-     */
-    onExporting?: (e: DevExpress.ui.dxPivotGrid.ExportingEvent) => void;
-    /**
-     * [descr:dxPivotGridOptions.onFileSaving]
-     * @deprecated [depNote:dxPivotGridOptions.onFileSaving]
-     */
-    onFileSaving?: (e: DevExpress.ui.dxPivotGrid.FileSavingEvent) => void;
-    /**
-     * [descr:dxPivotGridOptions.rowHeaderLayout]
-     */
-    rowHeaderLayout?: 'standard' | 'tree';
-    /**
-     * [descr:dxPivotGridOptions.scrolling]
-     */
-    scrolling?: {
-      /**
-       * [descr:dxPivotGridOptions.scrolling.mode]
-       */
-      mode?: 'standard' | 'virtual';
-      /**
-       * [descr:dxPivotGridOptions.scrolling.useNative]
-       */
-      useNative?: boolean | 'auto';
-    };
-    /**
-     * [descr:dxPivotGridOptions.showBorders]
-     */
-    showBorders?: boolean;
-    /**
-     * [descr:dxPivotGridOptions.showColumnGrandTotals]
-     */
-    showColumnGrandTotals?: boolean;
-    /**
-     * [descr:dxPivotGridOptions.showColumnTotals]
-     */
-    showColumnTotals?: boolean;
-    /**
-     * [descr:dxPivotGridOptions.showRowGrandTotals]
-     */
-    showRowGrandTotals?: boolean;
-    /**
-     * [descr:dxPivotGridOptions.showRowTotals]
-     */
-    showRowTotals?: boolean;
-    /**
-     * [descr:dxPivotGridOptions.showTotalsPrior]
-     */
-    showTotalsPrior?: 'both' | 'columns' | 'none' | 'rows';
-    /**
-     * [descr:dxPivotGridOptions.stateStoring]
-     */
-    stateStoring?: {
-      /**
-       * [descr:dxPivotGridOptions.stateStoring.customLoad]
-       */
-      customLoad?: () => PromiseLike<any>;
-      /**
-       * [descr:dxPivotGridOptions.stateStoring.customSave]
-       */
-      customSave?: (state: any) => any;
-      /**
-       * [descr:dxPivotGridOptions.stateStoring.enabled]
-       */
-      enabled?: boolean;
-      /**
-       * [descr:dxPivotGridOptions.stateStoring.savingTimeout]
-       */
-      savingTimeout?: number;
-      /**
-       * [descr:dxPivotGridOptions.stateStoring.storageKey]
-       */
-      storageKey?: string;
-      /**
-       * [descr:dxPivotGridOptions.stateStoring.type]
-       */
-      type?: 'custom' | 'localStorage' | 'sessionStorage';
-    };
-    /**
-     * [descr:dxPivotGridOptions.texts]
-     */
-    texts?: {
-      /**
-       * [descr:dxPivotGridOptions.texts.collapseAll]
-       */
-      collapseAll?: string;
-      /**
-       * [descr:dxPivotGridOptions.texts.dataNotAvailable]
-       */
-      dataNotAvailable?: string;
-      /**
-       * [descr:dxPivotGridOptions.texts.expandAll]
-       */
-      expandAll?: string;
-      /**
-       * [descr:dxPivotGridOptions.texts.exportToExcel]
-       */
-      exportToExcel?: string;
-      /**
-       * [descr:dxPivotGridOptions.texts.grandTotal]
-       */
-      grandTotal?: string;
-      /**
-       * [descr:dxPivotGridOptions.texts.noData]
-       */
-      noData?: string;
-      /**
-       * [descr:dxPivotGridOptions.texts.removeAllSorting]
-       */
-      removeAllSorting?: string;
-      /**
-       * [descr:dxPivotGridOptions.texts.showFieldChooser]
-       */
-      showFieldChooser?: string;
-      /**
-       * [descr:dxPivotGridOptions.texts.sortColumnBySummary]
-       */
-      sortColumnBySummary?: string;
-      /**
-       * [descr:dxPivotGridOptions.texts.sortRowBySummary]
-       */
-      sortRowBySummary?: string;
-      /**
-       * [descr:dxPivotGridOptions.texts.total]
-       */
-      total?: string;
-    };
-    /**
-     * [descr:dxPivotGridOptions.wordWrapEnabled]
-     */
-    wordWrapEnabled?: boolean;
-  }
-  /**
-   * @deprecated Use Cell instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxPivotGridPivotGridCell {
-    /**
-     * [descr:dxPivotGridPivotGridCell.columnPath]
-     */
-    columnPath?: Array<string | number | Date>;
-    /**
-     * [descr:dxPivotGridPivotGridCell.columnType]
-     */
-    columnType?: 'D' | 'T' | 'GT';
-    /**
-     * [descr:dxPivotGridPivotGridCell.dataIndex]
-     */
-    dataIndex?: number;
-    /**
-     * [descr:dxPivotGridPivotGridCell.expanded]
-     */
-    expanded?: boolean;
-    /**
-     * [descr:dxPivotGridPivotGridCell.path]
-     */
-    path?: Array<string | number | Date>;
-    /**
-     * [descr:dxPivotGridPivotGridCell.rowPath]
-     */
-    rowPath?: Array<string | number | Date>;
-    /**
-     * [descr:dxPivotGridPivotGridCell.rowType]
-     */
-    rowType?: 'D' | 'T' | 'GT';
-    /**
-     * [descr:dxPivotGridPivotGridCell.text]
-     */
-    text?: string;
-    /**
-     * [descr:dxPivotGridPivotGridCell.type]
-     */
-    type?: 'D' | 'T' | 'GT';
-    /**
-     * [descr:dxPivotGridPivotGridCell.value]
-     */
-    value?: any;
+    }
   }
   /**
    * [descr:dxPivotGridSummaryCell]
@@ -17188,7 +15988,80 @@ declare module DevExpress.ui {
      * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
      */
     interface PopoverInstance extends dxPopover<Properties> {}
-    export type Properties = dxPopoverOptions<PopoverInstance>;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties<TComponent = PopoverInstance>
+      extends DevExpress.ui.dxPopup.Properties<TComponent> {
+      /**
+       * [descr:Properties.animation]
+       */
+      animation?: dxPopoverAnimation;
+      /**
+       * [descr:Properties.closeOnOutsideClick]
+       */
+      closeOnOutsideClick?:
+        | boolean
+        | ((event: DevExpress.events.DxEvent) => boolean);
+      /**
+       * [descr:Properties.height]
+       */
+      height?: number | string | (() => number | string);
+      /**
+       * [descr:Properties.hideEvent]
+       */
+      hideEvent?:
+        | {
+            /**
+             * [descr:Properties.hideEvent.delay]
+             */
+            delay?: number;
+            /**
+             * [descr:Properties.hideEvent.name]
+             */
+            name?: string;
+          }
+        | string;
+      /**
+       * [descr:Properties.position]
+       */
+      position?: 'bottom' | 'left' | 'right' | 'top' | PositionConfig;
+      /**
+       * [descr:Properties.shading]
+       */
+      shading?: boolean;
+      /**
+       * [descr:Properties.showEvent]
+       */
+      showEvent?:
+        | {
+            /**
+             * [descr:Properties.showEvent.delay]
+             */
+            delay?: number;
+            /**
+             * [descr:Properties.showEvent.name]
+             */
+            name?: string;
+          }
+        | string;
+      /**
+       * [descr:Properties.showTitle]
+       */
+      showTitle?: boolean;
+      /**
+       * [descr:Properties.target]
+       */
+      target?: string | DevExpress.core.UserDefinedElement;
+      /**
+       * [descr:Properties.width]
+       */
+      width?: number | string | (() => number | string);
+      /**
+       * [descr:Properties.hideOnParentScroll]
+       */
+      hideOnParentScroll?: boolean;
+    }
     export type ShowingEvent = DevExpress.events.Cancelable &
       DevExpress.events.EventInfo<dxPopover>;
     export type ShownEvent = DevExpress.events.EventInfo<dxPopover>;
@@ -17207,81 +16080,6 @@ declare module DevExpress.ui {
      * [descr:dxPopoverOptions.animation.show]
      */
     show?: AnimationConfig;
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxPopoverOptions<TComponent>
-    extends dxPopupOptions<TComponent> {
-    /**
-     * [descr:dxPopoverOptions.animation]
-     */
-    animation?: dxPopoverAnimation;
-    /**
-     * [descr:dxPopoverOptions.closeOnOutsideClick]
-     */
-    closeOnOutsideClick?:
-      | boolean
-      | ((event: DevExpress.events.DxEvent) => boolean);
-    /**
-     * [descr:dxPopoverOptions.height]
-     */
-    height?: number | string | (() => number | string);
-    /**
-     * [descr:dxPopoverOptions.hideEvent]
-     */
-    hideEvent?:
-      | {
-          /**
-           * [descr:dxPopoverOptions.hideEvent.delay]
-           */
-          delay?: number;
-          /**
-           * [descr:dxPopoverOptions.hideEvent.name]
-           */
-          name?: string;
-        }
-      | string;
-    /**
-     * [descr:dxPopoverOptions.position]
-     */
-    position?: 'bottom' | 'left' | 'right' | 'top' | PositionConfig;
-    /**
-     * [descr:dxPopoverOptions.shading]
-     */
-    shading?: boolean;
-    /**
-     * [descr:dxPopoverOptions.showEvent]
-     */
-    showEvent?:
-      | {
-          /**
-           * [descr:dxPopoverOptions.showEvent.delay]
-           */
-          delay?: number;
-          /**
-           * [descr:dxPopoverOptions.showEvent.name]
-           */
-          name?: string;
-        }
-      | string;
-    /**
-     * [descr:dxPopoverOptions.showTitle]
-     */
-    showTitle?: boolean;
-    /**
-     * [descr:dxPopoverOptions.target]
-     */
-    target?: string | DevExpress.core.UserDefinedElement;
-    /**
-     * [descr:dxPopoverOptions.width]
-     */
-    width?: number | string | (() => number | string);
-    /**
-     * [descr:dxPopoverOptions.hideOnParentScroll]
-     */
-    hideOnParentScroll?: boolean;
   }
   /**
    * [descr:dxPopup]
@@ -17303,7 +16101,103 @@ declare module DevExpress.ui {
      * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
      */
     interface PopupInstance extends dxPopup<Properties> {}
-    export type Properties = dxPopupOptions<PopupInstance>;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties<TComponent = PopupInstance>
+      extends dxOverlayOptions<TComponent> {
+      /**
+       * [descr:Properties.animation]
+       */
+      animation?: dxPopupAnimation;
+      /**
+       * [descr:Properties.container]
+       */
+      container?: string | DevExpress.core.UserDefinedElement;
+      /**
+       * [descr:Properties.dragEnabled]
+       */
+      dragEnabled?: boolean;
+      /**
+       * [descr:Properties.focusStateEnabled]
+       */
+      focusStateEnabled?: boolean;
+      /**
+       * [descr:Properties.fullScreen]
+       */
+      fullScreen?: boolean;
+      /**
+       * [descr:Properties.height]
+       */
+      height?: number | string | (() => number | string);
+      /**
+       * [descr:Properties.onResize]
+       */
+      onResize?: (e: ResizeEvent) => void;
+      /**
+       * [descr:Properties.onResizeEnd]
+       */
+      onResizeEnd?: (e: ResizeEndEvent) => void;
+      /**
+       * [descr:Properties.onResizeStart]
+       */
+      onResizeStart?: (e: ResizeStartEvent) => void;
+      /**
+       * [descr:Properties.onTitleRendered]
+       */
+      onTitleRendered?: (e: TitleRenderedEvent) => void;
+      /**
+       * [descr:Properties.position]
+       */
+      position?:
+        | 'bottom'
+        | 'center'
+        | 'left'
+        | 'left bottom'
+        | 'left top'
+        | 'right'
+        | 'right bottom'
+        | 'right top'
+        | 'top'
+        | PositionConfig
+        | Function;
+      /**
+       * [descr:Properties.resizeEnabled]
+       */
+      resizeEnabled?: boolean;
+      /**
+       * [descr:Properties.restorePosition]
+       */
+      restorePosition?: boolean;
+      /**
+       * [descr:Properties.showCloseButton]
+       */
+      showCloseButton?: boolean;
+      /**
+       * [descr:Properties.showTitle]
+       */
+      showTitle?: boolean;
+      /**
+       * [descr:Properties.title]
+       */
+      title?: string;
+      /**
+       * [descr:Properties.titleTemplate]
+       */
+      titleTemplate?:
+        | DevExpress.core.template
+        | ((
+            titleElement: DevExpress.core.DxElement
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.toolbarItems]
+       */
+      toolbarItems?: Array<ToolbarItem>;
+      /**
+       * [descr:Properties.width]
+       */
+      width?: number | string | (() => number | string);
+    }
     export type ResizeEndEvent = DevExpress.events.NativeEventInfo<dxPopup> &
       DevExpress.ui.dxResizable.ResizeInfo;
     export type ResizeEvent = DevExpress.events.NativeEventInfo<dxPopup> &
@@ -17336,159 +16230,9 @@ declare module DevExpress.ui {
     show?: AnimationConfig;
   }
   /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxPopupOptions<TComponent>
-    extends dxOverlayOptions<TComponent> {
-    /**
-     * [descr:dxPopupOptions.animation]
-     */
-    animation?: dxPopupAnimation;
-    /**
-     * [descr:dxPopupOptions.container]
-     */
-    container?: string | DevExpress.core.UserDefinedElement;
-    /**
-     * [descr:dxPopupOptions.dragEnabled]
-     */
-    dragEnabled?: boolean;
-    /**
-     * [descr:dxPopupOptions.focusStateEnabled]
-     */
-    focusStateEnabled?: boolean;
-    /**
-     * [descr:dxPopupOptions.fullScreen]
-     */
-    fullScreen?: boolean;
-    /**
-     * [descr:dxPopupOptions.height]
-     */
-    height?: number | string | (() => number | string);
-    /**
-     * [descr:dxPopupOptions.onResize]
-     */
-    onResize?: (e: DevExpress.ui.dxPopup.ResizeEvent) => void;
-    /**
-     * [descr:dxPopupOptions.onResizeEnd]
-     */
-    onResizeEnd?: (e: DevExpress.ui.dxPopup.ResizeEndEvent) => void;
-    /**
-     * [descr:dxPopupOptions.onResizeStart]
-     */
-    onResizeStart?: (e: DevExpress.ui.dxPopup.ResizeStartEvent) => void;
-    /**
-     * [descr:dxPopupOptions.onTitleRendered]
-     */
-    onTitleRendered?: (e: DevExpress.ui.dxPopup.TitleRenderedEvent) => void;
-    /**
-     * [descr:dxPopupOptions.position]
-     */
-    position?:
-      | 'bottom'
-      | 'center'
-      | 'left'
-      | 'left bottom'
-      | 'left top'
-      | 'right'
-      | 'right bottom'
-      | 'right top'
-      | 'top'
-      | PositionConfig
-      | Function;
-    /**
-     * [descr:dxPopupOptions.resizeEnabled]
-     */
-    resizeEnabled?: boolean;
-    /**
-     * [descr:dxPopupOptions.restorePosition]
-     */
-    restorePosition?: boolean;
-    /**
-     * [descr:dxPopupOptions.showCloseButton]
-     */
-    showCloseButton?: boolean;
-    /**
-     * [descr:dxPopupOptions.showTitle]
-     */
-    showTitle?: boolean;
-    /**
-     * [descr:dxPopupOptions.title]
-     */
-    title?: string;
-    /**
-     * [descr:dxPopupOptions.titleTemplate]
-     */
-    titleTemplate?:
-      | DevExpress.core.template
-      | ((
-          titleElement: DevExpress.core.DxElement
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxPopupOptions.toolbarItems]
-     */
-    toolbarItems?: Array<DevExpress.ui.dxPopup.ToolbarItem>;
-    /**
-     * [descr:dxPopupOptions.width]
-     */
-    width?: number | string | (() => number | string);
-  }
-  /**
-   * @deprecated Use ToolbarItem instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxPopupToolbarItem {
-    /**
-     * [descr:dxPopupOptions.toolbarItems.disabled]
-     */
-    disabled?: boolean;
-    /**
-     * [descr:dxPopupOptions.toolbarItems.html]
-     */
-    html?: string;
-    /**
-     * [descr:dxPopupOptions.toolbarItems.location]
-     */
-    location?: 'after' | 'before' | 'center';
-    /**
-     * [descr:dxPopupOptions.toolbarItems.options]
-     */
-    options?: any;
-    /**
-     * [descr:dxPopupOptions.toolbarItems.template]
-     */
-    template?: DevExpress.core.template;
-    /**
-     * [descr:dxPopupOptions.toolbarItems.text]
-     */
-    text?: string;
-    /**
-     * [descr:dxPopupOptions.toolbarItems.toolbar]
-     */
-    toolbar?: 'bottom' | 'top';
-    /**
-     * [descr:dxPopupOptions.toolbarItems.visible]
-     */
-    visible?: boolean;
-    /**
-     * [descr:dxPopupOptions.toolbarItems.widget]
-     */
-    widget?:
-      | 'dxAutocomplete'
-      | 'dxButton'
-      | 'dxCheckBox'
-      | 'dxDateBox'
-      | 'dxMenu'
-      | 'dxSelectBox'
-      | 'dxTabs'
-      | 'dxTextBox'
-      | 'dxButtonGroup'
-      | 'dxDropDownButton';
-  }
-  /**
    * [descr:dxProgressBar]
    */
-  export class dxProgressBar extends dxTrackBar<dxProgressBarOptions> {}
+  export class dxProgressBar extends dxTrackBar<DevExpress.ui.dxProgressBar.Properties> {}
   module dxProgressBar {
     export type CompleteEvent =
       DevExpress.events.NativeEventInfo<dxProgressBar>;
@@ -17499,38 +16243,35 @@ declare module DevExpress.ui {
     export type OptionChangedEvent =
       DevExpress.events.EventInfo<dxProgressBar> &
         DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxProgressBarOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends dxTrackBarOptions<dxProgressBar> {
+      /**
+       * [descr:Properties.onComplete]
+       */
+      onComplete?: (e: CompleteEvent) => void;
+      /**
+       * [descr:Properties.showStatus]
+       */
+      showStatus?: boolean;
+      /**
+       * [descr:Properties.statusFormat]
+       */
+      statusFormat?: string | ((ratio: number, value: number) => string);
+      /**
+       * [descr:Properties.value]
+       */
+      value?: number | boolean;
+    }
     export type ValueChangedEvent =
       DevExpress.events.NativeEventInfo<dxProgressBar> &
         DevExpress.ui.Editor.ValueChangedInfo;
   }
   /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxProgressBarOptions
-    extends dxTrackBarOptions<dxProgressBar> {
-    /**
-     * [descr:dxProgressBarOptions.onComplete]
-     */
-    onComplete?: (e: DevExpress.ui.dxProgressBar.CompleteEvent) => void;
-    /**
-     * [descr:dxProgressBarOptions.showStatus]
-     */
-    showStatus?: boolean;
-    /**
-     * [descr:dxProgressBarOptions.statusFormat]
-     */
-    statusFormat?: string | ((ratio: number, value: number) => string);
-    /**
-     * [descr:dxProgressBarOptions.value]
-     */
-    value?: number | boolean;
-  }
-  /**
    * [descr:dxRadioGroup]
    */
-  export class dxRadioGroup extends Editor<dxRadioGroupOptions> {
+  export class dxRadioGroup extends Editor<DevExpress.ui.dxRadioGroup.Properties> {
     getDataSource(): DevExpress.data.DataSource;
   }
   module dxRadioGroup {
@@ -17540,47 +16281,45 @@ declare module DevExpress.ui {
       DevExpress.events.InitializedEventInfo<dxRadioGroup>;
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxRadioGroup> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxRadioGroupOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties
+      extends EditorOptions<dxRadioGroup>,
+        DataExpressionMixinOptions<dxRadioGroup> {
+      /**
+       * [descr:Properties.activeStateEnabled]
+       */
+      activeStateEnabled?: boolean;
+      /**
+       * [descr:Properties.focusStateEnabled]
+       */
+      focusStateEnabled?: boolean;
+      /**
+       * [descr:Properties.hoverStateEnabled]
+       */
+      hoverStateEnabled?: boolean;
+      /**
+       * [descr:Properties.layout]
+       */
+      layout?: 'horizontal' | 'vertical';
+      /**
+       * [descr:Properties.name]
+       */
+      name?: string;
+      /**
+       * [descr:Properties.value]
+       */
+      value?: any;
+    }
     export type ValueChangedEvent =
       DevExpress.events.NativeEventInfo<dxRadioGroup> &
         DevExpress.ui.Editor.ValueChangedInfo;
   }
   /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxRadioGroupOptions
-    extends EditorOptions<dxRadioGroup>,
-      DataExpressionMixinOptions<dxRadioGroup> {
-    /**
-     * [descr:dxRadioGroupOptions.activeStateEnabled]
-     */
-    activeStateEnabled?: boolean;
-    /**
-     * [descr:dxRadioGroupOptions.focusStateEnabled]
-     */
-    focusStateEnabled?: boolean;
-    /**
-     * [descr:dxRadioGroupOptions.hoverStateEnabled]
-     */
-    hoverStateEnabled?: boolean;
-    /**
-     * [descr:dxRadioGroupOptions.layout]
-     */
-    layout?: 'horizontal' | 'vertical';
-    /**
-     * [descr:dxRadioGroupOptions.name]
-     */
-    name?: string;
-    /**
-     * [descr:dxRadioGroupOptions.value]
-     */
-    value?: any;
-  }
-  /**
    * [descr:dxRangeSlider]
    */
-  export class dxRangeSlider extends dxTrackBar<dxRangeSliderOptions> {}
+  export class dxRangeSlider extends dxTrackBar<DevExpress.ui.dxRangeSlider.Properties> {}
   module dxRangeSlider {
     export type ContentReadyEvent = DevExpress.events.EventInfo<dxRangeSlider>;
     export type DisposingEvent = DevExpress.events.EventInfo<dxRangeSlider>;
@@ -17589,7 +16328,35 @@ declare module DevExpress.ui {
     export type OptionChangedEvent =
       DevExpress.events.EventInfo<dxRangeSlider> &
         DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxRangeSliderOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends dxSliderBaseOptions<dxRangeSlider> {
+      /**
+       * [descr:Properties.end]
+       */
+      end?: number;
+      /**
+       * [descr:Properties.endName]
+       */
+      endName?: string;
+      /**
+       * [descr:Properties.onValueChanged]
+       */
+      onValueChanged?: (e: ValueChangedEvent) => void;
+      /**
+       * [descr:Properties.start]
+       */
+      start?: number;
+      /**
+       * [descr:Properties.startName]
+       */
+      startName?: string;
+      /**
+       * [descr:Properties.value]
+       */
+      value?: Array<number>;
+    }
     export type ValueChangedEvent =
       DevExpress.events.NativeEventInfo<dxRangeSlider> &
         DevExpress.ui.Editor.ValueChangedInfo & {
@@ -17597,37 +16364,6 @@ declare module DevExpress.ui {
           readonly end?: number;
           readonly value?: Array<number>;
         };
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxRangeSliderOptions
-    extends dxSliderBaseOptions<dxRangeSlider> {
-    /**
-     * [descr:dxRangeSliderOptions.end]
-     */
-    end?: number;
-    /**
-     * [descr:dxRangeSliderOptions.endName]
-     */
-    endName?: string;
-    /**
-     * [descr:dxRangeSliderOptions.onValueChanged]
-     */
-    onValueChanged?: (e: DevExpress.ui.dxRangeSlider.ValueChangedEvent) => void;
-    /**
-     * [descr:dxRangeSliderOptions.start]
-     */
-    start?: number;
-    /**
-     * [descr:dxRangeSliderOptions.startName]
-     */
-    startName?: string;
-    /**
-     * [descr:dxRangeSliderOptions.value]
-     */
-    value?: Array<number>;
   }
   /**
    * [descr:dxRecurrenceEditor]
@@ -17652,14 +16388,58 @@ declare module DevExpress.ui {
   /**
    * [descr:dxResizable]
    */
-  export class dxResizable extends DOMComponent<dxResizableOptions> {}
+  export class dxResizable extends DOMComponent<DevExpress.ui.dxResizable.Properties> {}
   module dxResizable {
     export type DisposingEvent = DevExpress.events.EventInfo<dxResizable>;
     export type InitializedEvent =
       DevExpress.events.InitializedEventInfo<dxResizable>;
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxResizable> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxResizableOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends DOMComponentOptions<dxResizable> {
+      /**
+       * [descr:Properties.handles]
+       */
+      handles?: 'bottom' | 'left' | 'right' | 'top' | 'all' | string;
+      /**
+       * [descr:Properties.height]
+       */
+      height?: number | string | (() => number | string);
+      /**
+       * [descr:Properties.maxHeight]
+       */
+      maxHeight?: number;
+      /**
+       * [descr:Properties.maxWidth]
+       */
+      maxWidth?: number;
+      /**
+       * [descr:Properties.minHeight]
+       */
+      minHeight?: number;
+      /**
+       * [descr:Properties.minWidth]
+       */
+      minWidth?: number;
+      /**
+       * [descr:Properties.onResize]
+       */
+      onResize?: (e: ResizeEvent) => void;
+      /**
+       * [descr:Properties.onResizeEnd]
+       */
+      onResizeEnd?: (e: ResizeEndEvent) => void;
+      /**
+       * [descr:Properties.onResizeStart]
+       */
+      onResizeStart?: (e: ResizeStartEvent) => void;
+      /**
+       * [descr:Properties.width]
+       */
+      width?: number | string | (() => number | string);
+    }
     export type ResizeEndEvent =
       DevExpress.events.NativeEventInfo<dxResizable> & ResizeInfo;
     export type ResizeEvent = DevExpress.events.NativeEventInfo<dxResizable> &
@@ -17681,55 +16461,9 @@ declare module DevExpress.ui {
       DevExpress.events.NativeEventInfo<dxResizable> & ResizeInfo;
   }
   /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxResizableOptions extends DOMComponentOptions<dxResizable> {
-    /**
-     * [descr:dxResizableOptions.handles]
-     */
-    handles?: 'bottom' | 'left' | 'right' | 'top' | 'all' | string;
-    /**
-     * [descr:dxResizableOptions.height]
-     */
-    height?: number | string | (() => number | string);
-    /**
-     * [descr:dxResizableOptions.maxHeight]
-     */
-    maxHeight?: number;
-    /**
-     * [descr:dxResizableOptions.maxWidth]
-     */
-    maxWidth?: number;
-    /**
-     * [descr:dxResizableOptions.minHeight]
-     */
-    minHeight?: number;
-    /**
-     * [descr:dxResizableOptions.minWidth]
-     */
-    minWidth?: number;
-    /**
-     * [descr:dxResizableOptions.onResize]
-     */
-    onResize?: (e: DevExpress.ui.dxResizable.ResizeEvent) => void;
-    /**
-     * [descr:dxResizableOptions.onResizeEnd]
-     */
-    onResizeEnd?: (e: DevExpress.ui.dxResizable.ResizeEndEvent) => void;
-    /**
-     * [descr:dxResizableOptions.onResizeStart]
-     */
-    onResizeStart?: (e: DevExpress.ui.dxResizable.ResizeStartEvent) => void;
-    /**
-     * [descr:dxResizableOptions.width]
-     */
-    width?: number | string | (() => number | string);
-  }
-  /**
    * [descr:dxResponsiveBox]
    */
-  export class dxResponsiveBox extends CollectionWidget<dxResponsiveBoxOptions> {}
+  export class dxResponsiveBox extends CollectionWidget<DevExpress.ui.dxResponsiveBox.Properties> {}
   module dxResponsiveBox {
     export type ContentReadyEvent =
       DevExpress.events.EventInfo<dxResponsiveBox>;
@@ -17751,134 +16485,93 @@ declare module DevExpress.ui {
     export type OptionChangedEvent =
       DevExpress.events.EventInfo<dxResponsiveBox> &
         DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxResponsiveBoxOptions;
-  }
-  /**
-   * @deprecated Use Item instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxResponsiveBoxItem extends CollectionWidgetItem {
     /**
-     * [descr:dxResponsiveBoxItem.location]
+     * [descr:Properties]
      */
-    location?:
-      | {
-          /**
-           * [descr:dxResponsiveBoxItem.location.col]
-           */
-          col?: number;
-          /**
-           * [descr:dxResponsiveBoxItem.location.colspan]
-           */
-          colspan?: number;
-          /**
-           * [descr:dxResponsiveBoxItem.location.row]
-           */
-          row?: number;
-          /**
-           * [descr:dxResponsiveBoxItem.location.rowspan]
-           */
-          rowspan?: number;
-          /**
-           * [descr:dxResponsiveBoxItem.location.screen]
-           */
-          screen?: string;
-        }
-      | Array<{
-          col?: number;
-          colspan?: number;
-          row?: number;
-          rowspan?: number;
-          screen?: string;
-        }>;
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxResponsiveBoxOptions
-    extends CollectionWidgetOptions<dxResponsiveBox> {
-    /**
-     * [descr:dxResponsiveBoxOptions.cols]
-     */
-    cols?: Array<{
+    export interface Properties
+      extends CollectionWidgetOptions<dxResponsiveBox> {
       /**
-       * [descr:dxResponsiveBoxOptions.cols.baseSize]
+       * [descr:Properties.cols]
        */
-      baseSize?: number | 'auto';
+      cols?: Array<{
+        /**
+         * [descr:Properties.cols.baseSize]
+         */
+        baseSize?: number | 'auto';
+        /**
+         * [descr:Properties.cols.ratio]
+         */
+        ratio?: number;
+        /**
+         * [descr:Properties.cols.screen]
+         */
+        screen?: string;
+        /**
+         * [descr:Properties.cols.shrink]
+         */
+        shrink?: number;
+      }>;
       /**
-       * [descr:dxResponsiveBoxOptions.cols.ratio]
+       * [descr:Properties.dataSource]
        */
-      ratio?: number;
+      dataSource?: DevExpress.data.DataSource.DataSourceLike<
+        string | Item | any
+      >;
       /**
-       * [descr:dxResponsiveBoxOptions.cols.screen]
+       * [descr:Properties.height]
        */
-      screen?: string;
+      height?: number | string | (() => number | string);
       /**
-       * [descr:dxResponsiveBoxOptions.cols.shrink]
+       * [descr:Properties.items]
        */
-      shrink?: number;
-    }>;
-    /**
-     * [descr:dxResponsiveBoxOptions.dataSource]
-     */
-    dataSource?: DevExpress.data.DataSource.DataSourceLike<
-      string | DevExpress.ui.dxResponsiveBox.Item | any
-    >;
-    /**
-     * [descr:dxResponsiveBoxOptions.height]
-     */
-    height?: number | string | (() => number | string);
-    /**
-     * [descr:dxResponsiveBoxOptions.items]
-     */
-    items?: Array<string | DevExpress.ui.dxResponsiveBox.Item | any>;
-    /**
-     * [descr:dxResponsiveBoxOptions.rows]
-     */
-    rows?: Array<{
+      items?: Array<string | Item | any>;
       /**
-       * [descr:dxResponsiveBoxOptions.rows.baseSize]
+       * [descr:Properties.rows]
        */
-      baseSize?: number | 'auto';
+      rows?: Array<{
+        /**
+         * [descr:Properties.rows.baseSize]
+         */
+        baseSize?: number | 'auto';
+        /**
+         * [descr:Properties.rows.ratio]
+         */
+        ratio?: number;
+        /**
+         * [descr:Properties.rows.screen]
+         */
+        screen?: string;
+        /**
+         * [descr:Properties.rows.shrink]
+         */
+        shrink?: number;
+      }>;
       /**
-       * [descr:dxResponsiveBoxOptions.rows.ratio]
+       * [descr:Properties.screenByWidth]
        */
-      ratio?: number;
+      screenByWidth?: Function;
       /**
-       * [descr:dxResponsiveBoxOptions.rows.screen]
+       * [descr:Properties.singleColumnScreen]
        */
-      screen?: string;
+      singleColumnScreen?: string;
       /**
-       * [descr:dxResponsiveBoxOptions.rows.shrink]
+       * [descr:Properties.width]
        */
-      shrink?: number;
-    }>;
-    /**
-     * [descr:dxResponsiveBoxOptions.screenByWidth]
-     */
-    screenByWidth?: Function;
-    /**
-     * [descr:dxResponsiveBoxOptions.singleColumnScreen]
-     */
-    singleColumnScreen?: string;
-    /**
-     * [descr:dxResponsiveBoxOptions.width]
-     */
-    width?: number | string | (() => number | string);
+      width?: number | string | (() => number | string);
+    }
   }
   /**
    * [descr:dxScheduler]
    */
-  export class dxScheduler extends Widget<dxSchedulerOptions> {
+  export class dxScheduler extends Widget<DevExpress.ui.dxScheduler.Properties> {
     /**
      * [descr:dxScheduler.addAppointment(appointment)]
      */
-    addAppointment(appointment: dxSchedulerAppointment): void;
+    addAppointment(appointment: DevExpress.ui.dxScheduler.Appointment): void;
     /**
      * [descr:dxScheduler.deleteAppointment(appointment)]
      */
-    deleteAppointment(appointment: dxSchedulerAppointment): void;
+    deleteAppointment(appointment: DevExpress.ui.dxScheduler.Appointment): void;
     getDataSource(): DevExpress.data.DataSource;
     /**
      * [descr:dxScheduler.getEndViewDate()]
@@ -17909,36 +16602,92 @@ declare module DevExpress.ui {
      * [descr:dxScheduler.showAppointmentPopup(appointmentData, createNewAppointment, currentAppointmentData)]
      */
     showAppointmentPopup(
-      appointmentData?: dxSchedulerAppointment,
+      appointmentData?: DevExpress.ui.dxScheduler.Appointment,
       createNewAppointment?: boolean,
-      currentAppointmentData?: dxSchedulerAppointment
+      currentAppointmentData?: DevExpress.ui.dxScheduler.Appointment
     ): void;
     /**
      * [descr:dxScheduler.showAppointmentTooltip(appointmentData, target, currentAppointmentData)]
      */
     showAppointmentTooltip(
-      appointmentData: dxSchedulerAppointment,
+      appointmentData: DevExpress.ui.dxScheduler.Appointment,
       target: string | DevExpress.core.UserDefinedElement,
-      currentAppointmentData?: dxSchedulerAppointment
+      currentAppointmentData?: DevExpress.ui.dxScheduler.Appointment
     ): void;
     /**
      * [descr:dxScheduler.updateAppointment(target, appointment)]
      */
     updateAppointment(
-      target: dxSchedulerAppointment,
-      appointment: dxSchedulerAppointment
+      target: DevExpress.ui.dxScheduler.Appointment,
+      appointment: DevExpress.ui.dxScheduler.Appointment
     ): void;
   }
   module dxScheduler {
-    export type Appointment = dxSchedulerAppointment;
+    /**
+     * [descr:Appointment]
+     */
+    export interface Appointment extends CollectionWidgetItem {
+      /**
+       * [descr:Appointment.allDay]
+       */
+      allDay?: boolean;
+      /**
+       * [descr:Appointment.description]
+       */
+      description?: string;
+      /**
+       * [descr:Appointment.disabled]
+       */
+      disabled?: boolean;
+      /**
+       * [descr:Appointment.endDate]
+       */
+      endDate?: Date | string;
+      /**
+       * [descr:Appointment.endDateTimeZone]
+       */
+      endDateTimeZone?: string;
+      /**
+       * [descr:Appointment.html]
+       */
+      html?: string;
+      /**
+       * [descr:Appointment.recurrenceException]
+       */
+      recurrenceException?: string;
+      /**
+       * [descr:Appointment.recurrenceRule]
+       */
+      recurrenceRule?: string;
+      /**
+       * [descr:Appointment.startDate]
+       */
+      startDate?: Date | string;
+      /**
+       * [descr:Appointment.startDateTimeZone]
+       */
+      startDateTimeZone?: string;
+      /**
+       * [descr:Appointment.template]
+       */
+      template?: DevExpress.core.template;
+      /**
+       * [descr:Appointment.text]
+       */
+      text?: string;
+      /**
+       * [descr:Appointment.visible]
+       */
+      visible?: boolean;
+    }
     export type AppointmentAddedEvent =
       DevExpress.events.EventInfo<dxScheduler> & {
-        readonly appointmentData: dxSchedulerAppointment;
+        readonly appointmentData: Appointment;
         readonly error?: Error;
       };
     export type AppointmentAddingEvent =
       DevExpress.events.EventInfo<dxScheduler> & {
-        readonly appointmentData: dxSchedulerAppointment;
+        readonly appointmentData: Appointment;
         cancel: boolean | PromiseLike<boolean>;
       };
     export type AppointmentClickEvent = DevExpress.events.Cancelable &
@@ -17962,12 +16711,12 @@ declare module DevExpress.ui {
       };
     export type AppointmentDeletedEvent =
       DevExpress.events.EventInfo<dxScheduler> & {
-        readonly appointmentData: dxSchedulerAppointment;
+        readonly appointmentData: Appointment;
         readonly error?: Error;
       };
     export type AppointmentDeletingEvent =
       DevExpress.events.EventInfo<dxScheduler> & {
-        readonly appointmentData: dxSchedulerAppointment;
+        readonly appointmentData: Appointment;
         cancel: boolean | PromiseLike<boolean>;
       };
     export type AppointmentDraggingAddEvent = AppointmentDraggingEvent & {
@@ -18005,7 +16754,7 @@ declare module DevExpress.ui {
       AppointmentDraggingEvent;
     export type AppointmentFormOpeningEvent = DevExpress.events.Cancelable &
       DevExpress.events.EventInfo<dxScheduler> & {
-        readonly appointmentData?: dxSchedulerAppointment;
+        readonly appointmentData?: Appointment;
         readonly form: dxForm;
         readonly popup: dxPopup;
       };
@@ -18018,7 +16767,7 @@ declare module DevExpress.ui {
     export type AppointmentTooltipTemplateData = TargetedAppointmentInfo;
     export type AppointmentUpdatedEvent =
       DevExpress.events.EventInfo<dxScheduler> & {
-        readonly appointmentData: dxSchedulerAppointment;
+        readonly appointmentData: Appointment;
         readonly error?: Error;
       };
     export type AppointmentUpdatingEvent =
@@ -18048,679 +16797,583 @@ declare module DevExpress.ui {
       DevExpress.events.InitializedEventInfo<dxScheduler>;
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxScheduler> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxSchedulerOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends WidgetOptions<dxScheduler> {
+      /**
+       * [descr:Properties.adaptivityEnabled]
+       */
+      adaptivityEnabled?: boolean;
+      /**
+       * [descr:Properties.allDayExpr]
+       */
+      allDayExpr?: string;
+      /**
+       * [descr:Properties.appointmentCollectorTemplate]
+       */
+      appointmentCollectorTemplate?:
+        | DevExpress.core.template
+        | ((
+            data: AppointmentCollectorTemplateData,
+            collectorElement: DevExpress.core.DxElement
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.appointmentDragging]
+       */
+      appointmentDragging?: {
+        /**
+         * [descr:Properties.appointmentDragging.autoScroll]
+         */
+        autoScroll?: boolean;
+        /**
+         * [descr:Properties.appointmentDragging.data]
+         */
+        data?: any;
+        /**
+         * [descr:Properties.appointmentDragging.group]
+         */
+        group?: string;
+        /**
+         * [descr:Properties.appointmentDragging.onAdd]
+         */
+        onAdd?: (e: AppointmentDraggingAddEvent) => void;
+        /**
+         * [descr:Properties.appointmentDragging.onDragEnd]
+         */
+        onDragEnd?: (e: AppointmentDraggingEndEvent) => void;
+        /**
+         * [descr:Properties.appointmentDragging.onDragMove]
+         */
+        onDragMove?: (e: AppointmentDraggingMoveEvent) => void;
+        /**
+         * [descr:Properties.appointmentDragging.onDragStart]
+         */
+        onDragStart?: (e: AppointmentDraggingStartEvent) => void;
+        /**
+         * [descr:Properties.appointmentDragging.onRemove]
+         */
+        onRemove?: (e: AppointmentDraggingRemoveEvent) => void;
+        /**
+         * [descr:Properties.appointmentDragging.scrollSensitivity]
+         */
+        scrollSensitivity?: number;
+        /**
+         * [descr:Properties.appointmentDragging.scrollSpeed]
+         */
+        scrollSpeed?: number;
+      };
+      /**
+       * [descr:Properties.appointmentTemplate]
+       */
+      appointmentTemplate?:
+        | DevExpress.core.template
+        | ((
+            model: AppointmentTemplateData,
+            itemIndex: number,
+            contentElement: DevExpress.core.DxElement
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.appointmentTooltipTemplate]
+       */
+      appointmentTooltipTemplate?:
+        | DevExpress.core.template
+        | ((
+            model: AppointmentTemplateData,
+            itemIndex: number,
+            contentElement: DevExpress.core.DxElement
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.cellDuration]
+       */
+      cellDuration?: number;
+      /**
+       * [descr:Properties.crossScrollingEnabled]
+       */
+      crossScrollingEnabled?: boolean;
+      /**
+       * [descr:Properties.currentDate]
+       */
+      currentDate?: Date | number | string;
+      /**
+       * [descr:Properties.currentView]
+       */
+      currentView?:
+        | 'agenda'
+        | 'day'
+        | 'month'
+        | 'timelineDay'
+        | 'timelineMonth'
+        | 'timelineWeek'
+        | 'timelineWorkWeek'
+        | 'week'
+        | 'workWeek';
+      /**
+       * [descr:Properties.customizeDateNavigatorText]
+       */
+      customizeDateNavigatorText?: (info: DateNavigatorTextInfo) => string;
+      /**
+       * [descr:Properties.dataCellTemplate]
+       */
+      dataCellTemplate?:
+        | DevExpress.core.template
+        | ((
+            itemData: any,
+            itemIndex: number,
+            itemElement: DevExpress.core.DxElement
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.dataSource]
+       */
+      dataSource?: DevExpress.data.DataSource.DataSourceLike<Appointment>;
+      /**
+       * [descr:Properties.dateCellTemplate]
+       */
+      dateCellTemplate?:
+        | DevExpress.core.template
+        | ((
+            itemData: any,
+            itemIndex: number,
+            itemElement: DevExpress.core.DxElement
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.dateSerializationFormat]
+       */
+      dateSerializationFormat?: string;
+      /**
+       * [descr:Properties.descriptionExpr]
+       */
+      descriptionExpr?: string;
+      /**
+       * [descr:Properties.dropDownAppointmentTemplate]
+       * @deprecated [depNote:Properties.dropDownAppointmentTemplate]
+       */
+      dropDownAppointmentTemplate?:
+        | DevExpress.core.template
+        | ((
+            itemData: any,
+            itemIndex: number,
+            contentElement: DevExpress.core.DxElement
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.editing]
+       */
+      editing?:
+        | boolean
+        | {
+            /**
+             * [descr:Properties.editing.allowAdding]
+             */
+            allowAdding?: boolean;
+            /**
+             * [descr:Properties.editing.allowDeleting]
+             */
+            allowDeleting?: boolean;
+            /**
+             * [descr:Properties.editing.allowDragging]
+             */
+            allowDragging?: boolean;
+            /**
+             * [descr:Properties.editing.allowResizing]
+             */
+            allowResizing?: boolean;
+            /**
+             * [descr:Properties.editing.allowTimeZoneEditing]
+             */
+            allowTimeZoneEditing?: boolean;
+            /**
+             * [descr:Properties.editing.allowUpdating]
+             */
+            allowUpdating?: boolean;
+          };
+      /**
+       * [descr:Properties.endDateExpr]
+       */
+      endDateExpr?: string;
+      /**
+       * [descr:Properties.endDateTimeZoneExpr]
+       */
+      endDateTimeZoneExpr?: string;
+      /**
+       * [descr:Properties.endDayHour]
+       */
+      endDayHour?: number;
+      /**
+       * [descr:Properties.firstDayOfWeek]
+       */
+      firstDayOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
+      /**
+       * [descr:Properties.focusStateEnabled]
+       */
+      focusStateEnabled?: boolean;
+      /**
+       * [descr:Properties.groupByDate]
+       */
+      groupByDate?: boolean;
+      /**
+       * [descr:Properties.groups]
+       */
+      groups?: Array<string>;
+      /**
+       * [descr:Properties.indicatorUpdateInterval]
+       */
+      indicatorUpdateInterval?: number;
+      /**
+       * [descr:Properties.max]
+       */
+      max?: Date | number | string;
+      /**
+       * [descr:Properties.maxAppointmentsPerCell]
+       */
+      maxAppointmentsPerCell?: number | 'auto' | 'unlimited';
+      /**
+       * [descr:Properties.min]
+       */
+      min?: Date | number | string;
+      /**
+       * [descr:Properties.noDataText]
+       */
+      noDataText?: string;
+      /**
+       * [descr:Properties.onAppointmentAdded]
+       */
+      onAppointmentAdded?: (e: AppointmentAddedEvent) => void;
+      /**
+       * [descr:Properties.onAppointmentAdding]
+       */
+      onAppointmentAdding?: (e: AppointmentAddingEvent) => void;
+      /**
+       * [descr:Properties.onAppointmentClick]
+       */
+      onAppointmentClick?: ((e: AppointmentClickEvent) => void) | string;
+      /**
+       * [descr:Properties.onAppointmentContextMenu]
+       */
+      onAppointmentContextMenu?:
+        | ((e: AppointmentContextMenuEvent) => void)
+        | string;
+      /**
+       * [descr:Properties.onAppointmentDblClick]
+       */
+      onAppointmentDblClick?: ((e: AppointmentDblClickEvent) => void) | string;
+      /**
+       * [descr:Properties.onAppointmentDeleted]
+       */
+      onAppointmentDeleted?: (e: AppointmentDeletedEvent) => void;
+      /**
+       * [descr:Properties.onAppointmentDeleting]
+       */
+      onAppointmentDeleting?: (e: AppointmentDeletingEvent) => void;
+      /**
+       * [descr:Properties.onAppointmentFormOpening]
+       */
+      onAppointmentFormOpening?: (e: AppointmentFormOpeningEvent) => void;
+      /**
+       * [descr:Properties.onAppointmentRendered]
+       */
+      onAppointmentRendered?: (e: AppointmentRenderedEvent) => void;
+      /**
+       * [descr:Properties.onAppointmentUpdated]
+       */
+      onAppointmentUpdated?: (e: AppointmentUpdatedEvent) => void;
+      /**
+       * [descr:Properties.onAppointmentUpdating]
+       */
+      onAppointmentUpdating?: (e: AppointmentUpdatingEvent) => void;
+      /**
+       * [descr:Properties.onCellClick]
+       */
+      onCellClick?: ((e: CellClickEvent) => void) | string;
+      /**
+       * [descr:Properties.onCellContextMenu]
+       */
+      onCellContextMenu?: ((e: CellContextMenuEvent) => void) | string;
+      /**
+       * [descr:Properties.recurrenceEditMode]
+       */
+      recurrenceEditMode?: 'dialog' | 'occurrence' | 'series';
+      /**
+       * [descr:Properties.recurrenceExceptionExpr]
+       */
+      recurrenceExceptionExpr?: string;
+      /**
+       * [descr:Properties.recurrenceRuleExpr]
+       */
+      recurrenceRuleExpr?: string;
+      /**
+       * [descr:Properties.remoteFiltering]
+       */
+      remoteFiltering?: boolean;
+      /**
+       * [descr:Properties.resourceCellTemplate]
+       */
+      resourceCellTemplate?:
+        | DevExpress.core.template
+        | ((
+            itemData: any,
+            itemIndex: number,
+            itemElement: DevExpress.core.DxElement
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.resources]
+       */
+      resources?: Array<{
+        /**
+         * [descr:Properties.resources.allowMultiple]
+         */
+        allowMultiple?: boolean;
+        /**
+         * [descr:Properties.resources.colorExpr]
+         */
+        colorExpr?: string;
+        /**
+         * [descr:Properties.resources.dataSource]
+         */
+        dataSource?: DevExpress.data.DataSource.DataSourceLike<any>;
+        /**
+         * [descr:Properties.resources.displayExpr]
+         */
+        displayExpr?: string | ((resource: any) => string);
+        /**
+         * [descr:Properties.resources.fieldExpr]
+         */
+        fieldExpr?: string;
+        /**
+         * [descr:Properties.resources.label]
+         */
+        label?: string;
+        /**
+         * [descr:Properties.resources.useColorAsDefault]
+         */
+        useColorAsDefault?: boolean;
+        /**
+         * [descr:Properties.resources.valueExpr]
+         */
+        valueExpr?: string | Function;
+      }>;
+      /**
+       * [descr:Properties.scrolling]
+       */
+      scrolling?: dxSchedulerScrolling;
+      /**
+       * [descr:Properties.selectedCellData]
+       */
+      selectedCellData?: Array<any>;
+      /**
+       * [descr:Properties.shadeUntilCurrentTime]
+       */
+      shadeUntilCurrentTime?: boolean;
+      /**
+       * [descr:Properties.showAllDayPanel]
+       */
+      showAllDayPanel?: boolean;
+      /**
+       * [descr:Properties.showCurrentTimeIndicator]
+       */
+      showCurrentTimeIndicator?: boolean;
+      /**
+       * [descr:Properties.startDateExpr]
+       */
+      startDateExpr?: string;
+      /**
+       * [descr:Properties.startDateTimeZoneExpr]
+       */
+      startDateTimeZoneExpr?: string;
+      /**
+       * [descr:Properties.startDayHour]
+       */
+      startDayHour?: number;
+      /**
+       * [descr:Properties.textExpr]
+       */
+      textExpr?: string;
+      /**
+       * [descr:Properties.timeCellTemplate]
+       */
+      timeCellTemplate?:
+        | DevExpress.core.template
+        | ((
+            itemData: any,
+            itemIndex: number,
+            itemElement: DevExpress.core.DxElement
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.timeZone]
+       */
+      timeZone?: string;
+      /**
+       * [descr:Properties.useDropDownViewSwitcher]
+       */
+      useDropDownViewSwitcher?: boolean;
+      /**
+       * [descr:Properties.views]
+       */
+      views?: Array<
+        | 'day'
+        | 'week'
+        | 'workWeek'
+        | 'month'
+        | 'timelineDay'
+        | 'timelineWeek'
+        | 'timelineWorkWeek'
+        | 'timelineMonth'
+        | 'agenda'
+        | {
+            /**
+             * [descr:Properties.views.agendaDuration]
+             */
+            agendaDuration?: number;
+            /**
+             * [descr:Properties.views.appointmentCollectorTemplate]
+             */
+            appointmentCollectorTemplate?:
+              | DevExpress.core.template
+              | ((
+                  data: AppointmentCollectorTemplateData,
+                  collectorElement: DevExpress.core.DxElement
+                ) => string | DevExpress.core.UserDefinedElement);
+            /**
+             * [descr:Properties.views.appointmentTemplate]
+             */
+            appointmentTemplate?:
+              | DevExpress.core.template
+              | ((
+                  model: AppointmentTemplateData,
+                  itemIndex: number,
+                  contentElement: DevExpress.core.DxElement
+                ) => string | DevExpress.core.UserDefinedElement);
+            /**
+             * [descr:Properties.views.appointmentTooltipTemplate]
+             */
+            appointmentTooltipTemplate?:
+              | DevExpress.core.template
+              | ((
+                  model: AppointmentTooltipTemplateData,
+                  itemIndex: number,
+                  contentElement: DevExpress.core.DxElement
+                ) => string | DevExpress.core.UserDefinedElement);
+            /**
+             * [descr:Properties.views.dropDownAppointmentTemplate]
+             * @deprecated [depNote:Properties.views.dropDownAppointmentTemplate]
+             */
+            dropDownAppointmentTemplate?:
+              | DevExpress.core.template
+              | ((
+                  itemData: any,
+                  itemIndex: number,
+                  contentElement: DevExpress.core.DxElement
+                ) => string | DevExpress.core.UserDefinedElement);
+            /**
+             * [descr:Properties.views.cellDuration]
+             */
+            cellDuration?: number;
+            /**
+             * [descr:Properties.views.dataCellTemplate]
+             */
+            dataCellTemplate?:
+              | DevExpress.core.template
+              | ((
+                  itemData: any,
+                  itemIndex: number,
+                  itemElement: DevExpress.core.DxElement
+                ) => string | DevExpress.core.UserDefinedElement);
+            /**
+             * [descr:Properties.views.dateCellTemplate]
+             */
+            dateCellTemplate?:
+              | DevExpress.core.template
+              | ((
+                  itemData: any,
+                  itemIndex: number,
+                  itemElement: DevExpress.core.DxElement
+                ) => string | DevExpress.core.UserDefinedElement);
+            /**
+             * [descr:Properties.views.endDayHour]
+             */
+            endDayHour?: number;
+            /**
+             * [descr:Properties.views.firstDayOfWeek]
+             */
+            firstDayOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
+            /**
+             * [descr:Properties.views.groupByDate]
+             */
+            groupByDate?: boolean;
+            /**
+             * [descr:Properties.views.groupOrientation]
+             */
+            groupOrientation?: 'horizontal' | 'vertical';
+            /**
+             * [descr:Properties.views.groups]
+             */
+            groups?: Array<string>;
+            /**
+             * [descr:Properties.views.intervalCount]
+             */
+            intervalCount?: number;
+            /**
+             * [descr:Properties.views.maxAppointmentsPerCell]
+             */
+            maxAppointmentsPerCell?: number | 'auto' | 'unlimited';
+            /**
+             * [descr:Properties.views.name]
+             */
+            name?: string;
+            /**
+             * [descr:Properties.views.resourceCellTemplate]
+             */
+            resourceCellTemplate?:
+              | DevExpress.core.template
+              | ((
+                  itemData: any,
+                  itemIndex: number,
+                  itemElement: DevExpress.core.DxElement
+                ) => string | DevExpress.core.UserDefinedElement);
+            /**
+             * [descr:Properties.views.startDate]
+             */
+            startDate?: Date | number | string;
+            /**
+             * [descr:Properties.views.startDayHour]
+             */
+            startDayHour?: number;
+            /**
+             * [descr:Properties.views.timeCellTemplate]
+             */
+            timeCellTemplate?:
+              | DevExpress.core.template
+              | ((
+                  itemData: any,
+                  itemIndex: number,
+                  itemElement: DevExpress.core.DxElement
+                ) => string | DevExpress.core.UserDefinedElement);
+            /**
+             * [descr:Properties.views.type]
+             */
+            type?:
+              | 'agenda'
+              | 'day'
+              | 'month'
+              | 'timelineDay'
+              | 'timelineMonth'
+              | 'timelineWeek'
+              | 'timelineWorkWeek'
+              | 'week'
+              | 'workWeek';
+            /**
+             * [descr:Properties.views.scrolling]
+             */
+            scrolling?: dxSchedulerScrolling;
+          }
+      >;
+    }
     /**
      * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
      */
     interface TargetedAppointmentInfo {
-      readonly appointmentData: dxSchedulerAppointment;
-      readonly targetedAppointmentData?: dxSchedulerAppointment;
+      readonly appointmentData: Appointment;
+      readonly targetedAppointmentData?: Appointment;
     }
-  }
-  /**
-   * @deprecated Use the Scheduler's Appointment type instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxSchedulerAppointment extends CollectionWidgetItem {
-    /**
-     * [descr:dxSchedulerAppointment.allDay]
-     */
-    allDay?: boolean;
-    /**
-     * [descr:dxSchedulerAppointment.description]
-     */
-    description?: string;
-    /**
-     * [descr:dxSchedulerAppointment.disabled]
-     */
-    disabled?: boolean;
-    /**
-     * [descr:dxSchedulerAppointment.endDate]
-     */
-    endDate?: Date | string;
-    /**
-     * [descr:dxSchedulerAppointment.endDateTimeZone]
-     */
-    endDateTimeZone?: string;
-    /**
-     * [descr:dxSchedulerAppointment.html]
-     */
-    html?: string;
-    /**
-     * [descr:dxSchedulerAppointment.recurrenceException]
-     */
-    recurrenceException?: string;
-    /**
-     * [descr:dxSchedulerAppointment.recurrenceRule]
-     */
-    recurrenceRule?: string;
-    /**
-     * [descr:dxSchedulerAppointment.startDate]
-     */
-    startDate?: Date | string;
-    /**
-     * [descr:dxSchedulerAppointment.startDateTimeZone]
-     */
-    startDateTimeZone?: string;
-    /**
-     * [descr:dxSchedulerAppointment.template]
-     */
-    template?: DevExpress.core.template;
-    /**
-     * [descr:dxSchedulerAppointment.text]
-     */
-    text?: string;
-    /**
-     * [descr:dxSchedulerAppointment.visible]
-     */
-    visible?: boolean;
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxSchedulerOptions extends WidgetOptions<dxScheduler> {
-    /**
-     * [descr:dxSchedulerOptions.adaptivityEnabled]
-     */
-    adaptivityEnabled?: boolean;
-    /**
-     * [descr:dxSchedulerOptions.allDayExpr]
-     */
-    allDayExpr?: string;
-    /**
-     * [descr:dxSchedulerOptions.appointmentCollectorTemplate]
-     */
-    appointmentCollectorTemplate?:
-      | DevExpress.core.template
-      | ((
-          data: DevExpress.ui.dxScheduler.AppointmentCollectorTemplateData,
-          collectorElement: DevExpress.core.DxElement
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxSchedulerOptions.appointmentDragging]
-     */
-    appointmentDragging?: {
-      /**
-       * [descr:dxSchedulerOptions.appointmentDragging.autoScroll]
-       */
-      autoScroll?: boolean;
-      /**
-       * [descr:dxSchedulerOptions.appointmentDragging.data]
-       */
-      data?: any;
-      /**
-       * [descr:dxSchedulerOptions.appointmentDragging.group]
-       */
-      group?: string;
-      /**
-       * [descr:dxSchedulerOptions.appointmentDragging.onAdd]
-       */
-      onAdd?: (
-        e: DevExpress.ui.dxScheduler.AppointmentDraggingAddEvent
-      ) => void;
-      /**
-       * [descr:dxSchedulerOptions.appointmentDragging.onDragEnd]
-       */
-      onDragEnd?: (
-        e: DevExpress.ui.dxScheduler.AppointmentDraggingEndEvent
-      ) => void;
-      /**
-       * [descr:dxSchedulerOptions.appointmentDragging.onDragMove]
-       */
-      onDragMove?: (
-        e: DevExpress.ui.dxScheduler.AppointmentDraggingMoveEvent
-      ) => void;
-      /**
-       * [descr:dxSchedulerOptions.appointmentDragging.onDragStart]
-       */
-      onDragStart?: (
-        e: DevExpress.ui.dxScheduler.AppointmentDraggingStartEvent
-      ) => void;
-      /**
-       * [descr:dxSchedulerOptions.appointmentDragging.onRemove]
-       */
-      onRemove?: (
-        e: DevExpress.ui.dxScheduler.AppointmentDraggingRemoveEvent
-      ) => void;
-      /**
-       * [descr:dxSchedulerOptions.appointmentDragging.scrollSensitivity]
-       */
-      scrollSensitivity?: number;
-      /**
-       * [descr:dxSchedulerOptions.appointmentDragging.scrollSpeed]
-       */
-      scrollSpeed?: number;
-    };
-    /**
-     * [descr:dxSchedulerOptions.appointmentTemplate]
-     */
-    appointmentTemplate?:
-      | DevExpress.core.template
-      | ((
-          model: DevExpress.ui.dxScheduler.AppointmentTemplateData,
-          itemIndex: number,
-          contentElement: DevExpress.core.DxElement
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxSchedulerOptions.appointmentTooltipTemplate]
-     */
-    appointmentTooltipTemplate?:
-      | DevExpress.core.template
-      | ((
-          model: DevExpress.ui.dxScheduler.AppointmentTemplateData,
-          itemIndex: number,
-          contentElement: DevExpress.core.DxElement
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxSchedulerOptions.cellDuration]
-     */
-    cellDuration?: number;
-    /**
-     * [descr:dxSchedulerOptions.crossScrollingEnabled]
-     */
-    crossScrollingEnabled?: boolean;
-    /**
-     * [descr:dxSchedulerOptions.currentDate]
-     */
-    currentDate?: Date | number | string;
-    /**
-     * [descr:dxSchedulerOptions.currentView]
-     */
-    currentView?:
-      | 'agenda'
-      | 'day'
-      | 'month'
-      | 'timelineDay'
-      | 'timelineMonth'
-      | 'timelineWeek'
-      | 'timelineWorkWeek'
-      | 'week'
-      | 'workWeek';
-    /**
-     * [descr:dxSchedulerOptions.customizeDateNavigatorText]
-     */
-    customizeDateNavigatorText?: (
-      info: DevExpress.ui.dxScheduler.DateNavigatorTextInfo
-    ) => string;
-    /**
-     * [descr:dxSchedulerOptions.dataCellTemplate]
-     */
-    dataCellTemplate?:
-      | DevExpress.core.template
-      | ((
-          itemData: any,
-          itemIndex: number,
-          itemElement: DevExpress.core.DxElement
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxSchedulerOptions.dataSource]
-     */
-    dataSource?: DevExpress.data.DataSource.DataSourceLike<DevExpress.ui.dxScheduler.Appointment>;
-    /**
-     * [descr:dxSchedulerOptions.dateCellTemplate]
-     */
-    dateCellTemplate?:
-      | DevExpress.core.template
-      | ((
-          itemData: any,
-          itemIndex: number,
-          itemElement: DevExpress.core.DxElement
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxSchedulerOptions.dateSerializationFormat]
-     */
-    dateSerializationFormat?: string;
-    /**
-     * [descr:dxSchedulerOptions.descriptionExpr]
-     */
-    descriptionExpr?: string;
-    /**
-     * [descr:dxSchedulerOptions.dropDownAppointmentTemplate]
-     * @deprecated [depNote:dxSchedulerOptions.dropDownAppointmentTemplate]
-     */
-    dropDownAppointmentTemplate?:
-      | DevExpress.core.template
-      | ((
-          itemData: any,
-          itemIndex: number,
-          contentElement: DevExpress.core.DxElement
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxSchedulerOptions.editing]
-     */
-    editing?:
-      | boolean
-      | {
-          /**
-           * [descr:dxSchedulerOptions.editing.allowAdding]
-           */
-          allowAdding?: boolean;
-          /**
-           * [descr:dxSchedulerOptions.editing.allowDeleting]
-           */
-          allowDeleting?: boolean;
-          /**
-           * [descr:dxSchedulerOptions.editing.allowDragging]
-           */
-          allowDragging?: boolean;
-          /**
-           * [descr:dxSchedulerOptions.editing.allowResizing]
-           */
-          allowResizing?: boolean;
-          /**
-           * [descr:dxSchedulerOptions.editing.allowTimeZoneEditing]
-           */
-          allowTimeZoneEditing?: boolean;
-          /**
-           * [descr:dxSchedulerOptions.editing.allowUpdating]
-           */
-          allowUpdating?: boolean;
-        };
-    /**
-     * [descr:dxSchedulerOptions.endDateExpr]
-     */
-    endDateExpr?: string;
-    /**
-     * [descr:dxSchedulerOptions.endDateTimeZoneExpr]
-     */
-    endDateTimeZoneExpr?: string;
-    /**
-     * [descr:dxSchedulerOptions.endDayHour]
-     */
-    endDayHour?: number;
-    /**
-     * [descr:dxSchedulerOptions.firstDayOfWeek]
-     */
-    firstDayOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
-    /**
-     * [descr:dxSchedulerOptions.focusStateEnabled]
-     */
-    focusStateEnabled?: boolean;
-    /**
-     * [descr:dxSchedulerOptions.groupByDate]
-     */
-    groupByDate?: boolean;
-    /**
-     * [descr:dxSchedulerOptions.groups]
-     */
-    groups?: Array<string>;
-    /**
-     * [descr:dxSchedulerOptions.indicatorUpdateInterval]
-     */
-    indicatorUpdateInterval?: number;
-    /**
-     * [descr:dxSchedulerOptions.max]
-     */
-    max?: Date | number | string;
-    /**
-     * [descr:dxSchedulerOptions.maxAppointmentsPerCell]
-     */
-    maxAppointmentsPerCell?: number | 'auto' | 'unlimited';
-    /**
-     * [descr:dxSchedulerOptions.min]
-     */
-    min?: Date | number | string;
-    /**
-     * [descr:dxSchedulerOptions.noDataText]
-     */
-    noDataText?: string;
-    /**
-     * [descr:dxSchedulerOptions.onAppointmentAdded]
-     */
-    onAppointmentAdded?: (
-      e: DevExpress.ui.dxScheduler.AppointmentAddedEvent
-    ) => void;
-    /**
-     * [descr:dxSchedulerOptions.onAppointmentAdding]
-     */
-    onAppointmentAdding?: (
-      e: DevExpress.ui.dxScheduler.AppointmentAddingEvent
-    ) => void;
-    /**
-     * [descr:dxSchedulerOptions.onAppointmentClick]
-     */
-    onAppointmentClick?:
-      | ((e: DevExpress.ui.dxScheduler.AppointmentClickEvent) => void)
-      | string;
-    /**
-     * [descr:dxSchedulerOptions.onAppointmentContextMenu]
-     */
-    onAppointmentContextMenu?:
-      | ((e: DevExpress.ui.dxScheduler.AppointmentContextMenuEvent) => void)
-      | string;
-    /**
-     * [descr:dxSchedulerOptions.onAppointmentDblClick]
-     */
-    onAppointmentDblClick?:
-      | ((e: DevExpress.ui.dxScheduler.AppointmentDblClickEvent) => void)
-      | string;
-    /**
-     * [descr:dxSchedulerOptions.onAppointmentDeleted]
-     */
-    onAppointmentDeleted?: (
-      e: DevExpress.ui.dxScheduler.AppointmentDeletedEvent
-    ) => void;
-    /**
-     * [descr:dxSchedulerOptions.onAppointmentDeleting]
-     */
-    onAppointmentDeleting?: (
-      e: DevExpress.ui.dxScheduler.AppointmentDeletingEvent
-    ) => void;
-    /**
-     * [descr:dxSchedulerOptions.onAppointmentFormOpening]
-     */
-    onAppointmentFormOpening?: (
-      e: DevExpress.ui.dxScheduler.AppointmentFormOpeningEvent
-    ) => void;
-    /**
-     * [descr:dxSchedulerOptions.onAppointmentRendered]
-     */
-    onAppointmentRendered?: (
-      e: DevExpress.ui.dxScheduler.AppointmentRenderedEvent
-    ) => void;
-    /**
-     * [descr:dxSchedulerOptions.onAppointmentUpdated]
-     */
-    onAppointmentUpdated?: (
-      e: DevExpress.ui.dxScheduler.AppointmentUpdatedEvent
-    ) => void;
-    /**
-     * [descr:dxSchedulerOptions.onAppointmentUpdating]
-     */
-    onAppointmentUpdating?: (
-      e: DevExpress.ui.dxScheduler.AppointmentUpdatingEvent
-    ) => void;
-    /**
-     * [descr:dxSchedulerOptions.onCellClick]
-     */
-    onCellClick?:
-      | ((e: DevExpress.ui.dxScheduler.CellClickEvent) => void)
-      | string;
-    /**
-     * [descr:dxSchedulerOptions.onCellContextMenu]
-     */
-    onCellContextMenu?:
-      | ((e: DevExpress.ui.dxScheduler.CellContextMenuEvent) => void)
-      | string;
-    /**
-     * [descr:dxSchedulerOptions.recurrenceEditMode]
-     */
-    recurrenceEditMode?: 'dialog' | 'occurrence' | 'series';
-    /**
-     * [descr:dxSchedulerOptions.recurrenceExceptionExpr]
-     */
-    recurrenceExceptionExpr?: string;
-    /**
-     * [descr:dxSchedulerOptions.recurrenceRuleExpr]
-     */
-    recurrenceRuleExpr?: string;
-    /**
-     * [descr:dxSchedulerOptions.remoteFiltering]
-     */
-    remoteFiltering?: boolean;
-    /**
-     * [descr:dxSchedulerOptions.resourceCellTemplate]
-     */
-    resourceCellTemplate?:
-      | DevExpress.core.template
-      | ((
-          itemData: any,
-          itemIndex: number,
-          itemElement: DevExpress.core.DxElement
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxSchedulerOptions.resources]
-     */
-    resources?: Array<{
-      /**
-       * [descr:dxSchedulerOptions.resources.allowMultiple]
-       */
-      allowMultiple?: boolean;
-      /**
-       * [descr:dxSchedulerOptions.resources.colorExpr]
-       */
-      colorExpr?: string;
-      /**
-       * [descr:dxSchedulerOptions.resources.dataSource]
-       */
-      dataSource?: DevExpress.data.DataSource.DataSourceLike<any>;
-      /**
-       * [descr:dxSchedulerOptions.resources.displayExpr]
-       */
-      displayExpr?: string | ((resource: any) => string);
-      /**
-       * [descr:dxSchedulerOptions.resources.fieldExpr]
-       */
-      fieldExpr?: string;
-      /**
-       * [descr:dxSchedulerOptions.resources.label]
-       */
-      label?: string;
-      /**
-       * [descr:dxSchedulerOptions.resources.useColorAsDefault]
-       */
-      useColorAsDefault?: boolean;
-      /**
-       * [descr:dxSchedulerOptions.resources.valueExpr]
-       */
-      valueExpr?: string | Function;
-    }>;
-    /**
-     * [descr:dxSchedulerOptions.scrolling]
-     */
-    scrolling?: dxSchedulerScrolling;
-    /**
-     * [descr:dxSchedulerOptions.selectedCellData]
-     */
-    selectedCellData?: Array<any>;
-    /**
-     * [descr:dxSchedulerOptions.shadeUntilCurrentTime]
-     */
-    shadeUntilCurrentTime?: boolean;
-    /**
-     * [descr:dxSchedulerOptions.showAllDayPanel]
-     */
-    showAllDayPanel?: boolean;
-    /**
-     * [descr:dxSchedulerOptions.showCurrentTimeIndicator]
-     */
-    showCurrentTimeIndicator?: boolean;
-    /**
-     * [descr:dxSchedulerOptions.startDateExpr]
-     */
-    startDateExpr?: string;
-    /**
-     * [descr:dxSchedulerOptions.startDateTimeZoneExpr]
-     */
-    startDateTimeZoneExpr?: string;
-    /**
-     * [descr:dxSchedulerOptions.startDayHour]
-     */
-    startDayHour?: number;
-    /**
-     * [descr:dxSchedulerOptions.textExpr]
-     */
-    textExpr?: string;
-    /**
-     * [descr:dxSchedulerOptions.timeCellTemplate]
-     */
-    timeCellTemplate?:
-      | DevExpress.core.template
-      | ((
-          itemData: any,
-          itemIndex: number,
-          itemElement: DevExpress.core.DxElement
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxSchedulerOptions.timeZone]
-     */
-    timeZone?: string;
-    /**
-     * [descr:dxSchedulerOptions.useDropDownViewSwitcher]
-     */
-    useDropDownViewSwitcher?: boolean;
-    /**
-     * [descr:dxSchedulerOptions.views]
-     */
-    views?: Array<
-      | 'day'
-      | 'week'
-      | 'workWeek'
-      | 'month'
-      | 'timelineDay'
-      | 'timelineWeek'
-      | 'timelineWorkWeek'
-      | 'timelineMonth'
-      | 'agenda'
-      | {
-          /**
-           * [descr:dxSchedulerOptions.views.agendaDuration]
-           */
-          agendaDuration?: number;
-          /**
-           * [descr:dxSchedulerOptions.views.appointmentCollectorTemplate]
-           */
-          appointmentCollectorTemplate?:
-            | DevExpress.core.template
-            | ((
-                data: DevExpress.ui.dxScheduler.AppointmentCollectorTemplateData,
-                collectorElement: DevExpress.core.DxElement
-              ) => string | DevExpress.core.UserDefinedElement);
-          /**
-           * [descr:dxSchedulerOptions.views.appointmentTemplate]
-           */
-          appointmentTemplate?:
-            | DevExpress.core.template
-            | ((
-                model: DevExpress.ui.dxScheduler.AppointmentTemplateData,
-                itemIndex: number,
-                contentElement: DevExpress.core.DxElement
-              ) => string | DevExpress.core.UserDefinedElement);
-          /**
-           * [descr:dxSchedulerOptions.views.appointmentTooltipTemplate]
-           */
-          appointmentTooltipTemplate?:
-            | DevExpress.core.template
-            | ((
-                model: DevExpress.ui.dxScheduler.AppointmentTooltipTemplateData,
-                itemIndex: number,
-                contentElement: DevExpress.core.DxElement
-              ) => string | DevExpress.core.UserDefinedElement);
-          /**
-           * [descr:dxSchedulerOptions.views.dropDownAppointmentTemplate]
-           * @deprecated [depNote:dxSchedulerOptions.views.dropDownAppointmentTemplate]
-           */
-          dropDownAppointmentTemplate?:
-            | DevExpress.core.template
-            | ((
-                itemData: any,
-                itemIndex: number,
-                contentElement: DevExpress.core.DxElement
-              ) => string | DevExpress.core.UserDefinedElement);
-          /**
-           * [descr:dxSchedulerOptions.views.cellDuration]
-           */
-          cellDuration?: number;
-          /**
-           * [descr:dxSchedulerOptions.views.dataCellTemplate]
-           */
-          dataCellTemplate?:
-            | DevExpress.core.template
-            | ((
-                itemData: any,
-                itemIndex: number,
-                itemElement: DevExpress.core.DxElement
-              ) => string | DevExpress.core.UserDefinedElement);
-          /**
-           * [descr:dxSchedulerOptions.views.dateCellTemplate]
-           */
-          dateCellTemplate?:
-            | DevExpress.core.template
-            | ((
-                itemData: any,
-                itemIndex: number,
-                itemElement: DevExpress.core.DxElement
-              ) => string | DevExpress.core.UserDefinedElement);
-          /**
-           * [descr:dxSchedulerOptions.views.endDayHour]
-           */
-          endDayHour?: number;
-          /**
-           * [descr:dxSchedulerOptions.views.firstDayOfWeek]
-           */
-          firstDayOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
-          /**
-           * [descr:dxSchedulerOptions.views.groupByDate]
-           */
-          groupByDate?: boolean;
-          /**
-           * [descr:dxSchedulerOptions.views.groupOrientation]
-           */
-          groupOrientation?: 'horizontal' | 'vertical';
-          /**
-           * [descr:dxSchedulerOptions.views.groups]
-           */
-          groups?: Array<string>;
-          /**
-           * [descr:dxSchedulerOptions.views.intervalCount]
-           */
-          intervalCount?: number;
-          /**
-           * [descr:dxSchedulerOptions.views.maxAppointmentsPerCell]
-           */
-          maxAppointmentsPerCell?: number | 'auto' | 'unlimited';
-          /**
-           * [descr:dxSchedulerOptions.views.name]
-           */
-          name?: string;
-          /**
-           * [descr:dxSchedulerOptions.views.resourceCellTemplate]
-           */
-          resourceCellTemplate?:
-            | DevExpress.core.template
-            | ((
-                itemData: any,
-                itemIndex: number,
-                itemElement: DevExpress.core.DxElement
-              ) => string | DevExpress.core.UserDefinedElement);
-          /**
-           * [descr:dxSchedulerOptions.views.startDate]
-           */
-          startDate?: Date | number | string;
-          /**
-           * [descr:dxSchedulerOptions.views.startDayHour]
-           */
-          startDayHour?: number;
-          /**
-           * [descr:dxSchedulerOptions.views.timeCellTemplate]
-           */
-          timeCellTemplate?:
-            | DevExpress.core.template
-            | ((
-                itemData: any,
-                itemIndex: number,
-                itemElement: DevExpress.core.DxElement
-              ) => string | DevExpress.core.UserDefinedElement);
-          /**
-           * [descr:dxSchedulerOptions.views.type]
-           */
-          type?:
-            | 'agenda'
-            | 'day'
-            | 'month'
-            | 'timelineDay'
-            | 'timelineMonth'
-            | 'timelineWeek'
-            | 'timelineWorkWeek'
-            | 'week'
-            | 'workWeek';
-          /**
-           * [descr:dxSchedulerOptions.views.scrolling]
-           */
-          scrolling?: dxSchedulerScrolling;
-        }
-    >;
   }
   /**
    * [descr:dxSchedulerScrolling]
@@ -18857,7 +17510,7 @@ declare module DevExpress.ui {
   /**
    * [descr:dxScrollView]
    */
-  export class dxScrollView extends dxScrollable<dxScrollViewOptions> {
+  export class dxScrollView extends dxScrollable<DevExpress.ui.dxScrollView.Properties> {
     /**
      * [descr:dxScrollView.refresh()]
      */
@@ -18875,44 +17528,41 @@ declare module DevExpress.ui {
       DevExpress.events.InitializedEventInfo<dxScrollView>;
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxScrollView> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxScrollViewOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends dxScrollableOptions<dxScrollView> {
+      /**
+       * [descr:Properties.onPullDown]
+       */
+      onPullDown?: (e: PullDownEvent) => void;
+      /**
+       * [descr:Properties.onReachBottom]
+       */
+      onReachBottom?: (e: ReachBottomEvent) => void;
+      /**
+       * [descr:Properties.pulledDownText]
+       */
+      pulledDownText?: string;
+      /**
+       * [descr:Properties.pullingDownText]
+       */
+      pullingDownText?: string;
+      /**
+       * [descr:Properties.reachBottomText]
+       */
+      reachBottomText?: string;
+      /**
+       * [descr:Properties.refreshingText]
+       */
+      refreshingText?: string;
+    }
     export type PullDownEvent = DevExpress.events.EventInfo<dxScrollView>;
     export type ReachBottomEvent = DevExpress.events.EventInfo<dxScrollView>;
     export type ScrollEvent =
       DevExpress.ui.dxScrollable.ScrollEventInfo<dxScrollView>;
     export type UpdatedEvent =
       DevExpress.ui.dxScrollable.ScrollEventInfo<dxScrollView>;
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxScrollViewOptions
-    extends dxScrollableOptions<dxScrollView> {
-    /**
-     * [descr:dxScrollViewOptions.onPullDown]
-     */
-    onPullDown?: (e: DevExpress.ui.dxScrollView.PullDownEvent) => void;
-    /**
-     * [descr:dxScrollViewOptions.onReachBottom]
-     */
-    onReachBottom?: (e: DevExpress.ui.dxScrollView.ReachBottomEvent) => void;
-    /**
-     * [descr:dxScrollViewOptions.pulledDownText]
-     */
-    pulledDownText?: string;
-    /**
-     * [descr:dxScrollViewOptions.pullingDownText]
-     */
-    pullingDownText?: string;
-    /**
-     * [descr:dxScrollViewOptions.reachBottomText]
-     */
-    reachBottomText?: string;
-    /**
-     * [descr:dxScrollViewOptions.refreshingText]
-     */
-    refreshingText?: string;
   }
   /**
    * [descr:dxSelectBox]
@@ -18954,7 +17604,54 @@ declare module DevExpress.ui {
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxSelectBox> &
       DevExpress.events.ChangedOptionInfo;
     export type PasteEvent = DevExpress.events.NativeEventInfo<dxSelectBox>;
-    export type Properties = dxSelectBoxOptions<SelectBoxInstance>;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties<TComponent = SelectBoxInstance>
+      extends dxDropDownListOptions<TComponent> {
+      /**
+       * [descr:Properties.acceptCustomValue]
+       */
+      acceptCustomValue?: boolean;
+      /**
+       * [descr:Properties.fieldTemplate]
+       */
+      fieldTemplate?:
+        | DevExpress.core.template
+        | ((
+            selectedItem: any,
+            fieldElement: DevExpress.core.DxElement
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.onCustomItemCreating]
+       */
+      onCustomItemCreating?: (e: CustomItemCreatingEvent) => void;
+      /**
+       * [descr:Properties.openOnFieldClick]
+       */
+      openOnFieldClick?: boolean;
+      /**
+       * [descr:Properties.placeholder]
+       */
+      placeholder?: string;
+      /**
+       * [descr:Properties.showDropDownButton]
+       */
+      showDropDownButton?: boolean;
+      /**
+       * [descr:Properties.showSelectionControls]
+       */
+      showSelectionControls?: boolean;
+      /**
+       * [descr:Properties.valueChangeEvent]
+       */
+      valueChangeEvent?: string;
+
+      /**
+       * [descr:Properties.dropDownOptions]
+       */
+      dropDownOptions?: DevExpress.ui.dxPopup.Properties;
+    }
     /**
      * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
      */
@@ -18967,61 +17664,10 @@ declare module DevExpress.ui {
         DevExpress.ui.Editor.ValueChangedInfo;
   }
   /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxSelectBoxOptions<TComponent>
-    extends dxDropDownListOptions<TComponent> {
-    /**
-     * [descr:dxSelectBoxOptions.acceptCustomValue]
-     */
-    acceptCustomValue?: boolean;
-    /**
-     * [descr:dxSelectBoxOptions.fieldTemplate]
-     */
-    fieldTemplate?:
-      | DevExpress.core.template
-      | ((
-          selectedItem: any,
-          fieldElement: DevExpress.core.DxElement
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxSelectBoxOptions.onCustomItemCreating]
-     */
-    onCustomItemCreating?: (
-      e: DevExpress.ui.dxSelectBox.CustomItemCreatingEvent
-    ) => void;
-    /**
-     * [descr:dxSelectBoxOptions.openOnFieldClick]
-     */
-    openOnFieldClick?: boolean;
-    /**
-     * [descr:dxSelectBoxOptions.placeholder]
-     */
-    placeholder?: string;
-    /**
-     * [descr:dxSelectBoxOptions.showDropDownButton]
-     */
-    showDropDownButton?: boolean;
-    /**
-     * [descr:dxSelectBoxOptions.showSelectionControls]
-     */
-    showSelectionControls?: boolean;
-    /**
-     * [descr:dxSelectBoxOptions.valueChangeEvent]
-     */
-    valueChangeEvent?: string;
-
-    /**
-     * [descr:dxSelectBoxOptions.dropDownOptions]
-     */
-    dropDownOptions?: DevExpress.ui.dxPopup.Properties;
-  }
-  /**
    * [descr:dxSlideOut]
    * @deprecated [depNote:dxSlideOut]
    */
-  export class dxSlideOut extends CollectionWidget<dxSlideOutOptions> {
+  export class dxSlideOut extends CollectionWidget<DevExpress.ui.dxSlideOut.Properties> {
     /**
      * [descr:dxSlideOut.hideMenu()]
      */
@@ -19057,109 +17703,90 @@ declare module DevExpress.ui {
     export type MenuItemRenderedEvent = DevExpress.events.EventInfo<dxSlideOut>;
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxSlideOut> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxSlideOutOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends CollectionWidgetOptions<dxSlideOut> {
+      /**
+       * [descr:Properties.activeStateEnabled]
+       */
+      activeStateEnabled?: boolean;
+      /**
+       * [descr:Properties.contentTemplate]
+       */
+      contentTemplate?:
+        | DevExpress.core.template
+        | ((
+            container: DevExpress.core.DxElement
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.dataSource]
+       */
+      dataSource?: DevExpress.data.DataSource.DataSourceLike<
+        string | Item | any
+      >;
+      /**
+       * [descr:Properties.items]
+       */
+      items?: Array<string | Item | any>;
+      /**
+       * [descr:Properties.menuGroupTemplate]
+       */
+      menuGroupTemplate?:
+        | DevExpress.core.template
+        | ((
+            groupData: any,
+            groupIndex: number,
+            groupElement: any
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.menuGrouped]
+       */
+      menuGrouped?: boolean;
+      /**
+       * [descr:Properties.menuItemTemplate]
+       */
+      menuItemTemplate?:
+        | DevExpress.core.template
+        | ((
+            itemData: any,
+            itemIndex: number,
+            itemElement: DevExpress.core.DxElement
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.menuPosition]
+       */
+      menuPosition?: 'inverted' | 'normal';
+      /**
+       * [descr:Properties.menuVisible]
+       */
+      menuVisible?: boolean;
+      /**
+       * [descr:Properties.onMenuGroupRendered]
+       */
+      onMenuGroupRendered?: (e: MenuGroupRenderedEvent) => void;
+      /**
+       * [descr:Properties.onMenuItemRendered]
+       */
+      onMenuItemRendered?: (e: MenuItemRenderedEvent) => void;
+      /**
+       * [descr:Properties.selectedIndex]
+       */
+      selectedIndex?: number;
+      /**
+       * [descr:Properties.swipeEnabled]
+       */
+      swipeEnabled?: boolean;
+    }
     export type SelectionChangedEvent =
       DevExpress.events.EventInfo<dxSlideOut> &
         DevExpress.ui.CollectionWidget.SelectionChangedInfo;
   }
   /**
-   * @deprecated Use Item instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxSlideOutItem extends CollectionWidgetItem {
-    /**
-     * [descr:dxSlideOutItem.menuTemplate]
-     */
-    menuTemplate?:
-      | DevExpress.core.template
-      | (() => string | DevExpress.core.UserDefinedElement);
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxSlideOutOptions
-    extends CollectionWidgetOptions<dxSlideOut> {
-    /**
-     * [descr:dxSlideOutOptions.activeStateEnabled]
-     */
-    activeStateEnabled?: boolean;
-    /**
-     * [descr:dxSlideOutOptions.contentTemplate]
-     */
-    contentTemplate?:
-      | DevExpress.core.template
-      | ((
-          container: DevExpress.core.DxElement
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxSlideOutOptions.dataSource]
-     */
-    dataSource?: DevExpress.data.DataSource.DataSourceLike<
-      string | DevExpress.ui.dxSlideOut.Item | any
-    >;
-    /**
-     * [descr:dxSlideOutOptions.items]
-     */
-    items?: Array<string | DevExpress.ui.dxSlideOut.Item | any>;
-    /**
-     * [descr:dxSlideOutOptions.menuGroupTemplate]
-     */
-    menuGroupTemplate?:
-      | DevExpress.core.template
-      | ((
-          groupData: any,
-          groupIndex: number,
-          groupElement: any
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxSlideOutOptions.menuGrouped]
-     */
-    menuGrouped?: boolean;
-    /**
-     * [descr:dxSlideOutOptions.menuItemTemplate]
-     */
-    menuItemTemplate?:
-      | DevExpress.core.template
-      | ((
-          itemData: any,
-          itemIndex: number,
-          itemElement: DevExpress.core.DxElement
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxSlideOutOptions.menuPosition]
-     */
-    menuPosition?: 'inverted' | 'normal';
-    /**
-     * [descr:dxSlideOutOptions.menuVisible]
-     */
-    menuVisible?: boolean;
-    /**
-     * [descr:dxSlideOutOptions.onMenuGroupRendered]
-     */
-    onMenuGroupRendered?: (
-      e: DevExpress.ui.dxSlideOut.MenuGroupRenderedEvent
-    ) => void;
-    /**
-     * [descr:dxSlideOutOptions.onMenuItemRendered]
-     */
-    onMenuItemRendered?: (
-      e: DevExpress.ui.dxSlideOut.MenuItemRenderedEvent
-    ) => void;
-    /**
-     * [descr:dxSlideOutOptions.selectedIndex]
-     */
-    selectedIndex?: number;
-    /**
-     * [descr:dxSlideOutOptions.swipeEnabled]
-     */
-    swipeEnabled?: boolean;
-  }
-  /**
    * [descr:dxSlideOutView]
    * @deprecated [depNote:dxSlideOutView]
    */
-  export class dxSlideOutView extends Widget<dxSlideOutViewOptions> {
+  export class dxSlideOutView extends Widget<DevExpress.ui.dxSlideOutView.Properties> {
     /**
      * [descr:dxSlideOutView.content()]
      */
@@ -19190,42 +17817,40 @@ declare module DevExpress.ui {
     export type OptionChangedEvent =
       DevExpress.events.EventInfo<dxSlideOutView> &
         DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxSlideOutViewOptions;
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxSlideOutViewOptions extends WidgetOptions<dxSlideOutView> {
     /**
-     * [descr:dxSlideOutViewOptions.contentTemplate]
+     * [descr:Properties]
      */
-    contentTemplate?:
-      | DevExpress.core.template
-      | ((contentElement: DevExpress.core.DxElement) => any);
-    /**
-     * [descr:dxSlideOutViewOptions.menuPosition]
-     */
-    menuPosition?: 'inverted' | 'normal';
-    /**
-     * [descr:dxSlideOutViewOptions.menuTemplate]
-     */
-    menuTemplate?:
-      | DevExpress.core.template
-      | ((menuElement: DevExpress.core.DxElement) => any);
-    /**
-     * [descr:dxSlideOutViewOptions.menuVisible]
-     */
-    menuVisible?: boolean;
-    /**
-     * [descr:dxSlideOutViewOptions.swipeEnabled]
-     */
-    swipeEnabled?: boolean;
+    export interface Properties extends WidgetOptions<dxSlideOutView> {
+      /**
+       * [descr:Properties.contentTemplate]
+       */
+      contentTemplate?:
+        | DevExpress.core.template
+        | ((contentElement: DevExpress.core.DxElement) => any);
+      /**
+       * [descr:Properties.menuPosition]
+       */
+      menuPosition?: 'inverted' | 'normal';
+      /**
+       * [descr:Properties.menuTemplate]
+       */
+      menuTemplate?:
+        | DevExpress.core.template
+        | ((menuElement: DevExpress.core.DxElement) => any);
+      /**
+       * [descr:Properties.menuVisible]
+       */
+      menuVisible?: boolean;
+      /**
+       * [descr:Properties.swipeEnabled]
+       */
+      swipeEnabled?: boolean;
+    }
   }
   /**
    * [descr:dxSlider]
    */
-  export class dxSlider extends dxTrackBar<dxSliderOptions> {}
+  export class dxSlider extends dxTrackBar<DevExpress.ui.dxSlider.Properties> {}
   module dxSlider {
     export type ContentReadyEvent = DevExpress.events.EventInfo<dxSlider>;
     export type DisposingEvent = DevExpress.events.EventInfo<dxSlider>;
@@ -19233,7 +17858,15 @@ declare module DevExpress.ui {
       DevExpress.events.InitializedEventInfo<dxSlider>;
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxSlider> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxSliderOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends dxSliderBaseOptions<dxSlider> {
+      /**
+       * [descr:Properties.value]
+       */
+      value?: number;
+    }
     export type ValueChangedEvent =
       DevExpress.events.NativeEventInfo<dxSlider> &
         DevExpress.ui.Editor.ValueChangedInfo;
@@ -19312,20 +17945,10 @@ declare module DevExpress.ui {
     };
   }
   /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxSliderOptions extends dxSliderBaseOptions<dxSlider> {
-    /**
-     * [descr:dxSliderOptions.value]
-     */
-    value?: number;
-  }
-  /**
    * [descr:dxSortable]
    */
   export class dxSortable
-    extends DOMComponent<dxSortableOptions>
+    extends DOMComponent<DevExpress.ui.dxSortable.Properties>
     implements DraggableBase
   {
     /**
@@ -19402,7 +18025,72 @@ declare module DevExpress.ui {
       DevExpress.events.InitializedEventInfo<dxSortable>;
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxSortable> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxSortableOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends DraggableBaseOptions<dxSortable> {
+      /**
+       * [descr:Properties.allowDropInsideItem]
+       */
+      allowDropInsideItem?: boolean;
+      /**
+       * [descr:Properties.allowReordering]
+       */
+      allowReordering?: boolean;
+      /**
+       * [descr:Properties.dragTemplate]
+       */
+      dragTemplate?:
+        | DevExpress.core.template
+        | ((
+            dragInfo: DragTemplateData,
+            containerElement: DevExpress.core.DxElement
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.dropFeedbackMode]
+       */
+      dropFeedbackMode?: 'push' | 'indicate';
+      /**
+       * [descr:Properties.filter]
+       */
+      filter?: string;
+      /**
+       * [descr:Properties.itemOrientation]
+       */
+      itemOrientation?: 'horizontal' | 'vertical';
+      /**
+       * [descr:Properties.moveItemOnDrop]
+       */
+      moveItemOnDrop?: boolean;
+      /**
+       * [descr:Properties.onAdd]
+       */
+      onAdd?: (e: AddEvent) => void;
+      /**
+       * [descr:Properties.onDragChange]
+       */
+      onDragChange?: (e: DragChangeEvent) => void;
+      /**
+       * [descr:Properties.onDragEnd]
+       */
+      onDragEnd?: (e: DragEndEvent) => void;
+      /**
+       * [descr:Properties.onDragMove]
+       */
+      onDragMove?: (e: DragMoveEvent) => void;
+      /**
+       * [descr:Properties.onDragStart]
+       */
+      onDragStart?: (e: DragStartEvent) => void;
+      /**
+       * [descr:Properties.onRemove]
+       */
+      onRemove?: (e: RemoveEvent) => void;
+      /**
+       * [descr:Properties.onReorder]
+       */
+      onReorder?: (e: ReorderEvent) => void;
+    }
     export type RemoveEvent = DevExpress.events.NativeEventInfo<dxSortable> & {
       readonly itemData?: any;
       readonly itemElement: DevExpress.core.DxElement;
@@ -19427,76 +18115,9 @@ declare module DevExpress.ui {
     };
   }
   /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxSortableOptions extends DraggableBaseOptions<dxSortable> {
-    /**
-     * [descr:dxSortableOptions.allowDropInsideItem]
-     */
-    allowDropInsideItem?: boolean;
-    /**
-     * [descr:dxSortableOptions.allowReordering]
-     */
-    allowReordering?: boolean;
-    /**
-     * [descr:dxSortableOptions.dragTemplate]
-     */
-    dragTemplate?:
-      | DevExpress.core.template
-      | ((
-          dragInfo: DevExpress.ui.dxSortable.DragTemplateData,
-          containerElement: DevExpress.core.DxElement
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxSortableOptions.dropFeedbackMode]
-     */
-    dropFeedbackMode?: 'push' | 'indicate';
-    /**
-     * [descr:dxSortableOptions.filter]
-     */
-    filter?: string;
-    /**
-     * [descr:dxSortableOptions.itemOrientation]
-     */
-    itemOrientation?: 'horizontal' | 'vertical';
-    /**
-     * [descr:dxSortableOptions.moveItemOnDrop]
-     */
-    moveItemOnDrop?: boolean;
-    /**
-     * [descr:dxSortableOptions.onAdd]
-     */
-    onAdd?: (e: DevExpress.ui.dxSortable.AddEvent) => void;
-    /**
-     * [descr:dxSortableOptions.onDragChange]
-     */
-    onDragChange?: (e: DevExpress.ui.dxSortable.DragChangeEvent) => void;
-    /**
-     * [descr:dxSortableOptions.onDragEnd]
-     */
-    onDragEnd?: (e: DevExpress.ui.dxSortable.DragEndEvent) => void;
-    /**
-     * [descr:dxSortableOptions.onDragMove]
-     */
-    onDragMove?: (e: DevExpress.ui.dxSortable.DragMoveEvent) => void;
-    /**
-     * [descr:dxSortableOptions.onDragStart]
-     */
-    onDragStart?: (e: DevExpress.ui.dxSortable.DragStartEvent) => void;
-    /**
-     * [descr:dxSortableOptions.onRemove]
-     */
-    onRemove?: (e: DevExpress.ui.dxSortable.RemoveEvent) => void;
-    /**
-     * [descr:dxSortableOptions.onReorder]
-     */
-    onReorder?: (e: DevExpress.ui.dxSortable.ReorderEvent) => void;
-  }
-  /**
    * [descr:dxSpeedDialAction]
    */
-  export class dxSpeedDialAction extends Widget<dxSpeedDialActionOptions> {}
+  export class dxSpeedDialAction extends Widget<DevExpress.ui.dxSpeedDialAction.Properties> {}
   module dxSpeedDialAction {
     export type ClickEvent =
       DevExpress.events.NativeEventInfo<dxSpeedDialAction> & {
@@ -19512,45 +18133,40 @@ declare module DevExpress.ui {
     export type OptionChangedEvent =
       DevExpress.events.EventInfo<dxSpeedDialAction> &
         DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxSpeedDialActionOptions;
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxSpeedDialActionOptions
-    extends WidgetOptions<dxSpeedDialAction> {
     /**
-     * [descr:dxSpeedDialActionOptions.icon]
+     * [descr:Properties]
      */
-    icon?: string;
-    /**
-     * [descr:dxSpeedDialActionOptions.index]
-     */
-    index?: number;
-    /**
-     * [descr:dxSpeedDialActionOptions.label]
-     */
-    label?: string;
-    /**
-     * [descr:dxSpeedDialActionOptions.onClick]
-     */
-    onClick?: (e: DevExpress.ui.dxSpeedDialAction.ClickEvent) => void;
-    /**
-     * [descr:dxSpeedDialActionOptions.onContentReady]
-     */
-    onContentReady?: (
-      e: DevExpress.ui.dxSpeedDialAction.ContentReadyEvent
-    ) => void;
-    /**
-     * [descr:dxSpeedDialActionOptions.visible]
-     */
-    visible?: boolean;
+    export interface Properties extends WidgetOptions<dxSpeedDialAction> {
+      /**
+       * [descr:Properties.icon]
+       */
+      icon?: string;
+      /**
+       * [descr:Properties.index]
+       */
+      index?: number;
+      /**
+       * [descr:Properties.label]
+       */
+      label?: string;
+      /**
+       * [descr:Properties.onClick]
+       */
+      onClick?: (e: ClickEvent) => void;
+      /**
+       * [descr:Properties.onContentReady]
+       */
+      onContentReady?: (e: ContentReadyEvent) => void;
+      /**
+       * [descr:Properties.visible]
+       */
+      visible?: boolean;
+    }
   }
   /**
    * [descr:dxSwitch]
    */
-  export class dxSwitch extends Editor<dxSwitchOptions> {}
+  export class dxSwitch extends Editor<DevExpress.ui.dxSwitch.Properties> {}
   module dxSwitch {
     export type ContentReadyEvent = DevExpress.events.EventInfo<dxSwitch>;
     export type DisposingEvent = DevExpress.events.EventInfo<dxSwitch>;
@@ -19558,49 +18174,47 @@ declare module DevExpress.ui {
       DevExpress.events.InitializedEventInfo<dxSwitch>;
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxSwitch> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxSwitchOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends EditorOptions<dxSwitch> {
+      /**
+       * [descr:Properties.activeStateEnabled]
+       */
+      activeStateEnabled?: boolean;
+      /**
+       * [descr:Properties.focusStateEnabled]
+       */
+      focusStateEnabled?: boolean;
+      /**
+       * [descr:Properties.hoverStateEnabled]
+       */
+      hoverStateEnabled?: boolean;
+      /**
+       * [descr:Properties.name]
+       */
+      name?: string;
+      /**
+       * [descr:Properties.switchedOffText]
+       */
+      switchedOffText?: string;
+      /**
+       * [descr:Properties.switchedOnText]
+       */
+      switchedOnText?: string;
+      /**
+       * [descr:Properties.value]
+       */
+      value?: boolean;
+    }
     export type ValueChangedEvent =
       DevExpress.events.NativeEventInfo<dxSwitch> &
         DevExpress.ui.Editor.ValueChangedInfo;
   }
   /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxSwitchOptions extends EditorOptions<dxSwitch> {
-    /**
-     * [descr:dxSwitchOptions.activeStateEnabled]
-     */
-    activeStateEnabled?: boolean;
-    /**
-     * [descr:dxSwitchOptions.focusStateEnabled]
-     */
-    focusStateEnabled?: boolean;
-    /**
-     * [descr:dxSwitchOptions.hoverStateEnabled]
-     */
-    hoverStateEnabled?: boolean;
-    /**
-     * [descr:dxSwitchOptions.name]
-     */
-    name?: string;
-    /**
-     * [descr:dxSwitchOptions.switchedOffText]
-     */
-    switchedOffText?: string;
-    /**
-     * [descr:dxSwitchOptions.switchedOnText]
-     */
-    switchedOnText?: string;
-    /**
-     * [descr:dxSwitchOptions.value]
-     */
-    value?: boolean;
-  }
-  /**
    * [descr:dxTabPanel]
    */
-  export class dxTabPanel extends dxMultiView<dxTabPanelOptions> {}
+  export class dxTabPanel extends dxMultiView<DevExpress.ui.dxTabPanel.Properties> {}
   module dxTabPanel {
     export type ContentReadyEvent = DevExpress.events.EventInfo<dxTabPanel>;
     export type DisposingEvent = DevExpress.events.EventInfo<dxTabPanel>;
@@ -19618,7 +18232,72 @@ declare module DevExpress.ui {
         DevExpress.events.ItemInfo;
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxTabPanel> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxTabPanelOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties
+      extends DevExpress.ui.dxMultiView.Properties<dxTabPanel> {
+      /**
+       * [descr:Properties.animationEnabled]
+       */
+      animationEnabled?: boolean;
+      /**
+       * [descr:Properties.dataSource]
+       */
+      dataSource?: DevExpress.data.DataSource.DataSourceLike<
+        string | Item | any
+      >;
+      /**
+       * [descr:Properties.hoverStateEnabled]
+       */
+      hoverStateEnabled?: boolean;
+      /**
+       * [descr:Properties.itemTitleTemplate]
+       */
+      itemTitleTemplate?:
+        | DevExpress.core.template
+        | ((
+            itemData: any,
+            itemIndex: number,
+            itemElement: DevExpress.core.DxElement
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.items]
+       */
+      items?: Array<string | Item | any>;
+      /**
+       * [descr:Properties.onTitleClick]
+       */
+      onTitleClick?: ((e: TitleClickEvent) => void) | string;
+      /**
+       * [descr:Properties.onTitleHold]
+       */
+      onTitleHold?: (e: TitleHoldEvent) => void;
+      /**
+       * [descr:Properties.onTitleRendered]
+       */
+      onTitleRendered?: (e: TitleRenderedEvent) => void;
+      /**
+       * [descr:Properties.repaintChangesOnly]
+       */
+      repaintChangesOnly?: boolean;
+      /**
+       * [descr:Properties.scrollByContent]
+       */
+      scrollByContent?: boolean;
+      /**
+       * [descr:Properties.scrollingEnabled]
+       */
+      scrollingEnabled?: boolean;
+      /**
+       * [descr:Properties.showNavButtons]
+       */
+      showNavButtons?: boolean;
+      /**
+       * [descr:Properties.swipeEnabled]
+       */
+      swipeEnabled?: boolean;
+    }
     export type SelectionChangedEvent =
       DevExpress.events.EventInfo<dxTabPanel> &
         DevExpress.ui.CollectionWidget.SelectionChangedInfo;
@@ -19636,98 +18315,6 @@ declare module DevExpress.ui {
       readonly itemData?: any;
       readonly itemElement?: DevExpress.core.DxElement;
     };
-  }
-  /**
-   * @deprecated Use Item instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxTabPanelItem extends DevExpress.ui.dxMultiView.Item {
-    /**
-     * [descr:dxTabPanelItem.badge]
-     */
-    badge?: string;
-    /**
-     * [descr:dxTabPanelItem.icon]
-     */
-    icon?: string;
-    /**
-     * [descr:dxTabPanelItem.tabTemplate]
-     */
-    tabTemplate?:
-      | DevExpress.core.template
-      | (() => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxTabPanelItem.title]
-     */
-    title?: string;
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxTabPanelOptions extends dxMultiViewOptions<dxTabPanel> {
-    /**
-     * [descr:dxTabPanelOptions.animationEnabled]
-     */
-    animationEnabled?: boolean;
-    /**
-     * [descr:dxTabPanelOptions.dataSource]
-     */
-    dataSource?: DevExpress.data.DataSource.DataSourceLike<
-      string | DevExpress.ui.dxTabPanel.Item | any
-    >;
-    /**
-     * [descr:dxTabPanelOptions.hoverStateEnabled]
-     */
-    hoverStateEnabled?: boolean;
-    /**
-     * [descr:dxTabPanelOptions.itemTitleTemplate]
-     */
-    itemTitleTemplate?:
-      | DevExpress.core.template
-      | ((
-          itemData: any,
-          itemIndex: number,
-          itemElement: DevExpress.core.DxElement
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxTabPanelOptions.items]
-     */
-    items?: Array<string | DevExpress.ui.dxTabPanel.Item | any>;
-    /**
-     * [descr:dxTabPanelOptions.onTitleClick]
-     */
-    onTitleClick?:
-      | ((e: DevExpress.ui.dxTabPanel.TitleClickEvent) => void)
-      | string;
-    /**
-     * [descr:dxTabPanelOptions.onTitleHold]
-     */
-    onTitleHold?: (e: DevExpress.ui.dxTabPanel.TitleHoldEvent) => void;
-    /**
-     * [descr:dxTabPanelOptions.onTitleRendered]
-     */
-    onTitleRendered?: (e: DevExpress.ui.dxTabPanel.TitleRenderedEvent) => void;
-    /**
-     * [descr:dxTabPanelOptions.repaintChangesOnly]
-     */
-    repaintChangesOnly?: boolean;
-    /**
-     * [descr:dxTabPanelOptions.scrollByContent]
-     */
-    scrollByContent?: boolean;
-    /**
-     * [descr:dxTabPanelOptions.scrollingEnabled]
-     */
-    scrollingEnabled?: boolean;
-    /**
-     * [descr:dxTabPanelOptions.showNavButtons]
-     */
-    showNavButtons?: boolean;
-    /**
-     * [descr:dxTabPanelOptions.swipeEnabled]
-     */
-    swipeEnabled?: boolean;
   }
   /**
    * [descr:dxTabs]
@@ -19750,7 +18337,50 @@ declare module DevExpress.ui {
       DevExpress.events.ItemInfo;
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxTabs> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxTabsOptions<TabsInstance>;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties<TComponent = TabsInstance>
+      extends CollectionWidgetOptions<TComponent> {
+      /**
+       * [descr:Properties.dataSource]
+       */
+      dataSource?: DevExpress.data.DataSource.DataSourceLike<
+        string | Item | any
+      >;
+      /**
+       * [descr:Properties.focusStateEnabled]
+       */
+      focusStateEnabled?: boolean;
+      /**
+       * [descr:Properties.hoverStateEnabled]
+       */
+      hoverStateEnabled?: boolean;
+      /**
+       * [descr:Properties.items]
+       */
+      items?: Array<string | Item | any>;
+      /**
+       * [descr:Properties.repaintChangesOnly]
+       */
+      repaintChangesOnly?: boolean;
+      /**
+       * [descr:Properties.scrollByContent]
+       */
+      scrollByContent?: boolean;
+      /**
+       * [descr:Properties.scrollingEnabled]
+       */
+      scrollingEnabled?: boolean;
+      /**
+       * [descr:Properties.selectionMode]
+       */
+      selectionMode?: 'multiple' | 'single';
+      /**
+       * [descr:Properties.showNavButtons]
+       */
+      showNavButtons?: boolean;
+    }
     export type SelectionChangedEvent = DevExpress.events.EventInfo<dxTabs> &
       DevExpress.ui.CollectionWidget.SelectionChangedInfo;
     /**
@@ -19759,68 +18389,9 @@ declare module DevExpress.ui {
     interface TabsInstance extends dxTabs<Properties> {}
   }
   /**
-   * @deprecated Use Item instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxTabsItem extends CollectionWidgetItem {
-    /**
-     * [descr:dxTabsItem.badge]
-     */
-    badge?: string;
-    /**
-     * [descr:dxTabsItem.icon]
-     */
-    icon?: string;
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxTabsOptions<TComponent>
-    extends CollectionWidgetOptions<TComponent> {
-    /**
-     * [descr:dxTabsOptions.dataSource]
-     */
-    dataSource?: DevExpress.data.DataSource.DataSourceLike<
-      string | DevExpress.ui.dxTabs.Item | any
-    >;
-    /**
-     * [descr:dxTabsOptions.focusStateEnabled]
-     */
-    focusStateEnabled?: boolean;
-    /**
-     * [descr:dxTabsOptions.hoverStateEnabled]
-     */
-    hoverStateEnabled?: boolean;
-    /**
-     * [descr:dxTabsOptions.items]
-     */
-    items?: Array<string | DevExpress.ui.dxTabs.Item | any>;
-    /**
-     * [descr:dxTabsOptions.repaintChangesOnly]
-     */
-    repaintChangesOnly?: boolean;
-    /**
-     * [descr:dxTabsOptions.scrollByContent]
-     */
-    scrollByContent?: boolean;
-    /**
-     * [descr:dxTabsOptions.scrollingEnabled]
-     */
-    scrollingEnabled?: boolean;
-    /**
-     * [descr:dxTabsOptions.selectionMode]
-     */
-    selectionMode?: 'multiple' | 'single';
-    /**
-     * [descr:dxTabsOptions.showNavButtons]
-     */
-    showNavButtons?: boolean;
-  }
-  /**
    * [descr:dxTagBox]
    */
-  export class dxTagBox extends dxSelectBox<dxTagBoxOptions> {}
+  export class dxTagBox extends dxSelectBox<DevExpress.ui.dxTagBox.Properties> {}
   module dxTagBox {
     export type ChangeEvent = DevExpress.events.NativeEventInfo<dxTagBox>;
     export type ClosedEvent = DevExpress.events.EventInfo<dxTagBox>;
@@ -19851,7 +18422,83 @@ declare module DevExpress.ui {
     export type OpenedEvent = DevExpress.events.EventInfo<dxTagBox>;
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxTagBox> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxTagBoxOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties
+      extends Pick<
+        DevExpress.ui.dxSelectBox.Properties<dxTagBox>,
+        Exclude<
+          keyof DevExpress.ui.dxSelectBox.Properties<dxTagBox>,
+          'onSelectionChanged'
+        >
+      > {
+      /**
+       * [descr:Properties.applyValueMode]
+       */
+      applyValueMode?: 'instantly' | 'useButtons';
+      /**
+       * [descr:Properties.hideSelectedItems]
+       */
+      hideSelectedItems?: boolean;
+      /**
+       * [descr:Properties.maxDisplayedTags]
+       */
+      maxDisplayedTags?: number;
+      /**
+       * [descr:Properties.multiline]
+       */
+      multiline?: boolean;
+      /**
+       * [descr:Properties.onMultiTagPreparing]
+       */
+      onMultiTagPreparing?: (e: MultiTagPreparingEvent) => void;
+      /**
+       * [descr:Properties.onSelectAllValueChanged]
+       */
+      onSelectAllValueChanged?: (e: SelectAllValueChangedEvent) => void;
+      /**
+       * [descr:Properties.onSelectionChanged]
+       */
+      onSelectionChanged?: (e: SelectionChangedEvent) => void;
+      /**
+       * [descr:Properties.selectAllMode]
+       */
+      selectAllMode?: 'allPages' | 'page';
+      /**
+       * [descr:Properties.selectedItems]
+       */
+      selectedItems?: Array<string | number | any>;
+      /**
+       * [descr:Properties.selectAllText]
+       */
+      selectAllText?: string;
+      /**
+       * [descr:Properties.showDropDownButton]
+       */
+      showDropDownButton?: boolean;
+      /**
+       * [descr:Properties.maxFilterQueryLength]
+       */
+      maxFilterQueryLength?: number;
+      /**
+       * [descr:Properties.showMultiTagOnly]
+       */
+      showMultiTagOnly?: boolean;
+      /**
+       * [descr:Properties.tagTemplate]
+       */
+      tagTemplate?:
+        | DevExpress.core.template
+        | ((
+            itemData: any,
+            itemElement: DevExpress.core.DxElement
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.value]
+       */
+      value?: Array<string | number | any>;
+    }
     export type SelectAllValueChangedEvent =
       DevExpress.events.EventInfo<dxTagBox> & {
         readonly value: boolean;
@@ -19865,90 +18512,9 @@ declare module DevExpress.ui {
         DevExpress.ui.Editor.ValueChangedInfo;
   }
   /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxTagBoxOptions
-    extends Pick<
-      dxSelectBoxOptions<dxTagBox>,
-      Exclude<keyof dxSelectBoxOptions<dxTagBox>, 'onSelectionChanged'>
-    > {
-    /**
-     * [descr:dxTagBoxOptions.applyValueMode]
-     */
-    applyValueMode?: 'instantly' | 'useButtons';
-    /**
-     * [descr:dxTagBoxOptions.hideSelectedItems]
-     */
-    hideSelectedItems?: boolean;
-    /**
-     * [descr:dxTagBoxOptions.maxDisplayedTags]
-     */
-    maxDisplayedTags?: number;
-    /**
-     * [descr:dxTagBoxOptions.multiline]
-     */
-    multiline?: boolean;
-    /**
-     * [descr:dxTagBoxOptions.onMultiTagPreparing]
-     */
-    onMultiTagPreparing?: (
-      e: DevExpress.ui.dxTagBox.MultiTagPreparingEvent
-    ) => void;
-    /**
-     * [descr:dxTagBoxOptions.onSelectAllValueChanged]
-     */
-    onSelectAllValueChanged?: (
-      e: DevExpress.ui.dxTagBox.SelectAllValueChangedEvent
-    ) => void;
-    /**
-     * [descr:dxTagBoxOptions.onSelectionChanged]
-     */
-    onSelectionChanged?: (
-      e: DevExpress.ui.dxTagBox.SelectionChangedEvent
-    ) => void;
-    /**
-     * [descr:dxTagBoxOptions.selectAllMode]
-     */
-    selectAllMode?: 'allPages' | 'page';
-    /**
-     * [descr:dxTagBoxOptions.selectedItems]
-     */
-    selectedItems?: Array<string | number | any>;
-    /**
-     * [descr:dxTagBoxOptions.selectAllText]
-     */
-    selectAllText?: string;
-    /**
-     * [descr:dxTagBoxOptions.showDropDownButton]
-     */
-    showDropDownButton?: boolean;
-    /**
-     * [descr:dxTagBoxOptions.maxFilterQueryLength]
-     */
-    maxFilterQueryLength?: number;
-    /**
-     * [descr:dxTagBoxOptions.showMultiTagOnly]
-     */
-    showMultiTagOnly?: boolean;
-    /**
-     * [descr:dxTagBoxOptions.tagTemplate]
-     */
-    tagTemplate?:
-      | DevExpress.core.template
-      | ((
-          itemData: any,
-          itemElement: DevExpress.core.DxElement
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxTagBoxOptions.value]
-     */
-    value?: Array<string | number | any>;
-  }
-  /**
    * [descr:dxTextArea]
    */
-  export class dxTextArea extends dxTextBox<dxTextAreaOptions> {}
+  export class dxTextArea extends dxTextBox<DevExpress.ui.dxTextArea.Properties> {}
   module dxTextArea {
     export type ChangeEvent = DevExpress.events.NativeEventInfo<dxTextArea>;
     export type ContentReadyEvent = DevExpress.events.EventInfo<dxTextArea>;
@@ -19967,32 +18533,31 @@ declare module DevExpress.ui {
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxTextArea> &
       DevExpress.events.ChangedOptionInfo;
     export type PasteEvent = DevExpress.events.NativeEventInfo<dxTextArea>;
-    export type Properties = dxTextAreaOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties
+      extends DevExpress.ui.dxTextBox.Properties<dxTextArea> {
+      /**
+       * [descr:Properties.autoResizeEnabled]
+       */
+      autoResizeEnabled?: boolean;
+      /**
+       * [descr:Properties.maxHeight]
+       */
+      maxHeight?: number | string;
+      /**
+       * [descr:Properties.minHeight]
+       */
+      minHeight?: number | string;
+      /**
+       * [descr:Properties.spellcheck]
+       */
+      spellcheck?: boolean;
+    }
     export type ValueChangedEvent =
       DevExpress.events.NativeEventInfo<dxTextArea> &
         DevExpress.ui.Editor.ValueChangedInfo;
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxTextAreaOptions extends dxTextBoxOptions<dxTextArea> {
-    /**
-     * [descr:dxTextAreaOptions.autoResizeEnabled]
-     */
-    autoResizeEnabled?: boolean;
-    /**
-     * [descr:dxTextAreaOptions.maxHeight]
-     */
-    maxHeight?: number | string;
-    /**
-     * [descr:dxTextAreaOptions.minHeight]
-     */
-    minHeight?: number | string;
-    /**
-     * [descr:dxTextAreaOptions.spellcheck]
-     */
-    spellcheck?: boolean;
   }
   /**
    * [descr:dxTextBox]
@@ -20018,7 +18583,24 @@ declare module DevExpress.ui {
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxTextBox> &
       DevExpress.events.ChangedOptionInfo;
     export type PasteEvent = DevExpress.events.NativeEventInfo<dxTextBox>;
-    export type Properties = dxTextBoxOptions<TextBoxInstance>;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties<TComponent = TextBoxInstance>
+      extends dxTextEditorOptions<TComponent> {
+      /**
+       * [descr:Properties.maxLength]
+       */
+      maxLength?: string | number;
+      /**
+       * [descr:Properties.mode]
+       */
+      mode?: 'email' | 'password' | 'search' | 'tel' | 'text' | 'url';
+      /**
+       * [descr:Properties.value]
+       */
+      value?: string;
+    }
     /**
      * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
      */
@@ -20026,25 +18608,6 @@ declare module DevExpress.ui {
     export type ValueChangedEvent =
       DevExpress.events.NativeEventInfo<dxTextBox> &
         DevExpress.ui.Editor.ValueChangedInfo;
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxTextBoxOptions<TComponent>
-    extends dxTextEditorOptions<TComponent> {
-    /**
-     * [descr:dxTextBoxOptions.maxLength]
-     */
-    maxLength?: string | number;
-    /**
-     * [descr:dxTextBoxOptions.mode]
-     */
-    mode?: 'email' | 'password' | 'search' | 'tel' | 'text' | 'url';
-    /**
-     * [descr:dxTextBoxOptions.value]
-     */
-    value?: string;
   }
   /**
    * [descr:dxTextEditor]
@@ -20092,7 +18655,7 @@ declare module DevExpress.ui {
     /**
      * [descr:dxTextEditorButton.options]
      */
-    options?: dxButtonOptions;
+    options?: DevExpress.ui.dxButton.Properties;
   }
   /**
    * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
@@ -20223,7 +18786,7 @@ declare module DevExpress.ui {
   /**
    * [descr:dxTileView]
    */
-  export class dxTileView extends CollectionWidget<dxTileViewOptions> {
+  export class dxTileView extends CollectionWidget<DevExpress.ui.dxTileView.Properties> {
     /**
      * [descr:dxTileView.scrollPosition()]
      */
@@ -20246,79 +18809,62 @@ declare module DevExpress.ui {
         DevExpress.events.ItemInfo;
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxTileView> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxTileViewOptions;
-  }
-  /**
-   * @deprecated Use Item instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxTileViewItem extends CollectionWidgetItem {
     /**
-     * [descr:dxTileViewItem.heightRatio]
+     * [descr:Properties]
      */
-    heightRatio?: number;
-    /**
-     * [descr:dxTileViewItem.widthRatio]
-     */
-    widthRatio?: number;
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxTileViewOptions
-    extends CollectionWidgetOptions<dxTileView> {
-    /**
-     * [descr:dxTileViewOptions.activeStateEnabled]
-     */
-    activeStateEnabled?: boolean;
-    /**
-     * [descr:dxTileViewOptions.baseItemHeight]
-     */
-    baseItemHeight?: number;
-    /**
-     * [descr:dxTileViewOptions.baseItemWidth]
-     */
-    baseItemWidth?: number;
-    /**
-     * [descr:dxTileViewOptions.dataSource]
-     */
-    dataSource?: DevExpress.data.DataSource.DataSourceLike<
-      string | DevExpress.ui.dxTileView.Item | any
-    >;
-    /**
-     * [descr:dxTileViewOptions.direction]
-     */
-    direction?: 'horizontal' | 'vertical';
-    /**
-     * [descr:dxTileViewOptions.focusStateEnabled]
-     */
-    focusStateEnabled?: boolean;
-    /**
-     * [descr:dxTileViewOptions.height]
-     */
-    height?: number | string | (() => number | string);
-    /**
-     * [descr:dxTileViewOptions.hoverStateEnabled]
-     */
-    hoverStateEnabled?: boolean;
-    /**
-     * [descr:dxTileViewOptions.itemMargin]
-     */
-    itemMargin?: number;
-    /**
-     * [descr:dxTileViewOptions.items]
-     */
-    items?: Array<string | DevExpress.ui.dxTileView.Item | any>;
-    /**
-     * [descr:dxTileViewOptions.showScrollbar]
-     */
-    showScrollbar?: boolean;
+    export interface Properties extends CollectionWidgetOptions<dxTileView> {
+      /**
+       * [descr:Properties.activeStateEnabled]
+       */
+      activeStateEnabled?: boolean;
+      /**
+       * [descr:Properties.baseItemHeight]
+       */
+      baseItemHeight?: number;
+      /**
+       * [descr:Properties.baseItemWidth]
+       */
+      baseItemWidth?: number;
+      /**
+       * [descr:Properties.dataSource]
+       */
+      dataSource?: DevExpress.data.DataSource.DataSourceLike<
+        string | Item | any
+      >;
+      /**
+       * [descr:Properties.direction]
+       */
+      direction?: 'horizontal' | 'vertical';
+      /**
+       * [descr:Properties.focusStateEnabled]
+       */
+      focusStateEnabled?: boolean;
+      /**
+       * [descr:Properties.height]
+       */
+      height?: number | string | (() => number | string);
+      /**
+       * [descr:Properties.hoverStateEnabled]
+       */
+      hoverStateEnabled?: boolean;
+      /**
+       * [descr:Properties.itemMargin]
+       */
+      itemMargin?: number;
+      /**
+       * [descr:Properties.items]
+       */
+      items?: Array<string | Item | any>;
+      /**
+       * [descr:Properties.showScrollbar]
+       */
+      showScrollbar?: boolean;
+    }
   }
   /**
    * [descr:dxToast]
    */
-  export class dxToast extends dxOverlay<dxToastOptions> {}
+  export class dxToast extends dxOverlay<DevExpress.ui.dxToast.Properties> {}
   module dxToast {
     export type ContentReadyEvent = DevExpress.events.EventInfo<dxToast>;
     export type DisposingEvent = DevExpress.events.EventInfo<dxToast>;
@@ -20329,7 +18875,65 @@ declare module DevExpress.ui {
       DevExpress.events.InitializedEventInfo<dxToast>;
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxToast> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxToastOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends dxOverlayOptions<dxToast> {
+      /**
+       * [descr:Properties.animation]
+       */
+      animation?: dxToastAnimation;
+      /**
+       * [descr:Properties.closeOnClick]
+       */
+      closeOnClick?: boolean;
+      /**
+       * [descr:Properties.closeOnOutsideClick]
+       */
+      closeOnOutsideClick?:
+        | boolean
+        | ((event: DevExpress.events.DxEvent) => boolean);
+      /**
+       * [descr:Properties.closeOnSwipe]
+       */
+      closeOnSwipe?: boolean;
+      /**
+       * [descr:Properties.displayTime]
+       */
+      displayTime?: number;
+      /**
+       * [descr:Properties.height]
+       */
+      height?: number | string | (() => number | string);
+      /**
+       * [descr:Properties.maxWidth]
+       */
+      maxWidth?: number | string | (() => number | string);
+      /**
+       * [descr:Properties.message]
+       */
+      message?: string;
+      /**
+       * [descr:Properties.minWidth]
+       */
+      minWidth?: number | string | (() => number | string);
+      /**
+       * [descr:Properties.position]
+       */
+      position?: PositionConfig | string;
+      /**
+       * [descr:Properties.shading]
+       */
+      shading?: boolean;
+      /**
+       * [descr:Properties.type]
+       */
+      type?: 'custom' | 'error' | 'info' | 'success' | 'warning';
+      /**
+       * [descr:Properties.width]
+       */
+      width?: number | string | (() => number | string);
+    }
     export type ShowingEvent = DevExpress.events.Cancelable &
       DevExpress.events.EventInfo<dxToast>;
     export type ShownEvent = DevExpress.events.EventInfo<dxToast>;
@@ -20348,69 +18952,9 @@ declare module DevExpress.ui {
     show?: AnimationConfig;
   }
   /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxToastOptions extends dxOverlayOptions<dxToast> {
-    /**
-     * [descr:dxToastOptions.animation]
-     */
-    animation?: dxToastAnimation;
-    /**
-     * [descr:dxToastOptions.closeOnClick]
-     */
-    closeOnClick?: boolean;
-    /**
-     * [descr:dxToastOptions.closeOnOutsideClick]
-     */
-    closeOnOutsideClick?:
-      | boolean
-      | ((event: DevExpress.events.DxEvent) => boolean);
-    /**
-     * [descr:dxToastOptions.closeOnSwipe]
-     */
-    closeOnSwipe?: boolean;
-    /**
-     * [descr:dxToastOptions.displayTime]
-     */
-    displayTime?: number;
-    /**
-     * [descr:dxToastOptions.height]
-     */
-    height?: number | string | (() => number | string);
-    /**
-     * [descr:dxToastOptions.maxWidth]
-     */
-    maxWidth?: number | string | (() => number | string);
-    /**
-     * [descr:dxToastOptions.message]
-     */
-    message?: string;
-    /**
-     * [descr:dxToastOptions.minWidth]
-     */
-    minWidth?: number | string | (() => number | string);
-    /**
-     * [descr:dxToastOptions.position]
-     */
-    position?: PositionConfig | string;
-    /**
-     * [descr:dxToastOptions.shading]
-     */
-    shading?: boolean;
-    /**
-     * [descr:dxToastOptions.type]
-     */
-    type?: 'custom' | 'error' | 'info' | 'success' | 'warning';
-    /**
-     * [descr:dxToastOptions.width]
-     */
-    width?: number | string | (() => number | string);
-  }
-  /**
    * [descr:dxToolbar]
    */
-  export class dxToolbar extends CollectionWidget<dxToolbarOptions> {}
+  export class dxToolbar extends CollectionWidget<DevExpress.ui.dxToolbar.Properties> {}
   module dxToolbar {
     export type ContentReadyEvent = DevExpress.events.EventInfo<dxToolbar>;
     export type DisposingEvent = DevExpress.events.EventInfo<dxToolbar>;
@@ -20426,89 +18970,41 @@ declare module DevExpress.ui {
       DevExpress.events.NativeEventInfo<dxToolbar> & DevExpress.events.ItemInfo;
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxToolbar> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxToolbarOptions;
-  }
-  /**
-   * @deprecated Use Item instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxToolbarItem extends CollectionWidgetItem {
     /**
-     * [descr:dxToolbarItem.cssClass]
+     * [descr:Properties]
      */
-    cssClass?: string;
-    /**
-     * [descr:dxToolbarItem.locateInMenu]
-     */
-    locateInMenu?: 'always' | 'auto' | 'never';
-    /**
-     * [descr:dxToolbarItem.location]
-     */
-    location?: 'after' | 'before' | 'center';
-    /**
-     * [descr:dxToolbarItem.menuItemTemplate]
-     */
-    menuItemTemplate?:
-      | DevExpress.core.template
-      | (() => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxToolbarItem.options]
-     */
-    options?: any;
-    /**
-     * [descr:dxToolbarItem.showText]
-     */
-    showText?: 'always' | 'inMenu';
-    /**
-     * [descr:dxToolbarItem.widget]
-     */
-    widget?:
-      | 'dxAutocomplete'
-      | 'dxButton'
-      | 'dxCheckBox'
-      | 'dxDateBox'
-      | 'dxMenu'
-      | 'dxSelectBox'
-      | 'dxTabs'
-      | 'dxTextBox'
-      | 'dxButtonGroup'
-      | 'dxDropDownButton';
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxToolbarOptions extends CollectionWidgetOptions<dxToolbar> {
-    /**
-     * [descr:dxToolbarOptions.dataSource]
-     */
-    dataSource?: DevExpress.data.DataSource.DataSourceLike<
-      string | DevExpress.ui.dxToolbar.Item | any
-    >;
-    /**
-     * [descr:dxToolbarOptions.items]
-     */
-    items?: Array<string | DevExpress.ui.dxToolbar.Item | any>;
-    /**
-     * [descr:dxToolbarOptions.menuItemTemplate]
-     */
-    menuItemTemplate?:
-      | DevExpress.core.template
-      | ((
-          itemData: any,
-          itemIndex: number,
-          itemElement: DevExpress.core.DxElement
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxToolbarOptions.height]
-     * @deprecated [depNote:dxToolbarOptions.height]
-     */
-    height?: number | string | (() => number | string);
+    export interface Properties extends CollectionWidgetOptions<dxToolbar> {
+      /**
+       * [descr:Properties.dataSource]
+       */
+      dataSource?: DevExpress.data.DataSource.DataSourceLike<
+        string | Item | any
+      >;
+      /**
+       * [descr:Properties.items]
+       */
+      items?: Array<string | Item | any>;
+      /**
+       * [descr:Properties.menuItemTemplate]
+       */
+      menuItemTemplate?:
+        | DevExpress.core.template
+        | ((
+            itemData: any,
+            itemIndex: number,
+            itemElement: DevExpress.core.DxElement
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:Properties.height]
+       * @deprecated [depNote:Properties.height]
+       */
+      height?: number | string | (() => number | string);
+    }
   }
   /**
    * [descr:dxTooltip]
    */
-  export class dxTooltip extends dxPopover<dxTooltipOptions> {}
+  export class dxTooltip extends dxPopover<DevExpress.ui.dxTooltip.Properties> {}
   module dxTooltip {
     export type ContentReadyEvent = DevExpress.events.EventInfo<dxTooltip>;
     export type DisposingEvent = DevExpress.events.EventInfo<dxTooltip>;
@@ -20519,16 +19015,15 @@ declare module DevExpress.ui {
       DevExpress.events.InitializedEventInfo<dxTooltip>;
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxTooltip> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxTooltipOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties
+      extends DevExpress.ui.dxPopover.Properties<dxTooltip> {}
     export type ShowingEvent = DevExpress.events.Cancelable &
       DevExpress.events.EventInfo<dxTooltip>;
     export type ShownEvent = DevExpress.events.EventInfo<dxTooltip>;
   }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxTooltipOptions extends dxPopoverOptions<dxTooltip> {}
   /**
    * [descr:dxTrackBar]
    * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
@@ -20552,7 +19047,7 @@ declare module DevExpress.ui {
    * [descr:dxTreeList]
    */
   export class dxTreeList<TRowData = any, TKey = any>
-    extends Widget<dxTreeListOptions<TRowData, TKey>>
+    extends Widget<DevExpress.ui.dxTreeList.Properties<TRowData, TKey>>
     implements GridBase<TRowData, TKey>
   {
     /**
@@ -20782,14 +19277,109 @@ declare module DevExpress.ui {
         readonly watch?: Function;
         readonly oldValue?: any;
       };
-    export type Column<TRowData = any, TKey = any> = dxTreeListColumn<
-      TRowData,
-      TKey
-    >;
-    export type ColumnButton<
-      TRowData = any,
-      TKey = any
-    > = dxTreeListColumnButton<TRowData, TKey>;
+    /**
+     * [descr:Column]
+     */
+    export interface Column<TRowData = any, TKey = any>
+      extends DevExpress.ui.dxDataGrid.ColumnBase<TRowData> {
+      /**
+       * [descr:dxTreeListColumn.buttons]
+       */
+      buttons?: Array<
+        | 'add'
+        | 'cancel'
+        | 'delete'
+        | 'edit'
+        | 'save'
+        | 'undelete'
+        | ColumnButton<TRowData, TKey>
+      >;
+      /**
+       * [descr:dxTreeListColumn.cellTemplate]
+       */
+      cellTemplate?:
+        | DevExpress.core.template
+        | ((
+            cellElement: DevExpress.core.DxElement,
+            cellInfo: ColumnCellTemplateData<TRowData, TKey>
+          ) => any);
+      /**
+       * [descr:dxTreeListColumn.columns]
+       */
+      columns?: Array<Column<TRowData, TKey> | string>;
+      /**
+       * [descr:dxTreeListColumn.editCellTemplate]
+       */
+      editCellTemplate?:
+        | DevExpress.core.template
+        | ((
+            cellElement: DevExpress.core.DxElement,
+            cellInfo: ColumnEditCellTemplateData<TRowData, TKey>
+          ) => any);
+      /**
+       * [descr:dxTreeListColumn.headerCellTemplate]
+       */
+      headerCellTemplate?:
+        | DevExpress.core.template
+        | ((
+            columnHeader: DevExpress.core.DxElement,
+            headerInfo: ColumnHeaderCellTemplateData<TRowData, TKey>
+          ) => any);
+      /**
+       * [descr:dxTreeListColumn.type]
+       */
+      type?: 'adaptive' | 'buttons' | 'drag';
+    }
+    /**
+     * [descr:ColumnButton]
+     */
+    export interface ColumnButton<TRowData = any, TKey = any>
+      extends DevExpress.ui.dxDataGrid.ColumnButtonBase {
+      /**
+       * [descr:dxTreeListColumnButton.name]
+       */
+      name?:
+        | 'add'
+        | 'cancel'
+        | 'delete'
+        | 'edit'
+        | 'save'
+        | 'undelete'
+        | string;
+      /**
+       * [descr:dxTreeListColumnButton.onClick]
+       */
+      onClick?: (e: ColumnButtonClickEvent<TRowData, TKey>) => void;
+      /**
+       * [descr:dxTreeListColumnButton.template]
+       */
+      template?:
+        | DevExpress.core.template
+        | ((
+            cellElement: DevExpress.core.DxElement,
+            cellInfo: ColumnButtonTemplateData<TRowData, TKey>
+          ) => string | DevExpress.core.UserDefinedElement);
+      /**
+       * [descr:dxTreeListColumnButton.visible]
+       */
+      visible?:
+        | boolean
+        | ((options: {
+            readonly component: dxTreeList<TRowData, TKey>;
+            readonly row?: Row<TRowData, TKey>;
+            readonly column: Column<TRowData, TKey>;
+          }) => boolean);
+      /**
+       * [descr:dxTreeListColumnButton.disabled]
+       */
+      disabled?:
+        | boolean
+        | ((options: {
+            readonly component: dxTreeList<TRowData, TKey>;
+            readonly row?: Row<TRowData, TKey>;
+            readonly column: Column<TRowData, TKey>;
+          }) => boolean);
+    }
     export type ColumnButtonClickEvent<
       TRowData = any,
       TKey = any
@@ -21147,10 +19737,171 @@ declare module DevExpress.ui {
        */
       enabled?: boolean;
     }
-    export type Properties<TRowData = any, TKey = any> = dxTreeListOptions<
-      TRowData,
-      TKey
-    >;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties<TRowData = any, TKey = any>
+      extends GridBaseOptions<dxTreeList<TRowData, TKey>, TRowData, TKey> {
+      /**
+       * [descr:Properties.autoExpandAll]
+       */
+      autoExpandAll?: boolean;
+      /**
+       * [descr:Properties.columns]
+       */
+      columns?: Array<Column<TRowData, TKey> | string>;
+      /**
+       * [descr:Properties.customizeColumns]
+       */
+      customizeColumns?: (columns: Array<Column<TRowData, TKey>>) => void;
+      /**
+       * [descr:Properties.dataStructure]
+       */
+      dataStructure?: 'plain' | 'tree';
+      /**
+       * [descr:Properties.editing]
+       */
+      editing?: Editing<TRowData, TKey>;
+      /**
+       * [descr:Properties.expandNodesOnFiltering]
+       */
+      expandNodesOnFiltering?: boolean;
+      /**
+       * [descr:Properties.expandedRowKeys]
+       */
+      expandedRowKeys?: Array<TKey>;
+      /**
+       * [descr:Properties.filterMode]
+       */
+      filterMode?: 'fullBranch' | 'withAncestors' | 'matchOnly';
+      /**
+       * [descr:Properties.hasItemsExpr]
+       */
+      hasItemsExpr?: string | Function;
+      /**
+       * [descr:Properties.itemsExpr]
+       */
+      itemsExpr?: string | Function;
+      /**
+       * [descr:Properties.keyExpr]
+       */
+      keyExpr?: string | Function;
+      /**
+       * [descr:Properties.onCellClick]
+       */
+      onCellClick?: (e: CellClickEvent<TRowData, TKey>) => void;
+      /**
+       * [descr:Properties.onCellDblClick]
+       */
+      onCellDblClick?: (e: CellDblClickEvent<TRowData, TKey>) => void;
+      /**
+       * [descr:Properties.onCellHoverChanged]
+       */
+      onCellHoverChanged?: (e: CellHoverChangedEvent<TRowData, TKey>) => void;
+      /**
+       * [descr:Properties.onCellPrepared]
+       */
+      onCellPrepared?: (e: CellPreparedEvent<TRowData, TKey>) => void;
+      /**
+       * [descr:Properties.onContextMenuPreparing]
+       */
+      onContextMenuPreparing?: (
+        e: ContextMenuPreparingEvent<TRowData, TKey>
+      ) => void;
+      /**
+       * [descr:Properties.onEditingStart]
+       */
+      onEditingStart?: (e: EditingStartEvent<TRowData, TKey>) => void;
+      /**
+       * [descr:Properties.onEditorPrepared]
+       */
+      onEditorPrepared?: (options: EditorPreparedEvent<TRowData, TKey>) => void;
+      /**
+       * [descr:Properties.onEditorPreparing]
+       */
+      onEditorPreparing?: (e: EditorPreparingEvent<TRowData, TKey>) => void;
+      /**
+       * [descr:Properties.onFocusedCellChanged]
+       */
+      onFocusedCellChanged?: (
+        e: FocusedCellChangedEvent<TRowData, TKey>
+      ) => void;
+      /**
+       * [descr:Properties.onFocusedCellChanging]
+       */
+      onFocusedCellChanging?: (
+        e: FocusedCellChangingEvent<TRowData, TKey>
+      ) => void;
+      /**
+       * [descr:Properties.onFocusedRowChanged]
+       */
+      onFocusedRowChanged?: (e: FocusedRowChangedEvent<TRowData, TKey>) => void;
+      /**
+       * [descr:Properties.onFocusedRowChanging]
+       */
+      onFocusedRowChanging?: (
+        e: FocusedRowChangingEvent<TRowData, TKey>
+      ) => void;
+      /**
+       * [descr:Properties.onNodesInitialized]
+       */
+      onNodesInitialized?: (e: NodesInitializedEvent<TRowData, TKey>) => void;
+      /**
+       * [descr:Properties.onRowClick]
+       */
+      onRowClick?: (e: RowClickEvent<TRowData, TKey>) => void;
+      /**
+       * [descr:Properties.onRowDblClick]
+       */
+      onRowDblClick?: (e: RowDblClickEvent<TRowData, TKey>) => void;
+      /**
+       * [descr:Properties.onRowPrepared]
+       */
+      onRowPrepared?: (e: RowPreparedEvent<TRowData, TKey>) => void;
+      /**
+       * [descr:Properties.paging]
+       */
+      paging?: Paging;
+      /**
+       * [descr:Properties.parentIdExpr]
+       */
+      parentIdExpr?: string | Function;
+      /**
+       * [descr:Properties.remoteOperations]
+       */
+      remoteOperations?:
+        | {
+            /**
+             * [descr:Properties.remoteOperations.filtering]
+             */
+            filtering?: boolean;
+            /**
+             * [descr:Properties.remoteOperations.grouping]
+             */
+            grouping?: boolean;
+            /**
+             * [descr:Properties.remoteOperations.sorting]
+             */
+            sorting?: boolean;
+          }
+        | 'auto';
+      /**
+       * [descr:Properties.rootValue]
+       */
+      rootValue?: TKey;
+      /**
+       * [descr:Properties.scrolling]
+       */
+      scrolling?: Scrolling;
+      /**
+       * [descr:Properties.selection]
+       */
+      selection?: Selection;
+      /**
+       * [descr:Properties.toolbar]
+       */
+      toolbar?: dxTreeListToolbar;
+    }
     /**
      * [descr:dxTreeListRowObject]
      */
@@ -21408,118 +20159,6 @@ declare module DevExpress.ui {
       DevExpress.ui.dxDataGrid.ToolbarPreparingInfo;
   }
   /**
-   * @deprecated Use the DevExpress.ui.dxTreeList.Column type instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxTreeListColumn<TRowData = any, TKey = any>
-    extends DevExpress.ui.dxDataGrid.ColumnBase<TRowData> {
-    /**
-     * [descr:dxTreeListColumn.buttons]
-     */
-    buttons?: Array<
-      | 'add'
-      | 'cancel'
-      | 'delete'
-      | 'edit'
-      | 'save'
-      | 'undelete'
-      | DevExpress.ui.dxTreeList.ColumnButton<TRowData, TKey>
-    >;
-    /**
-     * [descr:dxTreeListColumn.cellTemplate]
-     */
-    cellTemplate?:
-      | DevExpress.core.template
-      | ((
-          cellElement: DevExpress.core.DxElement,
-          cellInfo: DevExpress.ui.dxTreeList.ColumnCellTemplateData<
-            TRowData,
-            TKey
-          >
-        ) => any);
-    /**
-     * [descr:dxTreeListColumn.columns]
-     */
-    columns?: Array<DevExpress.ui.dxTreeList.Column<TRowData, TKey> | string>;
-    /**
-     * [descr:dxTreeListColumn.editCellTemplate]
-     */
-    editCellTemplate?:
-      | DevExpress.core.template
-      | ((
-          cellElement: DevExpress.core.DxElement,
-          cellInfo: DevExpress.ui.dxTreeList.ColumnEditCellTemplateData<
-            TRowData,
-            TKey
-          >
-        ) => any);
-    /**
-     * [descr:dxTreeListColumn.headerCellTemplate]
-     */
-    headerCellTemplate?:
-      | DevExpress.core.template
-      | ((
-          columnHeader: DevExpress.core.DxElement,
-          headerInfo: DevExpress.ui.dxTreeList.ColumnHeaderCellTemplateData<
-            TRowData,
-            TKey
-          >
-        ) => any);
-    /**
-     * [descr:dxTreeListColumn.type]
-     */
-    type?: 'adaptive' | 'buttons' | 'drag';
-  }
-  /**
-   * @deprecated Use the TreeList's ColumnButton type instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxTreeListColumnButton<TRowData = any, TKey = any>
-    extends DevExpress.ui.dxDataGrid.ColumnButtonBase {
-    /**
-     * [descr:dxTreeListColumnButton.name]
-     */
-    name?: 'add' | 'cancel' | 'delete' | 'edit' | 'save' | 'undelete' | string;
-    /**
-     * [descr:dxTreeListColumnButton.onClick]
-     */
-    onClick?: (
-      e: DevExpress.ui.dxTreeList.ColumnButtonClickEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxTreeListColumnButton.template]
-     */
-    template?:
-      | DevExpress.core.template
-      | ((
-          cellElement: DevExpress.core.DxElement,
-          cellInfo: DevExpress.ui.dxTreeList.ColumnButtonTemplateData<
-            TRowData,
-            TKey
-          >
-        ) => string | DevExpress.core.UserDefinedElement);
-    /**
-     * [descr:dxTreeListColumnButton.visible]
-     */
-    visible?:
-      | boolean
-      | ((options: {
-          readonly component: dxTreeList<TRowData, TKey>;
-          readonly row?: DevExpress.ui.dxTreeList.Row<TRowData, TKey>;
-          readonly column: DevExpress.ui.dxTreeList.Column<TRowData, TKey>;
-        }) => boolean);
-    /**
-     * [descr:dxTreeListColumnButton.disabled]
-     */
-    disabled?:
-      | boolean
-      | ((options: {
-          readonly component: dxTreeList<TRowData, TKey>;
-          readonly row?: DevExpress.ui.dxTreeList.Row<TRowData, TKey>;
-          readonly column: DevExpress.ui.dxTreeList.Column<TRowData, TKey>;
-        }) => boolean);
-  }
-  /**
    * @deprecated Use DevExpress.ui.dxTreeList.Editing instead
    */
   export type dxTreeListEditing<
@@ -21538,197 +20177,6 @@ declare module DevExpress.ui {
     TRowData = any,
     TKey = any
   > = DevExpress.ui.dxTreeList.Node<TRowData, TKey>;
-  /**
-   * @deprecated use Properties instead
-   */
-  export interface dxTreeListOptions<TRowData = any, TKey = any>
-    extends GridBaseOptions<dxTreeList<TRowData, TKey>, TRowData, TKey> {
-    /**
-     * [descr:dxTreeListOptions.autoExpandAll]
-     */
-    autoExpandAll?: boolean;
-    /**
-     * [descr:dxTreeListOptions.columns]
-     */
-    columns?: Array<DevExpress.ui.dxTreeList.Column<TRowData, TKey> | string>;
-    /**
-     * [descr:dxTreeListOptions.customizeColumns]
-     */
-    customizeColumns?: (
-      columns: Array<DevExpress.ui.dxTreeList.Column<TRowData, TKey>>
-    ) => void;
-    /**
-     * [descr:dxTreeListOptions.dataStructure]
-     */
-    dataStructure?: 'plain' | 'tree';
-    /**
-     * [descr:dxTreeListOptions.editing]
-     */
-    editing?: DevExpress.ui.dxTreeList.Editing<TRowData, TKey>;
-    /**
-     * [descr:dxTreeListOptions.expandNodesOnFiltering]
-     */
-    expandNodesOnFiltering?: boolean;
-    /**
-     * [descr:dxTreeListOptions.expandedRowKeys]
-     */
-    expandedRowKeys?: Array<TKey>;
-    /**
-     * [descr:dxTreeListOptions.filterMode]
-     */
-    filterMode?: 'fullBranch' | 'withAncestors' | 'matchOnly';
-    /**
-     * [descr:dxTreeListOptions.hasItemsExpr]
-     */
-    hasItemsExpr?: string | Function;
-    /**
-     * [descr:dxTreeListOptions.itemsExpr]
-     */
-    itemsExpr?: string | Function;
-    /**
-     * [descr:dxTreeListOptions.keyExpr]
-     */
-    keyExpr?: string | Function;
-    /**
-     * [descr:dxTreeListOptions.onCellClick]
-     */
-    onCellClick?: (
-      e: DevExpress.ui.dxTreeList.CellClickEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxTreeListOptions.onCellDblClick]
-     */
-    onCellDblClick?: (
-      e: DevExpress.ui.dxTreeList.CellDblClickEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxTreeListOptions.onCellHoverChanged]
-     */
-    onCellHoverChanged?: (
-      e: DevExpress.ui.dxTreeList.CellHoverChangedEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxTreeListOptions.onCellPrepared]
-     */
-    onCellPrepared?: (
-      e: DevExpress.ui.dxTreeList.CellPreparedEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxTreeListOptions.onContextMenuPreparing]
-     */
-    onContextMenuPreparing?: (
-      e: DevExpress.ui.dxTreeList.ContextMenuPreparingEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxTreeListOptions.onEditingStart]
-     */
-    onEditingStart?: (
-      e: DevExpress.ui.dxTreeList.EditingStartEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxTreeListOptions.onEditorPrepared]
-     */
-    onEditorPrepared?: (
-      options: DevExpress.ui.dxTreeList.EditorPreparedEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxTreeListOptions.onEditorPreparing]
-     */
-    onEditorPreparing?: (
-      e: DevExpress.ui.dxTreeList.EditorPreparingEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxTreeListOptions.onFocusedCellChanged]
-     */
-    onFocusedCellChanged?: (
-      e: DevExpress.ui.dxTreeList.FocusedCellChangedEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxTreeListOptions.onFocusedCellChanging]
-     */
-    onFocusedCellChanging?: (
-      e: DevExpress.ui.dxTreeList.FocusedCellChangingEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxTreeListOptions.onFocusedRowChanged]
-     */
-    onFocusedRowChanged?: (
-      e: DevExpress.ui.dxTreeList.FocusedRowChangedEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxTreeListOptions.onFocusedRowChanging]
-     */
-    onFocusedRowChanging?: (
-      e: DevExpress.ui.dxTreeList.FocusedRowChangingEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxTreeListOptions.onNodesInitialized]
-     */
-    onNodesInitialized?: (
-      e: DevExpress.ui.dxTreeList.NodesInitializedEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxTreeListOptions.onRowClick]
-     */
-    onRowClick?: (
-      e: DevExpress.ui.dxTreeList.RowClickEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxTreeListOptions.onRowDblClick]
-     */
-    onRowDblClick?: (
-      e: DevExpress.ui.dxTreeList.RowDblClickEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxTreeListOptions.onRowPrepared]
-     */
-    onRowPrepared?: (
-      e: DevExpress.ui.dxTreeList.RowPreparedEvent<TRowData, TKey>
-    ) => void;
-    /**
-     * [descr:dxTreeListOptions.paging]
-     */
-    paging?: DevExpress.ui.dxTreeList.Paging;
-    /**
-     * [descr:dxTreeListOptions.parentIdExpr]
-     */
-    parentIdExpr?: string | Function;
-    /**
-     * [descr:dxTreeListOptions.remoteOperations]
-     */
-    remoteOperations?:
-      | {
-          /**
-           * [descr:dxTreeListOptions.remoteOperations.filtering]
-           */
-          filtering?: boolean;
-          /**
-           * [descr:dxTreeListOptions.remoteOperations.grouping]
-           */
-          grouping?: boolean;
-          /**
-           * [descr:dxTreeListOptions.remoteOperations.sorting]
-           */
-          sorting?: boolean;
-        }
-      | 'auto';
-    /**
-     * [descr:dxTreeListOptions.rootValue]
-     */
-    rootValue?: TKey;
-    /**
-     * [descr:dxTreeListOptions.scrolling]
-     */
-    scrolling?: DevExpress.ui.dxTreeList.Scrolling;
-    /**
-     * [descr:dxTreeListOptions.selection]
-     */
-    selection?: DevExpress.ui.dxTreeList.Selection;
-    /**
-     * [descr:dxTreeListOptions.toolbar]
-     */
-    toolbar?: dxTreeListToolbar;
-  }
   /**
    * @deprecated 
    */
@@ -21766,7 +20214,7 @@ declare module DevExpress.ui {
    * [descr:dxTreeListToolbarItem]
    * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
    */
-  export interface dxTreeListToolbarItem extends dxToolbarItem {
+  export interface dxTreeListToolbarItem extends DevExpress.ui.dxToolbar.Item {
     /**
      * [descr:dxTreeListToolbarItem.name]
      */
@@ -21779,7 +20227,7 @@ declare module DevExpress.ui {
   /**
    * [descr:dxTreeView]
    */
-  export class dxTreeView extends HierarchicalCollectionWidget<dxTreeViewOptions> {
+  export class dxTreeView extends HierarchicalCollectionWidget<DevExpress.ui.dxTreeView.Properties> {
     /**
      * [descr:dxTreeView.collapseAll()]
      */
@@ -21927,10 +20375,171 @@ declare module DevExpress.ui {
         readonly itemData?: any;
         readonly itemIndex?: number;
       };
-    export type Node = dxTreeViewNode;
+    /**
+     * [descr:Node]
+     */
+    export interface Node {
+      /**
+       * [descr:Node.children]
+       */
+      children?: Array<Node>;
+      /**
+       * [descr:Node.disabled]
+       */
+      disabled?: boolean;
+      /**
+       * [descr:Node.expanded]
+       */
+      expanded?: boolean;
+      /**
+       * [descr:Node.itemData]
+       */
+      itemData?: any;
+      /**
+       * [descr:Node.key]
+       */
+      key?: any;
+      /**
+       * [descr:Node.parent]
+       */
+      parent?: Node;
+      /**
+       * [descr:Node.selected]
+       */
+      selected?: boolean;
+      /**
+       * [descr:Node.text]
+       */
+      text?: string;
+    }
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxTreeView> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxTreeViewOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties
+      extends DevExpress.core.Skip<
+          HierarchicalCollectionWidgetOptions<dxTreeView>,
+          'dataSource'
+        >,
+        SearchBoxMixinOptions {
+      /**
+       * [descr:Properties.animationEnabled]
+       */
+      animationEnabled?: boolean;
+      /**
+       * [descr:Properties.createChildren]
+       */
+      createChildren?: (parentNode: Node) => PromiseLike<any> | Array<any>;
+      /**
+       * [descr:Properties.dataSource]
+       */
+      dataSource?: DevExpress.data.DataSource.DataSourceLike<Item>;
+      /**
+       * [descr:Properties.dataStructure]
+       */
+      dataStructure?: 'plain' | 'tree';
+      /**
+       * [descr:Properties.expandAllEnabled]
+       */
+      expandAllEnabled?: boolean;
+      /**
+       * [descr:Properties.expandEvent]
+       */
+      expandEvent?: 'dblclick' | 'click';
+      /**
+       * [descr:Properties.expandNodesRecursive]
+       */
+      expandNodesRecursive?: boolean;
+      /**
+       * [descr:Properties.expandedExpr]
+       */
+      expandedExpr?: string | Function;
+      /**
+       * [descr:Properties.hasItemsExpr]
+       */
+      hasItemsExpr?: string | Function;
+      /**
+       * [descr:Properties.items]
+       */
+      items?: Array<Item>;
+      /**
+       * [descr:Properties.onItemClick]
+       */
+      onItemClick?: (e: ItemClickEvent) => void;
+      /**
+       * [descr:Properties.onItemCollapsed]
+       */
+      onItemCollapsed?: (e: ItemCollapsedEvent) => void;
+      /**
+       * [descr:Properties.onItemContextMenu]
+       */
+      onItemContextMenu?: (e: ItemContextMenuEvent) => void;
+      /**
+       * [descr:Properties.onItemExpanded]
+       */
+      onItemExpanded?: (e: ItemExpandedEvent) => void;
+      /**
+       * [descr:Properties.onItemHold]
+       */
+      onItemHold?: (e: ItemHoldEvent) => void;
+      /**
+       * [descr:Properties.onItemRendered]
+       */
+      onItemRendered?: (e: ItemRenderedEvent) => void;
+      /**
+       * [descr:Properties.onItemSelectionChanged]
+       */
+      onItemSelectionChanged?: (e: ItemSelectionChangedEvent) => void;
+      /**
+       * [descr:Properties.onSelectAllValueChanged]
+       */
+      onSelectAllValueChanged?: (e: SelectAllValueChangedEvent) => void;
+      /**
+       * [descr:Properties.onSelectionChanged]
+       */
+      onSelectionChanged?: (e: SelectionChangedEvent) => void;
+      /**
+       * [descr:Properties.parentIdExpr]
+       */
+      parentIdExpr?: string | Function;
+      /**
+       * [descr:Properties.rootValue]
+       */
+      rootValue?: any;
+      /**
+       * [descr:Properties.scrollDirection]
+       */
+      scrollDirection?: 'both' | 'horizontal' | 'vertical';
+      /**
+       * [descr:Properties.selectAllText]
+       */
+      selectAllText?: string;
+      /**
+       * [descr:Properties.selectByClick]
+       */
+      selectByClick?: boolean;
+      /**
+       * [descr:Properties.selectNodesRecursive]
+       */
+      selectNodesRecursive?: boolean;
+      /**
+       * [descr:Properties.selectionMode]
+       */
+      selectionMode?: 'multiple' | 'single';
+      /**
+       * [descr:Properties.showCheckBoxesMode]
+       */
+      showCheckBoxesMode?: 'none' | 'normal' | 'selectAll';
+      /**
+       * [descr:Properties.virtualModeEnabled]
+       */
+      virtualModeEnabled?: boolean;
+      /**
+       * [descr:Properties.useNativeScrolling]
+       */
+      useNativeScrolling?: boolean;
+    }
     export type SelectAllValueChangedEvent =
       DevExpress.events.EventInfo<dxTreeView> & {
         readonly value?: boolean | undefined;
@@ -21938,219 +20547,9 @@ declare module DevExpress.ui {
     export type SelectionChangedEvent = DevExpress.events.EventInfo<dxTreeView>;
   }
   /**
-   * @deprecated Use DevExpress.ui.dxTreeView.Item instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxTreeViewItem extends CollectionWidgetItem {
-    /**
-     * [descr:dxTreeViewItem.expanded]
-     */
-    expanded?: boolean;
-    /**
-     * [descr:dxTreeViewItem.hasItems]
-     */
-    hasItems?: boolean;
-    /**
-     * [descr:dxTreeViewItem.icon]
-     */
-    icon?: string;
-    /**
-     * [descr:dxTreeViewItem.items]
-     */
-    items?: Array<DevExpress.ui.dxTreeView.Item>;
-    /**
-     * [descr:dxTreeViewItem.id]
-     */
-    id?: number | string;
-    /**
-     * [descr:dxTreeViewItem.parentId]
-     */
-    parentId?: number | string;
-    /**
-     * [descr:dxTreeViewItem.selected]
-     */
-    selected?: boolean;
-  }
-  /**
-   * [descr:dxTreeViewNode]
-   * @deprecated [depNote:dxTreeViewNode]
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxTreeViewNode {
-    /**
-     * [descr:dxTreeViewNode.children]
-     */
-    children?: Array<dxTreeViewNode>;
-    /**
-     * [descr:dxTreeViewNode.disabled]
-     */
-    disabled?: boolean;
-    /**
-     * [descr:dxTreeViewNode.expanded]
-     */
-    expanded?: boolean;
-    /**
-     * [descr:dxTreeViewNode.itemData]
-     */
-    itemData?: any;
-    /**
-     * [descr:dxTreeViewNode.key]
-     */
-    key?: any;
-    /**
-     * [descr:dxTreeViewNode.parent]
-     */
-    parent?: dxTreeViewNode;
-    /**
-     * [descr:dxTreeViewNode.selected]
-     */
-    selected?: boolean;
-    /**
-     * [descr:dxTreeViewNode.text]
-     */
-    text?: string;
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxTreeViewOptions
-    extends DevExpress.core.Skip<
-        HierarchicalCollectionWidgetOptions<dxTreeView>,
-        'dataSource'
-      >,
-      SearchBoxMixinOptions {
-    /**
-     * [descr:dxTreeViewOptions.animationEnabled]
-     */
-    animationEnabled?: boolean;
-    /**
-     * [descr:dxTreeViewOptions.createChildren]
-     */
-    createChildren?: (
-      parentNode: DevExpress.ui.dxTreeView.Node
-    ) => PromiseLike<any> | Array<any>;
-    /**
-     * [descr:dxTreeViewOptions.dataSource]
-     */
-    dataSource?: DevExpress.data.DataSource.DataSourceLike<DevExpress.ui.dxTreeView.Item>;
-    /**
-     * [descr:dxTreeViewOptions.dataStructure]
-     */
-    dataStructure?: 'plain' | 'tree';
-    /**
-     * [descr:dxTreeViewOptions.expandAllEnabled]
-     */
-    expandAllEnabled?: boolean;
-    /**
-     * [descr:dxTreeViewOptions.expandEvent]
-     */
-    expandEvent?: 'dblclick' | 'click';
-    /**
-     * [descr:dxTreeViewOptions.expandNodesRecursive]
-     */
-    expandNodesRecursive?: boolean;
-    /**
-     * [descr:dxTreeViewOptions.expandedExpr]
-     */
-    expandedExpr?: string | Function;
-    /**
-     * [descr:dxTreeViewOptions.hasItemsExpr]
-     */
-    hasItemsExpr?: string | Function;
-    /**
-     * [descr:dxTreeViewOptions.items]
-     */
-    items?: Array<DevExpress.ui.dxTreeView.Item>;
-    /**
-     * [descr:dxTreeViewOptions.onItemClick]
-     */
-    onItemClick?: (e: DevExpress.ui.dxTreeView.ItemClickEvent) => void;
-    /**
-     * [descr:dxTreeViewOptions.onItemCollapsed]
-     */
-    onItemCollapsed?: (e: DevExpress.ui.dxTreeView.ItemCollapsedEvent) => void;
-    /**
-     * [descr:dxTreeViewOptions.onItemContextMenu]
-     */
-    onItemContextMenu?: (
-      e: DevExpress.ui.dxTreeView.ItemContextMenuEvent
-    ) => void;
-    /**
-     * [descr:dxTreeViewOptions.onItemExpanded]
-     */
-    onItemExpanded?: (e: DevExpress.ui.dxTreeView.ItemExpandedEvent) => void;
-    /**
-     * [descr:dxTreeViewOptions.onItemHold]
-     */
-    onItemHold?: (e: DevExpress.ui.dxTreeView.ItemHoldEvent) => void;
-    /**
-     * [descr:dxTreeViewOptions.onItemRendered]
-     */
-    onItemRendered?: (e: DevExpress.ui.dxTreeView.ItemRenderedEvent) => void;
-    /**
-     * [descr:dxTreeViewOptions.onItemSelectionChanged]
-     */
-    onItemSelectionChanged?: (
-      e: DevExpress.ui.dxTreeView.ItemSelectionChangedEvent
-    ) => void;
-    /**
-     * [descr:dxTreeViewOptions.onSelectAllValueChanged]
-     */
-    onSelectAllValueChanged?: (
-      e: DevExpress.ui.dxTreeView.SelectAllValueChangedEvent
-    ) => void;
-    /**
-     * [descr:dxTreeViewOptions.onSelectionChanged]
-     */
-    onSelectionChanged?: (
-      e: DevExpress.ui.dxTreeView.SelectionChangedEvent
-    ) => void;
-    /**
-     * [descr:dxTreeViewOptions.parentIdExpr]
-     */
-    parentIdExpr?: string | Function;
-    /**
-     * [descr:dxTreeViewOptions.rootValue]
-     */
-    rootValue?: any;
-    /**
-     * [descr:dxTreeViewOptions.scrollDirection]
-     */
-    scrollDirection?: 'both' | 'horizontal' | 'vertical';
-    /**
-     * [descr:dxTreeViewOptions.selectAllText]
-     */
-    selectAllText?: string;
-    /**
-     * [descr:dxTreeViewOptions.selectByClick]
-     */
-    selectByClick?: boolean;
-    /**
-     * [descr:dxTreeViewOptions.selectNodesRecursive]
-     */
-    selectNodesRecursive?: boolean;
-    /**
-     * [descr:dxTreeViewOptions.selectionMode]
-     */
-    selectionMode?: 'multiple' | 'single';
-    /**
-     * [descr:dxTreeViewOptions.showCheckBoxesMode]
-     */
-    showCheckBoxesMode?: 'none' | 'normal' | 'selectAll';
-    /**
-     * [descr:dxTreeViewOptions.virtualModeEnabled]
-     */
-    virtualModeEnabled?: boolean;
-    /**
-     * [descr:dxTreeViewOptions.useNativeScrolling]
-     */
-    useNativeScrolling?: boolean;
-  }
-  /**
    * [descr:dxValidationGroup]
    */
-  export class dxValidationGroup extends DOMComponent<dxValidationGroupOptions> {
+  export class dxValidationGroup extends DOMComponent<DevExpress.ui.dxValidationGroup.Properties> {
     /**
      * [descr:dxValidationGroup.reset()]
      */
@@ -22167,78 +20566,71 @@ declare module DevExpress.ui {
     export type OptionChangedEvent =
       DevExpress.events.EventInfo<dxValidationGroup> &
         DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxValidationGroupOptions;
-    export type ValidationResult = dxValidationGroupResult;
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxValidationGroupOptions
-    extends DOMComponentOptions<dxValidationGroup> {}
-  /**
-   * [descr:dxValidationGroupResult]
-   * @deprecated [depNote:dxValidationGroupResult]
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxValidationGroupResult {
     /**
-     * [descr:dxValidationGroupResult.brokenRules]
+     * [descr:Properties]
      */
-    brokenRules?: Array<
-      | RequiredRule
-      | NumericRule
-      | RangeRule
-      | StringLengthRule
-      | CustomRule
-      | CompareRule
-      | PatternRule
-      | EmailRule
-      | AsyncRule
-    >;
+    export interface Properties
+      extends DOMComponentOptions<dxValidationGroup> {}
     /**
-     * [descr:dxValidationGroupResult.complete]
+     * [descr:ValidationResult]
      */
-    complete?: DevExpress.core.utils.DxPromise<dxValidationGroupResult>;
-    /**
-     * [descr:dxValidationGroupResult.isValid]
-     */
-    isValid?: boolean;
-    /**
-     * [descr:dxValidationGroupResult.status]
-     */
-    status?: 'valid' | 'invalid' | 'pending';
-    /**
-     * [descr:dxValidationGroupResult.validators]
-     */
-    validators?: Array<any>;
+    export interface ValidationResult {
+      /**
+       * [descr:ValidationResult.brokenRules]
+       */
+      brokenRules?: Array<
+        | RequiredRule
+        | NumericRule
+        | RangeRule
+        | StringLengthRule
+        | CustomRule
+        | CompareRule
+        | PatternRule
+        | EmailRule
+        | AsyncRule
+      >;
+      /**
+       * [descr:ValidationResult.complete]
+       */
+      complete?: DevExpress.core.utils.DxPromise<ValidationResult>;
+      /**
+       * [descr:ValidationResult.isValid]
+       */
+      isValid?: boolean;
+      /**
+       * [descr:ValidationResult.status]
+       */
+      status?: 'valid' | 'invalid' | 'pending';
+      /**
+       * [descr:ValidationResult.validators]
+       */
+      validators?: Array<any>;
+    }
   }
   /**
    * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
    */
-  export class dxValidationMessage extends dxOverlay<dxValidationMessageOptions> {}
+  export class dxValidationMessage extends dxOverlay<DevExpress.ui.dxValidationMessage.Properties> {}
   module dxValidationMessage {
-    export type Properties = dxValidationMessageOptions;
-  }
-  /**
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxValidationMessageOptions
-    extends dxOverlayOptions<dxValidationMessage> {
-    mode?: string;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends dxOverlayOptions<dxValidationMessage> {
+      mode?: string;
 
-    validationErrors?: Array<object> | null;
+      validationErrors?: Array<object> | null;
 
-    positionRequest?: string;
+      positionRequest?: string;
 
-    boundary?: String | DevExpress.core.UserDefinedElement;
+      boundary?: String | DevExpress.core.UserDefinedElement;
 
-    offset?: object;
+      offset?: object;
+    }
   }
   /**
    * [descr:dxValidationSummary]
    */
-  export class dxValidationSummary extends CollectionWidget<dxValidationSummaryOptions> {}
+  export class dxValidationSummary extends CollectionWidget<DevExpress.ui.dxValidationSummary.Properties> {}
   module dxValidationSummary {
     export type ContentReadyEvent =
       DevExpress.events.EventInfo<dxValidationSummary>;
@@ -22252,23 +20644,21 @@ declare module DevExpress.ui {
     export type OptionChangedEvent =
       DevExpress.events.EventInfo<dxValidationSummary> &
         DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxValidationSummaryOptions;
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxValidationSummaryOptions
-    extends CollectionWidgetOptions<dxValidationSummary> {
     /**
-     * [descr:dxValidationSummaryOptions.validationGroup]
+     * [descr:Properties]
      */
-    validationGroup?: string;
+    export interface Properties
+      extends CollectionWidgetOptions<dxValidationSummary> {
+      /**
+       * [descr:Properties.validationGroup]
+       */
+      validationGroup?: string;
+    }
   }
   /**
    * [descr:dxValidator]
    */
-  export class dxValidator extends DOMComponent<dxValidatorOptions> {
+  export class dxValidator extends DOMComponent<DevExpress.ui.dxValidator.Properties> {
     /**
      * [descr:dxValidator.focus()]
      */
@@ -22288,7 +20678,56 @@ declare module DevExpress.ui {
       DevExpress.events.InitializedEventInfo<dxValidator>;
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxValidator> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxValidatorOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends DOMComponentOptions<dxValidator> {
+      /**
+       * [descr:Properties.adapter]
+       */
+      adapter?: {
+        /**
+         * [descr:Properties.adapter.applyValidationResults]
+         */
+        applyValidationResults?: Function;
+        /**
+         * [descr:Properties.adapter.bypass]
+         */
+        bypass?: Function;
+        /**
+         * [descr:Properties.adapter.focus]
+         */
+        focus?: Function;
+        /**
+         * [descr:Properties.adapter.getValue]
+         */
+        getValue?: Function;
+        /**
+         * [descr:Properties.adapter.reset]
+         */
+        reset?: Function;
+        /**
+         * [descr:Properties.adapter.validationRequestsCallbacks]
+         */
+        validationRequestsCallbacks?: Array<Function>;
+      };
+      /**
+       * [descr:Properties.name]
+       */
+      name?: string;
+      /**
+       * [descr:Properties.onValidated]
+       */
+      onValidated?: (validatedInfo: ValidatedEvent) => void;
+      /**
+       * [descr:Properties.validationGroup]
+       */
+      validationGroup?: string;
+      /**
+       * [descr:Properties.validationRules]
+       */
+      validationRules?: Array<ValidationRule>;
+    }
     export type ValidatedEvent = {
       name?: string;
       isValid?: boolean;
@@ -22298,99 +20737,43 @@ declare module DevExpress.ui {
       brokenRules?: ValidationRule;
       status?: 'valid' | 'invalid' | 'pending';
     };
-    export type ValidationResult = dxValidatorResult;
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxValidatorOptions extends DOMComponentOptions<dxValidator> {
     /**
-     * [descr:dxValidatorOptions.adapter]
+     * [descr:ValidationResult]
      */
-    adapter?: {
+    export interface ValidationResult {
       /**
-       * [descr:dxValidatorOptions.adapter.applyValidationResults]
+       * [descr:ValidationResult.brokenRule]
        */
-      applyValidationResults?: Function;
+      brokenRule?: ValidationRule;
       /**
-       * [descr:dxValidatorOptions.adapter.bypass]
+       * [descr:ValidationResult.brokenRules]
        */
-      bypass?: Function;
+      brokenRules?: Array<ValidationRule>;
       /**
-       * [descr:dxValidatorOptions.adapter.focus]
+       * [descr:ValidationResult.complete]
        */
-      focus?: Function;
+      complete?: DevExpress.core.utils.DxPromise<ValidationResult>;
       /**
-       * [descr:dxValidatorOptions.adapter.getValue]
+       * [descr:ValidationResult.isValid]
        */
-      getValue?: Function;
+      isValid?: boolean;
       /**
-       * [descr:dxValidatorOptions.adapter.reset]
+       * [descr:ValidationResult.pendingRules]
        */
-      reset?: Function;
+      pendingRules?: Array<AsyncRule>;
       /**
-       * [descr:dxValidatorOptions.adapter.validationRequestsCallbacks]
+       * [descr:ValidationResult.status]
        */
-      validationRequestsCallbacks?: Array<Function>;
-    };
-    /**
-     * [descr:dxValidatorOptions.name]
-     */
-    name?: string;
-    /**
-     * [descr:dxValidatorOptions.onValidated]
-     */
-    onValidated?: (
-      validatedInfo: DevExpress.ui.dxValidator.ValidatedEvent
-    ) => void;
-    /**
-     * [descr:dxValidatorOptions.validationGroup]
-     */
-    validationGroup?: string;
-    /**
-     * [descr:dxValidatorOptions.validationRules]
-     */
-    validationRules?: Array<ValidationRule>;
-  }
-  /**
-   * [descr:dxValidatorResult]
-   * @deprecated [depNote:dxValidatorResult]
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxValidatorResult {
-    /**
-     * [descr:dxValidatorResult.brokenRule]
-     */
-    brokenRule?: ValidationRule;
-    /**
-     * [descr:dxValidatorResult.brokenRules]
-     */
-    brokenRules?: Array<ValidationRule>;
-    /**
-     * [descr:dxValidatorResult.complete]
-     */
-    complete?: DevExpress.core.utils.DxPromise<dxValidatorResult>;
-    /**
-     * [descr:dxValidatorResult.isValid]
-     */
-    isValid?: boolean;
-    /**
-     * [descr:dxValidatorResult.pendingRules]
-     */
-    pendingRules?: Array<AsyncRule>;
-    /**
-     * [descr:dxValidatorResult.status]
-     */
-    status?: 'valid' | 'invalid' | 'pending';
-    /**
-     * [descr:dxValidatorResult.validationRules]
-     */
-    validationRules?: Array<ValidationRule>;
-    /**
-     * [descr:dxValidatorResult.value]
-     */
-    value?: any;
+      status?: 'valid' | 'invalid' | 'pending';
+      /**
+       * [descr:ValidationResult.validationRules]
+       */
+      validationRules?: Array<ValidationRule>;
+      /**
+       * [descr:ValidationResult.value]
+       */
+      value?: any;
+    }
   }
   /**
    * [descr:Editor]
@@ -22872,7 +21255,7 @@ declare module DevExpress.ui {
     /**
      * [descr:GridBaseOptions.filterBuilder]
      */
-    filterBuilder?: dxFilterBuilderOptions;
+    filterBuilder?: DevExpress.ui.dxFilterBuilder.Properties;
     /**
      * [descr:GridBaseOptions.filterBuilderPopup]
      */
@@ -23536,65 +21919,877 @@ declare module DevExpress.ui.dialog {
   export function custom(options: CustomDialogOptions): any;
 }
 declare module DevExpress.ui.dxAccordion {
-  export type Item = dxAccordionItem;
+  /**
+   * [descr:Item]
+   */
+  export interface Item extends CollectionWidgetItem {
+    /**
+     * [descr:Item.icon]
+     */
+    icon?: string;
+    /**
+     * [descr:Item.title]
+     */
+    title?: string;
+  }
 }
 declare module DevExpress.ui.dxActionSheet {
-  export type Item = dxActionSheetItem;
+  /**
+   * [descr:Item]
+   */
+  export interface Item extends CollectionWidgetItem {
+    /**
+     * [descr:Item.icon]
+     */
+    icon?: string;
+    /**
+     * [descr:Item.onClick]
+     */
+    onClick?:
+      | ((e: {
+          component?: dxActionSheet;
+          element?: DevExpress.core.DxElement;
+          model?: any;
+          event?: DevExpress.events.DxEvent;
+        }) => void)
+      | string;
+    /**
+     * [descr:Item.type]
+     */
+    type?: 'back' | 'danger' | 'default' | 'normal' | 'success';
+    /**
+     * [descr:Item.stylingMode]
+     */
+    stylingMode?: 'text' | 'outlined' | 'contained';
+  }
 }
 declare module DevExpress.ui.dxBox {
-  export type Item = dxBoxItem;
+  /**
+   * [descr:Item]
+   */
+  export interface Item extends CollectionWidgetItem {
+    /**
+     * [descr:Item.baseSize]
+     */
+    baseSize?: number | 'auto';
+    /**
+     * [descr:Item.box]
+     */
+    box?: Properties;
+    /**
+     * [descr:Item.ratio]
+     */
+    ratio?: number;
+    /**
+     * [descr:Item.shrink]
+     */
+    shrink?: number;
+  }
 }
 declare module DevExpress.ui.dxButtonGroup {
-  export type Item = dxButtonGroupItem;
+  /**
+   * [descr:Item]
+   */
+  export interface Item extends CollectionWidgetItem {
+    /**
+     * [descr:Item.hint]
+     */
+    hint?: string;
+    /**
+     * [descr:Item.icon]
+     */
+    icon?: string;
+    /**
+     * [descr:Item.type]
+     */
+    type?: 'back' | 'danger' | 'default' | 'normal' | 'success';
+
+    /**
+     * [descr:Item.elementAttr]
+     */
+    elementAttr?: { [key: string]: any };
+  }
 }
-declare module DevExpress.ui.dxContextMenu {
-  export type Item = dxContextMenuItem;
+declare module DevExpress.ui.dxContextMen {
+  /**
+   * [descr:Item]
+   */
+  export interface Item extends dxMenuBaseItem {
+    /**
+     * [descr:Item.items]
+     */
+    items?: Array<Item>;
+  }
 }
 declare module DevExpress.ui.dxDiagram {
-  export type Item = dxDiagramItem;
+  /**
+   * [descr:Item]
+   */
+  export interface Item {
+    /**
+     * [descr:Item.dataItem]
+     */
+    dataItem?: any;
+    /**
+     * [descr:Item.id]
+     */
+    id?: string;
+    /**
+     * [descr:Item.key]
+     */
+    key?: Object;
+    /**
+     * [descr:Item.itemType]
+     */
+    itemType?: 'shape' | 'connector';
+  }
 }
 declare module DevExpress.ui.dxDropDownButton {
-  export type Item = dxDropDownButtonItem;
+  /**
+   * [descr:Item]
+   */
+  export interface Item extends DevExpress.ui.dxList.Item {
+    /**
+     * [descr:Item.onClick]
+     */
+    onClick?: ((e: ItemClickEvent) => void) | string;
+  }
 }
 declare module DevExpress.ui.dxFileManager {
-  export type ContextMenuItem = dxFileManagerContextMenuItem;
-  export type ToolbarItem = dxFileManagerToolbarItem;
+  /**
+   * [descr:ContextMenuItem]
+   */
+  export interface ContextMenuItem extends DevExpress.ui.dxContextMen.Item {
+    /**
+     * [descr:ContextMenuItem.items]
+     */
+    items?: Array<ContextMenuItem>;
+    /**
+     * [descr:ContextMenuItem.name]
+     */
+    name?:
+      | 'create'
+      | 'upload'
+      | 'refresh'
+      | 'download'
+      | 'move'
+      | 'copy'
+      | 'rename'
+      | 'delete'
+      | string;
+    /**
+     * [descr:ContextMenuItem.visible]
+     */
+    visible?: boolean;
+    /**
+     * [descr:ContextMenuItem.template]
+     */
+    template?:
+      | DevExpress.core.template
+      | (() => string | DevExpress.core.UserDefinedElement);
+  }
+  /**
+   * [descr:ToolbarItem]
+   */
+  export interface ToolbarItem extends DevExpress.ui.dxToolbar.Item {
+    /**
+     * [descr:ToolbarItem.icon]
+     */
+    icon?: string;
+    /**
+     * [descr:ToolbarItem.location]
+     */
+    location?: 'after' | 'before' | 'center';
+    /**
+     * [descr:ToolbarItem.name]
+     */
+    name?:
+      | 'showNavPane'
+      | 'create'
+      | 'upload'
+      | 'refresh'
+      | 'switchView'
+      | 'download'
+      | 'move'
+      | 'copy'
+      | 'rename'
+      | 'delete'
+      | 'clearSelection'
+      | 'separator'
+      | string;
+    /**
+     * [descr:ToolbarItem.visible]
+     */
+    visible?: boolean;
+    /**
+     * [descr:ToolbarItem.html]
+     */
+    html?: string;
+    /**
+     * [descr:ToolbarItem.template]
+     */
+    template?:
+      | DevExpress.core.template
+      | (() => string | DevExpress.core.UserDefinedElement);
+    /**
+     * [descr:ToolbarItem.menuItemTemplate]
+     */
+    menuItemTemplate?:
+      | DevExpress.core.template
+      | (() => string | DevExpress.core.UserDefinedElement);
+  }
 }
 declare module DevExpress.ui.dxForm {
-  export type ButtonItem = dxFormButtonItem;
-  export type EmptyItem = dxFormEmptyItem;
-  export type GroupItem = dxFormGroupItem;
+  /**
+   * [descr:ButtonItem]
+   */
+  export interface ButtonItem {
+    /**
+     * [descr:ButtonItem.buttonOptions]
+     */
+    buttonOptions?: DevExpress.ui.dxButton.Properties;
+    /**
+     * [descr:ButtonItem.colSpan]
+     */
+    colSpan?: number;
+    /**
+     * [descr:ButtonItem.cssClass]
+     */
+    cssClass?: string;
+    /**
+     * [descr:ButtonItem.horizontalAlignment]
+     */
+    horizontalAlignment?: 'center' | 'left' | 'right';
+    /**
+     * [descr:ButtonItem.itemType]
+     */
+    itemType?: 'empty' | 'group' | 'simple' | 'tabbed' | 'button';
+    /**
+     * [descr:ButtonItem.name]
+     */
+    name?: string;
+    /**
+     * [descr:ButtonItem.verticalAlignment]
+     */
+    verticalAlignment?: 'bottom' | 'center' | 'top';
+    /**
+     * [descr:ButtonItem.visible]
+     */
+    visible?: boolean;
+    /**
+     * [descr:ButtonItem.visibleIndex]
+     */
+    visibleIndex?: number;
+  }
+  /**
+   * [descr:EmptyItem]
+   */
+  export interface EmptyItem {
+    /**
+     * [descr:EmptyItem.colSpan]
+     */
+    colSpan?: number;
+    /**
+     * [descr:EmptyItem.cssClass]
+     */
+    cssClass?: string;
+    /**
+     * [descr:EmptyItem.itemType]
+     */
+    itemType?: 'empty' | 'group' | 'simple' | 'tabbed' | 'button';
+    /**
+     * [descr:EmptyItem.name]
+     */
+    name?: string;
+    /**
+     * [descr:EmptyItem.visible]
+     */
+    visible?: boolean;
+    /**
+     * [descr:EmptyItem.visibleIndex]
+     */
+    visibleIndex?: number;
+  }
+  /**
+   * [descr:GroupItem]
+   */
+  export interface GroupItem {
+    /**
+     * [descr:GroupItem.alignItemLabels]
+     */
+    alignItemLabels?: boolean;
+    /**
+     * [descr:GroupItem.caption]
+     */
+    caption?: string;
+    /**
+     * [descr:GroupItem.colCount]
+     */
+    colCount?: number;
+    /**
+     * [descr:GroupItem.colCountByScreen]
+     */
+    colCountByScreen?: any;
+    /**
+     * [descr:GroupItem.colSpan]
+     */
+    colSpan?: number;
+    /**
+     * [descr:GroupItem.cssClass]
+     */
+    cssClass?: string;
+    /**
+     * [descr:GroupItem.itemType]
+     */
+    itemType?: 'empty' | 'group' | 'simple' | 'tabbed' | 'button';
+    /**
+     * [descr:GroupItem.items]
+     */
+    items?: Array<Item>;
+    /**
+     * [descr:GroupItem.name]
+     */
+    name?: string;
+    /**
+     * [descr:GroupItem.template]
+     */
+    template?:
+      | DevExpress.core.template
+      | ((
+          data: GroupItemTemplateData,
+          itemElement: DevExpress.core.DxElement
+        ) => string | DevExpress.core.UserDefinedElement);
+    /**
+     * [descr:GroupItem.visible]
+     */
+    visible?: boolean;
+    /**
+     * [descr:GroupItem.visibleIndex]
+     */
+    visibleIndex?: number;
+  }
   export type Item =
     | SimpleItem
     | GroupItem
     | TabbedItem
     | EmptyItem
     | ButtonItem;
-  export type SimpleItem = dxFormSimpleItem;
-  export type TabbedItem = dxFormTabbedItem;
+  /**
+   * [descr:SimpleItem]
+   */
+  export interface SimpleItem {
+    /**
+     * [descr:SimpleItem.colSpan]
+     */
+    colSpan?: number;
+    /**
+     * [descr:SimpleItem.cssClass]
+     */
+    cssClass?: string;
+    /**
+     * [descr:SimpleItem.dataField]
+     */
+    dataField?: string;
+    /**
+     * [descr:SimpleItem.editorOptions]
+     */
+    editorOptions?: any;
+    /**
+     * [descr:SimpleItem.editorType]
+     */
+    editorType?:
+      | 'dxAutocomplete'
+      | 'dxCalendar'
+      | 'dxCheckBox'
+      | 'dxColorBox'
+      | 'dxDateBox'
+      | 'dxDropDownBox'
+      | 'dxHtmlEditor'
+      | 'dxLookup'
+      | 'dxNumberBox'
+      | 'dxRadioGroup'
+      | 'dxRangeSlider'
+      | 'dxSelectBox'
+      | 'dxSlider'
+      | 'dxSwitch'
+      | 'dxTagBox'
+      | 'dxTextArea'
+      | 'dxTextBox';
+    /**
+     * [descr:SimpleItem.helpText]
+     */
+    helpText?: string;
+    /**
+     * [descr:SimpleItem.isRequired]
+     */
+    isRequired?: boolean;
+    /**
+     * [descr:SimpleItem.itemType]
+     */
+    itemType?: 'empty' | 'group' | 'simple' | 'tabbed' | 'button';
+    /**
+     * [descr:SimpleItem.label]
+     */
+    label?: {
+      /**
+       * [descr:SimpleItem.label.alignment]
+       */
+      alignment?: 'center' | 'left' | 'right';
+      /**
+       * [descr:SimpleItem.label.location]
+       */
+      location?: 'left' | 'right' | 'top';
+      /**
+       * [descr:SimpleItem.label.showColon]
+       */
+      showColon?: boolean;
+      /**
+       * [descr:SimpleItem.label.text]
+       */
+      text?: string;
+      /**
+       * [descr:SimpleItem.label.visible]
+       */
+      visible?: boolean;
+    };
+    /**
+     * [descr:SimpleItem.name]
+     */
+    name?: string;
+    /**
+     * [descr:SimpleItem.template]
+     */
+    template?:
+      | DevExpress.core.template
+      | ((
+          data: SimpleItemTemplateData,
+          itemElement: DevExpress.core.DxElement
+        ) => string | DevExpress.core.UserDefinedElement);
+    /**
+     * [descr:SimpleItem.validationRules]
+     */
+    validationRules?: Array<
+      | RequiredRule
+      | NumericRule
+      | RangeRule
+      | StringLengthRule
+      | CustomRule
+      | CompareRule
+      | PatternRule
+      | EmailRule
+      | AsyncRule
+    >;
+    /**
+     * [descr:SimpleItem.visible]
+     */
+    visible?: boolean;
+    /**
+     * [descr:SimpleItem.visibleIndex]
+     */
+    visibleIndex?: number;
+  }
+  /**
+   * [descr:TabbedItem]
+   */
+  export interface TabbedItem {
+    /**
+     * [descr:TabbedItem.colSpan]
+     */
+    colSpan?: number;
+    /**
+     * [descr:TabbedItem.cssClass]
+     */
+    cssClass?: string;
+    /**
+     * [descr:TabbedItem.itemType]
+     */
+    itemType?: 'empty' | 'group' | 'simple' | 'tabbed' | 'button';
+    /**
+     * [descr:TabbedItem.name]
+     */
+    name?: string;
+    /**
+     * [descr:TabbedItem.tabPanelOptions]
+     */
+    tabPanelOptions?: DevExpress.ui.dxTabPanel.Properties;
+    /**
+     * [descr:TabbedItem.tabs]
+     */
+    tabs?: Array<{
+      /**
+       * [descr:TabbedItem.tabs.alignItemLabels]
+       */
+      alignItemLabels?: boolean;
+      /**
+       * [descr:TabbedItem.tabs.badge]
+       */
+      badge?: string;
+      /**
+       * [descr:TabbedItem.tabs.colCount]
+       */
+      colCount?: number;
+      /**
+       * [descr:TabbedItem.tabs.colCountByScreen]
+       */
+      colCountByScreen?: any;
+      /**
+       * [descr:TabbedItem.tabs.disabled]
+       */
+      disabled?: boolean;
+      /**
+       * [descr:TabbedItem.tabs.icon]
+       */
+      icon?: string;
+      /**
+       * [descr:TabbedItem.tabs.items]
+       */
+      items?: Array<Item>;
+      /**
+       * [descr:TabbedItem.tabs.tabTemplate]
+       */
+      tabTemplate?:
+        | DevExpress.core.template
+        | ((
+            tabData: any,
+            tabIndex: number,
+            tabElement: DevExpress.core.DxElement
+          ) => any);
+      /**
+       * [descr:TabbedItem.tabs.template]
+       */
+      template?:
+        | DevExpress.core.template
+        | ((
+            tabData: any,
+            tabIndex: number,
+            tabElement: DevExpress.core.DxElement
+          ) => any);
+      /**
+       * [descr:TabbedItem.tabs.title]
+       */
+      title?: string;
+    }>;
+    /**
+     * [descr:TabbedItem.visible]
+     */
+    visible?: boolean;
+    /**
+     * [descr:TabbedItem.visibleIndex]
+     */
+    visibleIndex?: number;
+  }
 }
 declare module DevExpress.ui.dxGallery {
-  export type Item = dxGalleryItem;
+  /**
+   * [descr:Item]
+   */
+  export interface Item extends CollectionWidgetItem {
+    /**
+     * [descr:Item.imageAlt]
+     */
+    imageAlt?: string;
+    /**
+     * [descr:Item.imageSrc]
+     */
+    imageSrc?: string;
+  }
 }
 declare module DevExpress.ui.dxGantt {
-  export type ContextMenuItem = dxGanttContextMenuItem;
-  export type ToolbarItem = dxGanttToolbarItem;
+  /**
+   * [descr:ContextMenuItem]
+   */
+  export interface ContextMenuItem extends DevExpress.ui.dxContextMen.Item {
+    /**
+     * [descr:ContextMenuItem.name]
+     */
+    name?:
+      | 'undo'
+      | 'redo'
+      | 'expandAll'
+      | 'collapseAll'
+      | 'addTask'
+      | 'deleteTask'
+      | 'zoomIn'
+      | 'zoomOut'
+      | 'deleteDependency'
+      | 'taskDetails'
+      | 'resourceManager'
+      | string;
+  }
+  /**
+   * [descr:ToolbarItem]
+   */
+  export interface ToolbarItem extends DevExpress.ui.dxToolbar.Item {
+    /**
+     * [descr:ToolbarItem.name]
+     */
+    name?:
+      | 'separator'
+      | 'undo'
+      | 'redo'
+      | 'expandAll'
+      | 'collapseAll'
+      | 'addTask'
+      | 'deleteTask'
+      | 'zoomIn'
+      | 'zoomOut'
+      | 'taskDetails'
+      | 'fullScreen'
+      | 'resourceManager'
+      | 'toggleResources'
+      | 'toggleDependencies'
+      | string;
+    /**
+     * [descr:ToolbarItem.location]
+     */
+    location?: 'after' | 'before' | 'center';
+  }
 }
 declare module DevExpress.ui.dxHtmlEditor {
-  export type ContextMenuItem = dxHtmlEditorTableContextMenuItem;
-  export type ToolbarItem = dxHtmlEditorToolbarItem;
+  /**
+   * [descr:ContextMenuItem]
+   */
+  export interface ContextMenuItem
+    extends DevExpress.ui.dxMenu.MenuBasePlainItem {
+    /**
+     * [descr:ContextMenuItem.name]
+     */
+    name?:
+      | 'background'
+      | 'bold'
+      | 'color'
+      | 'font'
+      | 'italic'
+      | 'link'
+      | 'image'
+      | 'strike'
+      | 'subscript'
+      | 'superscript'
+      | 'underline'
+      | 'blockquote'
+      | 'header'
+      | 'increaseIndent'
+      | 'decreaseIndent'
+      | 'orderedList'
+      | 'bulletList'
+      | 'alignLeft'
+      | 'alignCenter'
+      | 'alignRight'
+      | 'alignJustify'
+      | 'codeBlock'
+      | 'variable'
+      | 'separator'
+      | 'undo'
+      | 'redo'
+      | 'clear'
+      | 'insertTable'
+      | 'insertRowAbove'
+      | 'insertRowBelow'
+      | 'insertColumnLeft'
+      | 'insertColumnRight'
+      | 'deleteColumn'
+      | 'deleteRow'
+      | 'deleteTable';
+    /**
+     * [descr:ContextMenuItem.items]
+     */
+    items?: Array<
+      | ContextMenuItem
+      | 'background'
+      | 'bold'
+      | 'color'
+      | 'font'
+      | 'italic'
+      | 'link'
+      | 'image'
+      | 'strike'
+      | 'subscript'
+      | 'superscript'
+      | 'underline'
+      | 'blockquote'
+      | 'header'
+      | 'increaseIndent'
+      | 'decreaseIndent'
+      | 'orderedList'
+      | 'bulletList'
+      | 'alignLeft'
+      | 'alignCenter'
+      | 'alignRight'
+      | 'alignJustify'
+      | 'codeBlock'
+      | 'variable'
+      | 'separator'
+      | 'undo'
+      | 'redo'
+      | 'clear'
+      | 'insertTable'
+      | 'insertRowAbove'
+      | 'insertRowBelow'
+      | 'insertColumnLeft'
+      | 'insertColumnRight'
+      | 'deleteColumn'
+      | 'deleteRow'
+      | 'deleteTable'
+    >;
+  }
+  /**
+   * [descr:ToolbarItem]
+   */
+  export interface ToolbarItem extends DevExpress.ui.dxToolbar.Item {
+    /**
+     * [descr:ToolbarItem.name]
+     */
+    name?:
+      | 'background'
+      | 'bold'
+      | 'color'
+      | 'font'
+      | 'italic'
+      | 'link'
+      | 'image'
+      | 'size'
+      | 'strike'
+      | 'subscript'
+      | 'superscript'
+      | 'underline'
+      | 'blockquote'
+      | 'header'
+      | 'increaseIndent'
+      | 'decreaseIndent'
+      | 'orderedList'
+      | 'bulletList'
+      | 'alignLeft'
+      | 'alignCenter'
+      | 'alignRight'
+      | 'alignJustify'
+      | 'codeBlock'
+      | 'variable'
+      | 'separator'
+      | 'undo'
+      | 'redo'
+      | 'clear'
+      | 'insertTable'
+      | 'insertHeaderRow'
+      | 'insertRowAbove'
+      | 'insertRowBelow'
+      | 'insertColumnLeft'
+      | 'insertColumnRight'
+      | 'deleteColumn'
+      | 'deleteRow'
+      | 'deleteTable'
+      | 'cellProperties'
+      | 'tableProperties'
+      | string;
+    /**
+     * [descr:ToolbarItem.formatName]
+     * @deprecated [depNote:ToolbarItem.formatName]
+     */
+    formatName?:
+      | 'background'
+      | 'bold'
+      | 'color'
+      | 'font'
+      | 'italic'
+      | 'link'
+      | 'image'
+      | 'size'
+      | 'strike'
+      | 'subscript'
+      | 'superscript'
+      | 'underline'
+      | 'blockquote'
+      | 'header'
+      | 'increaseIndent'
+      | 'decreaseIndent'
+      | 'orderedList'
+      | 'bulletList'
+      | 'alignLeft'
+      | 'alignCenter'
+      | 'alignRight'
+      | 'alignJustify'
+      | 'codeBlock'
+      | 'variable'
+      | 'separator'
+      | 'undo'
+      | 'redo'
+      | 'clear'
+      | 'insertTable'
+      | 'insertHeaderRow'
+      | 'insertRowAbove'
+      | 'insertRowBelow'
+      | 'insertColumnLeft'
+      | 'insertColumnRight'
+      | 'deleteColumn'
+      | 'deleteRow'
+      | 'deleteTable'
+      | 'cellProperties'
+      | 'tableProperties'
+      | string;
+    /**
+     * [descr:ToolbarItem.acceptedValues]
+     */
+    acceptedValues?: Array<string | number | boolean>;
+    /**
+     * [descr:ToolbarItem.formatValues]
+     * @deprecated [depNote:ToolbarItem.formatValues]
+     */
+    formatValues?: Array<string | number | boolean>;
+    /**
+     * [descr:ToolbarItem.location]
+     */
+    location?: 'after' | 'before' | 'center';
+  }
 }
 declare module DevExpress.ui.dxList {
-  export type Item = dxListItem;
+  /**
+   * [descr:Item]
+   */
+  export interface Item extends CollectionWidgetItem {
+    /**
+     * [descr:Item.badge]
+     */
+    badge?: string;
+    /**
+     * [descr:Item.icon]
+     */
+    icon?: string;
+    /**
+     * [descr:Item.key]
+     */
+    key?: string;
+    /**
+     * [descr:Item.showChevron]
+     */
+    showChevron?: boolean;
+  }
 }
 declare module DevExpress.ui.dxMenu {
-  export type Item = dxMenuItem;
+  /**
+   * [descr:Item]
+   */
+  export interface Item extends dxMenuBaseItem {
+    /**
+     * [descr:Item.items]
+     */
+    items?: Array<Item>;
+  }
 }
 declare module DevExpress.ui.dxMultiView {
-  export type Item = dxMultiViewItem;
+  /**
+   * [descr:Item]
+   */
+  export interface Item extends CollectionWidgetItem {}
 }
 declare module DevExpress.ui.dxNavBar {
-  export type Item = dxNavBarItem;
+  /**
+   * [descr:Item]
+   */
+  export interface Item extends DevExpress.ui.dxTabs.Item {
+    /**
+     * [descr:Item.badge]
+     */
+    badge?: string;
+  }
 }
 declare module DevExpress.ui.dxOverlay {
   /**
@@ -23603,31 +22798,294 @@ declare module DevExpress.ui.dxOverlay {
   export function baseZIndex(zIndex: number): void;
 }
 declare module DevExpress.ui.dxPivotGrid {
-  export type Cell = dxPivotGridPivotGridCell;
+  /**
+   * [descr:Cell]
+   */
+  export interface Cell {
+    /**
+     * [descr:Cell.columnPath]
+     */
+    columnPath?: Array<string | number | Date>;
+    /**
+     * [descr:Cell.columnType]
+     */
+    columnType?: 'D' | 'T' | 'GT';
+    /**
+     * [descr:Cell.dataIndex]
+     */
+    dataIndex?: number;
+    /**
+     * [descr:Cell.expanded]
+     */
+    expanded?: boolean;
+    /**
+     * [descr:Cell.path]
+     */
+    path?: Array<string | number | Date>;
+    /**
+     * [descr:Cell.rowPath]
+     */
+    rowPath?: Array<string | number | Date>;
+    /**
+     * [descr:Cell.rowType]
+     */
+    rowType?: 'D' | 'T' | 'GT';
+    /**
+     * [descr:Cell.text]
+     */
+    text?: string;
+    /**
+     * [descr:Cell.type]
+     */
+    type?: 'D' | 'T' | 'GT';
+    /**
+     * [descr:Cell.value]
+     */
+    value?: any;
+  }
 }
 declare module DevExpress.ui.dxPopup {
-  export type ToolbarItem = dxPopupToolbarItem;
+  /**
+   * [descr:ToolbarItem]
+   */
+  export interface ToolbarItem {
+    /**
+     * [descr:dxPopupOptions.toolbarItems.disabled]
+     */
+    disabled?: boolean;
+    /**
+     * [descr:dxPopupOptions.toolbarItems.html]
+     */
+    html?: string;
+    /**
+     * [descr:dxPopupOptions.toolbarItems.location]
+     */
+    location?: 'after' | 'before' | 'center';
+    /**
+     * [descr:dxPopupOptions.toolbarItems.options]
+     */
+    options?: any;
+    /**
+     * [descr:dxPopupOptions.toolbarItems.template]
+     */
+    template?: DevExpress.core.template;
+    /**
+     * [descr:dxPopupOptions.toolbarItems.text]
+     */
+    text?: string;
+    /**
+     * [descr:dxPopupOptions.toolbarItems.toolbar]
+     */
+    toolbar?: 'bottom' | 'top';
+    /**
+     * [descr:dxPopupOptions.toolbarItems.visible]
+     */
+    visible?: boolean;
+    /**
+     * [descr:dxPopupOptions.toolbarItems.widget]
+     */
+    widget?:
+      | 'dxAutocomplete'
+      | 'dxButton'
+      | 'dxCheckBox'
+      | 'dxDateBox'
+      | 'dxMenu'
+      | 'dxSelectBox'
+      | 'dxTabs'
+      | 'dxTextBox'
+      | 'dxButtonGroup'
+      | 'dxDropDownButton';
+  }
 }
 declare module DevExpress.ui.dxResponsiveBox {
-  export type Item = dxResponsiveBoxItem;
+  /**
+   * [descr:Item]
+   */
+  export interface Item extends CollectionWidgetItem {
+    /**
+     * [descr:Item.location]
+     */
+    location?:
+      | {
+          /**
+           * [descr:Item.location.col]
+           */
+          col?: number;
+          /**
+           * [descr:Item.location.colspan]
+           */
+          colspan?: number;
+          /**
+           * [descr:Item.location.row]
+           */
+          row?: number;
+          /**
+           * [descr:Item.location.rowspan]
+           */
+          rowspan?: number;
+          /**
+           * [descr:Item.location.screen]
+           */
+          screen?: string;
+        }
+      | Array<{
+          col?: number;
+          colspan?: number;
+          row?: number;
+          rowspan?: number;
+          screen?: string;
+        }>;
+  }
 }
 declare module DevExpress.ui.dxSlideOut {
-  export type Item = dxSlideOutItem;
+  /**
+   * [descr:Item]
+   */
+  export interface Item extends CollectionWidgetItem {
+    /**
+     * [descr:Item.menuTemplate]
+     */
+    menuTemplate?:
+      | DevExpress.core.template
+      | (() => string | DevExpress.core.UserDefinedElement);
+  }
 }
 declare module DevExpress.ui.dxTabPanel {
-  export type Item = dxTabPanelItem;
+  /**
+   * [descr:Item]
+   */
+  export interface Item extends DevExpress.ui.dxMultiView.Item {
+    /**
+     * [descr:Item.badge]
+     */
+    badge?: string;
+    /**
+     * [descr:Item.icon]
+     */
+    icon?: string;
+    /**
+     * [descr:Item.tabTemplate]
+     */
+    tabTemplate?:
+      | DevExpress.core.template
+      | (() => string | DevExpress.core.UserDefinedElement);
+    /**
+     * [descr:Item.title]
+     */
+    title?: string;
+  }
 }
 declare module DevExpress.ui.dxTabs {
-  export type Item = dxTabsItem;
+  /**
+   * [descr:Item]
+   */
+  export interface Item extends CollectionWidgetItem {
+    /**
+     * [descr:Item.badge]
+     */
+    badge?: string;
+    /**
+     * [descr:Item.icon]
+     */
+    icon?: string;
+  }
 }
 declare module DevExpress.ui.dxTileView {
-  export type Item = dxTileViewItem;
+  /**
+   * [descr:Item]
+   */
+  export interface Item extends CollectionWidgetItem {
+    /**
+     * [descr:Item.heightRatio]
+     */
+    heightRatio?: number;
+    /**
+     * [descr:Item.widthRatio]
+     */
+    widthRatio?: number;
+  }
 }
 declare module DevExpress.ui.dxToolbar {
-  export type Item = dxToolbarItem;
+  /**
+   * [descr:Item]
+   */
+  export interface Item extends CollectionWidgetItem {
+    /**
+     * [descr:Item.cssClass]
+     */
+    cssClass?: string;
+    /**
+     * [descr:Item.locateInMenu]
+     */
+    locateInMenu?: 'always' | 'auto' | 'never';
+    /**
+     * [descr:Item.location]
+     */
+    location?: 'after' | 'before' | 'center';
+    /**
+     * [descr:Item.menuItemTemplate]
+     */
+    menuItemTemplate?:
+      | DevExpress.core.template
+      | (() => string | DevExpress.core.UserDefinedElement);
+    /**
+     * [descr:Item.options]
+     */
+    options?: any;
+    /**
+     * [descr:Item.showText]
+     */
+    showText?: 'always' | 'inMenu';
+    /**
+     * [descr:Item.widget]
+     */
+    widget?:
+      | 'dxAutocomplete'
+      | 'dxButton'
+      | 'dxCheckBox'
+      | 'dxDateBox'
+      | 'dxMenu'
+      | 'dxSelectBox'
+      | 'dxTabs'
+      | 'dxTextBox'
+      | 'dxButtonGroup'
+      | 'dxDropDownButton';
+  }
 }
 declare module DevExpress.ui.dxTreeView {
-  export type Item = dxTreeViewItem;
+  /**
+   * [descr:Item]
+   */
+  export interface Item extends CollectionWidgetItem {
+    /**
+     * [descr:Item.expanded]
+     */
+    expanded?: boolean;
+    /**
+     * [descr:Item.hasItems]
+     */
+    hasItems?: boolean;
+    /**
+     * [descr:Item.icon]
+     */
+    icon?: string;
+    /**
+     * [descr:Item.items]
+     */
+    items?: Array<Item>;
+    /**
+     * [descr:Item.id]
+     */
+    id?: number | string;
+    /**
+     * [descr:Item.parentId]
+     */
+    parentId?: number | string;
+    /**
+     * [descr:Item.selected]
+     */
+    selected?: boolean;
+  }
 }
 declare module DevExpress.utils {
   /**
@@ -23669,16 +23127,6 @@ declare module DevExpress.viz {
      * [descr:BarGaugeBarInfo.value]
      */
     value?: number;
-  }
-  /**
-   * @deprecated Use LegendItem instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface BarGaugeLegendItem extends BaseLegendItem {
-    /**
-     * [descr:BarGaugeLegendItem.item]
-     */
-    item?: BarGaugeBarInfo;
   }
   /**
    * [descr:BaseChart]
@@ -25616,7 +25064,7 @@ declare module DevExpress.viz {
   /**
    * [descr:dxBarGauge]
    */
-  export class dxBarGauge extends BaseWidget<dxBarGaugeOptions> {
+  export class dxBarGauge extends BaseWidget<DevExpress.viz.dxBarGauge.Properties> {
     /**
      * [descr:dxBarGauge.values()]
      */
@@ -25641,7 +25089,124 @@ declare module DevExpress.viz {
       DevExpress.events.InitializedEventInfo<dxBarGauge>;
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxBarGauge> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxBarGaugeOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends BaseWidgetOptions<dxBarGauge> {
+      /**
+       * [descr:Properties.animation]
+       */
+      animation?: any;
+      /**
+       * [descr:Properties.backgroundColor]
+       */
+      backgroundColor?: string;
+      /**
+       * [descr:Properties.barSpacing]
+       */
+      barSpacing?: number;
+      /**
+       * [descr:Properties.baseValue]
+       */
+      baseValue?: number;
+      /**
+       * [descr:Properties.endValue]
+       */
+      endValue?: number;
+      /**
+       * [descr:Properties.geometry]
+       */
+      geometry?: {
+        /**
+         * [descr:Properties.geometry.endAngle]
+         */
+        endAngle?: number;
+        /**
+         * [descr:Properties.geometry.startAngle]
+         */
+        startAngle?: number;
+      };
+      /**
+       * [descr:Properties.label]
+       */
+      label?: {
+        /**
+         * [descr:Properties.label.connectorColor]
+         */
+        connectorColor?: string;
+        /**
+         * [descr:Properties.label.connectorWidth]
+         */
+        connectorWidth?: number;
+        /**
+         * [descr:Properties.label.customizeText]
+         */
+        customizeText?: (barValue: {
+          value?: number;
+          valueText?: string;
+        }) => string;
+        /**
+         * [descr:Properties.label.font]
+         */
+        font?: Font;
+        /**
+         * [descr:Properties.label.format]
+         */
+        format?: DevExpress.ui.Format;
+        /**
+         * [descr:Properties.label.indent]
+         */
+        indent?: number;
+        /**
+         * [descr:Properties.label.visible]
+         */
+        visible?: boolean;
+      };
+      /**
+       * [descr:Properties.legend]
+       */
+      legend?: dxBarGaugeLegend;
+      /**
+       * [descr:Properties.loadingIndicator]
+       */
+      loadingIndicator?: dxBarGaugeLoadingIndicator;
+      /**
+       * [descr:Properties.onTooltipHidden]
+       */
+      onTooltipHidden?: (e: TooltipHiddenEvent) => void;
+      /**
+       * [descr:Properties.onTooltipShown]
+       */
+      onTooltipShown?: (e: TooltipShownEvent) => void;
+      /**
+       * [descr:Properties.palette]
+       */
+      palette?: Array<string> | PaletteType;
+      /**
+       * [descr:Properties.paletteExtensionMode]
+       */
+      paletteExtensionMode?: PaletteExtensionModeType;
+      /**
+       * [descr:Properties.relativeInnerRadius]
+       */
+      relativeInnerRadius?: number;
+      /**
+       * [descr:Properties.resolveLabelOverlapping]
+       */
+      resolveLabelOverlapping?: 'hide' | 'none';
+      /**
+       * [descr:Properties.startValue]
+       */
+      startValue?: number;
+      /**
+       * [descr:Properties.tooltip]
+       */
+      tooltip?: dxBarGaugeTooltip;
+      /**
+       * [descr:Properties.values]
+       */
+      values?: Array<number>;
+    }
     export type TooltipHiddenEvent = DevExpress.events.EventInfo<dxBarGauge> &
       TooltipInfo;
     /**
@@ -25700,125 +25265,6 @@ declare module DevExpress.viz {
     enabled?: boolean;
   }
   /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxBarGaugeOptions extends BaseWidgetOptions<dxBarGauge> {
-    /**
-     * [descr:dxBarGaugeOptions.animation]
-     */
-    animation?: any;
-    /**
-     * [descr:dxBarGaugeOptions.backgroundColor]
-     */
-    backgroundColor?: string;
-    /**
-     * [descr:dxBarGaugeOptions.barSpacing]
-     */
-    barSpacing?: number;
-    /**
-     * [descr:dxBarGaugeOptions.baseValue]
-     */
-    baseValue?: number;
-    /**
-     * [descr:dxBarGaugeOptions.endValue]
-     */
-    endValue?: number;
-    /**
-     * [descr:dxBarGaugeOptions.geometry]
-     */
-    geometry?: {
-      /**
-       * [descr:dxBarGaugeOptions.geometry.endAngle]
-       */
-      endAngle?: number;
-      /**
-       * [descr:dxBarGaugeOptions.geometry.startAngle]
-       */
-      startAngle?: number;
-    };
-    /**
-     * [descr:dxBarGaugeOptions.label]
-     */
-    label?: {
-      /**
-       * [descr:dxBarGaugeOptions.label.connectorColor]
-       */
-      connectorColor?: string;
-      /**
-       * [descr:dxBarGaugeOptions.label.connectorWidth]
-       */
-      connectorWidth?: number;
-      /**
-       * [descr:dxBarGaugeOptions.label.customizeText]
-       */
-      customizeText?: (barValue: {
-        value?: number;
-        valueText?: string;
-      }) => string;
-      /**
-       * [descr:dxBarGaugeOptions.label.font]
-       */
-      font?: Font;
-      /**
-       * [descr:dxBarGaugeOptions.label.format]
-       */
-      format?: DevExpress.ui.Format;
-      /**
-       * [descr:dxBarGaugeOptions.label.indent]
-       */
-      indent?: number;
-      /**
-       * [descr:dxBarGaugeOptions.label.visible]
-       */
-      visible?: boolean;
-    };
-    /**
-     * [descr:dxBarGaugeOptions.legend]
-     */
-    legend?: dxBarGaugeLegend;
-    /**
-     * [descr:dxBarGaugeOptions.loadingIndicator]
-     */
-    loadingIndicator?: dxBarGaugeLoadingIndicator;
-    /**
-     * [descr:dxBarGaugeOptions.onTooltipHidden]
-     */
-    onTooltipHidden?: (e: DevExpress.viz.dxBarGauge.TooltipHiddenEvent) => void;
-    /**
-     * [descr:dxBarGaugeOptions.onTooltipShown]
-     */
-    onTooltipShown?: (e: DevExpress.viz.dxBarGauge.TooltipShownEvent) => void;
-    /**
-     * [descr:dxBarGaugeOptions.palette]
-     */
-    palette?: Array<string> | PaletteType;
-    /**
-     * [descr:dxBarGaugeOptions.paletteExtensionMode]
-     */
-    paletteExtensionMode?: PaletteExtensionModeType;
-    /**
-     * [descr:dxBarGaugeOptions.relativeInnerRadius]
-     */
-    relativeInnerRadius?: number;
-    /**
-     * [descr:dxBarGaugeOptions.resolveLabelOverlapping]
-     */
-    resolveLabelOverlapping?: 'hide' | 'none';
-    /**
-     * [descr:dxBarGaugeOptions.startValue]
-     */
-    startValue?: number;
-    /**
-     * [descr:dxBarGaugeOptions.tooltip]
-     */
-    tooltip?: dxBarGaugeTooltip;
-    /**
-     * [descr:dxBarGaugeOptions.values]
-     */
-    values?: Array<number>;
-  }
-  /**
    * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
    */
   export interface dxBarGaugeTooltip extends BaseWidgetTooltip {
@@ -25847,7 +25293,7 @@ declare module DevExpress.viz {
   /**
    * [descr:dxBullet]
    */
-  export class dxBullet extends BaseSparkline<dxBulletOptions> {}
+  export class dxBullet extends BaseSparkline<DevExpress.viz.dxBullet.Properties> {}
   module dxBullet {
     export type DisposingEvent = DevExpress.events.EventInfo<dxBullet>;
     export type DrawnEvent = DevExpress.events.EventInfo<dxBullet>;
@@ -25862,56 +25308,54 @@ declare module DevExpress.viz {
       DevExpress.events.InitializedEventInfo<dxBullet>;
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxBullet> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxBulletOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends BaseSparklineOptions<dxBullet> {
+      /**
+       * [descr:Properties.color]
+       */
+      color?: string;
+      /**
+       * [descr:Properties.endScaleValue]
+       */
+      endScaleValue?: number;
+      /**
+       * [descr:Properties.showTarget]
+       */
+      showTarget?: boolean;
+      /**
+       * [descr:Properties.showZeroLevel]
+       */
+      showZeroLevel?: boolean;
+      /**
+       * [descr:Properties.startScaleValue]
+       */
+      startScaleValue?: number;
+      /**
+       * [descr:Properties.target]
+       */
+      target?: number;
+      /**
+       * [descr:Properties.targetColor]
+       */
+      targetColor?: string;
+      /**
+       * [descr:Properties.targetWidth]
+       */
+      targetWidth?: number;
+      /**
+       * [descr:Properties.value]
+       */
+      value?: number;
+    }
     export type TooltipHiddenEvent = DevExpress.events.EventInfo<dxBullet>;
     export type TooltipShownEvent = DevExpress.events.EventInfo<dxBullet>;
   }
   /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxBulletOptions extends BaseSparklineOptions<dxBullet> {
-    /**
-     * [descr:dxBulletOptions.color]
-     */
-    color?: string;
-    /**
-     * [descr:dxBulletOptions.endScaleValue]
-     */
-    endScaleValue?: number;
-    /**
-     * [descr:dxBulletOptions.showTarget]
-     */
-    showTarget?: boolean;
-    /**
-     * [descr:dxBulletOptions.showZeroLevel]
-     */
-    showZeroLevel?: boolean;
-    /**
-     * [descr:dxBulletOptions.startScaleValue]
-     */
-    startScaleValue?: number;
-    /**
-     * [descr:dxBulletOptions.target]
-     */
-    target?: number;
-    /**
-     * [descr:dxBulletOptions.targetColor]
-     */
-    targetColor?: string;
-    /**
-     * [descr:dxBulletOptions.targetWidth]
-     */
-    targetWidth?: number;
-    /**
-     * [descr:dxBulletOptions.value]
-     */
-    value?: number;
-  }
-  /**
    * [descr:dxChart]
    */
-  export class dxChart extends BaseChart<dxChartOptions> {
+  export class dxChart extends BaseChart<DevExpress.viz.dxChart.Properties> {
     /**
      * [descr:dxChart.getArgumentAxis()]
      */
@@ -25976,7 +25420,416 @@ declare module DevExpress.viz {
     export type PointSelectionChangedEvent =
       DevExpress.events.EventInfo<dxChart> &
         DevExpress.viz.BaseChart.PointInteractionInfo;
-    export type Properties = dxChartOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends BaseChartOptions<dxChart> {
+      /**
+       * [descr:Properties.adjustOnZoom]
+       */
+      adjustOnZoom?: boolean;
+      /**
+       * [descr:Properties.annotations]
+       */
+      annotations?: Array<dxChartAnnotationConfig | any>;
+      /**
+       * [descr:Properties.argumentAxis]
+       */
+      argumentAxis?: dxChartArgumentAxis;
+      /**
+       * [descr:Properties.autoHidePointMarkers]
+       */
+      autoHidePointMarkers?: boolean;
+      /**
+       * [descr:Properties.barGroupPadding]
+       */
+      barGroupPadding?: number;
+      /**
+       * [descr:Properties.barGroupWidth]
+       */
+      barGroupWidth?: number;
+      /**
+       * [descr:Properties.commonAnnotationSettings]
+       */
+      commonAnnotationSettings?: dxChartCommonAnnotationConfig;
+      /**
+       * [descr:Properties.commonAxisSettings]
+       */
+      commonAxisSettings?: dxChartCommonAxisSettings;
+      /**
+       * [descr:Properties.commonPaneSettings]
+       */
+      commonPaneSettings?: dxChartCommonPaneSettings;
+      /**
+       * [descr:Properties.commonSeriesSettings]
+       */
+      commonSeriesSettings?: dxChartCommonSeriesSettings;
+      /**
+       * [descr:Properties.containerBackgroundColor]
+       */
+      containerBackgroundColor?: string;
+      /**
+       * [descr:Properties.crosshair]
+       */
+      crosshair?: {
+        /**
+         * [descr:Properties.crosshair.color]
+         */
+        color?: string;
+        /**
+         * [descr:Properties.crosshair.dashStyle]
+         */
+        dashStyle?: DashStyleType;
+        /**
+         * [descr:Properties.crosshair.enabled]
+         */
+        enabled?: boolean;
+        /**
+         * [descr:Properties.crosshair.horizontalLine]
+         */
+        horizontalLine?:
+          | {
+              /**
+               * [descr:Properties.crosshair.horizontalLine.color]
+               */
+              color?: string;
+              /**
+               * [descr:Properties.crosshair.horizontalLine.dashStyle]
+               */
+              dashStyle?: DashStyleType;
+              /**
+               * [descr:Properties.crosshair.horizontalLine.label]
+               */
+              label?: {
+                /**
+                 * [descr:Properties.crosshair.horizontalLine.label.backgroundColor]
+                 */
+                backgroundColor?: string;
+                /**
+                 * [descr:Properties.crosshair.horizontalLine.label.customizeText]
+                 */
+                customizeText?: (info: {
+                  value?: Date | number | string;
+                  valueText?: string;
+                  point?: chartPointObject;
+                }) => string;
+                /**
+                 * [descr:Properties.crosshair.horizontalLine.label.font]
+                 */
+                font?: Font;
+                /**
+                 * [descr:Properties.crosshair.horizontalLine.label.format]
+                 */
+                format?: DevExpress.ui.Format;
+                /**
+                 * [descr:Properties.crosshair.horizontalLine.label.visible]
+                 */
+                visible?: boolean;
+              };
+              /**
+               * [descr:Properties.crosshair.horizontalLine.opacity]
+               */
+              opacity?: number;
+              /**
+               * [descr:Properties.crosshair.horizontalLine.visible]
+               */
+              visible?: boolean;
+              /**
+               * [descr:Properties.crosshair.horizontalLine.width]
+               */
+              width?: number;
+            }
+          | boolean;
+        /**
+         * [descr:Properties.crosshair.label]
+         */
+        label?: {
+          /**
+           * [descr:Properties.crosshair.label.backgroundColor]
+           */
+          backgroundColor?: string;
+          /**
+           * [descr:Properties.crosshair.label.customizeText]
+           */
+          customizeText?: (info: {
+            value?: Date | number | string;
+            valueText?: string;
+            point?: chartPointObject;
+          }) => string;
+          /**
+           * [descr:Properties.crosshair.label.font]
+           */
+          font?: Font;
+          /**
+           * [descr:Properties.crosshair.label.format]
+           */
+          format?: DevExpress.ui.Format;
+          /**
+           * [descr:Properties.crosshair.label.visible]
+           */
+          visible?: boolean;
+        };
+        /**
+         * [descr:Properties.crosshair.opacity]
+         */
+        opacity?: number;
+        /**
+         * [descr:Properties.crosshair.verticalLine]
+         */
+        verticalLine?:
+          | {
+              /**
+               * [descr:Properties.crosshair.verticalLine.color]
+               */
+              color?: string;
+              /**
+               * [descr:Properties.crosshair.verticalLine.dashStyle]
+               */
+              dashStyle?: DashStyleType;
+              /**
+               * [descr:Properties.crosshair.verticalLine.label]
+               */
+              label?: {
+                /**
+                 * [descr:Properties.crosshair.verticalLine.label.backgroundColor]
+                 */
+                backgroundColor?: string;
+                /**
+                 * [descr:Properties.crosshair.verticalLine.label.customizeText]
+                 */
+                customizeText?: (info: {
+                  value?: Date | number | string;
+                  valueText?: string;
+                  point?: chartPointObject;
+                }) => string;
+                /**
+                 * [descr:Properties.crosshair.verticalLine.label.font]
+                 */
+                font?: Font;
+                /**
+                 * [descr:Properties.crosshair.verticalLine.label.format]
+                 */
+                format?: DevExpress.ui.Format;
+                /**
+                 * [descr:Properties.crosshair.verticalLine.label.visible]
+                 */
+                visible?: boolean;
+              };
+              /**
+               * [descr:Properties.crosshair.verticalLine.opacity]
+               */
+              opacity?: number;
+              /**
+               * [descr:Properties.crosshair.verticalLine.visible]
+               */
+              visible?: boolean;
+              /**
+               * [descr:Properties.crosshair.verticalLine.width]
+               */
+              width?: number;
+            }
+          | boolean;
+        /**
+         * [descr:Properties.crosshair.width]
+         */
+        width?: number;
+      };
+      /**
+       * [descr:Properties.customizeAnnotation]
+       */
+      customizeAnnotation?: (
+        annotation: dxChartAnnotationConfig | any
+      ) => dxChartAnnotationConfig;
+      /**
+       * [descr:Properties.dataPrepareSettings]
+       */
+      dataPrepareSettings?: {
+        /**
+         * [descr:Properties.dataPrepareSettings.checkTypeForAllData]
+         */
+        checkTypeForAllData?: boolean;
+        /**
+         * [descr:Properties.dataPrepareSettings.convertToAxisDataType]
+         */
+        convertToAxisDataType?: boolean;
+        /**
+         * [descr:Properties.dataPrepareSettings.sortingMethod]
+         */
+        sortingMethod?: boolean | ((a: any, b: any) => number);
+      };
+      /**
+       * [descr:Properties.defaultPane]
+       */
+      defaultPane?: string;
+      /**
+       * [descr:Properties.legend]
+       */
+      legend?: dxChartLegend;
+      /**
+       * [descr:Properties.maxBubbleSize]
+       */
+      maxBubbleSize?: number;
+      /**
+       * [descr:Properties.minBubbleSize]
+       */
+      minBubbleSize?: number;
+      /**
+       * [descr:Properties.negativesAsZeroes]
+       */
+      negativesAsZeroes?: boolean;
+      /**
+       * [descr:Properties.onArgumentAxisClick]
+       */
+      onArgumentAxisClick?: ((e: ArgumentAxisClickEvent) => void) | string;
+      /**
+       * [descr:Properties.onLegendClick]
+       */
+      onLegendClick?: ((e: LegendClickEvent) => void) | string;
+      /**
+       * [descr:Properties.onSeriesClick]
+       */
+      onSeriesClick?: ((e: SeriesClickEvent) => void) | string;
+      /**
+       * [descr:Properties.onSeriesHoverChanged]
+       */
+      onSeriesHoverChanged?: (e: SeriesHoverChangedEvent) => void;
+      /**
+       * [descr:Properties.onSeriesSelectionChanged]
+       */
+      onSeriesSelectionChanged?: (e: SeriesSelectionChangedEvent) => void;
+      /**
+       * [descr:Properties.onZoomEnd]
+       */
+      onZoomEnd?: (e: ZoomEndEvent) => void;
+      /**
+       * [descr:Properties.onZoomStart]
+       */
+      onZoomStart?: (e: ZoomStartEvent) => void;
+      /**
+       * [descr:Properties.panes]
+       */
+      panes?: dxChartPanes | Array<dxChartPanes>;
+      /**
+       * [descr:Properties.resizePanesOnZoom]
+       */
+      resizePanesOnZoom?: boolean;
+      /**
+       * [descr:Properties.resolveLabelOverlapping]
+       */
+      resolveLabelOverlapping?: 'hide' | 'none' | 'stack';
+      /**
+       * [descr:Properties.rotated]
+       */
+      rotated?: boolean;
+      /**
+       * [descr:Properties.scrollBar]
+       */
+      scrollBar?: {
+        /**
+         * [descr:Properties.scrollBar.color]
+         */
+        color?: string;
+        /**
+         * [descr:Properties.scrollBar.offset]
+         */
+        offset?: number;
+        /**
+         * [descr:Properties.scrollBar.opacity]
+         */
+        opacity?: number;
+        /**
+         * [descr:Properties.scrollBar.position]
+         */
+        position?: 'bottom' | 'left' | 'right' | 'top';
+        /**
+         * [descr:Properties.scrollBar.visible]
+         */
+        visible?: boolean;
+        /**
+         * [descr:Properties.scrollBar.width]
+         */
+        width?: number;
+      };
+      /**
+       * [descr:Properties.series]
+       */
+      series?: ChartSeries | Array<ChartSeries>;
+      /**
+       * [descr:Properties.seriesSelectionMode]
+       */
+      seriesSelectionMode?: 'multiple' | 'single';
+      /**
+       * [descr:Properties.seriesTemplate]
+       */
+      seriesTemplate?: {
+        /**
+         * [descr:Properties.seriesTemplate.customizeSeries]
+         */
+        customizeSeries?: (seriesName: any) => ChartSeries;
+        /**
+         * [descr:Properties.seriesTemplate.nameField]
+         */
+        nameField?: string;
+      };
+      /**
+       * [descr:Properties.stickyHovering]
+       */
+      stickyHovering?: boolean;
+      /**
+       * [descr:Properties.synchronizeMultiAxes]
+       */
+      synchronizeMultiAxes?: boolean;
+      /**
+       * [descr:Properties.tooltip]
+       */
+      tooltip?: dxChartTooltip;
+      /**
+       * [descr:Properties.valueAxis]
+       */
+      valueAxis?: dxChartValueAxis | Array<dxChartValueAxis>;
+      /**
+       * [descr:Properties.zoomAndPan]
+       */
+      zoomAndPan?: {
+        /**
+         * [descr:Properties.zoomAndPan.allowMouseWheel]
+         */
+        allowMouseWheel?: boolean;
+        /**
+         * [descr:Properties.zoomAndPan.allowTouchGestures]
+         */
+        allowTouchGestures?: boolean;
+        /**
+         * [descr:Properties.zoomAndPan.argumentAxis]
+         */
+        argumentAxis?: 'both' | 'none' | 'pan' | 'zoom';
+        /**
+         * [descr:Properties.zoomAndPan.dragBoxStyle]
+         */
+        dragBoxStyle?: {
+          /**
+           * [descr:Properties.zoomAndPan.dragBoxStyle.color]
+           */
+          color?: string;
+          /**
+           * [descr:Properties.zoomAndPan.dragBoxStyle.opacity]
+           */
+          opacity?: number;
+        };
+        /**
+         * [descr:Properties.zoomAndPan.dragToZoom]
+         */
+        dragToZoom?: boolean;
+        /**
+         * [descr:Properties.zoomAndPan.panKey]
+         */
+        panKey?: 'alt' | 'ctrl' | 'meta' | 'shift';
+        /**
+         * [descr:Properties.zoomAndPan.valueAxis]
+         */
+        valueAxis?: 'both' | 'none' | 'pan' | 'zoom';
+      };
+    }
     export type SeriesClickEvent =
       DevExpress.events.NativeEventInfo<dxChart> & {
         readonly target: chartSeriesObject;
@@ -26849,427 +26702,6 @@ declare module DevExpress.viz {
      * [descr:dxChartOptions.legend.position]
      */
     position?: 'inside' | 'outside';
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxChartOptions extends BaseChartOptions<dxChart> {
-    /**
-     * [descr:dxChartOptions.adjustOnZoom]
-     */
-    adjustOnZoom?: boolean;
-    /**
-     * [descr:dxChartOptions.annotations]
-     */
-    annotations?: Array<dxChartAnnotationConfig | any>;
-    /**
-     * [descr:dxChartOptions.argumentAxis]
-     */
-    argumentAxis?: dxChartArgumentAxis;
-    /**
-     * [descr:dxChartOptions.autoHidePointMarkers]
-     */
-    autoHidePointMarkers?: boolean;
-    /**
-     * [descr:dxChartOptions.barGroupPadding]
-     */
-    barGroupPadding?: number;
-    /**
-     * [descr:dxChartOptions.barGroupWidth]
-     */
-    barGroupWidth?: number;
-    /**
-     * [descr:dxChartOptions.commonAnnotationSettings]
-     */
-    commonAnnotationSettings?: dxChartCommonAnnotationConfig;
-    /**
-     * [descr:dxChartOptions.commonAxisSettings]
-     */
-    commonAxisSettings?: dxChartCommonAxisSettings;
-    /**
-     * [descr:dxChartOptions.commonPaneSettings]
-     */
-    commonPaneSettings?: dxChartCommonPaneSettings;
-    /**
-     * [descr:dxChartOptions.commonSeriesSettings]
-     */
-    commonSeriesSettings?: dxChartCommonSeriesSettings;
-    /**
-     * [descr:dxChartOptions.containerBackgroundColor]
-     */
-    containerBackgroundColor?: string;
-    /**
-     * [descr:dxChartOptions.crosshair]
-     */
-    crosshair?: {
-      /**
-       * [descr:dxChartOptions.crosshair.color]
-       */
-      color?: string;
-      /**
-       * [descr:dxChartOptions.crosshair.dashStyle]
-       */
-      dashStyle?: DashStyleType;
-      /**
-       * [descr:dxChartOptions.crosshair.enabled]
-       */
-      enabled?: boolean;
-      /**
-       * [descr:dxChartOptions.crosshair.horizontalLine]
-       */
-      horizontalLine?:
-        | {
-            /**
-             * [descr:dxChartOptions.crosshair.horizontalLine.color]
-             */
-            color?: string;
-            /**
-             * [descr:dxChartOptions.crosshair.horizontalLine.dashStyle]
-             */
-            dashStyle?: DashStyleType;
-            /**
-             * [descr:dxChartOptions.crosshair.horizontalLine.label]
-             */
-            label?: {
-              /**
-               * [descr:dxChartOptions.crosshair.horizontalLine.label.backgroundColor]
-               */
-              backgroundColor?: string;
-              /**
-               * [descr:dxChartOptions.crosshair.horizontalLine.label.customizeText]
-               */
-              customizeText?: (info: {
-                value?: Date | number | string;
-                valueText?: string;
-                point?: chartPointObject;
-              }) => string;
-              /**
-               * [descr:dxChartOptions.crosshair.horizontalLine.label.font]
-               */
-              font?: Font;
-              /**
-               * [descr:dxChartOptions.crosshair.horizontalLine.label.format]
-               */
-              format?: DevExpress.ui.Format;
-              /**
-               * [descr:dxChartOptions.crosshair.horizontalLine.label.visible]
-               */
-              visible?: boolean;
-            };
-            /**
-             * [descr:dxChartOptions.crosshair.horizontalLine.opacity]
-             */
-            opacity?: number;
-            /**
-             * [descr:dxChartOptions.crosshair.horizontalLine.visible]
-             */
-            visible?: boolean;
-            /**
-             * [descr:dxChartOptions.crosshair.horizontalLine.width]
-             */
-            width?: number;
-          }
-        | boolean;
-      /**
-       * [descr:dxChartOptions.crosshair.label]
-       */
-      label?: {
-        /**
-         * [descr:dxChartOptions.crosshair.label.backgroundColor]
-         */
-        backgroundColor?: string;
-        /**
-         * [descr:dxChartOptions.crosshair.label.customizeText]
-         */
-        customizeText?: (info: {
-          value?: Date | number | string;
-          valueText?: string;
-          point?: chartPointObject;
-        }) => string;
-        /**
-         * [descr:dxChartOptions.crosshair.label.font]
-         */
-        font?: Font;
-        /**
-         * [descr:dxChartOptions.crosshair.label.format]
-         */
-        format?: DevExpress.ui.Format;
-        /**
-         * [descr:dxChartOptions.crosshair.label.visible]
-         */
-        visible?: boolean;
-      };
-      /**
-       * [descr:dxChartOptions.crosshair.opacity]
-       */
-      opacity?: number;
-      /**
-       * [descr:dxChartOptions.crosshair.verticalLine]
-       */
-      verticalLine?:
-        | {
-            /**
-             * [descr:dxChartOptions.crosshair.verticalLine.color]
-             */
-            color?: string;
-            /**
-             * [descr:dxChartOptions.crosshair.verticalLine.dashStyle]
-             */
-            dashStyle?: DashStyleType;
-            /**
-             * [descr:dxChartOptions.crosshair.verticalLine.label]
-             */
-            label?: {
-              /**
-               * [descr:dxChartOptions.crosshair.verticalLine.label.backgroundColor]
-               */
-              backgroundColor?: string;
-              /**
-               * [descr:dxChartOptions.crosshair.verticalLine.label.customizeText]
-               */
-              customizeText?: (info: {
-                value?: Date | number | string;
-                valueText?: string;
-                point?: chartPointObject;
-              }) => string;
-              /**
-               * [descr:dxChartOptions.crosshair.verticalLine.label.font]
-               */
-              font?: Font;
-              /**
-               * [descr:dxChartOptions.crosshair.verticalLine.label.format]
-               */
-              format?: DevExpress.ui.Format;
-              /**
-               * [descr:dxChartOptions.crosshair.verticalLine.label.visible]
-               */
-              visible?: boolean;
-            };
-            /**
-             * [descr:dxChartOptions.crosshair.verticalLine.opacity]
-             */
-            opacity?: number;
-            /**
-             * [descr:dxChartOptions.crosshair.verticalLine.visible]
-             */
-            visible?: boolean;
-            /**
-             * [descr:dxChartOptions.crosshair.verticalLine.width]
-             */
-            width?: number;
-          }
-        | boolean;
-      /**
-       * [descr:dxChartOptions.crosshair.width]
-       */
-      width?: number;
-    };
-    /**
-     * [descr:dxChartOptions.customizeAnnotation]
-     */
-    customizeAnnotation?: (
-      annotation: dxChartAnnotationConfig | any
-    ) => dxChartAnnotationConfig;
-    /**
-     * [descr:dxChartOptions.dataPrepareSettings]
-     */
-    dataPrepareSettings?: {
-      /**
-       * [descr:dxChartOptions.dataPrepareSettings.checkTypeForAllData]
-       */
-      checkTypeForAllData?: boolean;
-      /**
-       * [descr:dxChartOptions.dataPrepareSettings.convertToAxisDataType]
-       */
-      convertToAxisDataType?: boolean;
-      /**
-       * [descr:dxChartOptions.dataPrepareSettings.sortingMethod]
-       */
-      sortingMethod?: boolean | ((a: any, b: any) => number);
-    };
-    /**
-     * [descr:dxChartOptions.defaultPane]
-     */
-    defaultPane?: string;
-    /**
-     * [descr:dxChartOptions.legend]
-     */
-    legend?: dxChartLegend;
-    /**
-     * [descr:dxChartOptions.maxBubbleSize]
-     */
-    maxBubbleSize?: number;
-    /**
-     * [descr:dxChartOptions.minBubbleSize]
-     */
-    minBubbleSize?: number;
-    /**
-     * [descr:dxChartOptions.negativesAsZeroes]
-     */
-    negativesAsZeroes?: boolean;
-    /**
-     * [descr:dxChartOptions.onArgumentAxisClick]
-     */
-    onArgumentAxisClick?:
-      | ((e: DevExpress.viz.dxChart.ArgumentAxisClickEvent) => void)
-      | string;
-    /**
-     * [descr:dxChartOptions.onLegendClick]
-     */
-    onLegendClick?:
-      | ((e: DevExpress.viz.dxChart.LegendClickEvent) => void)
-      | string;
-    /**
-     * [descr:dxChartOptions.onSeriesClick]
-     */
-    onSeriesClick?:
-      | ((e: DevExpress.viz.dxChart.SeriesClickEvent) => void)
-      | string;
-    /**
-     * [descr:dxChartOptions.onSeriesHoverChanged]
-     */
-    onSeriesHoverChanged?: (
-      e: DevExpress.viz.dxChart.SeriesHoverChangedEvent
-    ) => void;
-    /**
-     * [descr:dxChartOptions.onSeriesSelectionChanged]
-     */
-    onSeriesSelectionChanged?: (
-      e: DevExpress.viz.dxChart.SeriesSelectionChangedEvent
-    ) => void;
-    /**
-     * [descr:dxChartOptions.onZoomEnd]
-     */
-    onZoomEnd?: (e: DevExpress.viz.dxChart.ZoomEndEvent) => void;
-    /**
-     * [descr:dxChartOptions.onZoomStart]
-     */
-    onZoomStart?: (e: DevExpress.viz.dxChart.ZoomStartEvent) => void;
-    /**
-     * [descr:dxChartOptions.panes]
-     */
-    panes?: dxChartPanes | Array<dxChartPanes>;
-    /**
-     * [descr:dxChartOptions.resizePanesOnZoom]
-     */
-    resizePanesOnZoom?: boolean;
-    /**
-     * [descr:dxChartOptions.resolveLabelOverlapping]
-     */
-    resolveLabelOverlapping?: 'hide' | 'none' | 'stack';
-    /**
-     * [descr:dxChartOptions.rotated]
-     */
-    rotated?: boolean;
-    /**
-     * [descr:dxChartOptions.scrollBar]
-     */
-    scrollBar?: {
-      /**
-       * [descr:dxChartOptions.scrollBar.color]
-       */
-      color?: string;
-      /**
-       * [descr:dxChartOptions.scrollBar.offset]
-       */
-      offset?: number;
-      /**
-       * [descr:dxChartOptions.scrollBar.opacity]
-       */
-      opacity?: number;
-      /**
-       * [descr:dxChartOptions.scrollBar.position]
-       */
-      position?: 'bottom' | 'left' | 'right' | 'top';
-      /**
-       * [descr:dxChartOptions.scrollBar.visible]
-       */
-      visible?: boolean;
-      /**
-       * [descr:dxChartOptions.scrollBar.width]
-       */
-      width?: number;
-    };
-    /**
-     * [descr:dxChartOptions.series]
-     */
-    series?: ChartSeries | Array<ChartSeries>;
-    /**
-     * [descr:dxChartOptions.seriesSelectionMode]
-     */
-    seriesSelectionMode?: 'multiple' | 'single';
-    /**
-     * [descr:dxChartOptions.seriesTemplate]
-     */
-    seriesTemplate?: {
-      /**
-       * [descr:dxChartOptions.seriesTemplate.customizeSeries]
-       */
-      customizeSeries?: (seriesName: any) => ChartSeries;
-      /**
-       * [descr:dxChartOptions.seriesTemplate.nameField]
-       */
-      nameField?: string;
-    };
-    /**
-     * [descr:dxChartOptions.stickyHovering]
-     */
-    stickyHovering?: boolean;
-    /**
-     * [descr:dxChartOptions.synchronizeMultiAxes]
-     */
-    synchronizeMultiAxes?: boolean;
-    /**
-     * [descr:dxChartOptions.tooltip]
-     */
-    tooltip?: dxChartTooltip;
-    /**
-     * [descr:dxChartOptions.valueAxis]
-     */
-    valueAxis?: dxChartValueAxis | Array<dxChartValueAxis>;
-    /**
-     * [descr:dxChartOptions.zoomAndPan]
-     */
-    zoomAndPan?: {
-      /**
-       * [descr:dxChartOptions.zoomAndPan.allowMouseWheel]
-       */
-      allowMouseWheel?: boolean;
-      /**
-       * [descr:dxChartOptions.zoomAndPan.allowTouchGestures]
-       */
-      allowTouchGestures?: boolean;
-      /**
-       * [descr:dxChartOptions.zoomAndPan.argumentAxis]
-       */
-      argumentAxis?: 'both' | 'none' | 'pan' | 'zoom';
-      /**
-       * [descr:dxChartOptions.zoomAndPan.dragBoxStyle]
-       */
-      dragBoxStyle?: {
-        /**
-         * [descr:dxChartOptions.zoomAndPan.dragBoxStyle.color]
-         */
-        color?: string;
-        /**
-         * [descr:dxChartOptions.zoomAndPan.dragBoxStyle.opacity]
-         */
-        opacity?: number;
-      };
-      /**
-       * [descr:dxChartOptions.zoomAndPan.dragToZoom]
-       */
-      dragToZoom?: boolean;
-      /**
-       * [descr:dxChartOptions.zoomAndPan.panKey]
-       */
-      panKey?: 'alt' | 'ctrl' | 'meta' | 'shift';
-      /**
-       * [descr:dxChartOptions.zoomAndPan.valueAxis]
-       */
-      valueAxis?: 'both' | 'none' | 'pan' | 'zoom';
-    };
   }
   /**
    * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
@@ -29531,7 +28963,7 @@ declare module DevExpress.viz {
   /**
    * [descr:dxCircularGauge]
    */
-  export class dxCircularGauge extends BaseGauge<dxCircularGaugeOptions> {}
+  export class dxCircularGauge extends BaseGauge<DevExpress.viz.dxCircularGauge.Properties> {}
   module dxCircularGauge {
     export type DisposingEvent = DevExpress.events.EventInfo<dxCircularGauge>;
     export type DrawnEvent = DevExpress.events.EventInfo<dxCircularGauge>;
@@ -29548,49 +28980,46 @@ declare module DevExpress.viz {
     export type OptionChangedEvent =
       DevExpress.events.EventInfo<dxCircularGauge> &
         DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxCircularGaugeOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends BaseGaugeOptions<dxCircularGauge> {
+      /**
+       * [descr:Properties.geometry]
+       */
+      geometry?: {
+        /**
+         * [descr:Properties.geometry.endAngle]
+         */
+        endAngle?: number;
+        /**
+         * [descr:Properties.geometry.startAngle]
+         */
+        startAngle?: number;
+      };
+      /**
+       * [descr:Properties.rangeContainer]
+       */
+      rangeContainer?: dxCircularGaugeRangeContainer;
+      /**
+       * [descr:Properties.scale]
+       */
+      scale?: dxCircularGaugeScale;
+      /**
+       * [descr:Properties.subvalueIndicator]
+       */
+      subvalueIndicator?: GaugeIndicator;
+      /**
+       * [descr:Properties.valueIndicator]
+       */
+      valueIndicator?: GaugeIndicator;
+    }
     export type TooltipHiddenEvent =
       DevExpress.events.EventInfo<dxCircularGauge> &
         DevExpress.viz.BaseGauge.TooltipInfo;
     export type TooltipShownEvent =
       DevExpress.events.EventInfo<dxCircularGauge> &
         DevExpress.viz.BaseGauge.TooltipInfo;
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxCircularGaugeOptions
-    extends BaseGaugeOptions<dxCircularGauge> {
-    /**
-     * [descr:dxCircularGaugeOptions.geometry]
-     */
-    geometry?: {
-      /**
-       * [descr:dxCircularGaugeOptions.geometry.endAngle]
-       */
-      endAngle?: number;
-      /**
-       * [descr:dxCircularGaugeOptions.geometry.startAngle]
-       */
-      startAngle?: number;
-    };
-    /**
-     * [descr:dxCircularGaugeOptions.rangeContainer]
-     */
-    rangeContainer?: dxCircularGaugeRangeContainer;
-    /**
-     * [descr:dxCircularGaugeOptions.scale]
-     */
-    scale?: dxCircularGaugeScale;
-    /**
-     * [descr:dxCircularGaugeOptions.subvalueIndicator]
-     */
-    subvalueIndicator?: GaugeIndicator;
-    /**
-     * [descr:dxCircularGaugeOptions.valueIndicator]
-     */
-    valueIndicator?: GaugeIndicator;
   }
   /**
    * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
@@ -29635,7 +29064,7 @@ declare module DevExpress.viz {
   /**
    * [descr:dxFunnel]
    */
-  export class dxFunnel extends BaseWidget<dxFunnelOptions> {
+  export class dxFunnel extends BaseWidget<DevExpress.viz.dxFunnel.Properties> {
     /**
      * [descr:dxFunnel.clearSelection()]
      */
@@ -29676,56 +29105,321 @@ declare module DevExpress.viz {
       FunnelItemInfo;
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxFunnel> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxFunnelOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends BaseWidgetOptions<dxFunnel> {
+      /**
+       * [descr:Properties.adaptiveLayout]
+       */
+      adaptiveLayout?: {
+        /**
+         * [descr:Properties.adaptiveLayout.height]
+         */
+        height?: number;
+        /**
+         * [descr:Properties.adaptiveLayout.keepLabels]
+         */
+        keepLabels?: boolean;
+        /**
+         * [descr:Properties.adaptiveLayout.width]
+         */
+        width?: number;
+      };
+      /**
+       * [descr:Properties.algorithm]
+       */
+      algorithm?: 'dynamicHeight' | 'dynamicSlope';
+      /**
+       * [descr:Properties.argumentField]
+       */
+      argumentField?: string;
+      /**
+       * [descr:Properties.colorField]
+       */
+      colorField?: string;
+      /**
+       * [descr:Properties.dataSource]
+       */
+      dataSource?: DevExpress.data.DataSource.DataSourceLike<any>;
+      /**
+       * [descr:Properties.hoverEnabled]
+       */
+      hoverEnabled?: boolean;
+      /**
+       * [descr:Properties.inverted]
+       */
+      inverted?: boolean;
+      /**
+       * [descr:Properties.item]
+       */
+      item?: {
+        /**
+         * [descr:Properties.item.border]
+         */
+        border?: {
+          /**
+           * [descr:Properties.item.border.color]
+           */
+          color?: string;
+          /**
+           * [descr:Properties.item.border.visible]
+           */
+          visible?: boolean;
+          /**
+           * [descr:Properties.item.border.width]
+           */
+          width?: number;
+        };
+        /**
+         * [descr:Properties.item.hoverStyle]
+         */
+        hoverStyle?: {
+          /**
+           * [descr:Properties.item.hoverStyle.border]
+           */
+          border?: {
+            /**
+             * [descr:Properties.item.hoverStyle.border.color]
+             */
+            color?: string;
+            /**
+             * [descr:Properties.item.hoverStyle.border.visible]
+             */
+            visible?: boolean;
+            /**
+             * [descr:Properties.item.hoverStyle.border.width]
+             */
+            width?: number;
+          };
+          /**
+           * [descr:Properties.item.hoverStyle.hatching]
+           */
+          hatching?: {
+            /**
+             * [descr:Properties.item.hoverStyle.hatching.direction]
+             */
+            direction?: HatchingDirectionType;
+            /**
+             * [descr:Properties.item.hoverStyle.hatching.opacity]
+             */
+            opacity?: number;
+            /**
+             * [descr:Properties.item.hoverStyle.hatching.step]
+             */
+            step?: number;
+            /**
+             * [descr:Properties.item.hoverStyle.hatching.width]
+             */
+            width?: number;
+          };
+        };
+        /**
+         * [descr:Properties.item.selectionStyle]
+         */
+        selectionStyle?: {
+          /**
+           * [descr:Properties.item.selectionStyle.border]
+           */
+          border?: {
+            /**
+             * [descr:Properties.item.selectionStyle.border.color]
+             */
+            color?: string;
+            /**
+             * [descr:Properties.item.selectionStyle.border.visible]
+             */
+            visible?: boolean;
+            /**
+             * [descr:Properties.item.selectionStyle.border.width]
+             */
+            width?: number;
+          };
+          /**
+           * [descr:Properties.item.selectionStyle.hatching]
+           */
+          hatching?: {
+            /**
+             * [descr:Properties.item.selectionStyle.hatching.direction]
+             */
+            direction?: HatchingDirectionType;
+            /**
+             * [descr:Properties.item.selectionStyle.hatching.opacity]
+             */
+            opacity?: number;
+            /**
+             * [descr:Properties.item.selectionStyle.hatching.step]
+             */
+            step?: number;
+            /**
+             * [descr:Properties.item.selectionStyle.hatching.width]
+             */
+            width?: number;
+          };
+        };
+      };
+      /**
+       * [descr:Properties.label]
+       */
+      label?: {
+        /**
+         * [descr:Properties.label.backgroundColor]
+         */
+        backgroundColor?: string;
+        /**
+         * [descr:Properties.label.border]
+         */
+        border?: {
+          /**
+           * [descr:Properties.label.border.color]
+           */
+          color?: string;
+          /**
+           * [descr:Properties.label.border.dashStyle]
+           */
+          dashStyle?: DashStyleType;
+          /**
+           * [descr:Properties.label.border.visible]
+           */
+          visible?: boolean;
+          /**
+           * [descr:Properties.label.border.width]
+           */
+          width?: number;
+        };
+        /**
+         * [descr:Properties.label.connector]
+         */
+        connector?: {
+          /**
+           * [descr:Properties.label.connector.color]
+           */
+          color?: string;
+          /**
+           * [descr:Properties.label.connector.opacity]
+           */
+          opacity?: number;
+          /**
+           * [descr:Properties.label.connector.visible]
+           */
+          visible?: boolean;
+          /**
+           * [descr:Properties.label.connector.width]
+           */
+          width?: number;
+        };
+        /**
+         * [descr:Properties.label.customizeText]
+         */
+        customizeText?: (itemInfo: {
+          item?: Item;
+          value?: number;
+          valueText?: string;
+          percent?: number;
+          percentText?: string;
+        }) => string;
+        /**
+         * [descr:Properties.label.font]
+         */
+        font?: Font;
+        /**
+         * [descr:Properties.label.format]
+         */
+        format?: DevExpress.ui.Format;
+        /**
+         * [descr:Properties.label.horizontalAlignment]
+         */
+        horizontalAlignment?: 'left' | 'right';
+        /**
+         * [descr:Properties.label.horizontalOffset]
+         */
+        horizontalOffset?: number;
+        /**
+         * [descr:Properties.label.position]
+         */
+        position?: 'columns' | 'inside' | 'outside';
+        /**
+         * [descr:Properties.label.showForZeroValues]
+         */
+        showForZeroValues?: boolean;
+        /**
+         * [descr:Properties.label.textOverflow]
+         */
+        textOverflow?: DevExpress.viz.BaseWidget.VizTextOverflowType;
+        /**
+         * [descr:Properties.label.visible]
+         */
+        visible?: boolean;
+        /**
+         * [descr:Properties.label.wordWrap]
+         */
+        wordWrap?: DevExpress.viz.BaseWidget.WordWrapType;
+      };
+      /**
+       * [descr:Properties.legend]
+       */
+      legend?: dxFunnelLegend;
+      /**
+       * [descr:Properties.neckHeight]
+       */
+      neckHeight?: number;
+      /**
+       * [descr:Properties.neckWidth]
+       */
+      neckWidth?: number;
+      /**
+       * [descr:Properties.onHoverChanged]
+       */
+      onHoverChanged?: (e: HoverChangedEvent) => void;
+      /**
+       * [descr:Properties.onItemClick]
+       */
+      onItemClick?: ((e: ItemClickEvent) => void) | string;
+      /**
+       * [descr:Properties.onLegendClick]
+       */
+      onLegendClick?: ((e: LegendClickEvent) => void) | string;
+      /**
+       * [descr:Properties.onSelectionChanged]
+       */
+      onSelectionChanged?: (e: SelectionChangedEvent) => void;
+      /**
+       * [descr:Properties.palette]
+       */
+      palette?: Array<string> | PaletteType;
+      /**
+       * [descr:Properties.paletteExtensionMode]
+       */
+      paletteExtensionMode?: PaletteExtensionModeType;
+      /**
+       * [descr:Properties.resolveLabelOverlapping]
+       */
+      resolveLabelOverlapping?: 'hide' | 'none' | 'shift';
+      /**
+       * [descr:Properties.selectionMode]
+       */
+      selectionMode?: 'multiple' | 'none' | 'single';
+      /**
+       * [descr:Properties.sortData]
+       */
+      sortData?: boolean;
+      /**
+       * [descr:Properties.tooltip]
+       */
+      tooltip?: dxFunnelTooltip;
+      /**
+       * [descr:Properties.valueField]
+       */
+      valueField?: string;
+    }
     export type SelectionChangedEvent = DevExpress.events.EventInfo<dxFunnel> &
       FunnelItemInfo;
   }
   /**
-   * @deprecated Use Item instead
+   * @deprecated Use DevExpress.viz.dxFunnel.Item instead
    * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
    */
-  export interface dxFunnelItem {
-    /**
-     * [descr:dxFunnelItem.argument]
-     */
-    argument?: string | Date | number;
-    /**
-     * [descr:dxFunnelItem.data]
-     */
-    data?: any;
-    /**
-     * [descr:dxFunnelItem.getColor()]
-     */
-    getColor(): string;
-    /**
-     * [descr:dxFunnelItem.hover(state)]
-     */
-    hover(state: boolean): void;
-    /**
-     * [descr:dxFunnelItem.isHovered()]
-     */
-    isHovered(): boolean;
-    /**
-     * [descr:dxFunnelItem.isSelected()]
-     */
-    isSelected(): boolean;
-    /**
-     * [descr:dxFunnelItem.percent]
-     */
-    percent?: number;
-    /**
-     * [descr:dxFunnelItem.select(state)]
-     */
-    select(state: boolean): void;
-    /**
-     * [descr:dxFunnelItem.showTooltip()]
-     */
-    showTooltip(): void;
-    /**
-     * [descr:dxFunnelItem.value]
-     */
-    value?: number;
-  }
+  export type dxFunnelItem = DevExpress.viz.dxFunnel.Item;
   /**
    * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
    */
@@ -29765,320 +29459,6 @@ declare module DevExpress.viz {
     visible?: boolean;
   }
   /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxFunnelOptions extends BaseWidgetOptions<dxFunnel> {
-    /**
-     * [descr:dxFunnelOptions.adaptiveLayout]
-     */
-    adaptiveLayout?: {
-      /**
-       * [descr:dxFunnelOptions.adaptiveLayout.height]
-       */
-      height?: number;
-      /**
-       * [descr:dxFunnelOptions.adaptiveLayout.keepLabels]
-       */
-      keepLabels?: boolean;
-      /**
-       * [descr:dxFunnelOptions.adaptiveLayout.width]
-       */
-      width?: number;
-    };
-    /**
-     * [descr:dxFunnelOptions.algorithm]
-     */
-    algorithm?: 'dynamicHeight' | 'dynamicSlope';
-    /**
-     * [descr:dxFunnelOptions.argumentField]
-     */
-    argumentField?: string;
-    /**
-     * [descr:dxFunnelOptions.colorField]
-     */
-    colorField?: string;
-    /**
-     * [descr:dxFunnelOptions.dataSource]
-     */
-    dataSource?: DevExpress.data.DataSource.DataSourceLike<any>;
-    /**
-     * [descr:dxFunnelOptions.hoverEnabled]
-     */
-    hoverEnabled?: boolean;
-    /**
-     * [descr:dxFunnelOptions.inverted]
-     */
-    inverted?: boolean;
-    /**
-     * [descr:dxFunnelOptions.item]
-     */
-    item?: {
-      /**
-       * [descr:dxFunnelOptions.item.border]
-       */
-      border?: {
-        /**
-         * [descr:dxFunnelOptions.item.border.color]
-         */
-        color?: string;
-        /**
-         * [descr:dxFunnelOptions.item.border.visible]
-         */
-        visible?: boolean;
-        /**
-         * [descr:dxFunnelOptions.item.border.width]
-         */
-        width?: number;
-      };
-      /**
-       * [descr:dxFunnelOptions.item.hoverStyle]
-       */
-      hoverStyle?: {
-        /**
-         * [descr:dxFunnelOptions.item.hoverStyle.border]
-         */
-        border?: {
-          /**
-           * [descr:dxFunnelOptions.item.hoverStyle.border.color]
-           */
-          color?: string;
-          /**
-           * [descr:dxFunnelOptions.item.hoverStyle.border.visible]
-           */
-          visible?: boolean;
-          /**
-           * [descr:dxFunnelOptions.item.hoverStyle.border.width]
-           */
-          width?: number;
-        };
-        /**
-         * [descr:dxFunnelOptions.item.hoverStyle.hatching]
-         */
-        hatching?: {
-          /**
-           * [descr:dxFunnelOptions.item.hoverStyle.hatching.direction]
-           */
-          direction?: HatchingDirectionType;
-          /**
-           * [descr:dxFunnelOptions.item.hoverStyle.hatching.opacity]
-           */
-          opacity?: number;
-          /**
-           * [descr:dxFunnelOptions.item.hoverStyle.hatching.step]
-           */
-          step?: number;
-          /**
-           * [descr:dxFunnelOptions.item.hoverStyle.hatching.width]
-           */
-          width?: number;
-        };
-      };
-      /**
-       * [descr:dxFunnelOptions.item.selectionStyle]
-       */
-      selectionStyle?: {
-        /**
-         * [descr:dxFunnelOptions.item.selectionStyle.border]
-         */
-        border?: {
-          /**
-           * [descr:dxFunnelOptions.item.selectionStyle.border.color]
-           */
-          color?: string;
-          /**
-           * [descr:dxFunnelOptions.item.selectionStyle.border.visible]
-           */
-          visible?: boolean;
-          /**
-           * [descr:dxFunnelOptions.item.selectionStyle.border.width]
-           */
-          width?: number;
-        };
-        /**
-         * [descr:dxFunnelOptions.item.selectionStyle.hatching]
-         */
-        hatching?: {
-          /**
-           * [descr:dxFunnelOptions.item.selectionStyle.hatching.direction]
-           */
-          direction?: HatchingDirectionType;
-          /**
-           * [descr:dxFunnelOptions.item.selectionStyle.hatching.opacity]
-           */
-          opacity?: number;
-          /**
-           * [descr:dxFunnelOptions.item.selectionStyle.hatching.step]
-           */
-          step?: number;
-          /**
-           * [descr:dxFunnelOptions.item.selectionStyle.hatching.width]
-           */
-          width?: number;
-        };
-      };
-    };
-    /**
-     * [descr:dxFunnelOptions.label]
-     */
-    label?: {
-      /**
-       * [descr:dxFunnelOptions.label.backgroundColor]
-       */
-      backgroundColor?: string;
-      /**
-       * [descr:dxFunnelOptions.label.border]
-       */
-      border?: {
-        /**
-         * [descr:dxFunnelOptions.label.border.color]
-         */
-        color?: string;
-        /**
-         * [descr:dxFunnelOptions.label.border.dashStyle]
-         */
-        dashStyle?: DashStyleType;
-        /**
-         * [descr:dxFunnelOptions.label.border.visible]
-         */
-        visible?: boolean;
-        /**
-         * [descr:dxFunnelOptions.label.border.width]
-         */
-        width?: number;
-      };
-      /**
-       * [descr:dxFunnelOptions.label.connector]
-       */
-      connector?: {
-        /**
-         * [descr:dxFunnelOptions.label.connector.color]
-         */
-        color?: string;
-        /**
-         * [descr:dxFunnelOptions.label.connector.opacity]
-         */
-        opacity?: number;
-        /**
-         * [descr:dxFunnelOptions.label.connector.visible]
-         */
-        visible?: boolean;
-        /**
-         * [descr:dxFunnelOptions.label.connector.width]
-         */
-        width?: number;
-      };
-      /**
-       * [descr:dxFunnelOptions.label.customizeText]
-       */
-      customizeText?: (itemInfo: {
-        item?: DevExpress.viz.dxFunnel.Item;
-        value?: number;
-        valueText?: string;
-        percent?: number;
-        percentText?: string;
-      }) => string;
-      /**
-       * [descr:dxFunnelOptions.label.font]
-       */
-      font?: Font;
-      /**
-       * [descr:dxFunnelOptions.label.format]
-       */
-      format?: DevExpress.ui.Format;
-      /**
-       * [descr:dxFunnelOptions.label.horizontalAlignment]
-       */
-      horizontalAlignment?: 'left' | 'right';
-      /**
-       * [descr:dxFunnelOptions.label.horizontalOffset]
-       */
-      horizontalOffset?: number;
-      /**
-       * [descr:dxFunnelOptions.label.position]
-       */
-      position?: 'columns' | 'inside' | 'outside';
-      /**
-       * [descr:dxFunnelOptions.label.showForZeroValues]
-       */
-      showForZeroValues?: boolean;
-      /**
-       * [descr:dxFunnelOptions.label.textOverflow]
-       */
-      textOverflow?: DevExpress.viz.BaseWidget.VizTextOverflowType;
-      /**
-       * [descr:dxFunnelOptions.label.visible]
-       */
-      visible?: boolean;
-      /**
-       * [descr:dxFunnelOptions.label.wordWrap]
-       */
-      wordWrap?: DevExpress.viz.BaseWidget.WordWrapType;
-    };
-    /**
-     * [descr:dxFunnelOptions.legend]
-     */
-    legend?: dxFunnelLegend;
-    /**
-     * [descr:dxFunnelOptions.neckHeight]
-     */
-    neckHeight?: number;
-    /**
-     * [descr:dxFunnelOptions.neckWidth]
-     */
-    neckWidth?: number;
-    /**
-     * [descr:dxFunnelOptions.onHoverChanged]
-     */
-    onHoverChanged?: (e: DevExpress.viz.dxFunnel.HoverChangedEvent) => void;
-    /**
-     * [descr:dxFunnelOptions.onItemClick]
-     */
-    onItemClick?:
-      | ((e: DevExpress.viz.dxFunnel.ItemClickEvent) => void)
-      | string;
-    /**
-     * [descr:dxFunnelOptions.onLegendClick]
-     */
-    onLegendClick?:
-      | ((e: DevExpress.viz.dxFunnel.LegendClickEvent) => void)
-      | string;
-    /**
-     * [descr:dxFunnelOptions.onSelectionChanged]
-     */
-    onSelectionChanged?: (
-      e: DevExpress.viz.dxFunnel.SelectionChangedEvent
-    ) => void;
-    /**
-     * [descr:dxFunnelOptions.palette]
-     */
-    palette?: Array<string> | PaletteType;
-    /**
-     * [descr:dxFunnelOptions.paletteExtensionMode]
-     */
-    paletteExtensionMode?: PaletteExtensionModeType;
-    /**
-     * [descr:dxFunnelOptions.resolveLabelOverlapping]
-     */
-    resolveLabelOverlapping?: 'hide' | 'none' | 'shift';
-    /**
-     * [descr:dxFunnelOptions.selectionMode]
-     */
-    selectionMode?: 'multiple' | 'none' | 'single';
-    /**
-     * [descr:dxFunnelOptions.sortData]
-     */
-    sortData?: boolean;
-    /**
-     * [descr:dxFunnelOptions.tooltip]
-     */
-    tooltip?: dxFunnelTooltip;
-    /**
-     * [descr:dxFunnelOptions.valueField]
-     */
-    valueField?: string;
-  }
-  /**
    * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
    */
   export interface dxFunnelTooltip extends BaseWidgetTooltip {
@@ -30111,7 +29491,7 @@ declare module DevExpress.viz {
   /**
    * [descr:dxLinearGauge]
    */
-  export class dxLinearGauge extends BaseGauge<dxLinearGaugeOptions> {}
+  export class dxLinearGauge extends BaseGauge<DevExpress.viz.dxLinearGauge.Properties> {}
   module dxLinearGauge {
     export type DisposingEvent = DevExpress.events.EventInfo<dxLinearGauge>;
     export type DrawnEvent = DevExpress.events.EventInfo<dxLinearGauge>;
@@ -30128,44 +29508,41 @@ declare module DevExpress.viz {
     export type OptionChangedEvent =
       DevExpress.events.EventInfo<dxLinearGauge> &
         DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxLinearGaugeOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends BaseGaugeOptions<dxLinearGauge> {
+      /**
+       * [descr:Properties.geometry]
+       */
+      geometry?: {
+        /**
+         * [descr:Properties.geometry.orientation]
+         */
+        orientation?: 'horizontal' | 'vertical';
+      };
+      /**
+       * [descr:Properties.rangeContainer]
+       */
+      rangeContainer?: dxLinearGaugeRangeContainer;
+      /**
+       * [descr:Properties.scale]
+       */
+      scale?: dxLinearGaugeScale;
+      /**
+       * [descr:Properties.subvalueIndicator]
+       */
+      subvalueIndicator?: GaugeIndicator;
+      /**
+       * [descr:Properties.valueIndicator]
+       */
+      valueIndicator?: GaugeIndicator;
+    }
     export type TooltipHiddenEvent =
       DevExpress.events.EventInfo<dxLinearGauge> &
         DevExpress.viz.BaseGauge.TooltipInfo;
     export type TooltipShownEvent = DevExpress.events.EventInfo<dxLinearGauge> &
       DevExpress.viz.BaseGauge.TooltipInfo;
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxLinearGaugeOptions
-    extends BaseGaugeOptions<dxLinearGauge> {
-    /**
-     * [descr:dxLinearGaugeOptions.geometry]
-     */
-    geometry?: {
-      /**
-       * [descr:dxLinearGaugeOptions.geometry.orientation]
-       */
-      orientation?: 'horizontal' | 'vertical';
-    };
-    /**
-     * [descr:dxLinearGaugeOptions.rangeContainer]
-     */
-    rangeContainer?: dxLinearGaugeRangeContainer;
-    /**
-     * [descr:dxLinearGaugeOptions.scale]
-     */
-    scale?: dxLinearGaugeScale;
-    /**
-     * [descr:dxLinearGaugeOptions.subvalueIndicator]
-     */
-    subvalueIndicator?: GaugeIndicator;
-    /**
-     * [descr:dxLinearGaugeOptions.valueIndicator]
-     */
-    valueIndicator?: GaugeIndicator;
   }
   /**
    * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
@@ -30228,7 +29605,7 @@ declare module DevExpress.viz {
   /**
    * [descr:dxPieChart]
    */
-  export class dxPieChart extends BaseChart<dxPieChartOptions> {
+  export class dxPieChart extends BaseChart<DevExpress.viz.dxPieChart.Properties> {
     /**
      * [descr:dxPieChart.getInnerRadius()]
      */
@@ -30268,7 +29645,103 @@ declare module DevExpress.viz {
     export type PointSelectionChangedEvent =
       DevExpress.events.EventInfo<dxPieChart> &
         DevExpress.viz.BaseChart.PointInteractionInfo;
-    export type Properties = dxPieChartOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends BaseChartOptions<dxPieChart> {
+      /**
+       * [descr:Properties.adaptiveLayout]
+       */
+      adaptiveLayout?: dxPieChartAdaptiveLayout;
+      /**
+       * [descr:Properties.centerTemplate]
+       */
+      centerTemplate?:
+        | DevExpress.core.template
+        | ((
+            component: dxPieChart,
+            element: SVGGElement
+          ) => string | DevExpress.core.UserDefinedElement<SVGElement>);
+      /**
+       * [descr:Properties.commonSeriesSettings]
+       */
+      commonSeriesSettings?: any;
+      /**
+       * [descr:Properties.diameter]
+       */
+      diameter?: number;
+      /**
+       * [descr:Properties.innerRadius]
+       */
+      innerRadius?: number;
+      /**
+       * [descr:Properties.legend]
+       */
+      legend?: dxPieChartLegend;
+      /**
+       * [descr:Properties.minDiameter]
+       */
+      minDiameter?: number;
+      /**
+       * [descr:Properties.onLegendClick]
+       */
+      onLegendClick?: ((e: LegendClickEvent) => void) | string;
+      /**
+       * [descr:Properties.palette]
+       */
+      palette?: Array<string> | PaletteType;
+      /**
+       * [descr:Properties.resolveLabelOverlapping]
+       */
+      resolveLabelOverlapping?: 'hide' | 'none' | 'shift';
+      /**
+       * [descr:Properties.segmentsDirection]
+       */
+      segmentsDirection?: SegmentsDirectionType;
+      /**
+       * [descr:Properties.series]
+       */
+      series?: PieChartSeries | Array<PieChartSeries>;
+      /**
+       * [descr:Properties.seriesTemplate]
+       */
+      seriesTemplate?: {
+        /**
+         * [descr:Properties.seriesTemplate.customizeSeries]
+         */
+        customizeSeries?: (seriesName: any) => PieChartSeries;
+        /**
+         * [descr:Properties.seriesTemplate.nameField]
+         */
+        nameField?: string;
+      };
+      /**
+       * [descr:Properties.sizeGroup]
+       */
+      sizeGroup?: string;
+      /**
+       * [descr:Properties.startAngle]
+       */
+      startAngle?: number;
+      /**
+       * [descr:Properties.type]
+       */
+      type?: PieSeriesType;
+      /**
+       * [descr:Properties.annotations]
+       */
+      annotations?: Array<dxPieChartAnnotationConfig | any>;
+      /**
+       * [descr:Properties.commonAnnotationSettings]
+       */
+      commonAnnotationSettings?: dxPieChartCommonAnnotationConfig;
+      /**
+       * [descr:Properties.customizeAnnotation]
+       */
+      customizeAnnotation?: (
+        annotation: dxPieChartAnnotationConfig | any
+      ) => dxPieChartAnnotationConfig;
+    }
     /**
      * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
      */
@@ -30378,106 +29851,6 @@ declare module DevExpress.viz {
           legendItem: DevExpress.viz.dxPieChart.LegendItem,
           element: SVGGElement
         ) => string | DevExpress.core.UserDefinedElement<SVGElement>);
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxPieChartOptions extends BaseChartOptions<dxPieChart> {
-    /**
-     * [descr:dxPieChartOptions.adaptiveLayout]
-     */
-    adaptiveLayout?: dxPieChartAdaptiveLayout;
-    /**
-     * [descr:dxPieChartOptions.centerTemplate]
-     */
-    centerTemplate?:
-      | DevExpress.core.template
-      | ((
-          component: dxPieChart,
-          element: SVGGElement
-        ) => string | DevExpress.core.UserDefinedElement<SVGElement>);
-    /**
-     * [descr:dxPieChartOptions.commonSeriesSettings]
-     */
-    commonSeriesSettings?: any;
-    /**
-     * [descr:dxPieChartOptions.diameter]
-     */
-    diameter?: number;
-    /**
-     * [descr:dxPieChartOptions.innerRadius]
-     */
-    innerRadius?: number;
-    /**
-     * [descr:dxPieChartOptions.legend]
-     */
-    legend?: dxPieChartLegend;
-    /**
-     * [descr:dxPieChartOptions.minDiameter]
-     */
-    minDiameter?: number;
-    /**
-     * [descr:dxPieChartOptions.onLegendClick]
-     */
-    onLegendClick?:
-      | ((e: DevExpress.viz.dxPieChart.LegendClickEvent) => void)
-      | string;
-    /**
-     * [descr:dxPieChartOptions.palette]
-     */
-    palette?: Array<string> | PaletteType;
-    /**
-     * [descr:dxPieChartOptions.resolveLabelOverlapping]
-     */
-    resolveLabelOverlapping?: 'hide' | 'none' | 'shift';
-    /**
-     * [descr:dxPieChartOptions.segmentsDirection]
-     */
-    segmentsDirection?: DevExpress.viz.dxPieChart.SegmentsDirectionType;
-    /**
-     * [descr:dxPieChartOptions.series]
-     */
-    series?: PieChartSeries | Array<PieChartSeries>;
-    /**
-     * [descr:dxPieChartOptions.seriesTemplate]
-     */
-    seriesTemplate?: {
-      /**
-       * [descr:dxPieChartOptions.seriesTemplate.customizeSeries]
-       */
-      customizeSeries?: (seriesName: any) => PieChartSeries;
-      /**
-       * [descr:dxPieChartOptions.seriesTemplate.nameField]
-       */
-      nameField?: string;
-    };
-    /**
-     * [descr:dxPieChartOptions.sizeGroup]
-     */
-    sizeGroup?: string;
-    /**
-     * [descr:dxPieChartOptions.startAngle]
-     */
-    startAngle?: number;
-    /**
-     * [descr:dxPieChartOptions.type]
-     */
-    type?: DevExpress.viz.dxPieChart.PieSeriesType;
-    /**
-     * [descr:dxPieChartOptions.annotations]
-     */
-    annotations?: Array<dxPieChartAnnotationConfig | any>;
-    /**
-     * [descr:dxPieChartOptions.commonAnnotationSettings]
-     */
-    commonAnnotationSettings?: dxPieChartCommonAnnotationConfig;
-    /**
-     * [descr:dxPieChartOptions.customizeAnnotation]
-     */
-    customizeAnnotation?: (
-      annotation: dxPieChartAnnotationConfig | any
-    ) => dxPieChartAnnotationConfig;
   }
   /**
    * [descr:dxPieChartSeriesTypes]
@@ -30772,7 +30145,7 @@ declare module DevExpress.viz {
   /**
    * [descr:dxPolarChart]
    */
-  export class dxPolarChart extends BaseChart<dxPolarChartOptions> {
+  export class dxPolarChart extends BaseChart<DevExpress.viz.dxPolarChart.Properties> {
     /**
      * [descr:dxPolarChart.getValueAxis()]
      */
@@ -30824,7 +30197,156 @@ declare module DevExpress.viz {
       | 'line'
       | 'scatter'
       | 'stackedbar';
-    export type Properties = dxPolarChartOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends BaseChartOptions<dxPolarChart> {
+      /**
+       * [descr:Properties.adaptiveLayout]
+       */
+      adaptiveLayout?: dxPolarChartAdaptiveLayout;
+      /**
+       * [descr:Properties.annotations]
+       */
+      annotations?: Array<dxPolarChartAnnotationConfig | any>;
+      /**
+       * [descr:Properties.argumentAxis]
+       */
+      argumentAxis?: dxPolarChartArgumentAxis;
+      /**
+       * [descr:Properties.barGroupPadding]
+       */
+      barGroupPadding?: number;
+      /**
+       * [descr:Properties.barGroupWidth]
+       */
+      barGroupWidth?: number;
+      /**
+       * [descr:Properties.commonAnnotationSettings]
+       */
+      commonAnnotationSettings?: dxPolarChartCommonAnnotationConfig;
+      /**
+       * [descr:Properties.commonAxisSettings]
+       */
+      commonAxisSettings?: dxPolarChartCommonAxisSettings;
+      /**
+       * [descr:Properties.commonSeriesSettings]
+       */
+      commonSeriesSettings?: dxPolarChartCommonSeriesSettings;
+      /**
+       * [descr:Properties.containerBackgroundColor]
+       */
+      containerBackgroundColor?: string;
+      /**
+       * [descr:Properties.customizeAnnotation]
+       */
+      customizeAnnotation?: (
+        annotation: dxPolarChartAnnotationConfig | any
+      ) => dxPolarChartAnnotationConfig;
+      /**
+       * [descr:Properties.dataPrepareSettings]
+       */
+      dataPrepareSettings?: {
+        /**
+         * [descr:Properties.dataPrepareSettings.checkTypeForAllData]
+         */
+        checkTypeForAllData?: boolean;
+        /**
+         * [descr:Properties.dataPrepareSettings.convertToAxisDataType]
+         */
+        convertToAxisDataType?: boolean;
+        /**
+         * [descr:Properties.dataPrepareSettings.sortingMethod]
+         */
+        sortingMethod?:
+          | boolean
+          | ((
+              a: { arg?: Date | number | string; val?: Date | number | string },
+              b: { arg?: Date | number | string; val?: Date | number | string }
+            ) => number);
+      };
+      /**
+       * [descr:Properties.legend]
+       */
+      legend?: dxPolarChartLegend;
+      /**
+       * [descr:Properties.negativesAsZeroes]
+       */
+      negativesAsZeroes?: boolean;
+      /**
+       * [descr:Properties.onArgumentAxisClick]
+       */
+      onArgumentAxisClick?:
+        | ((e: {
+            component?: dxPolarChart;
+            element?: DevExpress.core.DxElement;
+            model?: any;
+            event?: DevExpress.events.DxEvent;
+            argument?: Date | number | string;
+          }) => void)
+        | string;
+      /**
+       * [descr:Properties.onLegendClick]
+       */
+      onLegendClick?: ((e: LegendClickEvent) => void) | string;
+      /**
+       * [descr:Properties.onSeriesClick]
+       */
+      onSeriesClick?: ((e: SeriesClickEvent) => void) | string;
+      /**
+       * [descr:Properties.onSeriesHoverChanged]
+       */
+      onSeriesHoverChanged?: (e: SeriesHoverChangedEvent) => void;
+      /**
+       * [descr:Properties.onSeriesSelectionChanged]
+       */
+      onSeriesSelectionChanged?: (e: SeriesSelectionChangedEvent) => void;
+      /**
+       * [descr:Properties.onZoomEnd]
+       */
+      onZoomEnd?: (e: ZoomEndEvent) => void;
+      /**
+       * [descr:Properties.onZoomStart]
+       */
+      onZoomStart?: (e: ZoomStartEvent) => void;
+      /**
+       * [descr:Properties.resolveLabelOverlapping]
+       */
+      resolveLabelOverlapping?: 'hide' | 'none';
+      /**
+       * [descr:Properties.series]
+       */
+      series?: PolarChartSeries | Array<PolarChartSeries>;
+      /**
+       * [descr:Properties.seriesSelectionMode]
+       */
+      seriesSelectionMode?: 'multiple' | 'single';
+      /**
+       * [descr:Properties.seriesTemplate]
+       */
+      seriesTemplate?: {
+        /**
+         * [descr:Properties.seriesTemplate.customizeSeries]
+         */
+        customizeSeries?: (seriesName: any) => PolarChartSeries;
+        /**
+         * [descr:Properties.seriesTemplate.nameField]
+         */
+        nameField?: string;
+      };
+      /**
+       * [descr:Properties.tooltip]
+       */
+      tooltip?: dxPolarChartTooltip;
+      /**
+       * [descr:Properties.useSpiderWeb]
+       */
+      useSpiderWeb?: boolean;
+      /**
+       * [descr:Properties.valueAxis]
+       */
+      valueAxis?: dxPolarChartValueAxis;
+    }
     export type SeriesClickEvent =
       DevExpress.events.NativeEventInfo<dxPolarChart> & {
         readonly target: polarChartSeriesObject;
@@ -31386,165 +30908,6 @@ declare module DevExpress.viz {
      * [descr:dxPolarChartOptions.legend.hoverMode]
      */
     hoverMode?: 'excludePoints' | 'includePoints' | 'none';
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxPolarChartOptions extends BaseChartOptions<dxPolarChart> {
-    /**
-     * [descr:dxPolarChartOptions.adaptiveLayout]
-     */
-    adaptiveLayout?: dxPolarChartAdaptiveLayout;
-    /**
-     * [descr:dxPolarChartOptions.annotations]
-     */
-    annotations?: Array<dxPolarChartAnnotationConfig | any>;
-    /**
-     * [descr:dxPolarChartOptions.argumentAxis]
-     */
-    argumentAxis?: dxPolarChartArgumentAxis;
-    /**
-     * [descr:dxPolarChartOptions.barGroupPadding]
-     */
-    barGroupPadding?: number;
-    /**
-     * [descr:dxPolarChartOptions.barGroupWidth]
-     */
-    barGroupWidth?: number;
-    /**
-     * [descr:dxPolarChartOptions.commonAnnotationSettings]
-     */
-    commonAnnotationSettings?: dxPolarChartCommonAnnotationConfig;
-    /**
-     * [descr:dxPolarChartOptions.commonAxisSettings]
-     */
-    commonAxisSettings?: dxPolarChartCommonAxisSettings;
-    /**
-     * [descr:dxPolarChartOptions.commonSeriesSettings]
-     */
-    commonSeriesSettings?: dxPolarChartCommonSeriesSettings;
-    /**
-     * [descr:dxPolarChartOptions.containerBackgroundColor]
-     */
-    containerBackgroundColor?: string;
-    /**
-     * [descr:dxPolarChartOptions.customizeAnnotation]
-     */
-    customizeAnnotation?: (
-      annotation: dxPolarChartAnnotationConfig | any
-    ) => dxPolarChartAnnotationConfig;
-    /**
-     * [descr:dxPolarChartOptions.dataPrepareSettings]
-     */
-    dataPrepareSettings?: {
-      /**
-       * [descr:dxPolarChartOptions.dataPrepareSettings.checkTypeForAllData]
-       */
-      checkTypeForAllData?: boolean;
-      /**
-       * [descr:dxPolarChartOptions.dataPrepareSettings.convertToAxisDataType]
-       */
-      convertToAxisDataType?: boolean;
-      /**
-       * [descr:dxPolarChartOptions.dataPrepareSettings.sortingMethod]
-       */
-      sortingMethod?:
-        | boolean
-        | ((
-            a: { arg?: Date | number | string; val?: Date | number | string },
-            b: { arg?: Date | number | string; val?: Date | number | string }
-          ) => number);
-    };
-    /**
-     * [descr:dxPolarChartOptions.legend]
-     */
-    legend?: dxPolarChartLegend;
-    /**
-     * [descr:dxPolarChartOptions.negativesAsZeroes]
-     */
-    negativesAsZeroes?: boolean;
-    /**
-     * [descr:dxPolarChartOptions.onArgumentAxisClick]
-     */
-    onArgumentAxisClick?:
-      | ((e: {
-          component?: dxPolarChart;
-          element?: DevExpress.core.DxElement;
-          model?: any;
-          event?: DevExpress.events.DxEvent;
-          argument?: Date | number | string;
-        }) => void)
-      | string;
-    /**
-     * [descr:dxPolarChartOptions.onLegendClick]
-     */
-    onLegendClick?:
-      | ((e: DevExpress.viz.dxPolarChart.LegendClickEvent) => void)
-      | string;
-    /**
-     * [descr:dxPolarChartOptions.onSeriesClick]
-     */
-    onSeriesClick?:
-      | ((e: DevExpress.viz.dxPolarChart.SeriesClickEvent) => void)
-      | string;
-    /**
-     * [descr:dxPolarChartOptions.onSeriesHoverChanged]
-     */
-    onSeriesHoverChanged?: (
-      e: DevExpress.viz.dxPolarChart.SeriesHoverChangedEvent
-    ) => void;
-    /**
-     * [descr:dxPolarChartOptions.onSeriesSelectionChanged]
-     */
-    onSeriesSelectionChanged?: (
-      e: DevExpress.viz.dxPolarChart.SeriesSelectionChangedEvent
-    ) => void;
-    /**
-     * [descr:dxPolarChartOptions.onZoomEnd]
-     */
-    onZoomEnd?: (e: DevExpress.viz.dxPolarChart.ZoomEndEvent) => void;
-    /**
-     * [descr:dxPolarChartOptions.onZoomStart]
-     */
-    onZoomStart?: (e: DevExpress.viz.dxPolarChart.ZoomStartEvent) => void;
-    /**
-     * [descr:dxPolarChartOptions.resolveLabelOverlapping]
-     */
-    resolveLabelOverlapping?: 'hide' | 'none';
-    /**
-     * [descr:dxPolarChartOptions.series]
-     */
-    series?: PolarChartSeries | Array<PolarChartSeries>;
-    /**
-     * [descr:dxPolarChartOptions.seriesSelectionMode]
-     */
-    seriesSelectionMode?: 'multiple' | 'single';
-    /**
-     * [descr:dxPolarChartOptions.seriesTemplate]
-     */
-    seriesTemplate?: {
-      /**
-       * [descr:dxPolarChartOptions.seriesTemplate.customizeSeries]
-       */
-      customizeSeries?: (seriesName: any) => PolarChartSeries;
-      /**
-       * [descr:dxPolarChartOptions.seriesTemplate.nameField]
-       */
-      nameField?: string;
-    };
-    /**
-     * [descr:dxPolarChartOptions.tooltip]
-     */
-    tooltip?: dxPolarChartTooltip;
-    /**
-     * [descr:dxPolarChartOptions.useSpiderWeb]
-     */
-    useSpiderWeb?: boolean;
-    /**
-     * [descr:dxPolarChartOptions.valueAxis]
-     */
-    valueAxis?: dxPolarChartValueAxis;
   }
   /**
    * [descr:dxPolarChartSeriesTypes]
@@ -32358,7 +31721,7 @@ declare module DevExpress.viz {
   /**
    * [descr:dxRangeSelector]
    */
-  export class dxRangeSelector extends BaseWidget<dxRangeSelectorOptions> {
+  export class dxRangeSelector extends BaseWidget<DevExpress.viz.dxRangeSelector.Properties> {
     getDataSource(): DevExpress.data.DataSource;
     /**
      * [descr:dxRangeSelector.getValue()]
@@ -32390,547 +31753,548 @@ declare module DevExpress.viz {
     export type OptionChangedEvent =
       DevExpress.events.EventInfo<dxRangeSelector> &
         DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxRangeSelectorOptions;
-    export type ValueChangedEvent =
-      DevExpress.events.NativeEventInfo<dxRangeSelector> & {
-        readonly value: Array<number | string | Date>;
-        readonly previousValue: Array<number | string | Date>;
-      };
-  }
-  /**
-   * @deprecated use Properties instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface dxRangeSelectorOptions
-    extends BaseWidgetOptions<dxRangeSelector> {
     /**
-     * [descr:dxRangeSelectorOptions.background]
+     * [descr:Properties]
      */
-    background?: {
+    export interface Properties extends BaseWidgetOptions<dxRangeSelector> {
       /**
-       * [descr:dxRangeSelectorOptions.background.color]
+       * [descr:Properties.background]
        */
-      color?: string;
-      /**
-       * [descr:dxRangeSelectorOptions.background.image]
-       */
-      image?: {
+      background?: {
         /**
-         * [descr:dxRangeSelectorOptions.background.image.location]
-         */
-        location?:
-          | 'center'
-          | 'centerBottom'
-          | 'centerTop'
-          | 'full'
-          | 'leftBottom'
-          | 'leftCenter'
-          | 'leftTop'
-          | 'rightBottom'
-          | 'rightCenter'
-          | 'rightTop';
-        /**
-         * [descr:dxRangeSelectorOptions.background.image.url]
-         */
-        url?: string;
-      };
-      /**
-       * [descr:dxRangeSelectorOptions.background.visible]
-       */
-      visible?: boolean;
-    };
-    /**
-     * [descr:dxRangeSelectorOptions.behavior]
-     */
-    behavior?: {
-      /**
-       * [descr:dxRangeSelectorOptions.behavior.allowSlidersSwap]
-       */
-      allowSlidersSwap?: boolean;
-      /**
-       * [descr:dxRangeSelectorOptions.behavior.animationEnabled]
-       */
-      animationEnabled?: boolean;
-      /**
-       * [descr:dxRangeSelectorOptions.behavior.callValueChanged]
-       */
-      callValueChanged?: 'onMoving' | 'onMovingComplete';
-      /**
-       * [descr:dxRangeSelectorOptions.behavior.manualRangeSelectionEnabled]
-       */
-      manualRangeSelectionEnabled?: boolean;
-      /**
-       * [descr:dxRangeSelectorOptions.behavior.moveSelectedRangeByClick]
-       */
-      moveSelectedRangeByClick?: boolean;
-      /**
-       * [descr:dxRangeSelectorOptions.behavior.snapToTicks]
-       */
-      snapToTicks?: boolean;
-    };
-    /**
-     * [descr:dxRangeSelectorOptions.chart]
-     */
-    chart?: {
-      /**
-       * [descr:dxRangeSelectorOptions.chart.barGroupPadding]
-       */
-      barGroupPadding?: number;
-      /**
-       * [descr:dxRangeSelectorOptions.chart.barGroupWidth]
-       */
-      barGroupWidth?: number;
-      /**
-       * [descr:dxRangeSelectorOptions.chart.bottomIndent]
-       */
-      bottomIndent?: number;
-      /**
-       * [descr:dxRangeSelectorOptions.chart.commonSeriesSettings]
-       */
-      commonSeriesSettings?: dxChartCommonSeriesSettings;
-      /**
-       * [descr:dxRangeSelectorOptions.chart.dataPrepareSettings]
-       */
-      dataPrepareSettings?: {
-        /**
-         * [descr:dxRangeSelectorOptions.chart.dataPrepareSettings.checkTypeForAllData]
-         */
-        checkTypeForAllData?: boolean;
-        /**
-         * [descr:dxRangeSelectorOptions.chart.dataPrepareSettings.convertToAxisDataType]
-         */
-        convertToAxisDataType?: boolean;
-        /**
-         * [descr:dxRangeSelectorOptions.chart.dataPrepareSettings.sortingMethod]
-         */
-        sortingMethod?:
-          | boolean
-          | ((
-              a: { arg?: Date | number | string; val?: Date | number | string },
-              b: { arg?: Date | number | string; val?: Date | number | string }
-            ) => number);
-      };
-      /**
-       * [descr:dxRangeSelectorOptions.chart.maxBubbleSize]
-       */
-      maxBubbleSize?: number;
-      /**
-       * [descr:dxRangeSelectorOptions.chart.minBubbleSize]
-       */
-      minBubbleSize?: number;
-      /**
-       * [descr:dxRangeSelectorOptions.chart.negativesAsZeroes]
-       */
-      negativesAsZeroes?: boolean;
-      /**
-       * [descr:dxRangeSelectorOptions.chart.palette]
-       */
-      palette?: Array<string> | PaletteType;
-      /**
-       * [descr:dxRangeSelectorOptions.chart.paletteExtensionMode]
-       */
-      paletteExtensionMode?: PaletteExtensionModeType;
-      /**
-       * [descr:dxRangeSelectorOptions.chart.series]
-       */
-      series?: ChartSeries | Array<ChartSeries>;
-      /**
-       * [descr:dxRangeSelectorOptions.chart.seriesTemplate]
-       */
-      seriesTemplate?: {
-        /**
-         * [descr:dxRangeSelectorOptions.chart.seriesTemplate.customizeSeries]
-         */
-        customizeSeries?: (seriesName: any) => ChartSeries;
-        /**
-         * [descr:dxRangeSelectorOptions.chart.seriesTemplate.nameField]
-         */
-        nameField?: string;
-      };
-      /**
-       * [descr:dxRangeSelectorOptions.chart.topIndent]
-       */
-      topIndent?: number;
-      /**
-       * [descr:dxRangeSelectorOptions.chart.valueAxis]
-       */
-      valueAxis?: {
-        /**
-         * [descr:dxRangeSelectorOptions.chart.valueAxis.inverted]
-         */
-        inverted?: boolean;
-        /**
-         * [descr:dxRangeSelectorOptions.chart.valueAxis.logarithmBase]
-         */
-        logarithmBase?: number;
-        /**
-         * [descr:dxRangeSelectorOptions.chart.valueAxis.max]
-         */
-        max?: number;
-        /**
-         * [descr:dxRangeSelectorOptions.chart.valueAxis.min]
-         */
-        min?: number;
-        /**
-         * [descr:dxRangeSelectorOptions.chart.valueAxis.type]
-         */
-        type?: 'continuous' | 'logarithmic';
-        /**
-         * [descr:dxRangeSelectorOptions.chart.valueAxis.valueType]
-         */
-        valueType?: 'datetime' | 'numeric' | 'string';
-      };
-    };
-    /**
-     * [descr:dxRangeSelectorOptions.containerBackgroundColor]
-     */
-    containerBackgroundColor?: string;
-    /**
-     * [descr:dxRangeSelectorOptions.dataSource]
-     */
-    dataSource?: DevExpress.data.DataSource.DataSourceLike<any>;
-    /**
-     * [descr:dxRangeSelectorOptions.dataSourceField]
-     */
-    dataSourceField?: string;
-    /**
-     * [descr:dxRangeSelectorOptions.indent]
-     */
-    indent?: {
-      /**
-       * [descr:dxRangeSelectorOptions.indent.left]
-       */
-      left?: number;
-      /**
-       * [descr:dxRangeSelectorOptions.indent.right]
-       */
-      right?: number;
-    };
-    /**
-     * [descr:dxRangeSelectorOptions.onValueChanged]
-     */
-    onValueChanged?: (
-      e: DevExpress.viz.dxRangeSelector.ValueChangedEvent
-    ) => void;
-    /**
-     * [descr:dxRangeSelectorOptions.scale]
-     */
-    scale?: {
-      /**
-       * [descr:dxRangeSelectorOptions.scale.aggregateByCategory]
-       */
-      aggregateByCategory?: boolean;
-      /**
-       * [descr:dxRangeSelectorOptions.scale.aggregationGroupWidth]
-       */
-      aggregationGroupWidth?: number;
-      /**
-       * [descr:dxRangeSelectorOptions.scale.aggregationInterval]
-       */
-      aggregationInterval?: VizTimeInterval;
-      /**
-       * [descr:dxRangeSelectorOptions.scale.allowDecimals]
-       */
-      allowDecimals?: boolean;
-      /**
-       * [descr:dxRangeSelectorOptions.scale.breakStyle]
-       */
-      breakStyle?: {
-        /**
-         * [descr:dxRangeSelectorOptions.scale.breakStyle.color]
+         * [descr:Properties.background.color]
          */
         color?: string;
         /**
-         * [descr:dxRangeSelectorOptions.scale.breakStyle.line]
+         * [descr:Properties.background.image]
          */
-        line?: 'straight' | 'waved';
+        image?: {
+          /**
+           * [descr:Properties.background.image.location]
+           */
+          location?:
+            | 'center'
+            | 'centerBottom'
+            | 'centerTop'
+            | 'full'
+            | 'leftBottom'
+            | 'leftCenter'
+            | 'leftTop'
+            | 'rightBottom'
+            | 'rightCenter'
+            | 'rightTop';
+          /**
+           * [descr:Properties.background.image.url]
+           */
+          url?: string;
+        };
         /**
-         * [descr:dxRangeSelectorOptions.scale.breakStyle.width]
+         * [descr:Properties.background.visible]
+         */
+        visible?: boolean;
+      };
+      /**
+       * [descr:Properties.behavior]
+       */
+      behavior?: {
+        /**
+         * [descr:Properties.behavior.allowSlidersSwap]
+         */
+        allowSlidersSwap?: boolean;
+        /**
+         * [descr:Properties.behavior.animationEnabled]
+         */
+        animationEnabled?: boolean;
+        /**
+         * [descr:Properties.behavior.callValueChanged]
+         */
+        callValueChanged?: 'onMoving' | 'onMovingComplete';
+        /**
+         * [descr:Properties.behavior.manualRangeSelectionEnabled]
+         */
+        manualRangeSelectionEnabled?: boolean;
+        /**
+         * [descr:Properties.behavior.moveSelectedRangeByClick]
+         */
+        moveSelectedRangeByClick?: boolean;
+        /**
+         * [descr:Properties.behavior.snapToTicks]
+         */
+        snapToTicks?: boolean;
+      };
+      /**
+       * [descr:Properties.chart]
+       */
+      chart?: {
+        /**
+         * [descr:Properties.chart.barGroupPadding]
+         */
+        barGroupPadding?: number;
+        /**
+         * [descr:Properties.chart.barGroupWidth]
+         */
+        barGroupWidth?: number;
+        /**
+         * [descr:Properties.chart.bottomIndent]
+         */
+        bottomIndent?: number;
+        /**
+         * [descr:Properties.chart.commonSeriesSettings]
+         */
+        commonSeriesSettings?: dxChartCommonSeriesSettings;
+        /**
+         * [descr:Properties.chart.dataPrepareSettings]
+         */
+        dataPrepareSettings?: {
+          /**
+           * [descr:Properties.chart.dataPrepareSettings.checkTypeForAllData]
+           */
+          checkTypeForAllData?: boolean;
+          /**
+           * [descr:Properties.chart.dataPrepareSettings.convertToAxisDataType]
+           */
+          convertToAxisDataType?: boolean;
+          /**
+           * [descr:Properties.chart.dataPrepareSettings.sortingMethod]
+           */
+          sortingMethod?:
+            | boolean
+            | ((
+                a: {
+                  arg?: Date | number | string;
+                  val?: Date | number | string;
+                },
+                b: {
+                  arg?: Date | number | string;
+                  val?: Date | number | string;
+                }
+              ) => number);
+        };
+        /**
+         * [descr:Properties.chart.maxBubbleSize]
+         */
+        maxBubbleSize?: number;
+        /**
+         * [descr:Properties.chart.minBubbleSize]
+         */
+        minBubbleSize?: number;
+        /**
+         * [descr:Properties.chart.negativesAsZeroes]
+         */
+        negativesAsZeroes?: boolean;
+        /**
+         * [descr:Properties.chart.palette]
+         */
+        palette?: Array<string> | PaletteType;
+        /**
+         * [descr:Properties.chart.paletteExtensionMode]
+         */
+        paletteExtensionMode?: PaletteExtensionModeType;
+        /**
+         * [descr:Properties.chart.series]
+         */
+        series?: ChartSeries | Array<ChartSeries>;
+        /**
+         * [descr:Properties.chart.seriesTemplate]
+         */
+        seriesTemplate?: {
+          /**
+           * [descr:Properties.chart.seriesTemplate.customizeSeries]
+           */
+          customizeSeries?: (seriesName: any) => ChartSeries;
+          /**
+           * [descr:Properties.chart.seriesTemplate.nameField]
+           */
+          nameField?: string;
+        };
+        /**
+         * [descr:Properties.chart.topIndent]
+         */
+        topIndent?: number;
+        /**
+         * [descr:Properties.chart.valueAxis]
+         */
+        valueAxis?: {
+          /**
+           * [descr:Properties.chart.valueAxis.inverted]
+           */
+          inverted?: boolean;
+          /**
+           * [descr:Properties.chart.valueAxis.logarithmBase]
+           */
+          logarithmBase?: number;
+          /**
+           * [descr:Properties.chart.valueAxis.max]
+           */
+          max?: number;
+          /**
+           * [descr:Properties.chart.valueAxis.min]
+           */
+          min?: number;
+          /**
+           * [descr:Properties.chart.valueAxis.type]
+           */
+          type?: 'continuous' | 'logarithmic';
+          /**
+           * [descr:Properties.chart.valueAxis.valueType]
+           */
+          valueType?: 'datetime' | 'numeric' | 'string';
+        };
+      };
+      /**
+       * [descr:Properties.containerBackgroundColor]
+       */
+      containerBackgroundColor?: string;
+      /**
+       * [descr:Properties.dataSource]
+       */
+      dataSource?: DevExpress.data.DataSource.DataSourceLike<any>;
+      /**
+       * [descr:Properties.dataSourceField]
+       */
+      dataSourceField?: string;
+      /**
+       * [descr:Properties.indent]
+       */
+      indent?: {
+        /**
+         * [descr:Properties.indent.left]
+         */
+        left?: number;
+        /**
+         * [descr:Properties.indent.right]
+         */
+        right?: number;
+      };
+      /**
+       * [descr:Properties.onValueChanged]
+       */
+      onValueChanged?: (e: ValueChangedEvent) => void;
+      /**
+       * [descr:Properties.scale]
+       */
+      scale?: {
+        /**
+         * [descr:Properties.scale.aggregateByCategory]
+         */
+        aggregateByCategory?: boolean;
+        /**
+         * [descr:Properties.scale.aggregationGroupWidth]
+         */
+        aggregationGroupWidth?: number;
+        /**
+         * [descr:Properties.scale.aggregationInterval]
+         */
+        aggregationInterval?: VizTimeInterval;
+        /**
+         * [descr:Properties.scale.allowDecimals]
+         */
+        allowDecimals?: boolean;
+        /**
+         * [descr:Properties.scale.breakStyle]
+         */
+        breakStyle?: {
+          /**
+           * [descr:Properties.scale.breakStyle.color]
+           */
+          color?: string;
+          /**
+           * [descr:Properties.scale.breakStyle.line]
+           */
+          line?: 'straight' | 'waved';
+          /**
+           * [descr:Properties.scale.breakStyle.width]
+           */
+          width?: number;
+        };
+        /**
+         * [descr:Properties.scale.breaks]
+         */
+        breaks?: Array<ScaleBreak>;
+        /**
+         * [descr:Properties.scale.categories]
+         */
+        categories?: Array<number | string | Date>;
+        /**
+         * [descr:Properties.scale.endOnTick]
+         */
+        endOnTick?: boolean;
+        /**
+         * [descr:Properties.scale.endValue]
+         */
+        endValue?: number | Date | string;
+        /**
+         * [descr:Properties.scale.holidays]
+         */
+        holidays?: Array<Date | string> | Array<number>;
+        /**
+         * [descr:Properties.scale.label]
+         */
+        label?: {
+          /**
+           * [descr:Properties.scale.label.customizeText]
+           */
+          customizeText?: (scaleValue: {
+            value?: Date | number | string;
+            valueText?: string;
+          }) => string;
+          /**
+           * [descr:Properties.scale.label.font]
+           */
+          font?: Font;
+          /**
+           * [descr:Properties.scale.label.format]
+           */
+          format?: DevExpress.ui.Format;
+          /**
+           * [descr:Properties.scale.label.overlappingBehavior]
+           */
+          overlappingBehavior?: 'hide' | 'none';
+          /**
+           * [descr:Properties.scale.label.topIndent]
+           */
+          topIndent?: number;
+          /**
+           * [descr:Properties.scale.label.visible]
+           */
+          visible?: boolean;
+        };
+        /**
+         * [descr:Properties.scale.linearThreshold]
+         */
+        linearThreshold?: number;
+        /**
+         * [descr:Properties.scale.logarithmBase]
+         */
+        logarithmBase?: number;
+        /**
+         * [descr:Properties.scale.marker]
+         */
+        marker?: {
+          /**
+           * [descr:Properties.scale.marker.label]
+           */
+          label?: {
+            /**
+             * [descr:Properties.scale.marker.label.customizeText]
+             */
+            customizeText?: (markerValue: {
+              value?: Date | number;
+              valueText?: string;
+            }) => string;
+            /**
+             * [descr:Properties.scale.marker.label.format]
+             */
+            format?: DevExpress.ui.Format;
+          };
+          /**
+           * [descr:Properties.scale.marker.separatorHeight]
+           */
+          separatorHeight?: number;
+          /**
+           * [descr:Properties.scale.marker.textLeftIndent]
+           */
+          textLeftIndent?: number;
+          /**
+           * [descr:Properties.scale.marker.textTopIndent]
+           */
+          textTopIndent?: number;
+          /**
+           * [descr:Properties.scale.marker.topIndent]
+           */
+          topIndent?: number;
+          /**
+           * [descr:Properties.scale.marker.visible]
+           */
+          visible?: boolean;
+        };
+        /**
+         * [descr:Properties.scale.maxRange]
+         */
+        maxRange?: VizTimeInterval;
+        /**
+         * [descr:Properties.scale.minRange]
+         */
+        minRange?: VizTimeInterval;
+        /**
+         * [descr:Properties.scale.minorTick]
+         */
+        minorTick?: {
+          /**
+           * [descr:Properties.scale.minorTick.color]
+           */
+          color?: string;
+          /**
+           * [descr:Properties.scale.minorTick.opacity]
+           */
+          opacity?: number;
+          /**
+           * [descr:Properties.scale.minorTick.visible]
+           */
+          visible?: boolean;
+          /**
+           * [descr:Properties.scale.minorTick.width]
+           */
+          width?: number;
+        };
+        /**
+         * [descr:Properties.scale.minorTickCount]
+         */
+        minorTickCount?: number;
+        /**
+         * [descr:Properties.scale.minorTickInterval]
+         */
+        minorTickInterval?: VizTimeInterval;
+        /**
+         * [descr:Properties.scale.placeholderHeight]
+         */
+        placeholderHeight?: number;
+        /**
+         * [descr:Properties.scale.showCustomBoundaryTicks]
+         */
+        showCustomBoundaryTicks?: boolean;
+        /**
+         * [descr:Properties.scale.singleWorkdays]
+         */
+        singleWorkdays?: Array<Date | string> | Array<number>;
+        /**
+         * [descr:Properties.scale.startValue]
+         */
+        startValue?: number | Date | string;
+        /**
+         * [descr:Properties.scale.tick]
+         */
+        tick?: {
+          /**
+           * [descr:Properties.scale.tick.color]
+           */
+          color?: string;
+          /**
+           * [descr:Properties.scale.tick.opacity]
+           */
+          opacity?: number;
+          /**
+           * [descr:Properties.scale.tick.width]
+           */
+          width?: number;
+        };
+        /**
+         * [descr:Properties.scale.tickInterval]
+         */
+        tickInterval?: VizTimeInterval;
+        /**
+         * [descr:Properties.scale.type]
+         */
+        type?: 'continuous' | 'discrete' | 'logarithmic' | 'semidiscrete';
+        /**
+         * [descr:Properties.scale.valueType]
+         */
+        valueType?: 'datetime' | 'numeric' | 'string';
+        /**
+         * [descr:Properties.scale.workWeek]
+         */
+        workWeek?: Array<number>;
+        /**
+         * [descr:Properties.scale.workdaysOnly]
+         */
+        workdaysOnly?: boolean;
+      };
+      /**
+       * [descr:Properties.selectedRangeColor]
+       */
+      selectedRangeColor?: string;
+      /**
+       * [descr:Properties.selectedRangeUpdateMode]
+       */
+      selectedRangeUpdateMode?: 'auto' | 'keep' | 'reset' | 'shift';
+      /**
+       * [descr:Properties.shutter]
+       */
+      shutter?: {
+        /**
+         * [descr:Properties.shutter.color]
+         */
+        color?: string;
+        /**
+         * [descr:Properties.shutter.opacity]
+         */
+        opacity?: number;
+      };
+      /**
+       * [descr:Properties.sliderHandle]
+       */
+      sliderHandle?: {
+        /**
+         * [descr:Properties.sliderHandle.color]
+         */
+        color?: string;
+        /**
+         * [descr:Properties.sliderHandle.opacity]
+         */
+        opacity?: number;
+        /**
+         * [descr:Properties.sliderHandle.width]
          */
         width?: number;
       };
       /**
-       * [descr:dxRangeSelectorOptions.scale.breaks]
+       * [descr:Properties.sliderMarker]
        */
-      breaks?: Array<ScaleBreak>;
-      /**
-       * [descr:dxRangeSelectorOptions.scale.categories]
-       */
-      categories?: Array<number | string | Date>;
-      /**
-       * [descr:dxRangeSelectorOptions.scale.endOnTick]
-       */
-      endOnTick?: boolean;
-      /**
-       * [descr:dxRangeSelectorOptions.scale.endValue]
-       */
-      endValue?: number | Date | string;
-      /**
-       * [descr:dxRangeSelectorOptions.scale.holidays]
-       */
-      holidays?: Array<Date | string> | Array<number>;
-      /**
-       * [descr:dxRangeSelectorOptions.scale.label]
-       */
-      label?: {
+      sliderMarker?: {
         /**
-         * [descr:dxRangeSelectorOptions.scale.label.customizeText]
+         * [descr:Properties.sliderMarker.color]
+         */
+        color?: string;
+        /**
+         * [descr:Properties.sliderMarker.customizeText]
          */
         customizeText?: (scaleValue: {
           value?: Date | number | string;
           valueText?: string;
         }) => string;
         /**
-         * [descr:dxRangeSelectorOptions.scale.label.font]
+         * [descr:Properties.sliderMarker.font]
          */
         font?: Font;
         /**
-         * [descr:dxRangeSelectorOptions.scale.label.format]
+         * [descr:Properties.sliderMarker.format]
          */
         format?: DevExpress.ui.Format;
         /**
-         * [descr:dxRangeSelectorOptions.scale.label.overlappingBehavior]
+         * [descr:Properties.sliderMarker.invalidRangeColor]
          */
-        overlappingBehavior?: 'hide' | 'none';
+        invalidRangeColor?: string;
         /**
-         * [descr:dxRangeSelectorOptions.scale.label.topIndent]
+         * [descr:Properties.sliderMarker.paddingLeftRight]
          */
-        topIndent?: number;
+        paddingLeftRight?: number;
         /**
-         * [descr:dxRangeSelectorOptions.scale.label.visible]
+         * [descr:Properties.sliderMarker.paddingTopBottom]
+         */
+        paddingTopBottom?: number;
+        /**
+         * [descr:Properties.sliderMarker.placeholderHeight]
+         */
+        placeholderHeight?: number;
+        /**
+         * [descr:Properties.sliderMarker.visible]
          */
         visible?: boolean;
       };
       /**
-       * [descr:dxRangeSelectorOptions.scale.linearThreshold]
+       * [descr:Properties.tooltip]
        */
-      linearThreshold?: number;
+      tooltip?: BaseWidgetTooltip;
       /**
-       * [descr:dxRangeSelectorOptions.scale.logarithmBase]
+       * [descr:Properties.value]
        */
-      logarithmBase?: number;
-      /**
-       * [descr:dxRangeSelectorOptions.scale.marker]
-       */
-      marker?: {
-        /**
-         * [descr:dxRangeSelectorOptions.scale.marker.label]
-         */
-        label?: {
-          /**
-           * [descr:dxRangeSelectorOptions.scale.marker.label.customizeText]
-           */
-          customizeText?: (markerValue: {
-            value?: Date | number;
-            valueText?: string;
-          }) => string;
-          /**
-           * [descr:dxRangeSelectorOptions.scale.marker.label.format]
-           */
-          format?: DevExpress.ui.Format;
-        };
-        /**
-         * [descr:dxRangeSelectorOptions.scale.marker.separatorHeight]
-         */
-        separatorHeight?: number;
-        /**
-         * [descr:dxRangeSelectorOptions.scale.marker.textLeftIndent]
-         */
-        textLeftIndent?: number;
-        /**
-         * [descr:dxRangeSelectorOptions.scale.marker.textTopIndent]
-         */
-        textTopIndent?: number;
-        /**
-         * [descr:dxRangeSelectorOptions.scale.marker.topIndent]
-         */
-        topIndent?: number;
-        /**
-         * [descr:dxRangeSelectorOptions.scale.marker.visible]
-         */
-        visible?: boolean;
+      value?: Array<number | string | Date> | VizRange;
+    }
+    export type ValueChangedEvent =
+      DevExpress.events.NativeEventInfo<dxRangeSelector> & {
+        readonly value: Array<number | string | Date>;
+        readonly previousValue: Array<number | string | Date>;
       };
-      /**
-       * [descr:dxRangeSelectorOptions.scale.maxRange]
-       */
-      maxRange?: VizTimeInterval;
-      /**
-       * [descr:dxRangeSelectorOptions.scale.minRange]
-       */
-      minRange?: VizTimeInterval;
-      /**
-       * [descr:dxRangeSelectorOptions.scale.minorTick]
-       */
-      minorTick?: {
-        /**
-         * [descr:dxRangeSelectorOptions.scale.minorTick.color]
-         */
-        color?: string;
-        /**
-         * [descr:dxRangeSelectorOptions.scale.minorTick.opacity]
-         */
-        opacity?: number;
-        /**
-         * [descr:dxRangeSelectorOptions.scale.minorTick.visible]
-         */
-        visible?: boolean;
-        /**
-         * [descr:dxRangeSelectorOptions.scale.minorTick.width]
-         */
-        width?: number;
-      };
-      /**
-       * [descr:dxRangeSelectorOptions.scale.minorTickCount]
-       */
-      minorTickCount?: number;
-      /**
-       * [descr:dxRangeSelectorOptions.scale.minorTickInterval]
-       */
-      minorTickInterval?: VizTimeInterval;
-      /**
-       * [descr:dxRangeSelectorOptions.scale.placeholderHeight]
-       */
-      placeholderHeight?: number;
-      /**
-       * [descr:dxRangeSelectorOptions.scale.showCustomBoundaryTicks]
-       */
-      showCustomBoundaryTicks?: boolean;
-      /**
-       * [descr:dxRangeSelectorOptions.scale.singleWorkdays]
-       */
-      singleWorkdays?: Array<Date | string> | Array<number>;
-      /**
-       * [descr:dxRangeSelectorOptions.scale.startValue]
-       */
-      startValue?: number | Date | string;
-      /**
-       * [descr:dxRangeSelectorOptions.scale.tick]
-       */
-      tick?: {
-        /**
-         * [descr:dxRangeSelectorOptions.scale.tick.color]
-         */
-        color?: string;
-        /**
-         * [descr:dxRangeSelectorOptions.scale.tick.opacity]
-         */
-        opacity?: number;
-        /**
-         * [descr:dxRangeSelectorOptions.scale.tick.width]
-         */
-        width?: number;
-      };
-      /**
-       * [descr:dxRangeSelectorOptions.scale.tickInterval]
-       */
-      tickInterval?: VizTimeInterval;
-      /**
-       * [descr:dxRangeSelectorOptions.scale.type]
-       */
-      type?: 'continuous' | 'discrete' | 'logarithmic' | 'semidiscrete';
-      /**
-       * [descr:dxRangeSelectorOptions.scale.valueType]
-       */
-      valueType?: 'datetime' | 'numeric' | 'string';
-      /**
-       * [descr:dxRangeSelectorOptions.scale.workWeek]
-       */
-      workWeek?: Array<number>;
-      /**
-       * [descr:dxRangeSelectorOptions.scale.workdaysOnly]
-       */
-      workdaysOnly?: boolean;
-    };
-    /**
-     * [descr:dxRangeSelectorOptions.selectedRangeColor]
-     */
-    selectedRangeColor?: string;
-    /**
-     * [descr:dxRangeSelectorOptions.selectedRangeUpdateMode]
-     */
-    selectedRangeUpdateMode?: 'auto' | 'keep' | 'reset' | 'shift';
-    /**
-     * [descr:dxRangeSelectorOptions.shutter]
-     */
-    shutter?: {
-      /**
-       * [descr:dxRangeSelectorOptions.shutter.color]
-       */
-      color?: string;
-      /**
-       * [descr:dxRangeSelectorOptions.shutter.opacity]
-       */
-      opacity?: number;
-    };
-    /**
-     * [descr:dxRangeSelectorOptions.sliderHandle]
-     */
-    sliderHandle?: {
-      /**
-       * [descr:dxRangeSelectorOptions.sliderHandle.color]
-       */
-      color?: string;
-      /**
-       * [descr:dxRangeSelectorOptions.sliderHandle.opacity]
-       */
-      opacity?: number;
-      /**
-       * [descr:dxRangeSelectorOptions.sliderHandle.width]
-       */
-      width?: number;
-    };
-    /**
-     * [descr:dxRangeSelectorOptions.sliderMarker]
-     */
-    sliderMarker?: {
-      /**
-       * [descr:dxRangeSelectorOptions.sliderMarker.color]
-       */
-      color?: string;
-      /**
-       * [descr:dxRangeSelectorOptions.sliderMarker.customizeText]
-       */
-      customizeText?: (scaleValue: {
-        value?: Date | number | string;
-        valueText?: string;
-      }) => string;
-      /**
-       * [descr:dxRangeSelectorOptions.sliderMarker.font]
-       */
-      font?: Font;
-      /**
-       * [descr:dxRangeSelectorOptions.sliderMarker.format]
-       */
-      format?: DevExpress.ui.Format;
-      /**
-       * [descr:dxRangeSelectorOptions.sliderMarker.invalidRangeColor]
-       */
-      invalidRangeColor?: string;
-      /**
-       * [descr:dxRangeSelectorOptions.sliderMarker.paddingLeftRight]
-       */
-      paddingLeftRight?: number;
-      /**
-       * [descr:dxRangeSelectorOptions.sliderMarker.paddingTopBottom]
-       */
-      paddingTopBottom?: number;
-      /**
-       * [descr:dxRangeSelectorOptions.sliderMarker.placeholderHeight]
-       */
-      placeholderHeight?: number;
-      /**
-       * [descr:dxRangeSelectorOptions.sliderMarker.visible]
-       */
-      visible?: boolean;
-    };
-    /**
-     * [descr:dxRangeSelectorOptions.tooltip]
-     */
-    tooltip?: BaseWidgetTooltip;
-    /**
-     * [descr:dxRangeSelectorOptions.value]
-     */
-    value?: Array<number | string | Date> | VizRange;
   }
   /**
    * [descr:dxSankey]
@@ -32976,7 +32340,337 @@ declare module DevExpress.viz {
     };
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxSankey> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxSankeyOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends BaseWidgetOptions<dxSankey> {
+      /**
+       * [descr:Properties.adaptiveLayout]
+       */
+      adaptiveLayout?: {
+        /**
+         * [descr:Properties.adaptiveLayout.height]
+         */
+        height?: number;
+        /**
+         * [descr:Properties.adaptiveLayout.keepLabels]
+         */
+        keepLabels?: boolean;
+        /**
+         * [descr:Properties.adaptiveLayout.width]
+         */
+        width?: number;
+      };
+      /**
+       * [descr:Properties.alignment]
+       */
+      alignment?:
+        | 'bottom'
+        | 'center'
+        | 'top'
+        | Array<'bottom' | 'center' | 'top'>;
+      /**
+       * [descr:Properties.dataSource]
+       */
+      dataSource?: DevExpress.data.DataSource.DataSourceLike<any>;
+      /**
+       * [descr:Properties.hoverEnabled]
+       */
+      hoverEnabled?: boolean;
+      /**
+       * [descr:Properties.label]
+       */
+      label?: {
+        /**
+         * [descr:Properties.label.border]
+         */
+        border?: {
+          /**
+           * [descr:Properties.label.border.color]
+           */
+          color?: string;
+          /**
+           * [descr:Properties.label.border.visible]
+           */
+          visible?: boolean;
+          /**
+           * [descr:Properties.label.border.width]
+           */
+          width?: number;
+        };
+        /**
+         * [descr:Properties.label.customizeText]
+         */
+        customizeText?: (itemInfo: dxSankeyNode) => string;
+        /**
+         * [descr:Properties.label.font]
+         */
+        font?: Font;
+        /**
+         * [descr:Properties.label.horizontalOffset]
+         */
+        horizontalOffset?: number;
+        /**
+         * [descr:Properties.label.overlappingBehavior]
+         */
+        overlappingBehavior?: 'ellipsis' | 'hide' | 'none';
+        /**
+         * [descr:Properties.label.shadow]
+         */
+        shadow?: {
+          /**
+           * [descr:Properties.label.shadow.blur]
+           */
+          blur?: number;
+          /**
+           * [descr:Properties.label.shadow.color]
+           */
+          color?: string;
+          /**
+           * [descr:Properties.label.shadow.offsetX]
+           */
+          offsetX?: number;
+          /**
+           * [descr:Properties.label.shadow.offsetY]
+           */
+          offsetY?: number;
+          /**
+           * [descr:Properties.label.shadow.opacity]
+           */
+          opacity?: number;
+        };
+        /**
+         * [descr:Properties.label.useNodeColors]
+         */
+        useNodeColors?: boolean;
+        /**
+         * [descr:Properties.label.verticalOffset]
+         */
+        verticalOffset?: number;
+        /**
+         * [descr:Properties.label.visible]
+         */
+        visible?: boolean;
+      };
+      /**
+       * [descr:Properties.link]
+       */
+      link?: {
+        /**
+         * [descr:Properties.link.border]
+         */
+        border?: {
+          /**
+           * [descr:Properties.link.border.color]
+           */
+          color?: string;
+          /**
+           * [descr:Properties.link.border.visible]
+           */
+          visible?: boolean;
+          /**
+           * [descr:Properties.link.border.width]
+           */
+          width?: number;
+        };
+        /**
+         * [descr:Properties.link.color]
+         */
+        color?: string;
+        /**
+         * [descr:Properties.link.colorMode]
+         */
+        colorMode?: 'none' | 'source' | 'target' | 'gradient';
+        /**
+         * [descr:Properties.link.hoverStyle]
+         */
+        hoverStyle?: {
+          /**
+           * [descr:Properties.link.hoverStyle.border]
+           */
+          border?: {
+            /**
+             * [descr:Properties.link.hoverStyle.border.color]
+             */
+            color?: string;
+            /**
+             * [descr:Properties.link.hoverStyle.border.visible]
+             */
+            visible?: boolean;
+            /**
+             * [descr:Properties.link.hoverStyle.border.width]
+             */
+            width?: number;
+          };
+          /**
+           * [descr:Properties.link.hoverStyle.color]
+           */
+          color?: string;
+          /**
+           * [descr:Properties.link.hoverStyle.hatching]
+           */
+          hatching?: {
+            /**
+             * [descr:Properties.link.hoverStyle.hatching.direction]
+             */
+            direction?: HatchingDirectionType;
+            /**
+             * [descr:Properties.link.hoverStyle.hatching.opacity]
+             */
+            opacity?: number;
+            /**
+             * [descr:Properties.link.hoverStyle.hatching.step]
+             */
+            step?: number;
+            /**
+             * [descr:Properties.link.hoverStyle.hatching.width]
+             */
+            width?: number;
+          };
+          /**
+           * [descr:Properties.link.hoverStyle.opacity]
+           */
+          opacity?: number;
+        };
+        /**
+         * [descr:Properties.link.opacity]
+         */
+        opacity?: number;
+      };
+      /**
+       * [descr:Properties.node]
+       */
+      node?: {
+        /**
+         * [descr:Properties.node.border]
+         */
+        border?: {
+          /**
+           * [descr:Properties.node.border.color]
+           */
+          color?: string;
+          /**
+           * [descr:Properties.node.border.visible]
+           */
+          visible?: boolean;
+          /**
+           * [descr:Properties.node.border.width]
+           */
+          width?: number;
+        };
+        /**
+         * [descr:Properties.node.color]
+         */
+        color?: string;
+        /**
+         * [descr:Properties.node.hoverStyle]
+         */
+        hoverStyle?: {
+          /**
+           * [descr:Properties.node.hoverStyle.border]
+           */
+          border?: {
+            /**
+             * [descr:Properties.node.hoverStyle.border.color]
+             */
+            color?: string;
+            /**
+             * [descr:Properties.node.hoverStyle.border.visible]
+             */
+            visible?: boolean;
+            /**
+             * [descr:Properties.node.hoverStyle.border.width]
+             */
+            width?: number;
+          };
+          /**
+           * [descr:Properties.node.hoverStyle.color]
+           */
+          color?: string;
+          /**
+           * [descr:Properties.node.hoverStyle.hatching]
+           */
+          hatching?: {
+            /**
+             * [descr:Properties.node.hoverStyle.hatching.direction]
+             */
+            direction?: HatchingDirectionType;
+            /**
+             * [descr:Properties.node.hoverStyle.hatching.opacity]
+             */
+            opacity?: number;
+            /**
+             * [descr:Properties.node.hoverStyle.hatching.step]
+             */
+            step?: number;
+            /**
+             * [descr:Properties.node.hoverStyle.hatching.width]
+             */
+            width?: number;
+          };
+          /**
+           * [descr:Properties.node.hoverStyle.opacity]
+           */
+          opacity?: number;
+        };
+        /**
+         * [descr:Properties.node.opacity]
+         */
+        opacity?: number;
+        /**
+         * [descr:Properties.node.padding]
+         */
+        padding?: number;
+        /**
+         * [descr:Properties.node.width]
+         */
+        width?: number;
+      };
+      /**
+       * [descr:Properties.onLinkClick]
+       */
+      onLinkClick?: ((e: LinkClickEvent) => void) | string;
+      /**
+       * [descr:Properties.onLinkHoverChanged]
+       */
+      onLinkHoverChanged?: (e: LinkHoverEvent) => void;
+      /**
+       * [descr:Properties.onNodeClick]
+       */
+      onNodeClick?: ((e: NodeClickEvent) => void) | string;
+      /**
+       * [descr:Properties.onNodeHoverChanged]
+       */
+      onNodeHoverChanged?: (e: NodeHoverEvent) => void;
+      /**
+       * [descr:Properties.palette]
+       */
+      palette?: Array<string> | PaletteType;
+      /**
+       * [descr:Properties.paletteExtensionMode]
+       */
+      paletteExtensionMode?: PaletteExtensionModeType;
+      /**
+       * [descr:Properties.sortData]
+       */
+      sortData?: any;
+      /**
+       * [descr:Properties.sourceField]
+       */
+      sourceField?: string;
+      /**
+       * [descr:Properties.targetField]
+       */
+      targetField?: string;
+      /**
+       * [descr:Properties.tooltip]
+       */
+      tooltip?: dxSankeyTooltip;
+      /**
+       * [descr:Properties.weightField]
+       */
+      weightField?: string;
+    }
   }
   /**
    * [descr:dxSankeyConnectionInfoObject]
@@ -33062,341 +32756,10 @@ declare module DevExpress.viz {
     title?: string;
   }
   /**
-   * @deprecated use Properties instead
+   * @deprecated use DevExpress.viz.dxSankey.Properties instead
    * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
    */
-  export interface dxSankeyOptions extends BaseWidgetOptions<dxSankey> {
-    /**
-     * [descr:dxSankeyOptions.adaptiveLayout]
-     */
-    adaptiveLayout?: {
-      /**
-       * [descr:dxSankeyOptions.adaptiveLayout.height]
-       */
-      height?: number;
-      /**
-       * [descr:dxSankeyOptions.adaptiveLayout.keepLabels]
-       */
-      keepLabels?: boolean;
-      /**
-       * [descr:dxSankeyOptions.adaptiveLayout.width]
-       */
-      width?: number;
-    };
-    /**
-     * [descr:dxSankeyOptions.alignment]
-     */
-    alignment?:
-      | 'bottom'
-      | 'center'
-      | 'top'
-      | Array<'bottom' | 'center' | 'top'>;
-    /**
-     * [descr:dxSankeyOptions.dataSource]
-     */
-    dataSource?: DevExpress.data.DataSource.DataSourceLike<any>;
-    /**
-     * [descr:dxSankeyOptions.hoverEnabled]
-     */
-    hoverEnabled?: boolean;
-    /**
-     * [descr:dxSankeyOptions.label]
-     */
-    label?: {
-      /**
-       * [descr:dxSankeyOptions.label.border]
-       */
-      border?: {
-        /**
-         * [descr:dxSankeyOptions.label.border.color]
-         */
-        color?: string;
-        /**
-         * [descr:dxSankeyOptions.label.border.visible]
-         */
-        visible?: boolean;
-        /**
-         * [descr:dxSankeyOptions.label.border.width]
-         */
-        width?: number;
-      };
-      /**
-       * [descr:dxSankeyOptions.label.customizeText]
-       */
-      customizeText?: (itemInfo: dxSankeyNode) => string;
-      /**
-       * [descr:dxSankeyOptions.label.font]
-       */
-      font?: Font;
-      /**
-       * [descr:dxSankeyOptions.label.horizontalOffset]
-       */
-      horizontalOffset?: number;
-      /**
-       * [descr:dxSankeyOptions.label.overlappingBehavior]
-       */
-      overlappingBehavior?: 'ellipsis' | 'hide' | 'none';
-      /**
-       * [descr:dxSankeyOptions.label.shadow]
-       */
-      shadow?: {
-        /**
-         * [descr:dxSankeyOptions.label.shadow.blur]
-         */
-        blur?: number;
-        /**
-         * [descr:dxSankeyOptions.label.shadow.color]
-         */
-        color?: string;
-        /**
-         * [descr:dxSankeyOptions.label.shadow.offsetX]
-         */
-        offsetX?: number;
-        /**
-         * [descr:dxSankeyOptions.label.shadow.offsetY]
-         */
-        offsetY?: number;
-        /**
-         * [descr:dxSankeyOptions.label.shadow.opacity]
-         */
-        opacity?: number;
-      };
-      /**
-       * [descr:dxSankeyOptions.label.useNodeColors]
-       */
-      useNodeColors?: boolean;
-      /**
-       * [descr:dxSankeyOptions.label.verticalOffset]
-       */
-      verticalOffset?: number;
-      /**
-       * [descr:dxSankeyOptions.label.visible]
-       */
-      visible?: boolean;
-    };
-    /**
-     * [descr:dxSankeyOptions.link]
-     */
-    link?: {
-      /**
-       * [descr:dxSankeyOptions.link.border]
-       */
-      border?: {
-        /**
-         * [descr:dxSankeyOptions.link.border.color]
-         */
-        color?: string;
-        /**
-         * [descr:dxSankeyOptions.link.border.visible]
-         */
-        visible?: boolean;
-        /**
-         * [descr:dxSankeyOptions.link.border.width]
-         */
-        width?: number;
-      };
-      /**
-       * [descr:dxSankeyOptions.link.color]
-       */
-      color?: string;
-      /**
-       * [descr:dxSankeyOptions.link.colorMode]
-       */
-      colorMode?: 'none' | 'source' | 'target' | 'gradient';
-      /**
-       * [descr:dxSankeyOptions.link.hoverStyle]
-       */
-      hoverStyle?: {
-        /**
-         * [descr:dxSankeyOptions.link.hoverStyle.border]
-         */
-        border?: {
-          /**
-           * [descr:dxSankeyOptions.link.hoverStyle.border.color]
-           */
-          color?: string;
-          /**
-           * [descr:dxSankeyOptions.link.hoverStyle.border.visible]
-           */
-          visible?: boolean;
-          /**
-           * [descr:dxSankeyOptions.link.hoverStyle.border.width]
-           */
-          width?: number;
-        };
-        /**
-         * [descr:dxSankeyOptions.link.hoverStyle.color]
-         */
-        color?: string;
-        /**
-         * [descr:dxSankeyOptions.link.hoverStyle.hatching]
-         */
-        hatching?: {
-          /**
-           * [descr:dxSankeyOptions.link.hoverStyle.hatching.direction]
-           */
-          direction?: HatchingDirectionType;
-          /**
-           * [descr:dxSankeyOptions.link.hoverStyle.hatching.opacity]
-           */
-          opacity?: number;
-          /**
-           * [descr:dxSankeyOptions.link.hoverStyle.hatching.step]
-           */
-          step?: number;
-          /**
-           * [descr:dxSankeyOptions.link.hoverStyle.hatching.width]
-           */
-          width?: number;
-        };
-        /**
-         * [descr:dxSankeyOptions.link.hoverStyle.opacity]
-         */
-        opacity?: number;
-      };
-      /**
-       * [descr:dxSankeyOptions.link.opacity]
-       */
-      opacity?: number;
-    };
-    /**
-     * [descr:dxSankeyOptions.node]
-     */
-    node?: {
-      /**
-       * [descr:dxSankeyOptions.node.border]
-       */
-      border?: {
-        /**
-         * [descr:dxSankeyOptions.node.border.color]
-         */
-        color?: string;
-        /**
-         * [descr:dxSankeyOptions.node.border.visible]
-         */
-        visible?: boolean;
-        /**
-         * [descr:dxSankeyOptions.node.border.width]
-         */
-        width?: number;
-      };
-      /**
-       * [descr:dxSankeyOptions.node.color]
-       */
-      color?: string;
-      /**
-       * [descr:dxSankeyOptions.node.hoverStyle]
-       */
-      hoverStyle?: {
-        /**
-         * [descr:dxSankeyOptions.node.hoverStyle.border]
-         */
-        border?: {
-          /**
-           * [descr:dxSankeyOptions.node.hoverStyle.border.color]
-           */
-          color?: string;
-          /**
-           * [descr:dxSankeyOptions.node.hoverStyle.border.visible]
-           */
-          visible?: boolean;
-          /**
-           * [descr:dxSankeyOptions.node.hoverStyle.border.width]
-           */
-          width?: number;
-        };
-        /**
-         * [descr:dxSankeyOptions.node.hoverStyle.color]
-         */
-        color?: string;
-        /**
-         * [descr:dxSankeyOptions.node.hoverStyle.hatching]
-         */
-        hatching?: {
-          /**
-           * [descr:dxSankeyOptions.node.hoverStyle.hatching.direction]
-           */
-          direction?: HatchingDirectionType;
-          /**
-           * [descr:dxSankeyOptions.node.hoverStyle.hatching.opacity]
-           */
-          opacity?: number;
-          /**
-           * [descr:dxSankeyOptions.node.hoverStyle.hatching.step]
-           */
-          step?: number;
-          /**
-           * [descr:dxSankeyOptions.node.hoverStyle.hatching.width]
-           */
-          width?: number;
-        };
-        /**
-         * [descr:dxSankeyOptions.node.hoverStyle.opacity]
-         */
-        opacity?: number;
-      };
-      /**
-       * [descr:dxSankeyOptions.node.opacity]
-       */
-      opacity?: number;
-      /**
-       * [descr:dxSankeyOptions.node.padding]
-       */
-      padding?: number;
-      /**
-       * [descr:dxSankeyOptions.node.width]
-       */
-      width?: number;
-    };
-    /**
-     * [descr:dxSankeyOptions.onLinkClick]
-     */
-    onLinkClick?:
-      | ((e: DevExpress.viz.dxSankey.LinkClickEvent) => void)
-      | string;
-    /**
-     * [descr:dxSankeyOptions.onLinkHoverChanged]
-     */
-    onLinkHoverChanged?: (e: DevExpress.viz.dxSankey.LinkHoverEvent) => void;
-    /**
-     * [descr:dxSankeyOptions.onNodeClick]
-     */
-    onNodeClick?:
-      | ((e: DevExpress.viz.dxSankey.NodeClickEvent) => void)
-      | string;
-    /**
-     * [descr:dxSankeyOptions.onNodeHoverChanged]
-     */
-    onNodeHoverChanged?: (e: DevExpress.viz.dxSankey.NodeHoverEvent) => void;
-    /**
-     * [descr:dxSankeyOptions.palette]
-     */
-    palette?: Array<string> | PaletteType;
-    /**
-     * [descr:dxSankeyOptions.paletteExtensionMode]
-     */
-    paletteExtensionMode?: PaletteExtensionModeType;
-    /**
-     * [descr:dxSankeyOptions.sortData]
-     */
-    sortData?: any;
-    /**
-     * [descr:dxSankeyOptions.sourceField]
-     */
-    sourceField?: string;
-    /**
-     * [descr:dxSankeyOptions.targetField]
-     */
-    targetField?: string;
-    /**
-     * [descr:dxSankeyOptions.tooltip]
-     */
-    tooltip?: dxSankeyTooltip;
-    /**
-     * [descr:dxSankeyOptions.weightField]
-     */
-    weightField?: string;
-  }
+  export type dxSankeyOptions = DevExpress.viz.dxSankey.Properties;
   /**
    * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
    */
@@ -33462,113 +32825,115 @@ declare module DevExpress.viz {
       DevExpress.events.InitializedEventInfo<dxSparkline>;
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxSparkline> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxSparklineOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends BaseSparklineOptions<dxSparkline> {
+      /**
+       * [descr:Properties.argumentField]
+       */
+      argumentField?: string;
+      /**
+       * [descr:Properties.barNegativeColor]
+       */
+      barNegativeColor?: string;
+      /**
+       * [descr:Properties.barPositiveColor]
+       */
+      barPositiveColor?: string;
+      /**
+       * [descr:Properties.dataSource]
+       */
+      dataSource?: DevExpress.data.DataSource.DataSourceLike<any>;
+      /**
+       * [descr:Properties.firstLastColor]
+       */
+      firstLastColor?: string;
+      /**
+       * [descr:Properties.ignoreEmptyPoints]
+       */
+      ignoreEmptyPoints?: boolean;
+      /**
+       * [descr:Properties.lineColor]
+       */
+      lineColor?: string;
+      /**
+       * [descr:Properties.lineWidth]
+       */
+      lineWidth?: number;
+      /**
+       * [descr:Properties.lossColor]
+       */
+      lossColor?: string;
+      /**
+       * [descr:Properties.maxColor]
+       */
+      maxColor?: string;
+      /**
+       * [descr:Properties.maxValue]
+       */
+      maxValue?: number;
+      /**
+       * [descr:Properties.minColor]
+       */
+      minColor?: string;
+      /**
+       * [descr:Properties.minValue]
+       */
+      minValue?: number;
+      /**
+       * [descr:Properties.pointColor]
+       */
+      pointColor?: string;
+      /**
+       * [descr:Properties.pointSize]
+       */
+      pointSize?: number;
+      /**
+       * [descr:Properties.pointSymbol]
+       */
+      pointSymbol?: 'circle' | 'cross' | 'polygon' | 'square' | 'triangle';
+      /**
+       * [descr:Properties.showFirstLast]
+       */
+      showFirstLast?: boolean;
+      /**
+       * [descr:Properties.showMinMax]
+       */
+      showMinMax?: boolean;
+      /**
+       * [descr:Properties.type]
+       */
+      type?:
+        | 'area'
+        | 'bar'
+        | 'line'
+        | 'spline'
+        | 'splinearea'
+        | 'steparea'
+        | 'stepline'
+        | 'winloss';
+      /**
+       * [descr:Properties.valueField]
+       */
+      valueField?: string;
+      /**
+       * [descr:Properties.winColor]
+       */
+      winColor?: string;
+      /**
+       * [descr:Properties.winlossThreshold]
+       */
+      winlossThreshold?: number;
+    }
     export type TooltipHiddenEvent = DevExpress.events.EventInfo<dxSparkline>;
     export type TooltipShownEvent = DevExpress.events.EventInfo<dxSparkline>;
   }
   /**
-   * @deprecated use Properties instead
+   * @deprecated use DevExpress.viz.dxSparkline.Properties instead
    * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
    */
-  export interface dxSparklineOptions
-    extends BaseSparklineOptions<dxSparkline> {
-    /**
-     * [descr:dxSparklineOptions.argumentField]
-     */
-    argumentField?: string;
-    /**
-     * [descr:dxSparklineOptions.barNegativeColor]
-     */
-    barNegativeColor?: string;
-    /**
-     * [descr:dxSparklineOptions.barPositiveColor]
-     */
-    barPositiveColor?: string;
-    /**
-     * [descr:dxSparklineOptions.dataSource]
-     */
-    dataSource?: DevExpress.data.DataSource.DataSourceLike<any>;
-    /**
-     * [descr:dxSparklineOptions.firstLastColor]
-     */
-    firstLastColor?: string;
-    /**
-     * [descr:dxSparklineOptions.ignoreEmptyPoints]
-     */
-    ignoreEmptyPoints?: boolean;
-    /**
-     * [descr:dxSparklineOptions.lineColor]
-     */
-    lineColor?: string;
-    /**
-     * [descr:dxSparklineOptions.lineWidth]
-     */
-    lineWidth?: number;
-    /**
-     * [descr:dxSparklineOptions.lossColor]
-     */
-    lossColor?: string;
-    /**
-     * [descr:dxSparklineOptions.maxColor]
-     */
-    maxColor?: string;
-    /**
-     * [descr:dxSparklineOptions.maxValue]
-     */
-    maxValue?: number;
-    /**
-     * [descr:dxSparklineOptions.minColor]
-     */
-    minColor?: string;
-    /**
-     * [descr:dxSparklineOptions.minValue]
-     */
-    minValue?: number;
-    /**
-     * [descr:dxSparklineOptions.pointColor]
-     */
-    pointColor?: string;
-    /**
-     * [descr:dxSparklineOptions.pointSize]
-     */
-    pointSize?: number;
-    /**
-     * [descr:dxSparklineOptions.pointSymbol]
-     */
-    pointSymbol?: 'circle' | 'cross' | 'polygon' | 'square' | 'triangle';
-    /**
-     * [descr:dxSparklineOptions.showFirstLast]
-     */
-    showFirstLast?: boolean;
-    /**
-     * [descr:dxSparklineOptions.showMinMax]
-     */
-    showMinMax?: boolean;
-    /**
-     * [descr:dxSparklineOptions.type]
-     */
-    type?:
-      | 'area'
-      | 'bar'
-      | 'line'
-      | 'spline'
-      | 'splinearea'
-      | 'steparea'
-      | 'stepline'
-      | 'winloss';
-    /**
-     * [descr:dxSparklineOptions.valueField]
-     */
-    valueField?: string;
-    /**
-     * [descr:dxSparklineOptions.winColor]
-     */
-    winColor?: string;
-    /**
-     * [descr:dxSparklineOptions.winlossThreshold]
-     */
-    winlossThreshold?: number;
-  }
+  export type dxSparklineOptions = DevExpress.viz.dxSparkline.Properties;
   /**
    * [descr:dxTreeMap]
    */
@@ -33634,7 +32999,318 @@ declare module DevExpress.viz {
     };
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxTreeMap> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxTreeMapOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends BaseWidgetOptions<dxTreeMap> {
+      /**
+       * [descr:Properties.childrenField]
+       */
+      childrenField?: string;
+      /**
+       * [descr:Properties.colorField]
+       */
+      colorField?: string;
+      /**
+       * [descr:Properties.colorizer]
+       */
+      colorizer?: {
+        /**
+         * [descr:Properties.colorizer.colorCodeField]
+         */
+        colorCodeField?: string;
+        /**
+         * [descr:Properties.colorizer.colorizeGroups]
+         */
+        colorizeGroups?: boolean;
+        /**
+         * [descr:Properties.colorizer.palette]
+         */
+        palette?: Array<string> | PaletteType;
+        /**
+         * [descr:Properties.colorizer.paletteExtensionMode]
+         */
+        paletteExtensionMode?: PaletteExtensionModeType;
+        /**
+         * [descr:Properties.colorizer.range]
+         */
+        range?: Array<number>;
+        /**
+         * [descr:Properties.colorizer.type]
+         */
+        type?: 'discrete' | 'gradient' | 'none' | 'range';
+      };
+      /**
+       * [descr:Properties.dataSource]
+       */
+      dataSource?: DevExpress.data.DataSource.DataSourceLike<any>;
+      /**
+       * [descr:Properties.group]
+       */
+      group?: {
+        /**
+         * [descr:Properties.group.border]
+         */
+        border?: {
+          /**
+           * [descr:Properties.group.border.color]
+           */
+          color?: string;
+          /**
+           * [descr:Properties.group.border.width]
+           */
+          width?: number;
+        };
+        /**
+         * [descr:Properties.group.color]
+         */
+        color?: string;
+        /**
+         * [descr:Properties.group.padding]
+         */
+        padding?: number;
+        /**
+         * [descr:Properties.group.headerHeight]
+         */
+        headerHeight?: number;
+        /**
+         * [descr:Properties.group.hoverEnabled]
+         */
+        hoverEnabled?: boolean;
+        /**
+         * [descr:Properties.group.hoverStyle]
+         */
+        hoverStyle?: {
+          /**
+           * [descr:Properties.group.hoverStyle.border]
+           */
+          border?: {
+            /**
+             * [descr:Properties.group.hoverStyle.border.color]
+             */
+            color?: string;
+            /**
+             * [descr:Properties.group.hoverStyle.border.width]
+             */
+            width?: number;
+          };
+          /**
+           * [descr:Properties.group.hoverStyle.color]
+           */
+          color?: string;
+        };
+        /**
+         * [descr:Properties.group.label]
+         */
+        label?: {
+          /**
+           * [descr:Properties.group.label.font]
+           */
+          font?: Font;
+          /**
+           * [descr:Properties.group.label.textOverflow]
+           */
+          textOverflow?: DevExpress.viz.BaseWidget.VizTextOverflowType;
+          /**
+           * [descr:Properties.group.label.visible]
+           */
+          visible?: boolean;
+        };
+        /**
+         * [descr:Properties.group.selectionStyle]
+         */
+        selectionStyle?: {
+          /**
+           * [descr:Properties.group.selectionStyle.border]
+           */
+          border?: {
+            /**
+             * [descr:Properties.group.selectionStyle.border.color]
+             */
+            color?: string;
+            /**
+             * [descr:Properties.group.selectionStyle.border.width]
+             */
+            width?: number;
+          };
+          /**
+           * [descr:Properties.group.selectionStyle.color]
+           */
+          color?: string;
+        };
+      };
+      /**
+       * [descr:Properties.hoverEnabled]
+       */
+      hoverEnabled?: boolean;
+      /**
+       * [descr:Properties.idField]
+       */
+      idField?: string;
+      /**
+       * [descr:Properties.interactWithGroup]
+       */
+      interactWithGroup?: boolean;
+      /**
+       * [descr:Properties.labelField]
+       */
+      labelField?: string;
+      /**
+       * [descr:Properties.layoutAlgorithm]
+       */
+      layoutAlgorithm?:
+        | 'sliceanddice'
+        | 'squarified'
+        | 'strip'
+        | ((e: {
+            rect?: Array<number>;
+            sum?: number;
+            items?: Array<any>;
+          }) => any);
+      /**
+       * [descr:Properties.layoutDirection]
+       */
+      layoutDirection?:
+        | 'leftBottomRightTop'
+        | 'leftTopRightBottom'
+        | 'rightBottomLeftTop'
+        | 'rightTopLeftBottom';
+      /**
+       * [descr:Properties.margin]
+       */
+      margin?: BaseWidgetMargin;
+      /**
+       * [descr:Properties.maxDepth]
+       */
+      maxDepth?: number;
+      /**
+       * [descr:Properties.onClick]
+       */
+      onClick?: ((e: ClickEvent) => void) | string;
+      /**
+       * [descr:Properties.onDrill]
+       */
+      onDrill?: (e: DrillEvent) => void;
+      /**
+       * [descr:Properties.onHoverChanged]
+       */
+      onHoverChanged?: (e: HoverChangedEvent) => void;
+      /**
+       * [descr:Properties.onNodesInitialized]
+       */
+      onNodesInitialized?: (e: NodesInitializedEvent) => void;
+      /**
+       * [descr:Properties.onNodesRendering]
+       */
+      onNodesRendering?: (e: NodesRenderingEvent) => void;
+      /**
+       * [descr:Properties.onSelectionChanged]
+       */
+      onSelectionChanged?: (e: SelectionChangedEvent) => void;
+      /**
+       * [descr:Properties.parentField]
+       */
+      parentField?: string;
+      /**
+       * [descr:Properties.selectionMode]
+       */
+      selectionMode?: 'multiple' | 'none' | 'single';
+      /**
+       * [descr:Properties.tile]
+       */
+      tile?: {
+        /**
+         * [descr:Properties.tile.border]
+         */
+        border?: {
+          /**
+           * [descr:Properties.tile.border.color]
+           */
+          color?: string;
+          /**
+           * [descr:Properties.tile.border.width]
+           */
+          width?: number;
+        };
+        /**
+         * [descr:Properties.tile.color]
+         */
+        color?: string;
+        /**
+         * [descr:Properties.tile.hoverStyle]
+         */
+        hoverStyle?: {
+          /**
+           * [descr:Properties.tile.hoverStyle.border]
+           */
+          border?: {
+            /**
+             * [descr:Properties.tile.hoverStyle.border.color]
+             */
+            color?: string;
+            /**
+             * [descr:Properties.tile.hoverStyle.border.width]
+             */
+            width?: number;
+          };
+          /**
+           * [descr:Properties.tile.hoverStyle.color]
+           */
+          color?: string;
+        };
+        /**
+         * [descr:Properties.tile.label]
+         */
+        label?: {
+          /**
+           * [descr:Properties.tile.label.font]
+           */
+          font?: Font;
+          /**
+           * [descr:Properties.tile.label.textOverflow]
+           */
+          textOverflow?: DevExpress.viz.BaseWidget.VizTextOverflowType;
+          /**
+           * [descr:Properties.tile.label.visible]
+           */
+          visible?: boolean;
+          /**
+           * [descr:Properties.tile.label.wordWrap]
+           */
+          wordWrap?: DevExpress.viz.BaseWidget.WordWrapType;
+        };
+        /**
+         * [descr:Properties.tile.selectionStyle]
+         */
+        selectionStyle?: {
+          /**
+           * [descr:Properties.tile.selectionStyle.border]
+           */
+          border?: {
+            /**
+             * [descr:Properties.tile.selectionStyle.border.color]
+             */
+            color?: string;
+            /**
+             * [descr:Properties.tile.selectionStyle.border.width]
+             */
+            width?: number;
+          };
+          /**
+           * [descr:Properties.tile.selectionStyle.color]
+           */
+          color?: string;
+        };
+      };
+      /**
+       * [descr:Properties.tooltip]
+       */
+      tooltip?: dxTreeMapTooltip;
+      /**
+       * [descr:Properties.valueField]
+       */
+      valueField?: string;
+    }
     export type SelectionChangedEvent = DevExpress.events.EventInfo<dxTreeMap> &
       InteractionInfo;
   }
@@ -33725,324 +33401,10 @@ declare module DevExpress.viz {
     value(): number;
   }
   /**
-   * @deprecated use Properties instead
+   * @deprecated use DevExpress.viz.dxTreeMap.Properties instead
    * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
    */
-  export interface dxTreeMapOptions extends BaseWidgetOptions<dxTreeMap> {
-    /**
-     * [descr:dxTreeMapOptions.childrenField]
-     */
-    childrenField?: string;
-    /**
-     * [descr:dxTreeMapOptions.colorField]
-     */
-    colorField?: string;
-    /**
-     * [descr:dxTreeMapOptions.colorizer]
-     */
-    colorizer?: {
-      /**
-       * [descr:dxTreeMapOptions.colorizer.colorCodeField]
-       */
-      colorCodeField?: string;
-      /**
-       * [descr:dxTreeMapOptions.colorizer.colorizeGroups]
-       */
-      colorizeGroups?: boolean;
-      /**
-       * [descr:dxTreeMapOptions.colorizer.palette]
-       */
-      palette?: Array<string> | PaletteType;
-      /**
-       * [descr:dxTreeMapOptions.colorizer.paletteExtensionMode]
-       */
-      paletteExtensionMode?: PaletteExtensionModeType;
-      /**
-       * [descr:dxTreeMapOptions.colorizer.range]
-       */
-      range?: Array<number>;
-      /**
-       * [descr:dxTreeMapOptions.colorizer.type]
-       */
-      type?: 'discrete' | 'gradient' | 'none' | 'range';
-    };
-    /**
-     * [descr:dxTreeMapOptions.dataSource]
-     */
-    dataSource?: DevExpress.data.DataSource.DataSourceLike<any>;
-    /**
-     * [descr:dxTreeMapOptions.group]
-     */
-    group?: {
-      /**
-       * [descr:dxTreeMapOptions.group.border]
-       */
-      border?: {
-        /**
-         * [descr:dxTreeMapOptions.group.border.color]
-         */
-        color?: string;
-        /**
-         * [descr:dxTreeMapOptions.group.border.width]
-         */
-        width?: number;
-      };
-      /**
-       * [descr:dxTreeMapOptions.group.color]
-       */
-      color?: string;
-      /**
-       * [descr:dxTreeMapOptions.group.padding]
-       */
-      padding?: number;
-      /**
-       * [descr:dxTreeMapOptions.group.headerHeight]
-       */
-      headerHeight?: number;
-      /**
-       * [descr:dxTreeMapOptions.group.hoverEnabled]
-       */
-      hoverEnabled?: boolean;
-      /**
-       * [descr:dxTreeMapOptions.group.hoverStyle]
-       */
-      hoverStyle?: {
-        /**
-         * [descr:dxTreeMapOptions.group.hoverStyle.border]
-         */
-        border?: {
-          /**
-           * [descr:dxTreeMapOptions.group.hoverStyle.border.color]
-           */
-          color?: string;
-          /**
-           * [descr:dxTreeMapOptions.group.hoverStyle.border.width]
-           */
-          width?: number;
-        };
-        /**
-         * [descr:dxTreeMapOptions.group.hoverStyle.color]
-         */
-        color?: string;
-      };
-      /**
-       * [descr:dxTreeMapOptions.group.label]
-       */
-      label?: {
-        /**
-         * [descr:dxTreeMapOptions.group.label.font]
-         */
-        font?: Font;
-        /**
-         * [descr:dxTreeMapOptions.group.label.textOverflow]
-         */
-        textOverflow?: DevExpress.viz.BaseWidget.VizTextOverflowType;
-        /**
-         * [descr:dxTreeMapOptions.group.label.visible]
-         */
-        visible?: boolean;
-      };
-      /**
-       * [descr:dxTreeMapOptions.group.selectionStyle]
-       */
-      selectionStyle?: {
-        /**
-         * [descr:dxTreeMapOptions.group.selectionStyle.border]
-         */
-        border?: {
-          /**
-           * [descr:dxTreeMapOptions.group.selectionStyle.border.color]
-           */
-          color?: string;
-          /**
-           * [descr:dxTreeMapOptions.group.selectionStyle.border.width]
-           */
-          width?: number;
-        };
-        /**
-         * [descr:dxTreeMapOptions.group.selectionStyle.color]
-         */
-        color?: string;
-      };
-    };
-    /**
-     * [descr:dxTreeMapOptions.hoverEnabled]
-     */
-    hoverEnabled?: boolean;
-    /**
-     * [descr:dxTreeMapOptions.idField]
-     */
-    idField?: string;
-    /**
-     * [descr:dxTreeMapOptions.interactWithGroup]
-     */
-    interactWithGroup?: boolean;
-    /**
-     * [descr:dxTreeMapOptions.labelField]
-     */
-    labelField?: string;
-    /**
-     * [descr:dxTreeMapOptions.layoutAlgorithm]
-     */
-    layoutAlgorithm?:
-      | 'sliceanddice'
-      | 'squarified'
-      | 'strip'
-      | ((e: {
-          rect?: Array<number>;
-          sum?: number;
-          items?: Array<any>;
-        }) => any);
-    /**
-     * [descr:dxTreeMapOptions.layoutDirection]
-     */
-    layoutDirection?:
-      | 'leftBottomRightTop'
-      | 'leftTopRightBottom'
-      | 'rightBottomLeftTop'
-      | 'rightTopLeftBottom';
-    /**
-     * [descr:dxTreeMapOptions.margin]
-     */
-    margin?: BaseWidgetMargin;
-    /**
-     * [descr:dxTreeMapOptions.maxDepth]
-     */
-    maxDepth?: number;
-    /**
-     * [descr:dxTreeMapOptions.onClick]
-     */
-    onClick?: ((e: DevExpress.viz.dxTreeMap.ClickEvent) => void) | string;
-    /**
-     * [descr:dxTreeMapOptions.onDrill]
-     */
-    onDrill?: (e: DevExpress.viz.dxTreeMap.DrillEvent) => void;
-    /**
-     * [descr:dxTreeMapOptions.onHoverChanged]
-     */
-    onHoverChanged?: (e: DevExpress.viz.dxTreeMap.HoverChangedEvent) => void;
-    /**
-     * [descr:dxTreeMapOptions.onNodesInitialized]
-     */
-    onNodesInitialized?: (
-      e: DevExpress.viz.dxTreeMap.NodesInitializedEvent
-    ) => void;
-    /**
-     * [descr:dxTreeMapOptions.onNodesRendering]
-     */
-    onNodesRendering?: (
-      e: DevExpress.viz.dxTreeMap.NodesRenderingEvent
-    ) => void;
-    /**
-     * [descr:dxTreeMapOptions.onSelectionChanged]
-     */
-    onSelectionChanged?: (
-      e: DevExpress.viz.dxTreeMap.SelectionChangedEvent
-    ) => void;
-    /**
-     * [descr:dxTreeMapOptions.parentField]
-     */
-    parentField?: string;
-    /**
-     * [descr:dxTreeMapOptions.selectionMode]
-     */
-    selectionMode?: 'multiple' | 'none' | 'single';
-    /**
-     * [descr:dxTreeMapOptions.tile]
-     */
-    tile?: {
-      /**
-       * [descr:dxTreeMapOptions.tile.border]
-       */
-      border?: {
-        /**
-         * [descr:dxTreeMapOptions.tile.border.color]
-         */
-        color?: string;
-        /**
-         * [descr:dxTreeMapOptions.tile.border.width]
-         */
-        width?: number;
-      };
-      /**
-       * [descr:dxTreeMapOptions.tile.color]
-       */
-      color?: string;
-      /**
-       * [descr:dxTreeMapOptions.tile.hoverStyle]
-       */
-      hoverStyle?: {
-        /**
-         * [descr:dxTreeMapOptions.tile.hoverStyle.border]
-         */
-        border?: {
-          /**
-           * [descr:dxTreeMapOptions.tile.hoverStyle.border.color]
-           */
-          color?: string;
-          /**
-           * [descr:dxTreeMapOptions.tile.hoverStyle.border.width]
-           */
-          width?: number;
-        };
-        /**
-         * [descr:dxTreeMapOptions.tile.hoverStyle.color]
-         */
-        color?: string;
-      };
-      /**
-       * [descr:dxTreeMapOptions.tile.label]
-       */
-      label?: {
-        /**
-         * [descr:dxTreeMapOptions.tile.label.font]
-         */
-        font?: Font;
-        /**
-         * [descr:dxTreeMapOptions.tile.label.textOverflow]
-         */
-        textOverflow?: DevExpress.viz.BaseWidget.VizTextOverflowType;
-        /**
-         * [descr:dxTreeMapOptions.tile.label.visible]
-         */
-        visible?: boolean;
-        /**
-         * [descr:dxTreeMapOptions.tile.label.wordWrap]
-         */
-        wordWrap?: DevExpress.viz.BaseWidget.WordWrapType;
-      };
-      /**
-       * [descr:dxTreeMapOptions.tile.selectionStyle]
-       */
-      selectionStyle?: {
-        /**
-         * [descr:dxTreeMapOptions.tile.selectionStyle.border]
-         */
-        border?: {
-          /**
-           * [descr:dxTreeMapOptions.tile.selectionStyle.border.color]
-           */
-          color?: string;
-          /**
-           * [descr:dxTreeMapOptions.tile.selectionStyle.border.width]
-           */
-          width?: number;
-        };
-        /**
-         * [descr:dxTreeMapOptions.tile.selectionStyle.color]
-         */
-        color?: string;
-      };
-    };
-    /**
-     * [descr:dxTreeMapOptions.tooltip]
-     */
-    tooltip?: dxTreeMapTooltip;
-    /**
-     * [descr:dxTreeMapOptions.valueField]
-     */
-    valueField?: string;
-  }
+  export type dxTreeMapOptions = DevExpress.viz.dxTreeMap.Properties;
   /**
    * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
    */
@@ -34145,7 +33507,319 @@ declare module DevExpress.viz {
       DevExpress.events.InitializedEventInfo<dxVectorMap>;
     export type OptionChangedEvent = DevExpress.events.EventInfo<dxVectorMap> &
       DevExpress.events.ChangedOptionInfo;
-    export type Properties = dxVectorMapOptions;
+    /**
+     * [descr:Properties]
+     */
+    export interface Properties extends BaseWidgetOptions<dxVectorMap> {
+      /**
+       * [descr:Properties.background]
+       */
+      background?: {
+        /**
+         * [descr:Properties.background.borderColor]
+         */
+        borderColor?: string;
+        /**
+         * [descr:Properties.background.color]
+         */
+        color?: string;
+      };
+      /**
+       * [descr:Properties.bounds]
+       */
+      bounds?: Array<number>;
+      /**
+       * [descr:Properties.center]
+       */
+      center?: Array<number>;
+      /**
+       * [descr:Properties.controlBar]
+       */
+      controlBar?: {
+        /**
+         * [descr:Properties.controlBar.borderColor]
+         */
+        borderColor?: string;
+        /**
+         * [descr:Properties.controlBar.color]
+         */
+        color?: string;
+        /**
+         * [descr:Properties.controlBar.enabled]
+         */
+        enabled?: boolean;
+        /**
+         * [descr:Properties.controlBar.horizontalAlignment]
+         */
+        horizontalAlignment?: 'center' | 'left' | 'right';
+        /**
+         * [descr:Properties.controlBar.margin]
+         */
+        margin?: number;
+        /**
+         * [descr:Properties.controlBar.opacity]
+         */
+        opacity?: number;
+        /**
+         * [descr:Properties.controlBar.verticalAlignment]
+         */
+        verticalAlignment?: 'bottom' | 'top';
+      };
+      /**
+       * [descr:Properties.layers]
+       */
+      layers?:
+        | Array<{
+            /**
+             * [descr:Properties.layers.borderColor]
+             */
+            borderColor?: string;
+            /**
+             * [descr:Properties.layers.borderWidth]
+             */
+            borderWidth?: number;
+            /**
+             * [descr:Properties.layers.color]
+             */
+            color?: string;
+            /**
+             * [descr:Properties.layers.colorGroupingField]
+             */
+            colorGroupingField?: string;
+            /**
+             * [descr:Properties.layers.colorGroups]
+             */
+            colorGroups?: Array<number>;
+            /**
+             * [descr:Properties.layers.customize]
+             */
+            customize?: (elements: Array<MapLayerElement>) => void;
+            /**
+             * [descr:Properties.layers.dataField]
+             */
+            dataField?: string;
+            /**
+             * [descr:Properties.layers.dataSource]
+             */
+            dataSource?:
+              | object
+              | DevExpress.data.DataSource.DataSourceLike<any>;
+            /**
+             * [descr:Properties.layers.elementType]
+             */
+            elementType?: 'bubble' | 'dot' | 'image' | 'pie';
+            /**
+             * [descr:Properties.layers.hoverEnabled]
+             */
+            hoverEnabled?: boolean;
+            /**
+             * [descr:Properties.layers.hoveredBorderColor]
+             */
+            hoveredBorderColor?: string;
+            /**
+             * [descr:Properties.layers.hoveredBorderWidth]
+             */
+            hoveredBorderWidth?: number;
+            /**
+             * [descr:Properties.layers.hoveredColor]
+             */
+            hoveredColor?: string;
+            /**
+             * [descr:Properties.layers.label]
+             */
+            label?: {
+              /**
+               * [descr:Properties.layers.label.dataField]
+               */
+              dataField?: string;
+              /**
+               * [descr:Properties.layers.label.enabled]
+               */
+              enabled?: boolean;
+              /**
+               * [descr:Properties.layers.label.font]
+               */
+              font?: Font;
+            };
+            /**
+             * [descr:Properties.layers.maxSize]
+             */
+            maxSize?: number;
+            /**
+             * [descr:Properties.layers.minSize]
+             */
+            minSize?: number;
+            /**
+             * [descr:Properties.layers.name]
+             */
+            name?: string;
+            /**
+             * [descr:Properties.layers.opacity]
+             */
+            opacity?: number;
+            /**
+             * [descr:Properties.layers.palette]
+             */
+            palette?: Array<string> | PaletteType;
+            /**
+             * [descr:Properties.layers.paletteSize]
+             */
+            paletteSize?: number;
+            /**
+             * [descr:Properties.layers.paletteIndex]
+             */
+            paletteIndex?: number;
+            /**
+             * [descr:Properties.layers.selectedBorderColor]
+             */
+            selectedBorderColor?: string;
+            /**
+             * [descr:Properties.layers.selectedBorderWidth]
+             */
+            selectedBorderWidth?: number;
+            /**
+             * [descr:Properties.layers.selectedColor]
+             */
+            selectedColor?: string;
+            /**
+             * [descr:Properties.layers.selectionMode]
+             */
+            selectionMode?: 'multiple' | 'none' | 'single';
+            /**
+             * [descr:Properties.layers.size]
+             */
+            size?: number;
+            /**
+             * [descr:Properties.layers.sizeGroupingField]
+             */
+            sizeGroupingField?: string;
+            /**
+             * [descr:Properties.layers.sizeGroups]
+             */
+            sizeGroups?: Array<number>;
+            /**
+             * [descr:Properties.layers.type]
+             */
+            type?: 'area' | 'line' | 'marker';
+          }>
+        | {
+            borderColor?: string;
+            borderWidth?: number;
+            color?: string;
+            colorGroupingField?: string;
+            colorGroups?: Array<number>;
+            customize?: (elements: Array<MapLayerElement>) => any;
+            dataField?: string;
+            dataSource?:
+              | object
+              | DevExpress.data.DataSource.DataSourceLike<any>;
+            elementType?: 'bubble' | 'dot' | 'image' | 'pie';
+            hoverEnabled?: boolean;
+            hoveredBorderColor?: string;
+            hoveredBorderWidth?: number;
+            hoveredColor?: string;
+            label?: { dataField?: string; enabled?: boolean; font?: Font };
+            maxSize?: number;
+            minSize?: number;
+            name?: string;
+            opacity?: number;
+            palette?: Array<string> | PaletteType;
+            paletteSize?: number;
+            selectedBorderColor?: string;
+            selectedBorderWidth?: number;
+            selectedColor?: string;
+            selectionMode?: 'multiple' | 'none' | 'single';
+            size?: number;
+            sizeGroupingField?: string;
+            sizeGroups?: Array<number>;
+            type?: 'area' | 'line' | 'marker';
+          };
+      /**
+       * [descr:Properties.legends]
+       */
+      legends?: Array<dxVectorMapLegends>;
+      /**
+       * [descr:Properties.margin]
+       */
+      margin?: BaseWidgetMargin;
+      /**
+       * [descr:Properties.maxZoomFactor]
+       */
+      maxZoomFactor?: number;
+      /**
+       * [descr:Properties.onCenterChanged]
+       */
+      onCenterChanged?: (e: CenterChangedEvent) => void;
+      /**
+       * [descr:Properties.onClick]
+       */
+      onClick?: ((e: ClickEvent) => void) | string;
+      /**
+       * [descr:Properties.onSelectionChanged]
+       */
+      onSelectionChanged?: (e: SelectionChangedEvent) => void;
+      /**
+       * [descr:Properties.onTooltipHidden]
+       */
+      onTooltipHidden?: (e: TooltipHiddenEvent) => void;
+      /**
+       * [descr:Properties.onTooltipShown]
+       */
+      onTooltipShown?: (e: TooltipShownEvent) => void;
+      /**
+       * [descr:Properties.onZoomFactorChanged]
+       */
+      onZoomFactorChanged?: (e: ZoomFactorChangedEvent) => void;
+      /**
+       * [descr:Properties.panningEnabled]
+       */
+      panningEnabled?: boolean;
+      /**
+       * [descr:Properties.projection]
+       */
+      projection?:
+        | 'equirectangular'
+        | 'lambert'
+        | 'mercator'
+        | 'miller'
+        | VectorMapProjectionConfig
+        | string
+        | any;
+      /**
+       * [descr:Properties.tooltip]
+       */
+      tooltip?: dxVectorMapTooltip;
+      /**
+       * [descr:Properties.touchEnabled]
+       */
+      touchEnabled?: boolean;
+      /**
+       * [descr:Properties.wheelEnabled]
+       */
+      wheelEnabled?: boolean;
+      /**
+       * [descr:Properties.zoomFactor]
+       */
+      zoomFactor?: number;
+      /**
+       * [descr:Properties.zoomingEnabled]
+       */
+      zoomingEnabled?: boolean;
+      /**
+       * [descr:Properties.commonAnnotationSettings]
+       */
+      commonAnnotationSettings?: dxVectorMapCommonAnnotationConfig;
+      /**
+       * [descr:Properties.annotations]
+       */
+      annotations?: Array<dxVectorMapAnnotationConfig | any>;
+      /**
+       * [descr:Properties.customizeAnnotation]
+       */
+      customizeAnnotation?: (
+        annotation: dxVectorMapAnnotationConfig | any
+      ) => dxVectorMapAnnotationConfig;
+    }
     export type SelectionChangedEvent =
       DevExpress.events.EventInfo<dxVectorMap> & {
         readonly target: MapLayerElement;
@@ -34279,323 +33953,10 @@ declare module DevExpress.viz {
     };
   }
   /**
-   * @deprecated use Properties instead
+   * @deprecated use DevExpress.viz.dxVectorMap.Properties instead
    * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
    */
-  export interface dxVectorMapOptions extends BaseWidgetOptions<dxVectorMap> {
-    /**
-     * [descr:dxVectorMapOptions.background]
-     */
-    background?: {
-      /**
-       * [descr:dxVectorMapOptions.background.borderColor]
-       */
-      borderColor?: string;
-      /**
-       * [descr:dxVectorMapOptions.background.color]
-       */
-      color?: string;
-    };
-    /**
-     * [descr:dxVectorMapOptions.bounds]
-     */
-    bounds?: Array<number>;
-    /**
-     * [descr:dxVectorMapOptions.center]
-     */
-    center?: Array<number>;
-    /**
-     * [descr:dxVectorMapOptions.controlBar]
-     */
-    controlBar?: {
-      /**
-       * [descr:dxVectorMapOptions.controlBar.borderColor]
-       */
-      borderColor?: string;
-      /**
-       * [descr:dxVectorMapOptions.controlBar.color]
-       */
-      color?: string;
-      /**
-       * [descr:dxVectorMapOptions.controlBar.enabled]
-       */
-      enabled?: boolean;
-      /**
-       * [descr:dxVectorMapOptions.controlBar.horizontalAlignment]
-       */
-      horizontalAlignment?: 'center' | 'left' | 'right';
-      /**
-       * [descr:dxVectorMapOptions.controlBar.margin]
-       */
-      margin?: number;
-      /**
-       * [descr:dxVectorMapOptions.controlBar.opacity]
-       */
-      opacity?: number;
-      /**
-       * [descr:dxVectorMapOptions.controlBar.verticalAlignment]
-       */
-      verticalAlignment?: 'bottom' | 'top';
-    };
-    /**
-     * [descr:dxVectorMapOptions.layers]
-     */
-    layers?:
-      | Array<{
-          /**
-           * [descr:dxVectorMapOptions.layers.borderColor]
-           */
-          borderColor?: string;
-          /**
-           * [descr:dxVectorMapOptions.layers.borderWidth]
-           */
-          borderWidth?: number;
-          /**
-           * [descr:dxVectorMapOptions.layers.color]
-           */
-          color?: string;
-          /**
-           * [descr:dxVectorMapOptions.layers.colorGroupingField]
-           */
-          colorGroupingField?: string;
-          /**
-           * [descr:dxVectorMapOptions.layers.colorGroups]
-           */
-          colorGroups?: Array<number>;
-          /**
-           * [descr:dxVectorMapOptions.layers.customize]
-           */
-          customize?: (elements: Array<MapLayerElement>) => void;
-          /**
-           * [descr:dxVectorMapOptions.layers.dataField]
-           */
-          dataField?: string;
-          /**
-           * [descr:dxVectorMapOptions.layers.dataSource]
-           */
-          dataSource?: object | DevExpress.data.DataSource.DataSourceLike<any>;
-          /**
-           * [descr:dxVectorMapOptions.layers.elementType]
-           */
-          elementType?: 'bubble' | 'dot' | 'image' | 'pie';
-          /**
-           * [descr:dxVectorMapOptions.layers.hoverEnabled]
-           */
-          hoverEnabled?: boolean;
-          /**
-           * [descr:dxVectorMapOptions.layers.hoveredBorderColor]
-           */
-          hoveredBorderColor?: string;
-          /**
-           * [descr:dxVectorMapOptions.layers.hoveredBorderWidth]
-           */
-          hoveredBorderWidth?: number;
-          /**
-           * [descr:dxVectorMapOptions.layers.hoveredColor]
-           */
-          hoveredColor?: string;
-          /**
-           * [descr:dxVectorMapOptions.layers.label]
-           */
-          label?: {
-            /**
-             * [descr:dxVectorMapOptions.layers.label.dataField]
-             */
-            dataField?: string;
-            /**
-             * [descr:dxVectorMapOptions.layers.label.enabled]
-             */
-            enabled?: boolean;
-            /**
-             * [descr:dxVectorMapOptions.layers.label.font]
-             */
-            font?: Font;
-          };
-          /**
-           * [descr:dxVectorMapOptions.layers.maxSize]
-           */
-          maxSize?: number;
-          /**
-           * [descr:dxVectorMapOptions.layers.minSize]
-           */
-          minSize?: number;
-          /**
-           * [descr:dxVectorMapOptions.layers.name]
-           */
-          name?: string;
-          /**
-           * [descr:dxVectorMapOptions.layers.opacity]
-           */
-          opacity?: number;
-          /**
-           * [descr:dxVectorMapOptions.layers.palette]
-           */
-          palette?: Array<string> | PaletteType;
-          /**
-           * [descr:dxVectorMapOptions.layers.paletteSize]
-           */
-          paletteSize?: number;
-          /**
-           * [descr:dxVectorMapOptions.layers.paletteIndex]
-           */
-          paletteIndex?: number;
-          /**
-           * [descr:dxVectorMapOptions.layers.selectedBorderColor]
-           */
-          selectedBorderColor?: string;
-          /**
-           * [descr:dxVectorMapOptions.layers.selectedBorderWidth]
-           */
-          selectedBorderWidth?: number;
-          /**
-           * [descr:dxVectorMapOptions.layers.selectedColor]
-           */
-          selectedColor?: string;
-          /**
-           * [descr:dxVectorMapOptions.layers.selectionMode]
-           */
-          selectionMode?: 'multiple' | 'none' | 'single';
-          /**
-           * [descr:dxVectorMapOptions.layers.size]
-           */
-          size?: number;
-          /**
-           * [descr:dxVectorMapOptions.layers.sizeGroupingField]
-           */
-          sizeGroupingField?: string;
-          /**
-           * [descr:dxVectorMapOptions.layers.sizeGroups]
-           */
-          sizeGroups?: Array<number>;
-          /**
-           * [descr:dxVectorMapOptions.layers.type]
-           */
-          type?: 'area' | 'line' | 'marker';
-        }>
-      | {
-          borderColor?: string;
-          borderWidth?: number;
-          color?: string;
-          colorGroupingField?: string;
-          colorGroups?: Array<number>;
-          customize?: (elements: Array<MapLayerElement>) => any;
-          dataField?: string;
-          dataSource?: object | DevExpress.data.DataSource.DataSourceLike<any>;
-          elementType?: 'bubble' | 'dot' | 'image' | 'pie';
-          hoverEnabled?: boolean;
-          hoveredBorderColor?: string;
-          hoveredBorderWidth?: number;
-          hoveredColor?: string;
-          label?: { dataField?: string; enabled?: boolean; font?: Font };
-          maxSize?: number;
-          minSize?: number;
-          name?: string;
-          opacity?: number;
-          palette?: Array<string> | PaletteType;
-          paletteSize?: number;
-          selectedBorderColor?: string;
-          selectedBorderWidth?: number;
-          selectedColor?: string;
-          selectionMode?: 'multiple' | 'none' | 'single';
-          size?: number;
-          sizeGroupingField?: string;
-          sizeGroups?: Array<number>;
-          type?: 'area' | 'line' | 'marker';
-        };
-    /**
-     * [descr:dxVectorMapOptions.legends]
-     */
-    legends?: Array<dxVectorMapLegends>;
-    /**
-     * [descr:dxVectorMapOptions.margin]
-     */
-    margin?: BaseWidgetMargin;
-    /**
-     * [descr:dxVectorMapOptions.maxZoomFactor]
-     */
-    maxZoomFactor?: number;
-    /**
-     * [descr:dxVectorMapOptions.onCenterChanged]
-     */
-    onCenterChanged?: (
-      e: DevExpress.viz.dxVectorMap.CenterChangedEvent
-    ) => void;
-    /**
-     * [descr:dxVectorMapOptions.onClick]
-     */
-    onClick?: ((e: DevExpress.viz.dxVectorMap.ClickEvent) => void) | string;
-    /**
-     * [descr:dxVectorMapOptions.onSelectionChanged]
-     */
-    onSelectionChanged?: (
-      e: DevExpress.viz.dxVectorMap.SelectionChangedEvent
-    ) => void;
-    /**
-     * [descr:dxVectorMapOptions.onTooltipHidden]
-     */
-    onTooltipHidden?: (
-      e: DevExpress.viz.dxVectorMap.TooltipHiddenEvent
-    ) => void;
-    /**
-     * [descr:dxVectorMapOptions.onTooltipShown]
-     */
-    onTooltipShown?: (e: DevExpress.viz.dxVectorMap.TooltipShownEvent) => void;
-    /**
-     * [descr:dxVectorMapOptions.onZoomFactorChanged]
-     */
-    onZoomFactorChanged?: (
-      e: DevExpress.viz.dxVectorMap.ZoomFactorChangedEvent
-    ) => void;
-    /**
-     * [descr:dxVectorMapOptions.panningEnabled]
-     */
-    panningEnabled?: boolean;
-    /**
-     * [descr:dxVectorMapOptions.projection]
-     */
-    projection?:
-      | 'equirectangular'
-      | 'lambert'
-      | 'mercator'
-      | 'miller'
-      | VectorMapProjectionConfig
-      | string
-      | any;
-    /**
-     * [descr:dxVectorMapOptions.tooltip]
-     */
-    tooltip?: dxVectorMapTooltip;
-    /**
-     * [descr:dxVectorMapOptions.touchEnabled]
-     */
-    touchEnabled?: boolean;
-    /**
-     * [descr:dxVectorMapOptions.wheelEnabled]
-     */
-    wheelEnabled?: boolean;
-    /**
-     * [descr:dxVectorMapOptions.zoomFactor]
-     */
-    zoomFactor?: number;
-    /**
-     * [descr:dxVectorMapOptions.zoomingEnabled]
-     */
-    zoomingEnabled?: boolean;
-    /**
-     * [descr:dxVectorMapOptions.commonAnnotationSettings]
-     */
-    commonAnnotationSettings?: dxVectorMapCommonAnnotationConfig;
-    /**
-     * [descr:dxVectorMapOptions.annotations]
-     */
-    annotations?: Array<dxVectorMapAnnotationConfig | any>;
-    /**
-     * [descr:dxVectorMapOptions.customizeAnnotation]
-     */
-    customizeAnnotation?: (
-      annotation: dxVectorMapAnnotationConfig | any
-    ) => dxVectorMapAnnotationConfig;
-  }
+  export type dxVectorMapOptions = DevExpress.viz.dxVectorMap.Properties;
   /**
    * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
    */
@@ -34688,16 +34049,6 @@ declare module DevExpress.viz {
      * [descr:Font.weight]
      */
     weight?: number;
-  }
-  /**
-   * @deprecated Use LegendItem instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface FunnelLegendItem extends BaseLegendItem {
-    /**
-     * [descr:FunnelLegendItem.item]
-     */
-    item?: DevExpress.viz.dxFunnel.Item;
   }
   /**
    * [descr:GaugeIndicator]
@@ -34828,28 +34179,6 @@ declare module DevExpress.viz {
     | 'Material'
     | 'Office';
   /**
-   * @deprecated Use LegendItem instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface PieChartLegendItem extends BaseLegendItem {
-    /**
-     * [descr:PieChartLegendItem.argument]
-     */
-    argument?: string | Date | number;
-    /**
-     * [descr:PieChartLegendItem.argumentIndex]
-     */
-    argumentIndex?: number;
-    /**
-     * [descr:PieChartLegendItem.points]
-     */
-    points?: Array<piePointObject>;
-    /**
-     * [descr:PieChartLegendItem.text]
-     */
-    text?: any;
-  }
-  /**
    * [descr:PieChartSeries]
    * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
    */
@@ -34977,28 +34306,6 @@ declare module DevExpress.viz {
     | 'week'
     | 'year';
   /**
-   * @deprecated Use LegendItem instead
-   * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
-   */
-  export interface VectorMapLegendItem extends BaseLegendItem {
-    /**
-     * [descr:VectorMapLegendItem.color]
-     */
-    color?: string;
-    /**
-     * [descr:VectorMapLegendItem.end]
-     */
-    end?: number;
-    /**
-     * [descr:VectorMapLegendItem.size]
-     */
-    size?: number;
-    /**
-     * [descr:VectorMapLegendItem.start]
-     */
-    start?: number;
-  }
-  /**
    * [descr:VectorMapProjectionConfig]
    * @deprecated Attention! This type is for internal purposes only. If you used it previously, please describe your scenario in the following GitHub Issue, and we will suggest a public alternative: {@link https://github.com/DevExpress/DevExtreme/issues/17885|Internal Types}.
    */
@@ -35081,17 +34388,117 @@ declare module DevExpress.viz {
     | TimeIntervalType;
 }
 declare module DevExpress.viz.dxBarGauge {
-  export type LegendItem = BarGaugeLegendItem;
+  /**
+   * [descr:LegendItem]
+   */
+  export interface LegendItem extends BaseLegendItem {
+    /**
+     * [descr:LegendItem.item]
+     */
+    item?: BarGaugeBarInfo;
+  }
 }
 declare module DevExpress.viz.dxFunnel {
-  export type Item = dxFunnelItem;
-  export type LegendItem = FunnelLegendItem;
+  /**
+   * [descr:Item]
+   */
+  export interface Item {
+    /**
+     * [descr:Item.argument]
+     */
+    argument?: string | Date | number;
+    /**
+     * [descr:Item.data]
+     */
+    data?: any;
+    /**
+     * [descr:Item.getColor()]
+     */
+    getColor(): string;
+    /**
+     * [descr:Item.hover(state)]
+     */
+    hover(state: boolean): void;
+    /**
+     * [descr:Item.isHovered()]
+     */
+    isHovered(): boolean;
+    /**
+     * [descr:Item.isSelected()]
+     */
+    isSelected(): boolean;
+    /**
+     * [descr:Item.percent]
+     */
+    percent?: number;
+    /**
+     * [descr:Item.select(state)]
+     */
+    select(state: boolean): void;
+    /**
+     * [descr:Item.showTooltip()]
+     */
+    showTooltip(): void;
+    /**
+     * [descr:Item.value]
+     */
+    value?: number;
+  }
+  /**
+   * [descr:LegendItem]
+   */
+  export interface LegendItem extends BaseLegendItem {
+    /**
+     * [descr:LegendItem.item]
+     */
+    item?: Item;
+  }
 }
 declare module DevExpress.viz.dxPieChart {
-  export type LegendItem = PieChartLegendItem;
+  /**
+   * [descr:LegendItem]
+   */
+  export interface LegendItem extends BaseLegendItem {
+    /**
+     * [descr:LegendItem.argument]
+     */
+    argument?: string | Date | number;
+    /**
+     * [descr:LegendItem.argumentIndex]
+     */
+    argumentIndex?: number;
+    /**
+     * [descr:LegendItem.points]
+     */
+    points?: Array<piePointObject>;
+    /**
+     * [descr:LegendItem.text]
+     */
+    text?: any;
+  }
 }
 declare module DevExpress.viz.dxVectorMap {
-  export type LegendItem = VectorMapLegendItem;
+  /**
+   * [descr:LegendItem]
+   */
+  export interface LegendItem extends BaseLegendItem {
+    /**
+     * [descr:LegendItem.color]
+     */
+    color?: string;
+    /**
+     * [descr:LegendItem.end]
+     */
+    end?: number;
+    /**
+     * [descr:LegendItem.size]
+     */
+    size?: number;
+    /**
+     * [descr:LegendItem.start]
+     */
+    start?: number;
+  }
 }
 declare module DevExpress.viz.map {
   /**

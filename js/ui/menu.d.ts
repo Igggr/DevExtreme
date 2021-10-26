@@ -66,10 +66,10 @@ export type SubmenuShownEvent = EventInfo<dxMenu> & {
 };
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxMenuOptions extends dxMenuBaseOptions<dxMenu> {
+export interface Properties extends dxMenuBaseOptions<dxMenu> {
     /**
      * @docid
      * @default false
@@ -78,7 +78,7 @@ export interface dxMenuOptions extends dxMenuBaseOptions<dxMenu> {
     adaptivityEnabled?: boolean;
     /**
      * @docid
-     * @type string | Array<dxMenuItem> | Store | DataSource | DataSourceOptions
+     * @type string | Array<Item> | Store | DataSource | DataSourceOptions
      * @default null
      * @public
      */
@@ -91,7 +91,7 @@ export interface dxMenuOptions extends dxMenuBaseOptions<dxMenu> {
     hideSubmenuOnMouseLeave?: boolean;
     /**
      * @docid
-     * @type Array<dxMenuItem>
+     * @type Array<Item>
      * @public
      */
     items?: Array<Item>;
@@ -195,7 +195,7 @@ export interface dxMenuOptions extends dxMenuBaseOptions<dxMenu> {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxMenu extends dxMenuBase<dxMenuOptions> { }
+export default class dxMenu extends dxMenuBase<Properties> { }
 
 export interface MenuBasePlainItem extends CollectionWidgetItem {
   /**
@@ -260,26 +260,30 @@ export interface dxMenuBaseItem extends MenuBasePlainItem {
 }
 
 /**
- * @public
- * @namespace DevExpress.ui.dxMenu
- */
-export type Item = dxMenuItem;
-
-/**
  * @deprecated Use Item instead
  * @namespace DevExpress.ui
  */
-export interface dxMenuItem extends dxMenuBaseItem {
+export type dxMenuItem = Item;
+
+/**
+ * @docid
+ * @public
+ * @namespace DevExpress.ui.dxMenu
+ */
+export interface Item extends dxMenuBaseItem {
     /**
      * @docid
      * @public
-     * @type Array<dxMenuItem>
+     * @type Array<Item>
      */
     items?: Array<Item>;
 }
 
-/** @public */
-export type Properties = dxMenuOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+*/
+export type dxMenuOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxMenuOptions;
+export type Options = Properties;

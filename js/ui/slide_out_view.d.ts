@@ -30,10 +30,10 @@ export type InitializedEvent = InitializedEventInfo<dxSlideOutView>;
 export type OptionChangedEvent = EventInfo<dxSlideOutView> & ChangedOptionInfo;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxSlideOutViewOptions extends WidgetOptions<dxSlideOutView> {
+export interface Properties extends WidgetOptions<dxSlideOutView> {
     /**
      * @docid
      * @default "content"
@@ -74,7 +74,7 @@ export interface dxSlideOutViewOptions extends WidgetOptions<dxSlideOutView> {
  * @deprecated dxDrawer
  * @public
  */
-export default class dxSlideOutView extends Widget<dxSlideOutViewOptions> {
+export default class dxSlideOutView extends Widget<Properties> {
     /**
      * @docid
      * @publicName content()
@@ -111,8 +111,11 @@ export default class dxSlideOutView extends Widget<dxSlideOutViewOptions> {
     toggleMenuVisibility(showing?: boolean): DxPromise<void>;
 }
 
-/** @public */
-export type Properties = dxSlideOutViewOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxSlideOutViewOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxSlideOutViewOptions;
+export type Options = Properties;

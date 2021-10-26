@@ -204,16 +204,17 @@ export interface MapLayerElement {
 }
 
 /**
- * @public
- * @namespace DevExpress.viz.dxVectorMap
- */
-export type LegendItem = VectorMapLegendItem;
-
-/**
  * @deprecated Use LegendItem instead
  * @namespace DevExpress.viz
  */
-export interface VectorMapLegendItem extends BaseLegendItem {
+export type VectorMapLegendItem = LegendItem;
+
+/**
+ * @public
+ * @docid
+ * @namespace DevExpress.viz.dxVectorMap
+ */
+export interface LegendItem extends BaseLegendItem {
     /**
      * @docid
      * @public
@@ -237,10 +238,10 @@ export interface VectorMapLegendItem extends BaseLegendItem {
 }
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.viz
+ * @public
+ * @docid
  */
-export interface dxVectorMapOptions extends BaseWidgetOptions<dxVectorMap> {
+export interface Properties extends BaseWidgetOptions<dxVectorMap> {
     /**
      * @docid
      * @public
@@ -886,8 +887,10 @@ export default class dxVectorMap extends BaseWidget<dxVectorMapOptions> {
     zoomFactor(zoomFactor: number): void;
 }
 
-/** @public */
-export type Properties = dxVectorMapOptions;
+/**
+ * @namespace DevExpress.viz
+ * @deprecated use Properties instead */
+export type dxVectorMapOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxVectorMapOptions;
+export type Options = Properties;

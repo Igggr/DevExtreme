@@ -572,10 +572,10 @@ export interface chartSeriesObject extends baseSeriesObject {
 }
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.viz
+ * @public
+ * @docid
  */
-export interface dxChartOptions extends BaseChartOptions<dxChart> {
+export interface Properties extends BaseChartOptions<dxChart> {
     /**
      * @docid
      * @default true
@@ -2604,7 +2604,7 @@ export interface dxChartValueAxisTitle extends dxChartCommonAxisSettingsTitle {
  * @namespace DevExpress.viz
  * @public
  */
-export default class dxChart extends BaseChart<dxChartOptions> {
+export default class dxChart extends BaseChart<Properties> {
     /**
      * @docid
      * @publicName getArgumentAxis()
@@ -5154,8 +5154,11 @@ export interface dxChartSeriesTypesStockSeriesLabel extends dxChartSeriesTypesCo
     customizeText?: ((pointInfo: any) => string);
 }
 
-/** @public */
-export type Properties = dxChartOptions;
+/**
+ * @namespace DevExpress.viz
+ * @deprecated use Properties instead
+ */
+export type dxChartOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxChartOptions;
+export type Options = Properties;

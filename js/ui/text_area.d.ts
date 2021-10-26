@@ -10,7 +10,7 @@ import {
 } from './editor/editor';
 
 import dxTextBox, {
-    dxTextBoxOptions,
+    Properties as dxTextBoxOptions,
 } from './text_box';
 
 /** @public */
@@ -62,10 +62,10 @@ export type PasteEvent = NativeEventInfo<dxTextArea>;
 export type ValueChangedEvent = NativeEventInfo<dxTextArea> & ValueChangedInfo;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxTextAreaOptions extends dxTextBoxOptions<dxTextArea> {
+export interface Properties extends dxTextBoxOptions<dxTextArea> {
     /**
      * @docid
      * @default false
@@ -98,10 +98,13 @@ export interface dxTextAreaOptions extends dxTextBoxOptions<dxTextArea> {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxTextArea extends dxTextBox<dxTextAreaOptions> { }
+export default class dxTextArea extends dxTextBox<Properties> { }
 
-/** @public */
-export type Properties = dxTextAreaOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxTextAreaOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxTextAreaOptions;
+export type Options = Properties;

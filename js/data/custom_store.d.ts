@@ -1,17 +1,20 @@
 import { FilterDescriptor, GroupDescriptor, LoadOptions } from './index';
 import Store, { Options as StoreOptions } from './abstract_store';
 
-/** @public */
-export type Options<
-    TItem = any,
-    TKey = any,
-> = CustomStoreOptions<TItem, TKey>;
-
 /**
  * @namespace DevExpress.data
  * @deprecated Use Options instead
  */
-export interface CustomStoreOptions<
+export type CustomStoreOptions<
+    TItem = any,
+    TKey = any,
+> = Options<TItem, TKey>;
+
+/**
+ * @public
+ * @docid
+ */
+export interface Options<
     TItem = any,
     TKey = any,
 > extends StoreOptions<TItem, TKey> {

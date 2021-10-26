@@ -55,7 +55,7 @@ import {
     RowDraggingTemplateDataModel,
 } from './data_grid';
 
-import { dxToolbarItem } from './toolbar';
+import { Item as dxToolbarItem } from './toolbar';
 
 import dxScrollable from './scroll_view/ui.scrollable';
 
@@ -389,11 +389,11 @@ export type ColumnHeaderCellTemplateData<TRowData = any, TKey = any> = {
 export type RowDraggingTemplateData<TRowData = any> = RowDraggingTemplateDataModel<TRowData>;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  * @public
  */
-export interface dxTreeListOptions<TRowData = any, TKey = any> extends GridBaseOptions<dxTreeList<TRowData, TKey>, TRowData, TKey> {
+export interface Properties<TRowData = any, TKey = any> extends GridBaseOptions<dxTreeList<TRowData, TKey>, TRowData, TKey> {
     /**
      * @docid
      * @default false
@@ -402,7 +402,7 @@ export interface dxTreeListOptions<TRowData = any, TKey = any> extends GridBaseO
     autoExpandAll?: boolean;
     /**
      * @docid
-     * @type Array<dxTreeListColumn|string>
+     * @type Array<Column|string>
      * @default undefined
      * @public
      */
@@ -969,7 +969,7 @@ export interface Selection extends SelectionBase {
  * @namespace DevExpress.ui
  * @public
  */
-export default class dxTreeList<TRowData = any, TKey = any> extends Widget<dxTreeListOptions<TRowData, TKey>> implements GridBase<TRowData, TKey> {
+export default class dxTreeList<TRowData = any, TKey = any> extends Widget<Properties<TRowData, TKey>> implements GridBase<TRowData, TKey> {
     /**
      * @docid
      * @publicName addColumn(columnOptions)
@@ -1228,18 +1228,19 @@ export interface dxTreeListToolbar {
 }
 
 /**
- * @public
- */
-export type Column<TRowData = any, TKey = any> = dxTreeListColumn<TRowData, TKey>;
-
-/**
  * @namespace DevExpress.ui
  * @deprecated Use the Column type instead
  */
-export interface dxTreeListColumn<TRowData = any, TKey = any> extends ColumnBase<TRowData> {
+export type dxTreeListColumn<TRowData = any, TKey = any> = Column<TRowData, TKey>;
+
+/**
+ * @docid
+ * @public
+ */
+export interface Column<TRowData = any, TKey = any> extends ColumnBase<TRowData> {
     /**
      * @docid dxTreeListColumn.buttons
-     * @type Array<Enums.TreeListColumnButtonName,dxTreeListColumnButton>
+     * @type Array<Enums.TreeListColumnButtonName,ColumnButton>
      * @public
      */
     buttons?: Array<'add' | 'cancel' | 'delete' | 'edit' | 'save' | 'undelete' | ColumnButton<TRowData, TKey>>;
@@ -1263,7 +1264,7 @@ export interface dxTreeListColumn<TRowData = any, TKey = any> extends ColumnBase
     cellTemplate?: template | ((cellElement: DxElement, cellInfo: ColumnCellTemplateData<TRowData, TKey>) => any);
     /**
      * @docid dxTreeListColumn.columns
-     * @type Array<dxTreeListColumn|string>
+     * @type Array<Column|string>
      * @default undefined
      * @public
      */
@@ -1305,15 +1306,16 @@ export interface dxTreeListColumn<TRowData = any, TKey = any> extends ColumnBase
 }
 
 /**
- * @public
- */
-export type ColumnButton<TRowData = any, TKey = any> = dxTreeListColumnButton<TRowData, TKey>;
-
-/**
  * @namespace DevExpress.ui
  * @deprecated Use the TreeList's ColumnButton type instead
  */
-export interface dxTreeListColumnButton<TRowData = any, TKey = any> extends ColumnButtonBase {
+export type dxTreeListColumnButton<TRowData = any, TKey = any> = ColumnButton<TRowData, TKey>;
+
+/**
+ * @docid
+ * @public
+ */
+export interface ColumnButton<TRowData = any, TKey = any> extends ColumnButtonBase {
     /**
      * @docid dxTreeListColumnButton.name
      * @type Enums.TreeListColumnButtonName|string
@@ -1553,8 +1555,11 @@ export type ExplicitTypes<TRowData, TKey> = {
   ToolbarPreparingEvent: ToolbarPreparingEvent<TRowData, TKey>;
 };
 
-/** @public */
-export type Properties<TRowData = any, TKey = any> = dxTreeListOptions<TRowData, TKey>;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ * */
+export type dxTreeListOptions<TRowData = any, TKey = any> = Properties<TRowData, TKey>;
 
 /** @deprecated use Properties instead */
-export type Options<TRowData = any, TKey = any> = dxTreeListOptions<TRowData, TKey>;
+export type Options<TRowData = any, TKey = any> = Properties<TRowData, TKey>;

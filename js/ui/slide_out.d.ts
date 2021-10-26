@@ -60,10 +60,10 @@ export type OptionChangedEvent = EventInfo<dxSlideOut> & ChangedOptionInfo;
 export type SelectionChangedEvent = EventInfo<dxSlideOut> & SelectionChangedInfo;
 
 /**
- * @deprecated use Properties instead
- * @namespace DevExpress.ui
+ * @docid
+ * @public
  */
-export interface dxSlideOutOptions extends CollectionWidgetOptions<dxSlideOut> {
+export interface Properties extends CollectionWidgetOptions<dxSlideOut> {
     /**
      * @docid
      * @default false
@@ -79,14 +79,14 @@ export interface dxSlideOutOptions extends CollectionWidgetOptions<dxSlideOut> {
     contentTemplate?: template | ((container: DxElement) => string | UserDefinedElement);
     /**
      * @docid
-     * @type string | Array<string | dxSlideOutItem | any> | Store | DataSource | DataSourceOptions
+     * @type string | Array<string | Item | any> | Store | DataSource | DataSourceOptions
      * @default null
      * @public
      */
     dataSource?: DataSourceLike<string | Item | any>;
     /**
      * @docid
-     * @type Array<string | dxSlideOutItem | any>
+     * @type Array<string | Item | any>
      * @fires dxSlideOutOptions.onOptionChanged
      * @public
      */
@@ -169,7 +169,7 @@ export interface dxSlideOutOptions extends CollectionWidgetOptions<dxSlideOut> {
  * @deprecated dxDrawer
  * @public
  */
-export default class dxSlideOut extends CollectionWidget<dxSlideOutOptions> {
+export default class dxSlideOut extends CollectionWidget<Properties> {
     /**
      * @docid
      * @publicName hideMenu()
@@ -195,16 +195,17 @@ export default class dxSlideOut extends CollectionWidget<dxSlideOutOptions> {
 }
 
 /**
- * @public
- * @namespace DevExpress.ui.dxSlideOut
- */
-export type Item = dxSlideOutItem;
-
-/**
  * @deprecated Use Item instead
  * @namespace DevExpress.ui
  */
-export interface dxSlideOutItem extends CollectionWidgetItem {
+export type dxSlideOutItem = Item;
+
+/**
+ * @docid
+ * @public
+ * @namespace DevExpress.ui.dxSlideOut
+ */
+export interface Item extends CollectionWidgetItem {
     /**
      * @docid
      * @type_function_return string|Element|jQuery
@@ -213,8 +214,11 @@ export interface dxSlideOutItem extends CollectionWidgetItem {
     menuTemplate?: template | (() => string | UserDefinedElement);
 }
 
-/** @public */
-export type Properties = dxSlideOutOptions;
+/**
+ * @namespace DevExpress.ui
+ * @deprecated use Properties instead
+ */
+export type dxSlideOutOptions = Properties;
 
 /** @deprecated use Properties instead */
-export type Options = dxSlideOutOptions;
+export type Options = Properties;
