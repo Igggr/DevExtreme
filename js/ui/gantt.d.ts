@@ -390,7 +390,6 @@ export interface dxGanttOptions extends WidgetOptions<dxGantt> {
      * @docid
      * @default null
      * @type_function_param1 e:object
-     * @type_function_param1_field1 component:dxGantt
      * @type_function_param1_field2 element:DxElement
      * @type_function_param1_field3 name:String
      * @action
@@ -405,9 +404,6 @@ export interface dxGanttOptions extends WidgetOptions<dxGantt> {
      * @type_function_param1_field2 element:DxElement
      * @type_function_param1_field3 cancel:boolean
      * @type_function_param1_field4 event:event
-     * @type_function_param1_field5 targetKey:any
-     * @type_function_param1_field6 targetType:string
-     * @type_function_param1_field7 data:any
      * @type_function_param1_field8 items:Array<object>
      * @action
      * @public

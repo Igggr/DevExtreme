@@ -2399,9 +2399,6 @@ export interface ColumnBase<TRowData = any> {
      * @docid GridBaseColumn.customizeText
      * @type_function_param1 cellInfo:object
      * @type_function_param1_field1 value:string|number|date
-     * @type_function_param1_field2 valueText:string
-     * @type_function_param1_field3 target:string
-     * @type_function_param1_field4 groupInterval:string|number
      * @public
      */
     customizeText?: ((cellInfo: ColumnCustomizeTextArg) => string);
@@ -3703,13 +3700,8 @@ export type Export<TRowData = any, TKey = any> = {
    * @type_function_param1_field1 component:dxDataGrid
    * @type_function_param1_field2 horizontalAlignment:Enums.ExcelCellHorizontalAlignment
    * @type_function_param1_field3 verticalAlignment:Enums.ExcelCellVerticalAlignment
-   * @type_function_param1_field4 wrapTextEnabled:boolean
-   * @type_function_param1_field5 backgroundColor:string
    * @type_function_param1_field6 fillPatternType:Enums.ExcelCellPatternType
-   * @type_function_param1_field7 fillPatternColor:string
-   * @type_function_param1_field8 font:ExcelFont
    * @type_function_param1_field9 value:string|number|date
-   * @type_function_param1_field10 numberFormat:string
    * @type_function_param1_field11 gridCell:ExcelDataGridCell
    */
   customizeExcelCell?: ((options: ExcelCellInfo<TRowData, TKey>) => void);
@@ -3912,11 +3904,6 @@ export type Summary<TRowData = any, TKey = any> = {
    * @docid dxDataGridOptions.summary.calculateCustomSummary
    * @type_function_param1 options:object
    * @type_function_param1_field1 component:dxDataGrid
-   * @type_function_param1_field2 name:string
-   * @type_function_param1_field3 summaryProcess:string
-   * @type_function_param1_field4 value:any
-   * @type_function_param1_field5 totalValue:any
-   * @type_function_param1_field6 groupIndex:number
    */
   calculateCustomSummary?: ((options: CustomSummaryInfo<TRowData, TKey>) => void);
   /**
@@ -3970,7 +3957,6 @@ export type SummaryGroupItem = {
      * @docid dxDataGridOptions.summary.groupItems.customizeText
      * @type_function_param1 itemInfo:object
      * @type_function_param1_field1 value:string|number|date
-     * @type_function_param1_field2 valueText:string
      */
     customizeText?: ((itemInfo: SummaryItemTextInfo) => string);
     /**
@@ -4032,7 +4018,6 @@ export type SummaryTotalItem = {
    * @docid dxDataGridOptions.summary.totalItems.customizeText
    * @type_function_param1 itemInfo:object
    * @type_function_param1_field1 value:string|number|date
-   * @type_function_param1_field2 valueText:string
    */
   customizeText?: ((itemInfo: SummaryItemTextInfo) => string);
   /**
